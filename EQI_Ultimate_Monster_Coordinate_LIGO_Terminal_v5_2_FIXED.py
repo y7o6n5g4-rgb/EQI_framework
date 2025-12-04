@@ -203,7 +203,7 @@ class EQI_Ultimate_Monster_Coordinate_LIGO_Terminal_v52_FIXED:
             'axis_type': 'imaginary_axis',  # 허수축
             'structure': 'two_arm',  # 두 팔
             'spacetime': 'spaceless_time',  # 무공간 시간
-            'eigenperiod': 2.160,  # seconds
+            'eigenperiod': 1.0 / 0.463,  # seconds
             'zero_type': 'trivial',
             'circulation_type': 'leading_trailing_ouroboros',
             'ligo_integration': 'l_strain_channel',  # NEW!
