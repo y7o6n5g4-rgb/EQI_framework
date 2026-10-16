@@ -82,15 +82,13 @@ phi_ident    = fabs(mpow(PHI, mpf(-13)/6) - Lambda * mpow(PHI, mpf(-1)/6))
 L2 = mpf(3)
 check_L2sq = L2**2
 
-# 후보 B: 9 = φ^4 + φ^2 − 2  (φ^4 = φ^2+1로 전개)
+# 후보 B: 9 = φ⁴+φ²−2  (수치 확인용, φ⁴=3φ+2, φ²=φ+1)
 phi2 = PHI**2
-check_phi = phi2**2 + phi2 - 2   # = (φ²+φ^4−2) = φ²+(φ²+1)−2 = 2φ²−1
+check_phi = phi2**2 + phi2 - 2   # = φ⁴+φ²−2 = (3φ+2)+(φ+1)−2 = 4φ+1
 
 # 후보 C: 9 = 3²  (피타고라스 세 번째)
 
-# 수치: 실제 최소 계수는?
-# D'−(9−R) = diff_p → corr 목표
-# corr_target / (B²·GD³) = 최소 계수
+# 잔여 정확 일치 역산 계수: diff_p / (B²·GD³)
 min_coeff = diff_p / (B**2 * GD**3)
 
 print(f"\n{SEP}")
@@ -165,16 +163,16 @@ print("  산출물 ④-C  미해결 귀속")
 print(SEP2)
 print()
 print(f"  U-1. 계수 9 귀속  [미해결]")
-print(f"       실제 최소 계수 = diff_p / (B²·GD³)")
+print(f"       잔여 정확 일치 역산 계수 = diff_p / (B²·GD³)")
 print(f"         = {n15(min_coeff)}")
-print(f"       ← 9에 0.4% 부족: 9·B²·GD³이 diff_p보다 약 0.4% 작음")
+print(f"       ← 9보다 0.36% 큼: 9·B²·GD³은 diff_p보다 약 0.4% 작음")
 print()
 print(f"       후보 A: 9 = L₂²  (루카스 L₂=3, L₂²=9)")
 print(f"         L₂² = {n15(check_L2sq)}  ← 수치 일치 (정수 정의)")
 print(f"         귀속 상태: 후보 (대수 기원 미확인)")
 print()
-print(f"       후보 B: 9 = φ⁴+φ²−2 = 2φ²−1")
-print(f"         2φ²−1 = {n15(check_phi)}")
+print(f"       후보 B: 9 = φ⁴+φ²−2  (수치 불일치 확인)")
+print(f"         φ⁴+φ²−2 = {n15(check_phi)}")
 print(f"         귀속 상태: 불일치 (≠9)")
 print()
 print(f"  U-2. DS-1' (13/6)·GD² 계수 귀속  [미해결]")
@@ -198,11 +196,13 @@ print(f"  [탐색 목표]")
 print(f"    diff_p = D'−(9−R) = {n15(diff_p)}")
 print(f"    보정항 후보 X 탐색: |X−diff_p|/|diff_p| < 5%")
 print()
-print(f"  [탐색 계열]")
+print(f"  [S114 전체 탐색 계열  (s114_verification.py 실행 결과)]")
 print(f"    A. (c/d)·B^n          c∈[1..19], d∈분모집합, n∈[2..5]")
 print(f"    B. (c/d)·GD^n         c∈[1..19], d∈분모집합, n∈[7..11]")
-print(f"    C. (c/d)·B²·GD^n      c∈[1..14], d∈분모집합, n∈[1..5]  ← 발견")
+print(f"    C. (c/d)·B²·GD^n      c∈[1..14], d∈분모집합, n∈[1..5]  ← 9·B²·GD³ 발견")
 print(f"    D. (c/d)·(μ+σ²)^p·B^m c∈피보/루카스, p∈[1..2], m∈[2..4]")
+print()
+print(f"  [S115 이번 재탐색  — 계열 C만, 1% 임계 재확인]")
 print()
 print(f"  [분모 집합]")
 print(f"    [1,2,3,4,5,6,7,8,9,10,11,12,17,23,24,34,57,100,137,171,285,437]")
@@ -213,21 +213,42 @@ print(f"    가장 근접한 후보. 분모 d=1 (정수 계수 9)가 최소 오�
 print(f"    더 낮은 오차를 보이는 간단한 조합 없음.")
 print(f"    귀속 근거 없이 오차만 낮추는 확장은 기준 위반 → 중단.")
 print()
-print(f"  [1% 이내 후보 전체]")
+print(f"  [계열 C 재탐색 결과: 1% 이내 후보 전체  (c∈[1..19], d∈[1..57], n∈[1..5])]")
 
-# 계열 C 재탐색 — 1% 이내 후보 출력
+# 계열 C 재탐색 — 1% 이내 후보 출력, 동치 중복 표시
 found_list = []
+seen_vals  = {}  # 수치 → 대표 표현
 for c_num in range(1, 20):
     for c_den in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 17, 23, 24, 34, 57]:
         for n_gd in [1, 2, 3, 4, 5]:
             val  = mpf(c_num)/mpf(c_den) * B**2 * GD**n_gd
             err  = fabs(val - diff_p) / fabs(diff_p) * 100
             if err < mpf("1"):
-                found_list.append((err, c_num, c_den, n_gd, val))
+                key = nstr(val, 10)
+                frac = f"{c_num}" if c_den==1 else f"{c_num}/{c_den}"
+                if key not in seen_vals:
+                    seen_vals[key] = (err, frac, n_gd, val)
+                    found_list.append((err, frac, n_gd, val, key))
+                else:
+                    # 동치 항목 기록 (출력은 스킵)
+                    prev = seen_vals[key]
+                    found_list.append((err, frac, n_gd, val, key + "_dup"))
 found_list.sort(key=lambda x: x[0])
-for err, cn, cd, ng, val in found_list[:8]:
-    frac = f"{cn}" if cd==1 else f"{cn}/{cd}"
-    print(f"    ({frac})·B²·GD^{ng}  오차={n15(err)}%  {grade(err)}")
+printed_keys = set()
+for item in found_list:
+    err, frac, ng, val, key = item
+    if key.endswith("_dup"):
+        real_key = key[:-4]
+        dup_frac  = frac
+        # 찾아서 동치 주석 추가 (이미 출력된 것에 표시)
+        continue
+    if key in printed_keys:
+        continue
+    printed_keys.add(key)
+    # 동치 항목 찾기
+    dups = [it[1] for it in found_list if it[4] == key + "_dup"]
+    dup_note = f"  ← ({', '.join(dups)})·B²·GD^{ng}과 동치" if dups else ""
+    print(f"    ({frac})·B²·GD^{ng}  오차={n15(err)}%  {grade(err)}{dup_note}")
     print(f"      = {n15(val)}")
 
 # ─── 산출물 ③ 명제별 원출처 ──────────────────────────────
@@ -253,8 +274,8 @@ print()
 print(f"  P-6. (B) = LC²GD = LN_C²·GD 정의")
 print(f"       출처: eqi_unified_engine_v9_6.py  line LC2GD = LN_C**2 * GAP_D2")
 print()
-print(f"  P-7. (A) = LC²GD² = LN_C⁴·GD²  정의")
-print(f"       출처: eqi_unified_engine_v9_6.py  line LC2GD_A = LN_C**4 * GAP_D2**2")
+print(f"  P-7. (A) = (B)² = LN_C⁴·GD²  정의")
+print(f"       출처: EQI_Session111_성과정리_v5.md  §1.1  (엔진에 독립 심볼 없음, B**2로 유도)")
 print()
 
 print(SEP)
