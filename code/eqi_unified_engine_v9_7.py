@@ -2322,16 +2322,14 @@ class EQIPhononLattice:
         self.alg("L-3a", "Z_p = √(ħ_ani·G/c⁵) = φ^(-2)", Z_p, q(-2, 1), "S77")
         self.alg("L-3b", "V_p = I_p·Z_p = φ^(1/4) = M_p", I_p * Z_p, M_p, "S77")
         sb = -4*(mpf(9)/4) + 3*(mpf(11)/4) - 2*(mpf(1)/2)
-        ok = (sb == mpf(1)/4)
-        self.rows.append(("L-4", "정수(지수)" if ok else "불일치"))
-        print(f"  [§L-4] Stefan–Boltzmann 지수 −4·(9/4)+3·(11/4)−2·(1/2) | {nstr(sb, 10)} | 0.25 | "
-              f"{nstr(fabs(sb - mpf(1)/4), 6)} | {'일치' if ok else '불일치'} | S77")
-        if not ok:
-            # 대조값 (판정 아님): σ_SB ∝ k_B⁴/(ħ³c²) 의 φ 지수
-            sb_ani = 4*(mpf(-9)/4) - 3*(mpf(-17)/4) - 2*(mpf(1)/2)
-            sb_iso = 4*(mpf(-9)/4) - 3*(mpf(-11)/4) - 2*(mpf(1)/2)
-            print(f"     (대조, 판정 아님) k_B⁴/(ħ³c²) φ지수: ħ_ani → {nstr(sb_ani, 6)},"
-                  f"  ħ=φ^(-11/4) → {nstr(sb_iso, 6)}")
+        # [정정 S114] 기대값 −7/4 (σ ∝ φ^(-7/4) = √(I_s D1), S48).
+        #   기존 기대값 +1/4 (S77 §48-E, 단위계 철학 v3 §11.1, v3.4 2104행)은 산술 오기.
+        sb_tgt = mpf(-7)/4
+        ok = (sb == sb_tgt)
+        g = "통과(기대값 정정)" if ok else "불일치"
+        self.rows.append(("L-4", g))
+        print(f"  [§L-4] Stefan–Boltzmann 지수 −4·(9/4)+3·(11/4)−2·(1/2) | {nstr(sb, 10)} | −1.75 | "
+              f"{nstr(fabs(sb - sb_tgt), 6)} | {g} | S48 (σ ∝ φ^(-7/4) = √(I_s D1); 구 기대 +1/4 S77 오기 정정 S114)")
         # L-5 등방성 투영: ħ_iso,proj = h/(2π)  ← "등방성 투영" 라벨
         hbar_iso_proj = h / (2*pi)
         self.alg("L-5", "[등방성 투영] k_B/(h/2π) = 2π·c", k_B / hbar_iso_proj, 2*pi*c, "S77 (대조용)")
@@ -2344,6 +2342,74 @@ class EQIPhononLattice:
         print("  [§L-6 주석] Segelstein 프레임 κ/n = σ²: Near TZ-C. H&Q 1차 원문에서는 −7.74%로 불성립. (계산 없음)")
         print()
 
+    # ── §P-chain 비용 지불 후 출현 항등식 (등가원리 포함) ──────────────
+    def report_chain(self):
+        PHI, GAP, C = self.PHI, self.GAP, self.C
+        q = lambda p, d: power(PHI, mpf(p)/d)
+        # 기준: HCW 좌표계, v3.4 §9 (중력질량 = D1, 관성질량 = D2), 단일 항등원 체제
+        m_g = q(-3, 2)                              # HCW D1, 중력질량
+        m_i = q(3, 2)                               # HCW D2, 관성질량
+        c = q(1, 2)
+        G, hbar_ani = q(11, 4), q(-17, 4)
+
+        print("  §P-chain 비용 지불 후 출현 항등식 (등가원리 포함) [HCW, v3.4 §9, 단일 항등원]")
+        print("  " + "─" * 72)
+        self.alg("C-1", "m_g · m_i = 1", m_g * m_i, mpf(1), "S99 §17.9")
+        self.alg("C-2", "m_i − 1/m_g = 0  (X = 0)", m_i - 1/m_g, mpf(0), "S49")
+        self.alg("C-3", "(m_g + m_i)/2 = c = φ^(1/2)", (m_g + m_i)/2, c, "S50")
+        self.alg("C-4a", "√(m_i/m_g) = φ^(3/2) = m_i", sqrt(m_i/m_g), m_i, "S64 §26")
+        self.alg("C-4b", "m_i = Bi (엔진 §26 Bi_val)", m_i, C.Bi_val, "S64 §26")
+        self.alg("C-5a", "m_g = G·ħ_ani", m_g, G * hbar_ani, "S77 §49 / S88 §84")
+        self.alg("C-5b", "m_g = S_D1 = L_p²", m_g, q(-3, 4)**2, "S77 §49 / S88 §84")
+        self.alg("C-6", "1 + n_c·GAP = m_i  (엔진 n_c)", 1 + C.n_c * GAP, m_i, "S87 §77 ①")
+        self.alg("C-7a", "HG→HCW: φ·φ^(-5/2) = m_g", PHI * q(-5, 2), m_g, "S106 / S108")
+        self.alg("C-7b", "HG→HCW: φ·φ^(1/2) = m_i", PHI * q(1, 2), m_i, "S106 / S108")
+
+        # C-8 등가원리 이탈 수열 (v3.4 §7 표 D1/D2)
+        s5 = sqrt(5)
+        table = (("HCW", (-3, 2), (3, 2),  mpf(0)),
+                 ("HG",  (-5, 2), (1, 2),  mpf(-1)),
+                 ("I_s", (-7, 2), (-1, 2), -s5),
+                 ("OB",  (-9, 2), (-3, 2), mpf(-4)),
+                 ("X5",  (-11, 2), (-5, 2), -3*s5),
+                 ("TH",  (-13, 2), (-7, 2), mpf(-11)))
+        for name, d1e, d2e, exp_ in table:
+            D1, D2 = q(*d1e), q(*d2e)
+            X = D2 - 1/D1
+            self.alg(f"C-8.{name}", f"X/φ^(3/2) [{name}]  (X = {nstr(X, 12)})", X / m_i, exp_, "S49")
+
+        # C-9 출현 항등식 참조 재출력 (값만, 등급 없음)
+        print("  [§C-9] 출현 항등식 참조 재출력 (값만)")
+        pi4 = self.L(137) - 1/self.alpha_inv - power(PHI, -2)*log(pi)*self.GD**3 \
+            + self.LN_C**4 * self.GD**4 * self.alpha_inv / 12
+        print(f"     §P0-5 π 4단  = {nstr(pi4, 20)}   (π = {nstr(pi, 20)}, err {nstr(self.err_pct(pi4, pi), 6)} %)")
+        print(f"     엔진 §5 c5 = {nstr(C.c5_MAXWELL, 20)}   1/(2·137) = {nstr(mpf(1)/(2*137), 20)}   "
+              f"274 = 2·137: {274 == 2*137}")
+        mu, Lam = 1/PHI, power(PHI, -2)
+        print(f"     보른 μ + Λ = {nstr(mu + Lam, 20)}   μ/Λ = {nstr(mu/Lam, 20)} (φ = {nstr(PHI, 20)})")
+
+        # C-10 n_c 행 닫힌 형태
+        x = 1 + C.n_c * GAP
+        D1n = x / sqrt(x**2 + PHI**6)
+        D2n = PHI**3 * D1n
+        self.alg("C-10a", "D1(n_c) = 1/(φ√2)", D1n, 1/(PHI*sqrt(2)), "Task 2 §P0-9")
+        self.alg("C-10b", "1/(φ√2) = μ/√2", 1/(PHI*sqrt(2)), (1/PHI)/sqrt(2), "Task 2 §P0-9")
+        self.alg("C-10c", "D2(n_c) = φ²/√2", D2n, PHI**2/sqrt(2), "Task 2 §P0-9")
+        self.alg("C-10d", "f(n_c) = D2² − 1 = 3φ/2", D2n**2 - 1, 3*PHI/2, "Task 2 §P0-9")
+
+        # C-11 S106 E_topo / p_topo 병기 (값만, 등급 없음)
+        hbar_iso = q(-11, 4)                        # S106 원식 (등방성 투영)
+        print("  [§C-11] S106 E_topo / p_topo 병기 (값만, 등급 없음)")
+        print(f"     E_topo = ħ·ω₀ (ω₀=1): ħ_iso → {nstr(hbar_iso, 20)} = φ^(-11/4) [S106 원식, 등방성 투영]"
+              f" / ħ_ani → {nstr(hbar_ani, 20)} = φ^(-17/4)")
+        print(f"     p_topo = ħ/(GAP·c):   ħ_iso → {nstr(hbar_iso/(GAP*c), 20)} = φ^(-13/4)/GAP [S106 원식]"
+              f" / ħ_ani → {nstr(hbar_ani/(GAP*c), 20)} = φ^(-19/4)/GAP")
+        print(f"       (확인: φ^(-13/4)/GAP = {nstr(q(-13, 4)/GAP, 20)},  φ^(-19/4)/GAP = {nstr(q(-19, 4)/GAP, 20)})")
+        # 주석: S64 §6.2 "중력질량 = E_topo² = φ^1.5 = 관성질량"은 v15 이중 항등원 체제 표기 계승.
+        #       현 체제(단일 항등원) 미적용 — 계산하지 않음.
+        print("  [§C-주석] S64 §6.2 \"중력질량 = E_topo² = φ^1.5 = 관성질량\" = v15 이중 항등원 체제 표기. 현 체제 미적용 (계산 없음)")
+        print()
+
     def report(self):
         sep = "═" * 76
         print()
@@ -2354,6 +2420,7 @@ class EQIPhononLattice:
         self.report_P1()
         self.report_P3()
         self.report_P5_P7_light()
+        self.report_chain()
         print("  등급 집계:", ", ".join(f"{t}:{g}" for t, g in self.rows))
         print(sep)
 
