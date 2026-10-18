@@ -2410,6 +2410,75 @@ class EQIPhononLattice:
         print("  [§C-주석] S64 §6.2 \"중력질량 = E_topo² = φ^1.5 = 관성질량\" = v15 이중 항등원 체제 표기. 현 체제 미적용 (계산 없음)")
         print()
 
+    # ── §P-DS  DS-1′/DS-1″ 탑재 + U-1~U-3 귀속 분석 (S113 성과정리 v6 §2·§2-b, S114 Task 9) ──
+    def report_DS(self):
+        PHI, GAP, GD, LN_C, sg = self.PHI, self.GAP, self.GD, self.LN_C, self.sigma
+        q = lambda p, d: power(PHI, mpf(p)/d)
+        mu, sg2, Lam = 1/PHI, sg**2, PHI**-2
+        # 좌표 구분 (추가논의 ㉖): n_Ξ (Ξ 함수 좌표) ≠ n_crit (§47 임계치 좌표). 본 블록 R 은 Ξ(1).
+        R = (1 + GAP) * q(9, 2)                      # R = Ξ(1)/X7 = (1+GAP)·φ^(9/2)
+        B = LN_C**2 * GD                             # 기본량 B = LC²GD
+        A = B**2                                     # (A) 제곱 계열 A = B² = LN_C⁴·GD²
+        Dp = (mu + sg2 - mpf(13)/6 * GD**2) * B      # D′
+        Dpp = Dp - 9 * A * GD**3                     # D″ = D′ − 9·A·GD³
+        res = 9 - R                                  # 잔류 = 9 − R
+        ST = "귀속 검토 중(S113, 승격 없음)"
+
+        print("  §P-DS DS-1′/DS-1″ + U-1~U-3 귀속 분석 [S113 v6 §2·§2-b / S114]")
+        print("  " + "─" * 72)
+        print(f"     R = Ξ(1)/X7 = (1+GAP)·φ^(9/2) = {nstr(R, 25)}")
+        print(f"     잔류 = 9 − R = {nstr(res, 25)}")
+        print(f"     D′ = {nstr(Dp, 25)},  D″ = {nstr(Dpp, 25)}")
+        print("     ※ 좌표 구분: n_Ξ (Ξ 함수 좌표) ≠ n_crit (§47 임계치 좌표)")
+        # 9-1 재현
+        for tag, lab, D, ex1, ex2 in (("DS-1′", "9 − D′ vs R", Dp, "3.63382642742e-10", "4.04599e-6"),
+                                      ("DS-1″", "9 − D″ vs R", Dpp, "1.44369280705e-12", "1.60744e-8")):
+            e_full = self.err_pct(9 - D, R)
+            e_res = self.err_pct(D, res)
+            self.rows.append((tag, ST))
+            print(f"  [§{tag}] {lab} | {nstr(9 - D, 22)} | {nstr(R, 22)} | {nstr(e_full, 12)} | {ST} | S113 "
+                  f"(기대 {ex1} %)")
+            print(f"  [§{tag}r] 잔류 포획 D vs 9−R | {nstr(D, 22)} | {nstr(res, 22)} | {nstr(e_res, 6)} | {ST} | S113 "
+                  f"(기대 {ex2} %)")
+
+        # 9-2 U-1 계수 9 — 대수 표현 확인만
+        self.alg("U1-a", "9 − D″ = 9·(1 + A·GD³) − D′", 9 - Dpp, 9*(1 + A*GD**3) - Dp, "재정규화 형태")
+        L2 = PHI**2 + PHI**-2
+        self.alg("U1-b1", "L₂ = φ² + φ⁻² = 3", L2, mpf(3), "루카스")
+        self.alg("U1-b2", "9 = L₂²", L2**2, mpf(9), "루카스")
+        th_am = (q(-13, 2) + q(-7, 2)) / 2
+        self.alg("U1-c1", "TH 산술평균 (φ^(-13/2)+φ^(-7/2))/2 = φ^(-9/2)", th_am, q(-9, 2), "S57")
+        self.alg("U1-c2", "φ^(9/2) = 1/(TH 산술평균)", q(9, 2), 1/th_am, "S57")
+        tau = mpf(45)/5 - Lam*(1 + GAP)
+        print(f"  [§U1-d] 값만: τ_gap = 45/5 − Λ(1+GAP) = {nstr(tau, 22)}   (Λ(1+GAP) = {nstr(Lam*(1 + GAP), 22)})")
+        print(f"                9 − D′ = {nstr(9 - Dp, 22)}   9 − D″ = {nstr(9 - Dpp, 22)}   R = {nstr(R, 22)}")
+        geo = 9 / (1 - A*GD**3)
+        lin = 9 * (1 + A*GD**3)
+        print(f"  [§U1-e] 값만: 9·(1+A·GD³) = {nstr(lin, 30)}")
+        print(f"                9/(1−A·GD³) = {nstr(geo, 30)}   차 (기하 − 선형) = {nstr(geo - lin, 12)}"
+              f"  (= 9·(A·GD³)²/(1−A·GD³))")
+
+        # 9-3 U-2 계수 13/6 — 분해 확인만
+        F4, F7, N_close = mpf(3), mpf(13), mpf(6)
+        self.alg("U2-a", "13/6 = F₇/(2·F₄)", F7/(2*F4), mpf(13)/6, "피보나치")
+        self.alg("U2-b", "13/6 = 1/σ + 1/N_close (N_close = 6 = 2F₄)", 1/sg + 1/N_close, mpf(13)/6, "S103/S107")
+        print("  [§U2-주석] §41 의 13/6 은 지수 위치 φ^(-13/6) (born×α⁻¹/4! 선도항),"
+              " DS-1′ 의 13/6 은 B·GD² 항 계수 위치 — 위치가 다른 별개 등장")
+
+        # 9-4 U-3 B·A 교차 — §111 3항 선례와 나란히 (값만)
+        t0B = B * L2                                 # §111 term0 의 B 선도: LC²GD·L₂
+        t2A = -A * q(-29, 4)                         # §111 term2 의 A 보정: −LC²GD²·φ^(-29/4)  [(A) 계열]
+        print("  [§U3] B·A 교차 구조 대조 (값만; §111 = ratio 3항 공식, S111 v5 §3)")
+        print("        식            | B 항 (계수 → 값)                  | A 항 (계수 → 값)                       | LN_C·GD 차수")
+        print(f"        §111 term0/2  | L₂·B = {nstr(t0B, 12):<22}     | −φ^(-29/4)·A = {nstr(t2A, 12):<20} | B:GD¹, A:GD²")
+        print(f"        DS-1′         | (μ+σ²)·B = {nstr((mu + sg2)*B, 12):<18} −(13/6)GD²·B = {nstr(-mpf(13)/6*GD**2*B, 6):<11}"
+              f"| 없음                                   | B:GD¹, B·GD²:GD³")
+        print(f"        DS-1″         | (DS-1′ 와 동일)                    | −9·GD³·A = {nstr(-9*GD**3*A, 12):<24} | +A·GD³:GD⁵")
+        print(f"        계수: §111 B 계수 L₂ = 3, A 계수 −φ^(-29/4) = {nstr(-q(-29, 4), 12)}  /  "
+              f"DS-1′ B 계수 μ+σ² = {nstr(mu + sg2, 12)}, B·GD² 계수 −13/6  /  DS-1″ A·GD³ 계수 −9")
+        print("  ※ U-1~U-3 '귀속 확정' 판정 없음 (Architect/MAPSI 판단).")
+        print()
+
     def report(self):
         sep = "═" * 76
         print()
@@ -2421,6 +2490,7 @@ class EQIPhononLattice:
         self.report_P3()
         self.report_P5_P7_light()
         self.report_chain()
+        self.report_DS()
         print("  등급 집계:", ", ".join(f"{t}:{g}" for t, g in self.rows))
         print(sep)
 
