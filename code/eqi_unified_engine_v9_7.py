@@ -1944,6 +1944,11 @@ class EQIPhononLattice:
         return 4 * s
 
     @staticmethod
+    def int_part(x):
+        """§4b: 정수부. 사용 시 소수부 fp = x − ip 를 반드시 함께 보존"""
+        return floor(x)
+
+    @staticmethod
     def err_pct(calc, target):
         """err% = 100·|calc − target|/|target|  (CLAUDE.md 원칙 5)"""
         return 100 * fabs(calc - target) / fabs(target)
@@ -2133,6 +2138,91 @@ class EQIPhononLattice:
         print(f"     (참고) M_p = φ^(1/4) = {nstr(M_p, 20)},  T° = φ^(3/4) = {nstr(T_deg, 20)}  — 기호 등록만")
         print()
 
+    # ── §P3 3체 층 (빛 속성 + 뤼드베리) ──────────────────────────────
+    def report_P3(self):
+        PHI, sg, C = self.PHI, self.sigma, self.C
+        q = lambda p, d: power(PHI, mpf(p)/d)
+        n_ref = lambda k: mpf(2*k + 1) / mpf(4)**(k + 1)
+
+        print("  §P3 3체 층 (빛 속성 + 뤼드베리) [S45/S50~S53/S73/S92/S99]")
+        print("  " + "─" * 72)
+
+        # P3-1 포논 굴절 QED
+        for k in range(1, 6):
+            a_eu = mpf((-1)**k) * 2 / (2*k + 1)
+            self.alg(f"P3-1.k{k}", f"a_euler×n_ref,{k} = (−1)^{k}·σ^{2*k+1}",
+                     a_eu * n_ref(k), mpf((-1)**k) * sg**(2*k + 1), "S45")
+
+        # P3-2 컴프턴: θ_k = acos(1 − n_ref,k)  (θ_k 정의상 왕복 항등 — θ_k 값 기록용)
+        for k in range(1, 6):
+            th = mpmath.acos(1 - n_ref(k))
+            self.alg(f"P3-2.k{k}", f"1−cos θ_{k} = n_ref,{k}  (θ={nstr(th*180/pi, 12)}°)",
+                     1 - mpmath.cos(th), n_ref(k), "S45/S50")
+
+        # P3-3 뤼드베리 — 정수부/소수부 [x]+{x} 명시 분리 (§4b)
+        for k in range(1, 10):
+            b = mpf(2*k + 1)
+            disc = b**2 + mpf(4)**(k + 2)
+            rd = sqrt(disc)
+            n1 = (-b + rd) / 2
+            n2 = n1 + b
+            tag = f"P3-3.k{k}"
+            self.alg(tag + "a", f"n1²+n2² = √disc", n1 + n2, rd, "S51~S53")
+            self.alg(tag + "b", f"n1²·n2² = 4^{k+1}", n1 * n2, mpf(4)**(k + 1), "S51~S53")
+            self.alg(tag + "c", f"1/n1²−1/n2² = n_ref,{k}", 1/n1 - 1/n2, n_ref(k), "S51~S53")
+            self.alg(tag + "d", f"(n1²/2^{k+1})(n2²/2^{k+1}) = 1",
+                     (n1 / 2**(k + 1)) * (n2 / 2**(k + 1)), mpf(1), "S51~S53")
+            ip1 = self.int_part(n1); fp1 = n1 - ip1  # [n1²], {n1²}
+            ip2 = self.int_part(n2); fp2 = n2 - ip2  # [n2²], {n2²}
+            ipd = self.int_part(rd); fpd = rd - ipd  # [√disc], {√disc}
+            e1 = mpf(2**(k + 1) - k - 1)
+            e2 = mpf(2**(k + 1) + k)
+            e12 = mpf(2**(k + 2) - 1)
+            ok = (ip1 == e1 and ip2 == e2 and ip1 + ip2 == e12)
+            g = "정수" if ok else "불일치"
+            self.rows.append((tag + "e", g))
+            ns = lambda x: nstr(x, 12)[:-2] if nstr(x, 12).endswith(".0") else nstr(x, 12)
+            print(f"  [§{tag}e] [n1²]={ns(ip1)} (기대 {ns(e1)}), [n2²]={ns(ip2)} (기대 {ns(e2)}), "
+                  f"합={ns(ip1 + ip2)} (기대 {ns(e12)}) | {{n1²}}={nstr(fp1, 15)} "
+                  f"{{n2²}}={nstr(fp2, 15)} | {g} | S51~S53")
+            self.alg(tag + "f", "{√disc} = 2{n1²}−1", fpd, 2*fp1 - 1, "S51~S53")
+
+        # P3-4 간섭
+        L2 = PHI**2 + (-1/PHI)**2                 # 루카스 L₂ = 3
+        self.alg("P3-4a", "L₂ = φ² + (−1/φ)² = 3", L2, mpf(3), "S50")
+        self.alg("P3-4b", "cos²(σπ) = 0", mpmath.cos(sg*pi)**2, mpf(0), "S50")
+        self.alg("P3-4c", "arg(λ) = π·σ·(1−1/L₂) = π/3", pi*sg*(1 - 1/L2), pi/3, "S50")
+
+        # P3-5 박막
+        r = (1 - PHI) / (1 + PHI)
+        R = r**2
+        self.alg("P3-5a", "r = (1−φ)/(1+φ) = −φ^(-3)", r, -q(-3, 1), "S50")
+        self.alg("P3-5b", "R = r² = φ^(-6)", R, q(-6, 1), "S50")
+        self.alg("P3-5c", "T/R = (1−R)/R = φ⁶−1", (1 - R)/R, PHI**6 - 1, "S50")
+        self.alg("P3-5d", "φ⁶−1 = 4φ³", PHI**6 - 1, 4*PHI**3, "S50")
+
+        # P3-6 편광
+        al, be = sqrt(q(-1, 1)), sqrt(q(-2, 1))   # α² = φ^(-1), β² = φ^(-2)
+        self.alg("P3-6", "α/β = c = φ^(1/2)", al/be, q(1, 2), "S50")
+
+        # P3-7 굴절: HG_D2 = c = φ^(1/2), Is_D2 = φ^(-1/2) (엔진 §17~)
+        HG_D2 = q(1, 2)
+        self.alg("P3-7a", "HG_D2/Is_D2 = φ", HG_D2 / C.Is_D2, PHI, "S50")
+        self.alg("P3-7b", "sin θ_c = Is_D2/HG_D2 = 1/φ", C.Is_D2 / HG_D2, 1/PHI, "S50")
+
+        # P3-8 유전율-포논
+        self.alg("P3-8a", "1 − σ³ = 7/8", 1 - sg**3, mpf(7)/8, "S99")
+        self.alg("P3-8b", "n_ref,3/σ⁵ = 7/8  (n_ref,3 = 7/256)", n_ref(3)/sg**5, mpf(7)/8, "S99")
+
+        # P3-9 3체 경계: f×Re = (§36 f×We×Re)/We
+        fRe = C.f_lattice * C.Re_val
+        self.alg("P3-9a", "f×Re = (§36 f×We×Re 실측조합)/We", fRe, C.f_We_Re_meas / C.We_val, "S73/S92")
+        # 참고: §36 닫힘식(φ^(-5)+LC²GD·100/171+LC2GD·GD·2/285, (B) 계단 계열)/We 대조
+        tgt = C.f_We_Re_calc / C.We_val
+        e = self.err_pct(tgt, fRe)
+        self.row("P3-9b", "(§36 닫힘식)/We vs f×Re (참고)", tgt, fRe, e, self.grade(e), "S70 §36")
+        print()
+
     def report(self):
         sep = "═" * 76
         print()
@@ -2141,6 +2231,7 @@ class EQIPhononLattice:
         print(sep)
         self.report_P0()
         self.report_P1()
+        self.report_P3()
         print("  등급 집계:", ", ".join(f"{t}:{g}" for t, g in self.rows))
         print(sep)
 
