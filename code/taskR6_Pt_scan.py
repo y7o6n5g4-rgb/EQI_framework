@@ -1,54 +1,60 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Task R6 — Zeng 족 P_t 통과 경계 수치 탐색 (TASKS.md v9.7, 엔진 수정 없음)
+Task R6 — Zeng 족 P_t 통과 경계 수치 탐색 (TASKS.md v9.7, 엔진 수정 없음) — 연속 추적판
 근거: Zeng arXiv:2604.26531 §1.3 정의, P_(11/20) 비루퍼트(dwrensha Lean), P_(3/5) 루퍼트(Fredriksson).
   P_t = conv{p_i, −t·p_i},  p0=(1,1,1), p1=(1,−1,−1), p2=(−1,1,−1), p3=(−1,−1,1)
 
+MAPSI 지시 (재실행 방식)
+  1. 연속 추적: t=0.590 최적 배치에서 시작, t 를 0.0025 씩 낮추며 직전 t 최적 배치에서 국소 최적화만.
+  2. 대상 t: 0.5875, 0.585, 0.5825, 0.580, 0.5775, 0.575 (0.55~0.57 계산 안 함:
+     0.55 = Lean 형식증명 비루퍼트, 0.5~0.57 = Zeng 탐색 실패 보고).
+  3. t 마다 시간 상한 5분. 상한 도달 시 그 시점 최선값 보고.
+  4. ν−1 < 1e-6 배치는 mpmath 50자리로 포함 여유 재검증.
+  5. 통과 여유가 처음 0 이하가 되는 t 에서 멈추고 직전 t 와의 구간을 경계 추정으로 보고.
+
 방법
-  ν_found(t) = max λ : 회전 R_in·P_t 를 λ배 하고 평면 평행이동 s 한 투영이
-               회전 R_out·P_t 투영(볼록 껍질) 안에 들어가는 최대 배율.
-  고정 회전에서 λ 최대화는 3변수 LP:  λ·h_Q(n_k) + n_k·s ≤ b_k  (바깥 다각형 변 k,
-  h_Q = 안쪽 투영의 지지함수) → 변 3개 조합의 꼭짓점 전수로 정확히 풂.
-  바깥 최적화: 두 회전(회전 벡터 3+3) Nelder–Mead, 단계 축소 재시작, 다중 시작점(4코어).
-  t 를 0.600 → 0.550 으로 내리며 직전 t 최적 배치를 시작점에 추가 (연속법).
-  검증: 최적 배치를 scipy HiGHS LP 로 독립 재계산, t=1(정육면체) 에서 3√2/4 재현.
+  ν(t; R_out, R_in) = max λ : λ·proj(R_in P_t) + s ⊂ proj(R_out P_t)  (평면 평행이동 s 포함)
+  고정 회전에서 3변수 LP  λ·h_Q(n_k) + n_k·s ≤ b_k  를 변 3개 조합 꼭짓점 전수로 정확히 풂.
+  국소 최적화: Nelder–Mead 단계 축소 재시작. 4코어에서 같은 시작 배치에 서로 다른 미소 섭동
+  (0, 1e-4, 1e-3, 1e-2 rad) 을 준 4개 국소 탐색을 병렬 수행, 최선값 채택 (무작위 전역 시작 없음).
+  mpmath 50자리 검증: float 회전벡터를 정확한 입력으로 보고 Rodrigues 회전·투영·볼록 다각형 변·
+  LP 꼭짓점을 50자리로 재계산, 안쪽 8꼭짓점의 최소 포함 여유(slack)까지 출력.
 판정 없음: '통과 발견 하한'만 표기. 탐색 실패 ≠ 비루퍼트. EQI 상수 대조 없음.
-수치 바닥: 같은 방향 배치는 λ=1 이 정확값이며 부동소수 잡음 ~1e-12 → ν−1 ≤ 1e-9 는 '통과 미발견'.
 Date: 2026-10-18
 """
 
 import itertools
-import sys
 import time
 from multiprocessing import Pool
 
 import numpy as np
-from scipy.optimize import minimize, linprog
+import mpmath
+from mpmath import mp, mpf
+from scipy.optimize import minimize
 from scipy.spatial import ConvexHull
 from scipy.spatial.transform import Rotation as Rot
 
 P0 = np.array([[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]], float)
 TRIPLES = np.array(list(itertools.combinations(range(16), 3)))
-FLOOR = 1e-9                                   # 통과 발견 판정 문턱 (수치 바닥 위)
-N_RANDOM = 160
-N_CONT = 40
+T_LIST = [0.5875, 0.585, 0.5825, 0.580, 0.5775, 0.575]
+T_START = 0.590
+TIME_CAP = 300.0                               # s, t 마다
+PERTURB = [0.0, 1e-4, 1e-3, 1e-2]
+# 이전 실행(무작위 다중 시작, 중단됨) t=0.590 최적 배치 — 회전벡터 (R_out, R_in)
+X_0590 = np.array([0.2637138622, 0.7536138881, -0.6121645081,
+                   2.9930300741, -1.0086169854, -1.2069833282])
 
 
 def Pt(t):
     return np.vstack([P0, -t * P0])
 
 
-def outer_inner(x, V):
+def lam(x, V):
     A = Rot.from_rotvec(x[:3]).apply(V)[:, :2]
     B = Rot.from_rotvec(x[3:6]).apply(V)[:, :2]
     eq = ConvexHull(A).equations
-    return eq[:, :2], -eq[:, 2], B
-
-
-def lam(x, V):
-    """고정 회전에서 최대 λ (LP 꼭짓점 전수)"""
-    n, b, B = outer_inner(x, V)
+    n, b = eq[:, :2], -eq[:, 2]
     h = (B @ n.T).max(axis=0)
     M = np.column_stack([h, n])
     tr = TRIPLES[(TRIPLES < len(n)).all(axis=1)]
@@ -59,119 +65,140 @@ def lam(x, V):
     return sol[feas, 0].max() if feas.any() else 0.0
 
 
-def lam_highs(x, V):
-    """독립 검증: 원래 포함 조건 (안쪽 꼭짓점 8개 × 바깥 변) 을 HiGHS LP 로"""
-    n, b, B = outer_inner(x, V)
-    nq = B @ n.T
-    Aub = np.column_stack([nq.T.reshape(-1), np.repeat(n[:, 0], len(B)), np.repeat(n[:, 1], len(B))])
-    r = linprog([-1, 0, 0], A_ub=Aub, b_ub=np.repeat(b, len(B)),
-                bounds=[(0, None), (None, None), (None, None)], method="highs")
-    return r.x[0]
-
-
-def local_opt(x, V, rounds=4, scale=0.3):
+def local_track(args):
+    """시작 배치 x0 에서 국소 최적화만 (시간 상한 내 단계 축소 재시작 반복)"""
+    t, x0, eps, seed, cap = args
+    V = Pt(t)
+    rng = np.random.default_rng(seed)
+    x = np.asarray(x0) + rng.normal(size=6) * eps
     f = lambda y: -lam(y, V)
-    for k in range(rounds):
-        simplex = None if k == 0 else x + np.vstack([np.zeros(6), np.eye(6) * scale / 3**k])
-        r = minimize(f, x, method="Nelder-Mead",
-                     options=dict(maxiter=3000, xatol=1e-13, fatol=1e-15, initial_simplex=simplex))
-        x = r.x
-    return -r.fun, x
+    best_v, best_x = lam(x, V), x.copy()
+    t0 = time.time()
+    scale, stall, rounds = 0.02, 0, 0
+    while time.time() - t0 < cap and stall < 6:
+        simplex = best_x + np.vstack([np.zeros(6), np.eye(6) * scale])
+        r = minimize(f, best_x, method="Nelder-Mead",
+                     options=dict(maxiter=2000, xatol=1e-14, fatol=1e-16, initial_simplex=simplex))
+        rounds += 1
+        if -r.fun > best_v + 1e-16:
+            best_v, best_x, stall = -r.fun, r.x, 0
+        else:
+            stall += 1
+        scale = scale / 3 if scale > 1e-7 else 0.02          # 축소 후 재확장 순환
+    return best_v, best_x, rounds, time.time() - t0, time.time() - t0 >= cap
 
 
-def job(args):
-    t, x0 = args
-    return local_opt(np.asarray(x0), Pt(t))
+# ── mpmath 50자리 검증 ─────────────────────────────────────────────
+def rodrigues_mp(rv):
+    rv = [mpf(float(c)) for c in rv]
+    th = mpmath.sqrt(sum(c * c for c in rv))
+    if th == 0:
+        return mpmath.eye(3)
+    k = [c / th for c in rv]
+    K = mpmath.matrix([[0, -k[2], k[1]], [k[2], 0, -k[0]], [-k[1], k[0], 0]])
+    return mpmath.eye(3) + mpmath.sin(th) * K + (1 - mpmath.cos(th)) * (K * K)
 
 
-def scan_t(t, pool, cont=None, n_random=N_RANDOM, n_cont=N_CONT, seed=0):
-    rng = np.random.default_rng(seed + int(round(t * 1e6)))
-    starts = [rng.normal(size=6) * 2 for _ in range(n_random)]
-    if cont is not None:
-        for i in range(n_cont):
-            starts.append(cont + rng.normal(size=6) * (0.002 if i % 2 else 0.02))
-    res = pool.map(job, [(t, s) for s in starts])
-    res.sort(key=lambda r: -r[0])
-    # 상위 5개 정밀화 (단계 축소 재시작 6회, 작은 시작 심플렉스)
-    pol = pool.map(job_polish, [(t, r[1]) for r in res[:5]])
-    pol.sort(key=lambda r: -r[0])
-    best_v, best_x = pol[0]
-    n_pass = sum(1 for r in res if r[0] - 1 > FLOOR)
-    return dict(t=t, v=best_v, x=best_x, v2=pol[1][0], n_pass=n_pass, n=len(res),
-                highs=lam_highs(best_x, Pt(t)))
+def verify_mp(x, t):
+    mp.dps = 50
+    tt = mpf(repr(float(t)))
+    V = [[mpf(int(c)) for c in p] for p in P0] + [[-tt * int(c) for c in p] for p in P0]
+    Ro, Ri = rodrigues_mp(x[:3]), rodrigues_mp(x[3:6])
+    A = [(Ro * mpmath.matrix(v)) for v in V]
+    B = [(Ri * mpmath.matrix(v)) for v in V]
+    A2 = [(a[0], a[1]) for a in A]
+    B2 = [(b_[0], b_[1]) for b_ in B]
+    hv = ConvexHull(np.array([[float(a), float(b_)] for a, b_ in A2])).vertices   # 반시계 순서
+    edges = []
+    for i in range(len(hv)):
+        p, q = A2[hv[i]], A2[hv[(i + 1) % len(hv)]]
+        nx, ny = q[1] - p[1], -(q[0] - p[0])               # 반시계 → 바깥 법선
+        nn = mpmath.sqrt(nx * nx + ny * ny)
+        nx, ny = nx / nn, ny / nn
+        edges.append((nx, ny, nx * p[0] + ny * p[1]))
+    hq = [max(nx * qx + ny * qy for qx, qy in B2) for nx, ny, _ in edges]
+    best = None
+    for i, j, k in itertools.combinations(range(len(edges)), 3):
+        M = mpmath.matrix([[hq[m], edges[m][0], edges[m][1]] for m in (i, j, k)])
+        if abs(mpmath.det(M)) < mpf(10)**-40:
+            continue
+        sol = mpmath.lu_solve(M, mpmath.matrix([edges[m][2] for m in (i, j, k)]))
+        lam_, sx, sy = sol[0], sol[1], sol[2]
+        if all(lam_ * hq[m] + edges[m][0] * sx + edges[m][1] * sy <= edges[m][2] + mpf(10)**-45
+               for m in range(len(edges))):
+            if best is None or lam_ > best[0]:
+                best = (lam_, sx, sy)
+    lam_, sx, sy = best
+    # 안쪽 8꼭짓점 직접 포함 여유 (λ 를 1+ (λ−1)/2 로 둔 엄격 포함 확인 포함)
+    slack = min(e[2] - (e[0] * (lam_ * qx + sx) + e[1] * (lam_ * qy + sy)) for e in edges for qx, qy in B2)
+    lam_half = 1 + (lam_ - 1) / 2
+    slack_half = min(e[2] - (e[0] * (lam_half * qx + sx) + e[1] * (lam_half * qy + sy))
+                     for e in edges for qx, qy in B2)
+    return lam_, slack, slack_half, (sx, sy)
 
 
-def job_polish(args):
-    t, x0 = args
-    return local_opt(np.asarray(x0), Pt(t), rounds=6, scale=0.02)
-
-
-def fmt(r):
-    nu1 = r["v"] - 1
-    tag = "통과 발견" if nu1 > FLOOR else "통과 미발견"
-    return (f"  t={r['t']:.6f} | ν_found−1 = {nu1: .6e} | {tag:<6} | 2위(정밀화) {r['v2'] - 1: .3e} | "
-            f"HiGHS 재계산 {r['highs'] - 1: .6e} | ν−1>1e-9 시작점 {r['n_pass']}/{r['n']}")
-
-
-def params(r):
-    x = r["x"]
+def params(x):
     q1, q2 = Rot.from_rotvec(x[:3]).as_quat(), Rot.from_rotvec(x[3:6]).as_quat()
-    return (f"      R_out 회전벡터 = [{x[0]: .10f}, {x[1]: .10f}, {x[2]: .10f}]  쿼터니언(x,y,z,w) = "
-            f"[{', '.join(f'{c: .10f}' for c in q1)}]\n"
-            f"      R_in  회전벡터 = [{x[3]: .10f}, {x[4]: .10f}, {x[5]: .10f}]  쿼터니언(x,y,z,w) = "
-            f"[{', '.join(f'{c: .10f}' for c in q2)}]")
+    return (f"      R_out 회전벡터 = [{x[0]: .14f}, {x[1]: .14f}, {x[2]: .14f}]\n"
+            f"      R_in  회전벡터 = [{x[3]: .14f}, {x[4]: .14f}, {x[5]: .14f}]\n"
+            f"      R_out 쿼터니언(x,y,z,w) = [{', '.join(f'{c: .12f}' for c in q1)}]\n"
+            f"      R_in  쿼터니언(x,y,z,w) = [{', '.join(f'{c: .12f}' for c in q2)}]")
+
+
+def track(t, x_prev, pool):
+    jobs = [(t, x_prev, eps, 100 + i, TIME_CAP) for i, eps in enumerate(PERTURB)]
+    res = pool.map(local_track, jobs)
+    res.sort(key=lambda r: -r[0])
+    return res
 
 
 if __name__ == "__main__":
-    t0 = time.time()
     out = []
     p = lambda s="": (print(s, flush=True), out.append(s))
+    T0 = time.time()
     p("=" * 110)
-    p("R6. Zeng 족 P_t 통과 경계 수치 탐색 — '통과 발견 하한' (판정 없음, 탐색 실패 ≠ 비루퍼트)")
+    p("R6. Zeng 족 P_t 통과 경계 — 연속 추적 (warm start, 국소 최적화만, t 당 5분 상한)")
+    p("    '통과 발견 하한' 표기. 판정 없음, 탐색 실패 ≠ 비루퍼트, EQI 상수 대조 없음")
     p("=" * 110)
-    p(f"  시작점: 무작위 {N_RANDOM} + 연속법 {N_CONT} (직전 t 최적 배치 섭동), 상위 5개 정밀화. 문턱 ν−1 > {FLOOR:g}")
+    p(f"  국소 탐색 4개 병렬: 시작 배치 미소 섭동 {PERTURB} rad. 결과 열: 최선 / 4개 값 / 라운드·소요")
     with Pool(4) as pool:
-        # 검증 1: t=1 (정육면체) → 3√2/4
-        rc = scan_t(1.0, pool, n_random=40)
-        p(f"  [검증] t=1 정육면체: ν_found = {rc['v']:.13f}  (3√2/4 = {3 * 2**0.5 / 4:.13f}, 차 {abs(rc['v'] - 3 * 2**0.5 / 4):.1e})")
-        # 격자 0.600 → 0.550
-        grid = [round(0.600 - 0.005 * i, 3) for i in range(11)]
-        res = {}
-        cont = None
-        for t in grid:
-            r = scan_t(t, pool, cont)
-            res[t] = r
-            if r["v"] - 1 > FLOOR:
-                cont = r["x"]
-            p(fmt(r))
-            p(params(r))
-        p("")
-        p(f"  [검증] t=0.600 Fredriksson 값(≈1+4e-6) 대비: ν_found−1 = {res[0.6]['v'] - 1:.6e}")
-        # 이분 탐색: 통과 발견 최소 격자점과 그 아래 미발견 격자점 사이
-        passing = [t for t in grid if res[t]["v"] - 1 > FLOOR]
-        failing = [t for t in grid if res[t]["v"] - 1 <= FLOOR]
-        p("")
-        if passing and failing and min(passing) > max([f for f in failing if f < min(passing)], default=-1):
-            hi = min(passing)
-            lo = max(f for f in failing if f < hi)
-            cont = res[hi]["x"]
-            p(f"  이분 탐색: 구간 [{lo:.3f} 미발견, {hi:.3f} 발견]")
-            for _ in range(6):
-                mid = (lo + hi) / 2
-                r = scan_t(mid, pool, cont, n_random=80, n_cont=80)
-                p(fmt(r))
-                if r["v"] - 1 > FLOOR:
-                    hi, cont = mid, r["x"]
-                    p(params(r))
-                else:
-                    lo = mid
+        # 시작: t=0.590 배치 재정밀화 (이전 실행 출력은 회전벡터 10자리 → 국소 재수렴)
+        res = track(T_START, X_0590, pool)
+        x_prev = res[0][1]
+        v = res[0][0]
+        p(f"  [시작] t={T_START:.4f} | ν−1 = {v - 1:.9e}  (이전 실행 기록 7.151136e-07) | "
+          f"4개: {', '.join(f'{r[0] - 1:.3e}' for r in res)}")
+        p(params(x_prev))
+        prev_t, prev_v = T_START, v
+        boundary = None
+        for t in T_LIST:
+            res = track(t, x_prev, pool)
+            v, x, rounds, el, capped = res[0]
             p("")
-            p(f"  t* 수치 추정 구간 (통과 발견 하한 기준): ({lo:.6f}, {hi:.6f}]")
-            p(f"    → t = {hi:.6f} 에서 통과 발견, t = {lo:.6f} 이하에서는 본 탐색으로 통과 미발견")
-        elif failing == []:
-            p(f"  격자 전 구간 통과 발견 — t* < {min(grid):.3f} (본 탐색 기준)")
+            p(f"  t={t:.4f} | ν_found−1 = {v - 1: .9e} | 4개: {', '.join(f'{r[0] - 1: .3e}' for r in res)} | "
+              f"라운드 {rounds}, {el:.0f}s{' (5분 상한 도달 — 그 시점 최선값)' if capped else ''}")
+            p(params(x))
+            pos = v - 1 > 0
+            if v - 1 < 1e-6:
+                lam_mp, slack, slack_half, s = verify_mp(x, t)
+                pos = lam_mp - 1 > mpf(10)**-40
+                p(f"      [mpmath 50자리] λ−1 = {mpmath.nstr(lam_mp - 1, 20)}")
+                p(f"                      평행이동 s = ({mpmath.nstr(s[0], 20)}, {mpmath.nstr(s[1], 20)})")
+                p(f"                      λ 에서 최소 포함 여유 = {mpmath.nstr(slack, 6)} (LP 꼭짓점, 0 이 정상)")
+                p(f"                      λ'=1+(λ−1)/2 에서 최소 포함 여유 = {mpmath.nstr(slack_half, 20)}"
+                  f"  ({'> 0: 엄격 포함 (통과 배치 확인)' if slack_half > 0 else '≤ 0: 엄격 포함 아님'})")
+            if not pos:
+                boundary = (t, prev_t)
+                p(f"      → 통과 여유 0 이하: 여기서 정지")
+                break
+            x_prev, prev_t, prev_v = x, t, v
+        p("")
+        if boundary:
+            p(f"  경계 추정 구간 (통과 발견 하한 기준): t* ∈ ({boundary[0]:.4f}, {boundary[1]:.4f}]")
+            p(f"    t = {boundary[1]:.4f} 통과 발견 (ν−1 = {prev_v - 1:.6e}), "
+              f"t = {boundary[0]:.4f} 연속 추적으로 통과 미발견")
         else:
-            p(f"  통과 발견 격자점: {passing}  /  미발견: {failing} — 단조 구간 아님, 이분 탐색 생략")
-        p("  ※ 판정 없음. EQI 상수 대조 없음. '미발견' 은 비루퍼트 증명이 아님.")
-        p(f"  총 소요 {time.time() - t0:.0f} s")
+            p(f"  대상 t 전부 통과 발견 — t* ≤ {T_LIST[-1]:.4f} (본 추적 기준)")
+        p("  ※ 판정 없음. '미발견' 은 비루퍼트 증명이 아님 (국소 추적 한계).")
+        p(f"  총 소요 {time.time() - T0:.0f} s")
     open("taskR6_Pt_scan_output.txt", "w").write("\n".join(out) + "\n")
