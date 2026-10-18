@@ -2087,6 +2087,52 @@ class EQIPhononLattice:
                   f"{nstr(r - PHI**3, 3):>12} | {nstr(f, 20):>24}")
         print()
 
+    # ── §P1 격자 기저 (S24 / S27 / S88) ──────────────────────────────
+    def alg(self, tag, label, calc, target, src):
+        """대수필연 판정: 400자리 절대 차 |calc − target| < 1e-390"""
+        e = fabs(calc - target)
+        self.row(tag, label, calc, target, e, self.grade(e, True), src)
+
+    def report_P1(self):
+        PHI, GAP = self.PHI, self.GAP
+        q = lambda p, d: power(PHI, mpf(p)/d)
+        # 기호 (자연단위, φ 지수)
+        # G = φ^(11/4): 2π 제거 자연단위 (S76/S77 기준).
+        #   S50의 G = 2π·φ^(11/4) 표기와 구분 — 여기서는 2π 인자 없음.
+        L_p, T_p, M_p, c = q(-3, 4), q(-5, 4), q(1, 4), q(1, 2)
+        k_B, h, F, T_deg = q(-9, 4), q(-11, 4), q(2, 1), q(3, 4)
+        G, hbar_ani = q(11, 4), q(-17, 4)          # ħ_ani 기준 (§4d)
+        S_D1, H_D2 = L_p**2, T_p**2                # φ^(-3/2), φ^(-5/2)
+        mu = 1 / PHI
+
+        print("  §P1 격자 기저 (S24 / S27 / S88) — 판정 열 = 400자리 절대 차")
+        print("  " + "─" * 72)
+        self.alg("P1-0a", "S_D1 = L_p² = φ^(-3/2)", S_D1, q(-3, 2), "기호 정의")
+        self.alg("P1-0b", "H_D2 = T_p² = φ^(-5/2)", H_D2, q(-5, 2), "기호 정의")
+        self.alg("P1-1a", "S_D1/H_D2 = c²", S_D1/H_D2, c**2, "S24")
+        self.alg("P1-1b", "c² = φ", c**2, PHI, "S24")
+        self.alg("P1-2a", "T_p³ = L_p⁵", T_p**3, L_p**5, "S24 (케플러)")
+        self.alg("P1-2b", "L_p⁵ = φ^(-15/4)", L_p**5, q(-15, 4), "S24 (케플러)")
+        self.alg("P1-3", "k_B = L_p³", k_B, L_p**3, "S24")
+        self.alg("P1-4", "h × F = L_p", h*F, L_p, "S27")
+        e1, e2 = GAP/PHI, GAP/PHI**2
+        self.alg("P1-5a", "ε1 + ε2 = GAP", e1 + e2, GAP, "S27")
+        self.alg("P1-5b", "ε1/ε2 = φ", e1/e2, PHI, "S27")
+        self.alg("P1-6", "μ·c² = 1", mu*c**2, mpf(1), "S24/S48")
+        self.alg("P1-7a", "S_D1 − H_D2 = φ^(-7/2)", S_D1 - H_D2, q(-7, 2), "S88 §83")
+        self.alg("P1-7b", "k_B·T_p = φ^(-7/2)", k_B*T_p, q(-7, 2), "S88 §83")
+        self.alg("P1-7c", "h·L_p = φ^(-7/2)", h*L_p, q(-7, 2), "S88 §83")
+        self.alg("P1-8", "S_D1 + H_D2 = φ^(-1/2)", S_D1 + H_D2, q(-1, 2), "S88 §85")
+        self.alg("P1-9", "S_D1 · H_D2 = φ^(-4)", S_D1*H_D2, q(-4, 1), "S88 §85")
+        self.alg("P1-10", "G · ħ_ani = S_D1", G*hbar_ani, S_D1, "S88 §84")
+        self.alg("P1-11", "π·(L_p/√π)² = S_D1", pi*(L_p/sqrt(pi))**2, S_D1, "S88 §87")
+        # §35 분모: 엔진 §35 D1_ELL = EQI4/√[(1+GAP)²+φ⁶] 에서 역산한 분모와 전개식 비교
+        den_eng = (self.C.EQI4 / self.C.D1_ELL)**2
+        self.alg("P1-12", "§35 분모 = 1+2GAP+GAP²+φ⁶", 1 + 2*GAP + GAP**2 + PHI**6, den_eng,
+                 "S96 (엔진 §35 분모 대조)")
+        print(f"     (참고) M_p = φ^(1/4) = {nstr(M_p, 20)},  T° = φ^(3/4) = {nstr(T_deg, 20)}  — 기호 등록만")
+        print()
+
     def report(self):
         sep = "═" * 76
         print()
@@ -2094,6 +2140,7 @@ class EQIPhononLattice:
         print("  ▶▶ v9.7 추가 블록 — 플랑크 격자 정보 포논 동역학 (§P0~)")
         print(sep)
         self.report_P0()
+        self.report_P1()
         print("  등급 집계:", ", ".join(f"{t}:{g}" for t, g in self.rows))
         print(sep)
 
