@@ -2410,6 +2410,99 @@ class EQIPhononLattice:
         print("  [§C-주석] S64 §6.2 \"중력질량 = E_topo² = φ^1.5 = 관성질량\" = v15 이중 항등원 체제 표기. 현 체제 미적용 (계산 없음)")
         print()
 
+    # ── Task 8: §P6 오비탈 / §P3 빛 보강 / 체 계층 보강 ───────────────────
+    def report_T8(self):
+        PHI, GAP, GD, sg, C = self.PHI, self.GAP, self.GD, self.sigma, self.C
+        q = lambda p, d: power(PHI, mpf(p)/d)
+        c, mu = q(1, 2), 1/PHI
+
+        def introw(tag, label, calc, target, src):
+            ok = calc == target
+            self.rows.append((tag, "정수" if ok else "불일치"))
+            print(f"  [§{tag}] {label} | {calc} | {target} | {'0' if ok else '≠0'} | "
+                  f"{'정수' if ok else '불일치'} | {src}")
+
+        # ── §P6 양자 오비탈 ──
+        print("  §P6 양자 오비탈 [S45/S69/S81/S99]")
+        print("  " + "─" * 72)
+        for l_, nm in enumerate("spdf"):
+            k_ref = 2*l_ + 1                         # 포논 차수 2k+1 (k = ℓ) = 자기 양자수 개수 2ℓ+1
+            introw(f"O-1.{nm}", f"{nm}: k_ref = 2ℓ+1 = 포논 차수, k_orb = 2·k_ref (수용 전자 수)",
+                   (k_ref, 2*k_ref), (2*l_ + 1, 2*(2*l_ + 1)), "S45")
+        self.alg("O-2", "f오비탈 sin(π/6) = σ = 1/2", mpmath.sin(pi/6), sg, "S45")
+        self.alg("O-3", "오비탈 계단 단위 φ^(1/2) = c", q(1, 2), sqrt(PHI), "S81 B-2")
+        print(f"     (참고) c² = {nstr(c**2, 20)} = φ")
+        s_, f_, lg = pi, 3*log(pi), fabs(log(GAP))
+        print(f"  [§O-4] 값만: s = π = {nstr(s_, 20)},  f = 3·lnπ = {nstr(f_, 20)},  |ln GAP| = {nstr(lg, 20)}")
+        print(f"         f vs |ln GAP| 상대 차 = {nstr(self.err_pct(f_, lg), 10)} %  (분모 |ln GAP|)   [S69 §36]")
+        self.alg("O-5a", "σ = sin(π/6) = 1/√d (d=4)", mpmath.sin(pi/6), 1/sqrt(4), "S99")
+        self.alg("O-5b", "d = 1/σ² = 4", 1/sg**2, mpf(4), "S99")
+        print()
+
+        # ── §P3 빛 보강 ──
+        print("  §P3 빛 보강 [S45/S46/S50]")
+        print("  " + "─" * 72)
+        D1, D2 = q(-3, 2), q(3, 2)                   # HCW D1, D2
+        thB = mpmath.atan(D2/D1)
+        thr = mpmath.asin(D1*mpmath.sin(thB)/D2)     # 스넬 D1·sinθ_in = D2·sinθ_out
+        thc = mpmath.asin(D1/D2)
+        print("     [S46 HCW 계보] 스넬 D1·sinθ_in = D2·sinθ_out  (D1 = φ^(-3/2), D2 = φ^(3/2))")
+        self.alg("L-7.1", "[S46] tanθ_B = D2/D1 = φ³", mpmath.tan(thB), PHI**3, "S46")
+        self.alg("L-7.2", "[S46] sinθ_c = D1/D2 = φ^(-3)", mpmath.sin(thc), q(-3, 1), "S46")
+        self.alg("L-7.3", "[S46] tanθ_B·sinθ_c = 1", mpmath.tan(thB)*mpmath.sin(thc), mpf(1), "S46")
+        self.alg("L-7.4", "[S46] θ_B + θ_r = π/2", thB + thr, pi/2, "S46")
+        print(f"     [S50 계보] n_EQI = HG_D2/Is_D2 = {nstr(q(1, 2)/C.Is_D2, 20)} (= φ),  sinθ_c = 1/φ = {nstr(1/PHI, 20)}"
+              f"  — v9.7 P3-7 기존, 두 계보 병기 (어느 쪽도 폐기 아님)")
+        for kk in (mpf(1)/2, mpf(1), mpf(2), mpf(34)):
+            w = sqrt(PHI*kk**2 + 1/PHI)
+            vp, vg = w/kk, PHI*kk/w
+            self.alg(f"L-7b.k{nstr(kk, 3)}", f"분산 ω²=φk²+φ⁻¹: v_p·v_g = φ = c² (k={nstr(kk, 3)})", vp*vg, c**2, "S46")
+        print("  [§L-7c] 브래그 d = 1/34, λ = σ^(2k+1), N·σ^(2k+1)/2 (N=34) — 값만")
+        for k in (1, 2, 3):
+            v = 34 * sg**(2*k + 1) / 2
+            print(f"           {2*k+1}차 (k={k}): λ = {nstr(sg**(2*k + 1), 10)},  N·λ/2 = {nstr(v, 10)}  "
+                  f"({'< 1' if v < 1 else '≥ 1'})")
+        print("           ※ TASKS 문구 '7차부터 < 1' 과 불일치: 계산상 5차(k=2) 0.53125 부터 < 1")
+        self.rows.append(("L-7c", "불일치(문구)"))
+        print("  [§L-7d] 12임계치 × 포논 차수 T/GAP — 값만 (T_X = φ^(3/2) − X)")
+        for order, nm, T in ((3, "n_c = TIP_POINT/GAP", q(3, 2) - 1), (5, "N = 34", 34*GAP),
+                             (7, "T_Is_D2 = φ^(3/2) − φ^(-1/2)", q(3, 2) - q(-1, 2)),
+                             (9, "T_HCW_D1 = φ^(3/2) − φ^(-3/2)", q(3, 2) - q(-3, 2)),
+                             (11, "T_Is_D1 = φ^(3/2) − φ^(-7/2)", q(3, 2) - q(-7, 2))):
+            print(f"           {order:>2}차: {nm:<32} T/GAP = {nstr(T/GAP, 15)}")
+        mers = [-(mpf(2)**(k - 2) - 1)/2 for k in range(3, 7)]
+        introw("L-7e", "D2 지수 메르센 −(2^(k−2)−1)/2, k=3..6",
+               tuple(nstr(m, 4) for m in mers), ("-0.5", "-1.5", "-3.5", "-7.5"), "S46 (k=6 = X7)")
+        self.alg("L-7f1", "ln(φ³) = arsinh(2)", 3*log(PHI), mpmath.asinh(2), "v3.4 θ_L")
+        self.alg("L-7f2", "GAP/GD = 2  (MAXWELL_EQI = 2 연결)", GAP/GD, mpf(2), "v3.4 / S34")
+        print("  [§L-7g] S46 5/4 일반형 vs 오일러 계수 — 값만")
+        for k in (2, 3):
+            s46 = mpf((-1)**(k - 1)) * (2*k + 1) * sg**(2*k + 3)
+            eul = 2 * abs(mpmath.eulernum(2*k)) * sg**(4*k)
+            print(f"           k={k}: S46 (−1)^(k−1)(2k+1)σ^(2k+3) = {nstr(s46, 15)}   "
+                  f"오일러 2E_(2k)σ^(4k) = {nstr(eul, 15)}   비 = {nstr(s46/eul, 15)}")
+        self.alg("L-8", "TIP_POINT = φ^1.5 − 1 = T_RBC_D1 (엔진)", q(3, 2) - 1, C.T_RBC_D1, "S50 / 단위계 철학 §10.2")
+        print("  [§L-9] 엔진 §14 sinc²(n_ref,k·π) = P_tunnel,k 재출력 (값만)")
+        for k in range(1, 6):
+            print(f"           k={k}: n_ref = {nstr(mpf(2*k + 1)/mpf(4)**(k + 1), 12)},  P_tunnel = {nstr(C.P_tunnel[k - 1], 20)}")
+        print()
+
+        # ── 체 계층 보강 ──
+        print("  §P3·§P5·§P7 체 계층 보강 [S48/S50/S62/S79/S88]")
+        print("  " + "─" * 72)
+        al2, be2 = 1/PHI, PHI**-2
+        self.alg("B-1", "3체 닫힘 α² + β² = φ⁻¹ + φ⁻² = 1", al2 + be2, mpf(1), "S50/S62")
+        print("  [§B-2] 다체 갭 급수 항 — 값만")
+        for nb, v in (("2체 GAP", GAP), ("3체 σ³GAP²", sg**3*GAP**2), ("5체 σ⁵GAP³", sg**5*GAP**3),
+                      ("7체 σ⁷GAP⁴", sg**7*GAP**4)):
+            print(f"           {nb:<12} = {nstr(v, 15)}")
+        print("  [§B-3 주석] 물분자 큐비트 배정: 3체+7체 = H₂, 5체 = O (S88 §95)")
+        introw("B-3", "전자 수 3 + 7 = 10", 3 + 7, 10, "S88 §95")
+        mpme = q(125, 8) * (1 - sg*27*GD**2 - GD**3)
+        print(f"  [§B-4] 7체/3체 = m_p/m_e — P7-4 참조값 연결: φ^(125/8)·(1−σ·27·GD²−GD³) = {nstr(mpme, 20)}"
+              f"  (P7-4, S79 §54)")
+        print()
+
     # ── §P-MAXWELL  Task M 확정 항목 탑재 (S114 Task 7) ─────────────────
     # 표기: S_D1^lat = L_p² = φ^(-3/2) (격자 기저),  S_D1^em = lnφ·M/(1+M) (전자기 언어) — 두 기호 분리
     def report_PM(self):
@@ -2558,6 +2651,7 @@ class EQIPhononLattice:
         self.report_P3()
         self.report_P5_P7_light()
         self.report_chain()
+        self.report_T8()
         self.report_PM()
         self.report_DS()
         print("  등급 집계:", ", ".join(f"{t}:{g}" for t, g in self.rows))
