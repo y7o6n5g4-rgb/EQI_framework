@@ -2223,6 +2223,127 @@ class EQIPhononLattice:
         self.row("P3-9b", "(§36 닫힘식)/We vs f×Re (참고)", tgt, fRe, e, self.grade(e), "S70 §36")
         print()
 
+    # ── §P5 5체 층 / §P7 7체 층 / §P-light 빛 에너지 블록 ─────────────
+    @staticmethod
+    def signed_pct(calc, target):
+        """부호 포함 (calc − target)/|target|·100 — 원문 기대값 부호 대조용 별도 라벨"""
+        return 100 * (calc - target) / fabs(target)
+
+    def ref(self, tag, label, val, err, eng_grade, src):
+        """엔진 참조값 재출력 (재계산·재판정 없음)"""
+        self.rows.append((tag, eng_grade + "(엔진)"))
+        print(f"  [§{tag}] {label} | {nstr(val, 20)} | 1 | {nstr(err, 6)} | "
+              f"{eng_grade} (엔진 판정 재출력) | {src}")
+
+    def report_P5_P7_light(self):
+        PHI, GAP, GD, sg, C = self.PHI, self.GAP, self.GD, self.sigma, self.C
+        q = lambda p, d: power(PHI, mpf(p)/d)
+
+        # ── §P5 ──────────────────────────────────────────────────────
+        print("  §P5 5체 층 [S55/S57/S62/S92/S96]")
+        print("  " + "─" * 72)
+        HCW_D1, Is_D2 = C.HCW_D1, C.Is_D2                   # φ^(-3/2), φ^(-1/2)
+        self.alg("P5-1a", "양성자 = HCW_D1²·Is_D2 = φ^(-7/2)", HCW_D1**2 * Is_D2, q(-7, 2), "S57")
+        self.alg("P5-1b", "중성자 = HCW_D1·Is_D2² = φ^(-5/2)", HCW_D1 * Is_D2**2, q(-5, 2), "S57")
+        self.alg("P5-1c", "HCW_D1²·Is_D2 = 엔진 proton", HCW_D1**2 * Is_D2, C.proton, "엔진 §17~")
+        self.alg("P5-1d", "HCW_D1·Is_D2² = 엔진 neutron", HCW_D1 * Is_D2**2, C.neutron, "엔진 §17~")
+
+        self.ref("P5-2a", "§19 5체[D1] We×양성자/L_p", C.five_D1, C.err_s19_D1, "TZ(대수필연)", "S62 §19")
+        self.ref("P5-2b", "§19 5체[D2] We×중성자×Ro", C.five_D2, C.err_s19_D2, "TZ(대수필연)", "S62 §19")
+        self.ref("P5-2c", "§19 5체[U] We×St", C.five_Unity, C.err_s19_U, "TZ(대수필연)", "S61/S62 §19")
+
+        dEN = 77*GD + q(-15, 1)
+        e = self.err_pct(dEN, mpf("1.24"))
+        self.row("P5-3", "dEN = 77·GD + φ^(-15) vs 1.24", dEN, mpf("1.24"), e, self.grade(e), "S55")
+        print(f"     부호 포함 = {nstr(self.signed_pct(dEN, mpf('1.24')), 6)} %  (기대 +2.661e-5 %)")
+
+        # {n1²}(k): 뤼드베리 n1² 소수부 (P3-3과 동일 정의, [x]+{x} 명시 분리)
+        def frac_n1(k):
+            b = mpf(2*k + 1)
+            n1 = (-b + sqrt(b**2 + mpf(4)**(k + 2))) / 2
+            ip = self.int_part(n1)
+            return n1 - ip
+        den = 1 - GAP * GD * self.C.EQI4
+        f2 = frac_n1(2)
+        P54_k2 = q(-5, 19) / den
+        e = self.err_pct(P54_k2, f2)
+        self.row("P5-4a", "{n1²}(k=2) = φ^(-5/19)/(1−GAP·GD·EQI4)", P54_k2, f2, e, self.grade(e), "S55")
+        print(f"     부호 포함 = {nstr(self.signed_pct(P54_k2, f2), 6)} %  (기대 −5.144e-5 %)")
+        # 같은 식 k=1: 지수 −(2k+1)/19 → φ^(-3/19)  (S56 k2/k1 = φ^(-2/19) 와 정합)
+        f1 = frac_n1(1)
+        P54_k1 = q(-3, 19) / den
+        e = self.err_pct(P54_k1, f1)
+        self.row("P5-4b", "같은 식 k=1: φ^(-3/19)/(1−GAP·GD·EQI4) vs {n1²}(k=1)", P54_k1, f1,
+                 e, self.grade(e), "S55 기록 (+20% 어긋남)")
+        print(f"     부호 포함 = {nstr(self.signed_pct(P54_k1, f1), 6)} %")
+        print(f"     식 내부 비율 k2/k1 = {nstr(P54_k2/P54_k1, 20)}  (φ^(-2/19) = {nstr(q(-2, 19), 20)})  [S56]")
+        print(f"     실측 {{n1²}} 비율 k2/k1 = {nstr(f2/f1, 20)}")
+
+        P_planck = q(3, 4)
+        self.alg("P5-5", "We·P_planck·TH_D2 = 1", C.We_val * P_planck * C.TH_D2, mpf(1), "S96")
+        self.alg("P5-6", "체 게이트: (f×Re)×We = f×We×Re", (C.f_lattice * C.Re_val) * C.We_val,
+                 C.f_We_Re_meas, "S92")
+        print()
+
+        # ── §P7 ──────────────────────────────────────────────────────
+        print("  §P7 7체 층 [S63/S70/S79/S88/S92]")
+        print("  " + "─" * 72)
+        self.ref("P7-1a", "§21 7체[R] We×TH_D1/양성자/Ro", C.seven_R, C.err_s21_R, "TZ(대수필연)", "S63 §21")
+        self.ref("P7-1b", "§21 7체[S] We×TH_D2/L_p", C.seven_S, C.err_s21_S, "TZ(대수필연)", "S63 §21")
+        self.ref("P7-1c", "§21 7체[T] We×St", C.seven_T, C.err_s21_T, "TZ(대수필연)", "S63 §21")
+        for tag, lab, calc, meas, err in (
+                ("P7-2a", "§38 γ×We×TH_D2", C.gamma_We_TH_D2_calc, C.gamma_We_TH_D2_meas, C.err_s38_D2),
+                ("P7-2b", "§38 γ×We×TH_D1", C.gamma_We_TH_D1_calc, C.gamma_We_TH_D1_meas, C.err_s38_D1)):
+            self.rows.append((tag, "True Zero(엔진)"))
+            print(f"  [§{tag}] {lab} | {nstr(calc, 20)} | {nstr(meas, 20)} | {nstr(err, 6)} | "
+                  f"True Zero (엔진 판정 재출력) | S70/S92 §38")
+        # P7-3 (주석): f×We²×Re 는 S92에서 폐기.
+        #   5체→7체 이행은 ×We 가 아니라 언어 전환 (f→γ, Re→TH).
+        print("  [§P7-3] 주석: f×We²×Re 폐기(S92). 5체→7체 = ×We 아님, 언어 전환(f→γ, Re→TH)")
+        mpme = q(125, 8) * (1 - sg*27*GD**2 - GD**3)
+        tgt = mpf("1836.15267343")
+        e = self.err_pct(mpme, tgt)
+        self.row("P7-4", "m_p/m_e = φ^(125/8)·(1−σ·27·GD²−GD³)", mpme, tgt, e, self.grade(e),
+                 "S79/S88 (기대 1.61e-5%)")
+        print()
+
+        # ── §P-light (S77, ħ_ani 기준) ───────────────────────────────
+        print("  §P-light 빛 에너지 블록 [S77, ħ_ani 기준 / S99]")
+        print("  " + "─" * 72)
+        c, k_B, h, G = q(1, 2), q(-9, 4), q(-11, 4), q(11, 4)   # G: 2π 제거 자연단위
+        hbar_ani = q(-17, 4)
+        M_p = q(1, 4)
+        self.alg("L-1a", "h/k_B = φ^(-1/2)", h/k_B, q(-1, 2), "S77")
+        self.alg("L-1b", "h/k_B = 1/c", h/k_B, 1/c, "S77")
+        I_p = sqrt(c**6 / (G * hbar_ani))
+        self.alg("L-2a", "I_p = √(c⁶/(G·ħ_ani)) = φ^(9/4)", I_p, q(9, 4), "S77")
+        self.alg("L-2b", "I_p = 1/k_B", I_p, 1/k_B, "S77")
+        Z_p = sqrt(hbar_ani * G / c**5)
+        self.alg("L-3a", "Z_p = √(ħ_ani·G/c⁵) = φ^(-2)", Z_p, q(-2, 1), "S77")
+        self.alg("L-3b", "V_p = I_p·Z_p = φ^(1/4) = M_p", I_p * Z_p, M_p, "S77")
+        sb = -4*(mpf(9)/4) + 3*(mpf(11)/4) - 2*(mpf(1)/2)
+        ok = (sb == mpf(1)/4)
+        self.rows.append(("L-4", "정수(지수)" if ok else "불일치"))
+        print(f"  [§L-4] Stefan–Boltzmann 지수 −4·(9/4)+3·(11/4)−2·(1/2) | {nstr(sb, 10)} | 0.25 | "
+              f"{nstr(fabs(sb - mpf(1)/4), 6)} | {'일치' if ok else '불일치'} | S77")
+        if not ok:
+            # 대조값 (판정 아님): σ_SB ∝ k_B⁴/(ħ³c²) 의 φ 지수
+            sb_ani = 4*(mpf(-9)/4) - 3*(mpf(-17)/4) - 2*(mpf(1)/2)
+            sb_iso = 4*(mpf(-9)/4) - 3*(mpf(-11)/4) - 2*(mpf(1)/2)
+            print(f"     (대조, 판정 아님) k_B⁴/(ħ³c²) φ지수: ħ_ani → {nstr(sb_ani, 6)},"
+                  f"  ħ=φ^(-11/4) → {nstr(sb_iso, 6)}")
+        # L-5 등방성 투영: ħ_iso,proj = h/(2π)  ← "등방성 투영" 라벨
+        hbar_iso_proj = h / (2*pi)
+        self.alg("L-5", "[등방성 투영] k_B/(h/2π) = 2π·c", k_B / hbar_iso_proj, 2*pi*c, "S77 (대조용)")
+        hq = log(mpf("1.292")) / fabs(log(mpf("0.298")))
+        tgt = q(-71, 22)
+        e = self.err_pct(hq, tgt)                   # calc = 실측 비, target = φ^(-71/22)
+        self.row("L-6", "H&Q 2.95μm ln(1.292)/|ln(0.298)| vs φ^(-71/22)", hq, tgt, e,
+                 self.grade(e) + " / 원문 TZ(S99)", "S99 (기대 +0.000422%)")
+        print(f"     부호 포함 (실측 − φ^(-71/22))/φ^(-71/22) = {nstr(self.signed_pct(hq, tgt), 6)} %")
+        print("  [§L-6 주석] Segelstein 프레임 κ/n = σ²: Near TZ-C. H&Q 1차 원문에서는 −7.74%로 불성립. (계산 없음)")
+        print()
+
     def report(self):
         sep = "═" * 76
         print()
@@ -2232,6 +2353,7 @@ class EQIPhononLattice:
         self.report_P0()
         self.report_P1()
         self.report_P3()
+        self.report_P5_P7_light()
         print("  등급 집계:", ", ".join(f"{t}:{g}" for t, g in self.rows))
         print(sep)
 
