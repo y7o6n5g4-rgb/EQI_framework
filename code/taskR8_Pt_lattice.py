@@ -154,19 +154,24 @@ if __name__ == "__main__":
         f" 2^(−5) = {2**-5:.6f} ≥ φ^(−7.5)")
     log(f"  R_max = √3, δ_L = R_max·Σ(반폭) = {R_MAX * float(np.sum(W0 / 2)):.4f}·2^(−L);  판정 D1: m_c + 2δ < 0")
     summary = {}
-    with Pool(4) as pool:
-        for t in (0.55, 0.590, 0.575):
+    for t in (0.55, 0.590, 0.575):
+        # t 마다 새 작업자 풀: 상한 도달 시 미처리 작업이 다음 t 의 시간 예산을 잠식하지 않도록 종료
+        pool = Pool(4)
+        try:
             log("")
             log(f"  ── t = {t} " + {0.55: "(보정점: Lean 비루퍼트, D2→0 기대)",
                                     0.590: "(보정점: 루퍼트, D2* 존재 기대)",
                                     0.575: "(경계 구간 내부, 미지)"}[t])
             ledger, reached = run_t(t, pool, log)
-            summary[t] = (ledger, reached)
-            last = ledger[-1]
-            md2 = last["m_d2"]
-            if len(md2):
-                log(f"    [진단] 최종 단계 D2 칸 m_c 분포: 최대 {md2.max():.4e}, 중앙 {np.median(md2):.4e}, "
-                    f"|m_c| < 1e-6 인 칸 {int(np.sum(np.abs(md2) < 1e-6)):,} / {len(md2):,}")
+        finally:
+            pool.terminate()
+            pool.join()
+        summary[t] = (ledger, reached)
+        last = ledger[-1]
+        md2 = last["m_d2"]
+        if len(md2):
+            log(f"    [진단] 최종 단계 D2 칸 m_c 분포: 최대 {md2.max():.4e}, 중앙 {np.median(md2):.4e}, "
+                f"|m_c| < 1e-6 인 칸 {int(np.sum(np.abs(md2) < 1e-6)):,} / {len(md2):,}")
     log("")
     log("=" * 120)
     log("  보정점 확인")
