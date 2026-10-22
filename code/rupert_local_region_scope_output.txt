@@ -1,0 +1,11 @@
+====================================================================================================
+검증 결과 범위 기록 (보존 검증기 재실행)
+====================================================================================================
+  증명서 SHA-256 afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6
+  검증기 SHA-256 861149c6dbf9e8b652de3b7e3442ca331880bf0cd243c4ffe20d81a087da517e
+  검증기 상태: PASS
+  생성기 요약 일치: True  {"verifier_a_min_lower_floor15": "0.060272491827436", "verifier_delta_lower_floor13": "0.0603607146887", "generator_a_Q_lower": "0.0568807386262666037668355", "generator_delta_cellwise_lower": "0.05739327563284125866", "both_delta_ge_verified_theta": true, "generator_le_verifier_a": true, "generator_le_verifier_delta": true, "structure_match": {"dual_vertices_edges": true, "n_certificates": true, "n_cells": true}}
+  검증한 정리: θ ∈ [0, 1/20], Q = q1 ['2043/5120', '2053/5120'] × q2 ['4603/5120', '4613/5120'], t_shape 11/20, 모든 축
+  요청 θ_max = 9/10: NOT_VERIFIED — 요청 θ_max = 9/10 > 검증 범위 상한 1/20 (범위 밖; 이 요청에 대한 PASS 없음)
+  요청 θ_max = 1/20: VERIFIED — 요청 [0, 1/20] ⊆ 검증 범위 [0, 1/20]
+  요청 θ_max = 3/50: NOT_VERIFIED — 요청 θ_max = 3/50 > 검증 범위 상한 1/20 (범위 밖; 이 요청에 대한 PASS 없음)

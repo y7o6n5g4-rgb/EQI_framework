@@ -1,0 +1,241 @@
+[
+ {
+  "id": "T1",
+  "expect": "LOCAL_NO_STRICT_CONTAINMENT",
+  "expect_detail": null,
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "q_box": {
+    "theta1": "[0.4, 0.4]",
+    "phi1": "[0.9, 0.9]"
+   },
+   "trace_box": "[2.99990000083333, 2.99990000083333]",
+   "threshold": "[2.99750052078993, 2.99750052078993]",
+   "trace_center": "[2.99990000083333, 2.99990000083333]",
+   "H_upper": 0.0,
+   "M1_in": true,
+   "M2_in": true,
+   "M1_out": false,
+   "M2_out": false,
+   "status": "LOCAL_NO_STRICT_CONTAINMENT",
+   "detail": "M1",
+   "reason": "칸 전체: 물체 P_{11/20}, q ⊆ Q, angle(Δ) ≤ 1/20 인증"
+  },
+  "match": true
+ },
+ {
+  "id": "T2",
+  "expect": "LOCAL_NO_STRICT_CONTAINMENT",
+  "expect_detail": null,
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "q_box": {
+    "theta1": "[0.4, 0.4]",
+    "phi1": "[0.9, 0.9]"
+   },
+   "trace_box": "[3, 3]",
+   "threshold": "[2.99750052078993, 2.99750052078993]",
+   "trace_center": "[3, 3]",
+   "H_upper": 0.0,
+   "M1_in": true,
+   "M2_in": true,
+   "M1_out": false,
+   "M2_out": false,
+   "status": "LOCAL_NO_STRICT_CONTAINMENT",
+   "detail": "M1",
+   "reason": "칸 전체: 물체 P_{11/20}, q ⊆ Q, angle(Δ) ≤ 1/20 인증"
+  },
+  "match": true
+ },
+ {
+  "id": "T3",
+  "expect": "LOCAL_NO_STRICT_CONTAINMENT",
+  "expect_detail": null,
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "q_box": {
+    "theta1": "[0.39960199524421, 0.400368985638152]",
+    "phi1": "[0.899679732094929, 0.900446722488871]"
+   },
+   "trace_box": "[2.99185081302656, 3.00814215707765]",
+   "threshold": "[2.99750052078993, 2.99750052078993]",
+   "trace_center": "[2.99999843653349, 2.99999843653349]",
+   "H_upper": 0.0046019423636569235,
+   "M1_in": false,
+   "M2_in": true,
+   "M1_out": false,
+   "M2_out": false,
+   "status": "LOCAL_NO_STRICT_CONTAINMENT",
+   "detail": "M2",
+   "reason": "칸 전체: 물체 P_{11/20}, q ⊆ Q, angle(Δ) ≤ 1/20 인증"
+  },
+  "match": true
+ },
+ {
+  "id": "T4",
+  "expect": "UNKNOWN",
+  "expect_detail": "STRADDLES_Q",
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "q_box": {
+    "theta1": "[0.398779296875, 0.399267578125]",
+    "phi1": "[0.9, 0.9]"
+   },
+   "status": "UNKNOWN",
+   "detail": "STRADDLES_Q",
+   "reason": "q 구간이 Q 경계를 걸치거나 포함 미확정"
+  },
+  "match": true
+ },
+ {
+  "id": "T5",
+  "expect": "UNKNOWN",
+  "expect_detail": "STRADDLES_THETA",
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "q_box": {
+    "theta1": "[0.4, 0.4]",
+    "phi1": "[0.9, 0.9]"
+   },
+   "trace_box": "[2.99560785984822, 2.99939118423129]",
+   "threshold": "[2.99750052078993, 2.99750052078993]",
+   "trace_center": "[2.99750052078993, 2.99750052078993]",
+   "H_upper": 0.001,
+   "M1_in": false,
+   "M2_in": false,
+   "M1_out": false,
+   "M2_out": false,
+   "status": "UNKNOWN",
+   "detail": "STRADDLES_THETA",
+   "reason": "상대 회전각이 1/20 경계를 걸치거나 구간 과대평가로 미확정"
+  },
+  "match": true
+ },
+ {
+  "id": "T6",
+  "expect": "UNKNOWN",
+  "expect_detail": "OUTSIDE_THETA",
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "q_box": {
+    "theta1": "[0.4, 0.4]",
+    "phi1": "[0.9, 0.9]"
+   },
+   "trace_box": "[2.75516512378075, 2.75516512378075]",
+   "threshold": "[2.99750052078993, 2.99750052078993]",
+   "trace_center": "[2.75516512378075, 2.75516512378075]",
+   "H_upper": 0.0,
+   "M1_in": false,
+   "M2_in": false,
+   "M1_out": true,
+   "M2_out": true,
+   "status": "UNKNOWN",
+   "detail": "OUTSIDE_THETA",
+   "reason": "상대 회전각 > 1/20 (국소정리 적용 밖)"
+  },
+  "match": true
+ },
+ {
+  "id": "T7",
+  "expect": "NOT_APPLICABLE",
+  "expect_detail": null,
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "status": "NOT_APPLICABLE",
+   "detail": "OBJECT",
+   "reason": "물체 정의 불일치 (t = 3/5)"
+  },
+  "match": true
+ },
+ {
+  "id": "T8",
+  "expect": "NOT_APPLICABLE",
+  "expect_detail": null,
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "status": "NOT_APPLICABLE",
+   "detail": "OBJECT",
+   "reason": "t 가 float (0.55 = 2476979795053773/4503599627370496) — 정확 유리수 정의 아님, 11/20 과 다름"
+  },
+  "match": true
+ },
+ {
+  "id": "T9",
+  "expect": "UNKNOWN",
+  "expect_detail": null,
+  "result": {
+   "theorem_cert_sha256": "afce2b74d9cd3e5464c1b6da6bfe903385e4ac8a711dc2a45f923403a20ac3a6",
+   "theta_range": [
+    "0",
+    "1/20"
+   ],
+   "q_box": {
+    "theta1": "[0.392699081698724, 0.417242774304894]",
+    "phi1": "[0.883572933822129, 0.9081166264283]"
+   },
+   "status": "UNKNOWN",
+   "detail": "STRADDLES_Q",
+   "reason": "q 구간이 Q 경계를 걸치거나 포함 미확정"
+  },
+  "match": true
+ },
+ {
+  "id": "Q1",
+  "expect": "NOT_VERIFIED",
+  "result": {
+   "status": "NOT_VERIFIED",
+   "reason": "요청 θ_max = 9/10 > 검증 범위 상한 1/20 (범위 밖; 이 요청에 대한 PASS 없음)"
+  },
+  "match": true
+ },
+ {
+  "id": "Q2",
+  "expect": "VERIFIED",
+  "result": {
+   "status": "VERIFIED",
+   "reason": "요청 [0, 1/20] ⊆ 검증 범위 [0, 1/20]"
+  },
+  "match": true
+ },
+ {
+  "id": "Q3",
+  "expect": "NOT_VERIFIED",
+  "result": {
+   "status": "NOT_VERIFIED",
+   "reason": "요청 θ_max = 3/50 > 검증 범위 상한 1/20 (범위 밖; 이 요청에 대한 PASS 없음)"
+  },
+  "match": true
+ }
+]
