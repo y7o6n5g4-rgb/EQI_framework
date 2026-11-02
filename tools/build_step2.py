@@ -33,9 +33,10 @@ def lines(rel):
     with open(os.path.join(ROOT, rel), encoding="utf-8", newline="") as f:
         return [l.rstrip("\r\n") for l in f.read().split("\n")]
 
+V34 = "성과정리문서/EQI_연구지침_프로젝트용_v3_4.md"               # 단계 3 (v3.4 §11)
 SRC, LG = lines(ENG), lines(LOG)
-FILES = {ENG: SRC, LOG: LG}
-TAG = {LOG: "로그", ENG: "소스"}
+FILES = {ENG: SRC, LOG: LG, V34: lines(V34)}
+TAG = {LOG: "로그", ENG: "소스", V34: "v3.4"}
 def norm(s):            # 비교용 정규화: 앞뒤 공백·상자 테두리 '║' 제거
     return s.strip().strip("║").strip()
 def L_(f, n): return FILES[f][n - 1]
@@ -352,6 +353,13 @@ for it in items:
         엔진_S=eng, 후속_정정=fix, 키워드=keywords(btitle + " " + formula, [bid]), 비고=note,
         _bline=bline, _grp=(bid, gkey(xid)) if gkey(xid) else None)
 
+# ─────────────── 단계 3 hook: v3.4 §11 (tools/build_step3.py) ───────────────
+import importlib.util as _ilu
+_sp = _ilu.spec_from_file_location("s3", os.path.join(ROOT, "tools", "build_step3.py"))
+s3 = _ilu.module_from_spec(_sp); _sp.loader.exec_module(s3)
+CTX = dict(rows=rows, add=add, cite=cite, render=render, FILES=FILES, map_grade=map_grade, keywords=keywords, ENG=ENG)
+s3.apply(CTX)
+
 # ─────────────── ID 부여 (등록부 고정, 규칙 7) ───────────────
 reg = list(csv.DictReader(open(REG, encoding="utf-8")))
 key2id = {r["키"]: r["id"] for r in reg}
@@ -408,6 +416,8 @@ if new_reg:
         w = csv.DictWriter(f, fieldnames=["id", "키", "최초_항목", "최초_별칭", "분리_원ID"])
         w.writeheader(); w.writerows([{**x, "분리_원ID": x.get("분리_원ID", "")} for x in reg + new_reg])
 
+s3.write_map(CTX, os.path.join(OUT, "map_step3.csv"))
+
 # ─────────────── conflicts.csv (K 번호 고정, 새 충돌은 끝에만) ───────────────
 def find(pred): return next(r["id"] for r in rows if pred(r))
 TK = lines("code/TASKS.md")
@@ -430,7 +440,8 @@ CF = [
          위치_B="code/eqi_unified_engine_v9_7_terminal.txt 67행 (이전 판, git 74b469a)", 내용_B="k=6(포논13차): 0.0007934570313",
          상태="근거 파일 교체로 해소, 이전 판 git 74b469a",
          비고="같은 엔진 출력 두 파일의 마지막 자리 차이. code/CLAUDE.md '기준 환경' (mpmath 1.4.0 / 1.3.0 반올림 경계값 13/16384) 참조. "
-              f"현 기준 로그 {LOG} 67행 = '{LG[66].strip()}'. 판정 없음"),
+              f"현 기준 로그 {LOG} 67행 = '{LG[66].strip()}'. "
+              "perplexity 독립 대조 (2026-11-02): mpmath 1.3.0 재실행 시 k=6 표시 마지막 자리 1줄 차이 (13/16384 = 0.00079345703125, 반올림 방식 차이) — 같은 현상. 판정 없음"),
     dict(항목="Stefan–Boltzmann 지수 기대값", 원장_ID=find(lambda r: r["별칭"].startswith("엔진 v9.7 §L-4;")),
          위치_A="성과정리문서/EQI_연구지침_프로젝트용_v3_4.md 2104행", 내용_A="§48-E: Stefan-Boltzmann σ ∝ φ^(+1/4) = M_p = 수명 지수  [TZ]",
          위치_B=f"{ENG} 2325–2326행 / {LOG} 707행", 내용_B="기대값 −7/4, '+1/4 … 산술 오기' (정정 S114)",
@@ -440,25 +451,67 @@ CF = [
          위치_B=f"{LOG} {L7C}행 (같은 줄, 엔진 계산 표기)", 내용_B=LG[L7C - 1].strip(),
          비고="엔진 출력 '※ TASKS 문구 … 불일치' 줄. 판정 없음"),
 ]
-for n, c in enumerate(CF, 1): c["id"] = f"K{n:04d}"   # 새 충돌은 목록 끝에만 추가 (CLAUDE.md 규칙 7)
+# 단계 3: 같은 항목의 상태가 엔진 원장과 v3.4 §11 에서 다르게 적힌 곳 (판정 없음, 원장 상태는 엔진 기준 그대로)
+for c3 in CTX["step3_conf"]:
+    r = c3["row"]
+    CF.append(dict(항목=f"{r['항목']} 상태 (엔진 / v3.4 §11)", 원장_ID=r["id"],
+                   위치_A=r["근거_위치"].split(" / ")[0] + f" ({r['근거_파일']})", 내용_A=f"원장 상태 '{r['상태'] or '빈칸'}' / 등급 '{r['등급']}' (오차 열: {r['오차'] or '—'})",
+                   위치_B=f"{V34} {c3['ln']}행 (§11 표)", 내용_B=FILES[V34][c3['ln'] - 1].strip(),
+                   비고=f"v3.4 표기 '{c3['g']}' (옮기면 '{c3['st']}'). 등록 표 우선 순서 (CLAUDE.md 규칙 4) 에 따라 원장 상태는 엔진 표기 유지. 판정 없음"))
+# K 번호: 기존 conflicts.csv 의 항목 → ID 유지, 새 항목만 끝 번호 뒤 (CLAUDE.md 규칙 7)
+_cfp = os.path.join(OUT, "conflicts.csv")
+_old = {r["항목"]: r["id"] for r in csv.DictReader(open(_cfp, encoding="utf-8"))} if os.path.exists(_cfp) else {}
+_nk = max([int(v[1:]) for v in _old.values()] or [0]) + 1
+for c in CF:
+    if c["항목"] in _old: c["id"] = _old[c["항목"]]
+    else: c["id"] = f"K{_nk:04d}"; _nk += 1
+CF.sort(key=lambda c: int(c["id"][1:]))
 ccols = ["id", "항목", "원장_ID", "위치_A", "내용_A", "위치_B", "내용_B", "상태", "비고"]
 id_guard(os.path.join(OUT, "conflicts.csv"), CF, ("항목",))
 with open(os.path.join(OUT, "conflicts.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=ccols); w.writeheader(); w.writerows(CF)
 
 # ─────────────── sample_check_2.md (추가 행 2개 이상 포함) ───────────────
-added = {r["id"] for r in rows if int(r["id"][1:]) > 265}
-seed = 20261103
+# perplexity 독립 대조 통과본 (2026-11-02) — 고정. 파일이 없을 때만 생성 (재생성하면 대조 기록이 바뀜)
+if not os.path.exists(os.path.join(OUT, "sample_check_2.md")):
+    added = {r["id"] for r in rows if int(r["id"][1:]) > 265}
+    seed = 20261103
+    while True:
+        random.seed(seed)
+        pick = sorted(random.sample(rows, 10), key=lambda r: int(r["id"][1:]))
+        if sum(r["id"] in added for r in pick) >= 2: break
+        seed += 1
+    S = [f"# sample_check_2.md — 단계 2 표본 대조 (무작위 10행, seed {seed}, L0266 이후 추가 행 2개 이상 조건)\n",
+         "> 원장 행 + 근거_위치의 원문 행 인용. 식 열의 ' ‖ ' 는 원문 줄 구분자. MAPSI / perplexity 대조용.",
+         "> 틀린 행이 있으면 단계 2 전체 재점검 (TASKS §7). 자동 대조 결과는 `index/verify_step2.md`.\n"]
+    for r in pick:
+        S.append(f"## {r['id']} — {r['항목']}" + ("  (추가 행)" if r["id"] in added else "") + "\n")
+        S.append("| 열 | 값 |\n|---|---|")
+        for c in COLS[1:]:
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
+        S.append("\n원문 인용:\n")
+        for f, a, b, role in r["_cites"]:
+            S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
+            for n in range(a, min(b, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+            S.append("  ```")
+        S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
+    with open(os.path.join(OUT, "sample_check_2.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(S) + "\n")
+
+# ─────────────── sample_check_3.md (단계 3 묶음: v3.4 §11 토큰이 있는 행, 새 행 2개 이상) ───────────────
+b3 = [r for r in rows if any(c[0] == V34 for c in r["_cites"])]
+new3 = {r["id"] for r in b3 if r["근거_파일"] == V34}
+seed3 = 20261104
 while True:
-    random.seed(seed)
-    pick = sorted(random.sample(rows, 10), key=lambda r: int(r["id"][1:]))
-    if sum(r["id"] in added for r in pick) >= 2: break
-    seed += 1
-S = [f"# sample_check_2.md — 단계 2 표본 대조 (무작위 10행, seed {seed}, L0266 이후 추가 행 2개 이상 조건)\n",
-     "> 원장 행 + 근거_위치의 원문 행 인용. 식 열의 ' ‖ ' 는 원문 줄 구분자. MAPSI / perplexity 대조용.",
-     "> 틀린 행이 있으면 단계 2 전체 재점검 (TASKS §7). 자동 대조 결과는 `index/verify_step2.md`.\n"]
-for r in pick:
-    S.append(f"## {r['id']} — {r['항목']}" + ("  (추가 행)" if r["id"] in added else "") + "\n")
+    random.seed(seed3)
+    pick3 = sorted(random.sample(b3, 10), key=lambda r: int(r["id"][1:]))
+    if sum(r["id"] in new3 for r in pick3) >= 2: break
+    seed3 += 1
+S = [f"# sample_check_3.md — 단계 3 표본 대조 (v3.4 §11 묶음 {len(b3)}행 중 무작위 10행, seed {seed3}, 새 행 2개 이상 조건)\n",
+     "> 원장 행 + 근거_위치의 원문 행 인용 (엔진·로그·v3.4). 식 열의 ' ‖ ' 는 원문 줄 구분자.",
+     "> 엔진 행은 근거_위치 끝의 'v3.4 N행 [§11 표]' 토큰이 단계 3 에서 추가된 것. 대응 근거는 `index/map_step3.csv`, 자동 대조는 `index/verify_step3.md`.\n"]
+for r in pick3:
+    S.append(f"## {r['id']} — {r['항목']}" + ("  (단계 3 새 행)" if r["id"] in new3 else "  (엔진 행 + v3.4 근거 추가)") + "\n")
     S.append("| 열 | 값 |\n|---|---|")
     for c in COLS[1:]:
         if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
@@ -468,7 +521,7 @@ for r in pick:
         for n in range(a, min(b, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
         S.append("  ```")
     S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
-with open(os.path.join(OUT, "sample_check_2.md"), "w", encoding="utf-8") as f:
+with open(os.path.join(OUT, "sample_check_3.md"), "w", encoding="utf-8") as f:
     f.write("\n".join(S) + "\n")
 
 # ─────────────── coverage.md 원장 ID 연결 ───────────────
@@ -490,6 +543,7 @@ pl = {}
 for r in rows:
     if r.get("_bline"): pl.setdefault(r["_bline"], []).append(r["id"])
 for k, v in pl.items(): links[("p", k)] = span(v)
+links[("v34", s3.T0)] = span([r["id"] for r in rows if any(c[0] == V34 and c[3] == "§11 표" for c in r["_cites"])])
 s1.build_coverage(s1.build_doc_map(), links)
 
 print("ledger rows:", len(rows), "| 새 행:", len(new_reg), "| 묶음 해체 원 ID:", sorted(SPLIT_FIRST), "| conflicts:", len(CF))

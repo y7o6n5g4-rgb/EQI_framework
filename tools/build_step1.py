@@ -179,7 +179,7 @@ def build_coverage(rows, links=None):
     L.append("| 행 | 수준 | 제목 | 원장 ID |")
     L.append("|---|---|---|---|")
     for i, lv, t in hs:
-        L.append(f"| {i} | {'#'*lv} | {t.replace('|', '∣')} | |")
+        L.append(f"| {i} | {'#'*lv} | {t.replace('|', '∣')} | {links.get(('v34', i), '')} |")
     L.append("")
     L.append("### A-1. 구조 메모 (원문 열람 확인 사항, 판정 아님)\n")
     caps = [(i, t) for i, lv, t in hs if t.startswith("[S9") and lv == 3]

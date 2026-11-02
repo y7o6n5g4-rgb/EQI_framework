@@ -25,11 +25,12 @@ SEP = " ‖ "
 def lines(rel):
     with open(os.path.join(ROOT, rel), encoding="utf-8", newline="") as f:
         return [l.rstrip("\r\n") for l in f.read().split("\n")]
-F = {"로그": lines(LOG), "소스": lines(ENG)}
-FN = {"로그": LOG, "소스": ENG}
+V34 = "성과정리문서/EQI_연구지침_프로젝트용_v3_4.md"
+F = {"로그": lines(LOG), "소스": lines(ENG), "v3.4": lines(V34)}
+FN = {"로그": LOG, "소스": ENG, "v3.4": V34}
 norm = lambda s: s.strip().strip("║").strip()
 
-TOK = re.compile(r"(로그|소스) (\d+)(?:–(\d+))?행(?: \(\d+행\))? \[([^\]]+)\]")
+TOK = re.compile(r"(로그|소스|v3\.4) (\d+)(?:–(\d+))?행(?: \(\d+행\))? \[([^\]]+)\]")
 CK = re.compile(r"^\s*✓\s+(.*?)\s*(?:오차=(\S+))?\s*(?:★\s*(.+?))?\s*$")
 GRADE_MAP = [("TZ(대수필연)", "대수필연", "대수필연"), ("True Zero(대수필연)", "대수필연", "대수필연"),
              ("Near True Zero", "Near TZ", "Near TZ"), ("Near TZ", "Near TZ", "Near TZ"),
@@ -108,13 +109,14 @@ for r in rows:
             if r["등급"] != exp_gr: why.append(f"V4 등급 불일치: 원문→'{exp_gr}', 원장 '{r['등급']}'")
         else:
             # [머리말]·[본문] 주 원문: 인용 행의 첫 등급 표기 (본문 → 머리말 등급 → 머리말 순) 로 기대 상태
-            order = ["본문", "본문 등급", "머리말 등급", "머리말"]
+            # 주 원문 역할 먼저. 덧붙인 v3.4 §11 토큰은 주 원문일 때만 (엔진 행의 v3.4 표기 차이는 conflicts.csv 로 따로 기록)
+            order = [prim[3]] + [x for x in ["본문", "본문 등급", "머리말 등급", "머리말"] if x != prim[3]]
             found = ""
             for ro in order:
                 for x in texts:
                     if x[2] == ro:
-                        gm = GPH.search(x[3])
-                        if gm: found = gm.group(1); break
+                        gm = GPH.findall(x[3]) if ro == "§11 표" else ([GPH.search(x[3]).group(1)] if GPH.search(x[3]) else [])
+                        if gm: found = gm[-1]; break
                 if found: break
             exp_st, exp_gr = map_grade(found) if found != "미적용" else ("미적용", "없음")
             if r["상태"] != exp_st:
@@ -123,7 +125,7 @@ for r in rows:
             q = re.findall(r"'([^']+)'", r["오차"])
             for qq in q:
                 if not any(qq in tx for tx in alltext): why.append(f"V4 오차 인용 '{qq}' 원문에 없음")
-            m = re.match(r"머리말 등급 표기: (\S.*?)(?: \(|$)", r["오차"])
+            m = re.match(r"(?:머리말|v3\.4) (?:등급 )?표기: (\S.*?)(?: \(|$)", r["오차"]) or re.search(r"\(v3\.4 표기: (.+)\)$", r["오차"])
             if m and not any(m.group(1) in tx for tx in alltext): why.append(f"V4 머리말 등급 '{m.group(1)}' 원문에 없음")
     # V6
     if r["등록_세션"]:
