@@ -11,8 +11,9 @@ import csv, os, re, random
 from collections import OrderedDict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ENG, LOG = "code/eqi_unified_engine_v9_7.py", "code/eqi_unified_engine_v9_7_output.txt"
-TERM = "code/eqi_unified_engine_v9_7_terminal.txt"
+ENG = "code/eqi_unified_engine_v9_7.py"                       # v9.7 완성판 (2,662행)
+LOG = "code/eqi_unified_engine_v9_7_terminal_mpmath140.txt"     # 완성판 mpmath 1.4.0 출력 (81,311 B) — 기준 로그
+TERM = "code/eqi_unified_engine_v9_7_terminal.txt"              # 같은 실행의 Windows 콘솔 사본 (CRLF, 프롬프트 줄 포함)
 OUT = os.path.join(ROOT, "index")
 COLS = ["id", "항목", "식", "별칭", "상태", "등급", "오차", "층", "등록_세션", "근거_파일", "근거_위치",
         "엔진_§", "후속_정정", "키워드"]
@@ -110,7 +111,7 @@ rows = []
 def add(**kw):
     if "엔진_S" in kw: kw["엔진_§"] = kw.pop("엔진_S")
     r = {c: "" for c in COLS}; r.update({k: v for k, v in kw.items() if k in COLS})
-    r["_refs"] = kw.get("_refs", [])
+    r["_refs"] = kw.get("_refs", []); r["_bline"] = kw.get("_bline")
     rows.append(r); return r
 
 def eng_ref(s, extra=""):
@@ -200,13 +201,22 @@ add(항목="ε = σ³/N³×K_EQI", 식=LOG_L(ln).strip(), 별칭="엔진 §13", 
     키워드=keywords("ε σ³ K_EQI Leibniz", ["포논"]), _refs=[(LOG, ln)])
 
 # ─────────────── C. v9.7 §P 블록 ───────────────
-PB = re.compile(r"^\s{2}(§P[0-9]+|§P-[a-z]+)\s+(.*)$")
-IT = re.compile(r"^\s{2}\[(§[PLC][^\]]*)\]\s*(.*)$")
+PB = re.compile(r"^\s{2}(§P\S*)\s+(.*)$")
+IT = re.compile(r"^\s{2}\[(§[A-Z][^\]]*)\]\s*(.*)$")
 items, block = [], None
 for i, l in enumerate(LG, 1):
     if i < 528: continue
     m = PB.match(l)
     if m: block = (m.group(1), m.group(2).strip(), i); continue
+    if block and not IT.match(l) and l.strip() and not l.strip().startswith("─"):
+        # 블록 머리 값·주석 (첫 항목 전) 또는 '[S..] 계보' 단독 주석 줄 → 별도 행 (값만)
+        first_item = not any(x["block"] == block and not x.get("pre") for x in items)
+        if (first_item and l.startswith("     ")) or re.match(r"^\s{5}\[S\d+[^\]]*\]", l):
+            if items and items[-1]["block"] == block and items[-1].get("pre") and first_item:
+                items[-1]["sub"].append((i, l.strip())); continue
+            items.append(dict(id=f"{block[0]} 주석@{i}", body=l.strip(), line=i, block=block, sub=[],
+                              pre=first_item and not re.match(r"^\s{5}\[S\d+", l)))
+            continue
     m = IT.match(l)
     if m and block:
         sub = []
@@ -216,7 +226,13 @@ for i, l in enumerate(LG, 1):
         items.append(dict(id=m.group(1), body=m.group(2), line=i, block=block, sub=sub))
     if l.startswith("  등급 집계"): break
 
-LAYER = {"§P3": "3체", "§P5": "5체", "§P7": "7체"}
+def layer_of(btitle, label):
+    m = re.match(r"^(\d)체 층", btitle)
+    if m: return m.group(1) + "체"
+    if "체 계층" in btitle:
+        hits = set(re.findall(r"([357])체", label))
+        if len(hits) == 1 and not re.search(r"[0-9]체.*[0-9]체", label): return hits.pop() + "체"
+    return "해당 없음"
 def parse(it):
     f = [x.strip() for x in it["body"].split(" | ")]
     d = dict(label=f[0], calc="", tgt="", err="", grade="", src="")
@@ -226,10 +242,14 @@ def parse(it):
     return d
 
 def gkey(i):
-    for pat, rep in [(r"^(§P3-[12])\.k\d+$", r"\1"), (r"^(§P3-3)\.k\d+([a-f])$", r"\1.k*\2"), (r"^(§C-8)\.\S+$", r"\1")]:
+    for pat, rep in [(r"^(§P3-[12])\.k\d+$", r"\1"), (r"^(§P3-3)\.k\d+([a-f])$", r"\1.k*\2"), (r"^(§C-8)\.\S+$", r"\1"),
+                     (r"^(§O-1)\.[a-z]$", r"\1"), (r"^(§L-7b)\.k\S+$", r"\1")]:
         if re.match(pat, i): return re.sub(pat, rep, i)
     return i
 
+_bc = {}
+for it in items: _bc.setdefault(it["block"][0], set()).add(it["block"][2])
+DUP_B = {b for b, v in _bc.items() if len(v) > 1}
 groups = OrderedDict()
 for it in items:
     it["p"] = parse(it); groups.setdefault(gkey(it["id"]), []).append(it)
@@ -239,6 +259,7 @@ def src_session(src, label=""):
     if not m: return "S114 (v9.7 신규 블록)"
     return "S" + m.group(1) + (("~S" + m.group(2)) if m.group(2) else "")
 
+UNOTE = next(i for i, l in enumerate(LG, 1) if "U-1~U-3 '귀속 확정' 판정 없음" in l)
 S114_NOTE = "엔진 v9.7 블록 (S114 TASKS, S115 'Task 2~6 승인')"
 for key, g in groups.items():
     first = g[0]; p = first["p"]; bid, btitle, bline = first["block"]
@@ -271,13 +292,22 @@ for key, g in groups.items():
             st = "미적용"
             fix = "S114 v9.7: 현 체제(단일 항등원) 미적용, 계산하지 않음 — 엔진 소스 2408–2409행 / 로그 743행"
         name = re.sub(r"\s*\(기대[^)]*\)", "", lab).strip()
+        if x0.get("pre") is not None and "주석@" in x0["id"]:
+            ids = f"{bid} 주석 (로그 {x0['line']}행)"
+            name = (f"{bid} 블록 머리 (값·주석)" if x0["pre"] else lab)
+            if x0["pre"]: formula = lab + "".join(" ‖ " + t for _, t in x0["sub"])
+            if x0["pre"] and x0["sub"]: loc = f"로그 {x0['line']}–{x0['sub'][-1][0]}행 ({len(x0['sub'])+1}행)"
         if x0["id"] == "§C-주석": name = "S64 §6.2 '중력질량 = E_topo² = φ^1.5 = 관성질량' (v15 이중 항등원 표기)"
-        layer = LAYER.get(bid, "해당 없음")
+        layer = layer_of(btitle, lab)
+        if bid.startswith("§P-DS") and re.match(r"§U", x0["id"]):
+            fix_u = f"로그 {UNOTE}행: '※ U-1~U-3 \'귀속 확정\' 판정 없음 (Architect/MAPSI 판단).'"
+        else:
+            fix_u = ""
         add(항목=name, 식=formula, 별칭=f"엔진 v9.7 {ids}" + (f"; 출처 표기 '{p['src']}'" if p["src"] else ""),
             상태=st, 등급=gr, 오차=err, 층=layer, 등록_세션=reg, 근거_파일=LOG,
-            근거_위치=f"{bid} 블록 (표제 {bline}행) / {loc}",
-            엔진_S=f"v9.7 {bid} {ids} / {S114_NOTE} / 소스 class EQIPhononLattice",
-            후속_정정=fix, 키워드=keywords(btitle + " " + formula, [bid]),
+            근거_위치=(f"{bid} '{btitle.split(' [')[0]}' 블록" if bid in DUP_B else f"{bid} 블록") + f" (표제 {bline}행) / {loc}",
+            엔진_S=f"v9.7 {bid} {ids} / {S114_NOTE} / 소스 class EQIPhononLattice" + (f" / {fix_u}" if fix_u else ""),
+            후속_정정=fix, _bline=bline, 키워드=keywords(btitle + " " + formula, [bid]),
             _refs=[(LOG, m_["line"]) for m_ in mem][:3])
 
 for n, r in enumerate(rows, 1): r["id"] = f"L{n:04d}"
@@ -289,6 +319,9 @@ with open(os.path.join(OUT, "ledger.csv"), "w", encoding="utf-8", newline="") as
 def find(pred):
     return next(r["id"] for r in rows if pred(r))
 TL = lines(TERM)
+TK = lines("code/TASKS.md")
+T7C = next(i for i, l in enumerate(TK, 1) if "L-7c 브래그" in l)
+L7C = next(i for i, l in enumerate(LG, 1) if "TASKS 문구 '7차부터 < 1'" in l)
 CF = [
     dict(항목="§12 ratio(34)×34 vs 2/R_mem 등급", 원장_ID=find(lambda r: r["항목"].startswith("ratio(34)")),
          위치_A=f"{ENG} 머리말 24행", 내용_A="'S43  True Zero'",
@@ -300,13 +333,14 @@ CF = [
     dict(항목="§L-6 H&Q 2.95μm 등급", 원장_ID=find(lambda r: "§L-6" in r["별칭"] and "주석" not in r["별칭"]),
          위치_A=f"{LOG} 709행", 내용_A="v9.7 판정 'Near TZ'", 위치_B=f"{LOG} 709행 (원문 인용)", 내용_B="'원문 TZ(S99)'",
          비고="엔진이 두 등급 병기. S99 원문 대조는 단계 6. 판정 없음"),
-    dict(항목="§14 n_ref,6 (k=6 포논13차) 표시값", 원장_ID="",
-         위치_A=f"{LOG} 67행", 내용_A=LOG_L(67).strip(), 위치_B=f"{TERM} 67행", 내용_B=TL[66].strip(),
-         비고="같은 엔진 출력 두 파일의 마지막 자리 차이. code/CLAUDE.md '기준 환경' (mpmath 1.4.0 / 1.3.0 반올림 경계값 13/16384) 참조. 판정 없음"),
     dict(항목="Stefan–Boltzmann 지수 기대값", 원장_ID=find(lambda r: "§L-4" in r["별칭"]),
          위치_A="성과정리문서/EQI_연구지침_프로젝트용_v3_4.md 2104행", 내용_A="§48-E: Stefan-Boltzmann σ ∝ φ^(+1/4) = M_p = 수명 지수  [TZ]",
          위치_B=f"{ENG} 2325–2326행 / {LOG} 707행", 내용_B="기대값 −7/4, '+1/4 … 산술 오기' (정정 S114)",
          비고="엔진 측 정정 기록 있음. 원장 후속_정정 열에 옮김. v3.4 원문 미수정"),
+    dict(항목="§L-7c 브래그 N·σ^(2k+1)/2 < 1 시작 차수 (문구)", 원장_ID=find(lambda r: "§L-7c" in r["별칭"]),
+         위치_A=f"code/TASKS.md {T7C}행", 내용_A=TK[T7C - 1].strip(),
+         위치_B=f"{LOG} {L7C}행 (같은 줄, 엔진 계산 표기)", 내용_B=LOG_L(L7C).strip(),
+         비고="엔진 출력 '※ TASKS 문구 … 불일치' 줄. 판정 없음"),
 ]
 for n, c in enumerate(CF, 1): c["id"] = f"K{n:04d}"
 ccols = ["id", "항목", "원장_ID", "위치_A", "내용_A", "위치_B", "내용_B", "비고"]
@@ -342,8 +376,7 @@ links = {}
 for sec in HEAD:
     links[("eng", sec)] = span([r["id"] for r in rows if r["별칭"] == f"엔진 §{sec}"])
 for r in rows:
-    m = re.search(r"^v9\.7 (§P[0-9]+|§P-[a-z]+) ", r["엔진_§"])
-    if m: links.setdefault(("p", m.group(1)), []).append(r["id"])
+    if r.get("_bline"): links.setdefault(("p", r["_bline"]), []).append(r["id"])
 for k in list(links):
     if k[0] == "p": links[k] = span(links[k])
 s1.build_coverage(s1.build_doc_map(), links)

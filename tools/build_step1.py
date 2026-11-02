@@ -13,7 +13,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = "성과정리문서"           # TASKS §1 의 docs/ 에 해당 (저장소 실제 폴더, 평면 구조)
 V34  = f"{DOCS}/EQI_연구지침_프로젝트용_v3_4.md"
 ENG  = "code/eqi_unified_engine_v9_7.py"
-ENGO = "code/eqi_unified_engine_v9_7_output.txt"
+ENGO = "code/eqi_unified_engine_v9_7_terminal_mpmath140.txt"   # v9.7 완성판 mpmath 1.4.0 출력 (81,311 B)
 OUT  = os.path.join(ROOT, "index")
 
 nfc = lambda s: unicodedata.normalize("NFC", s)
@@ -150,14 +150,14 @@ def engine_sections():
     # v9.7 추가 블록 (§P*, §L*, §C*)
     pblocks, cur = [], None
     for i, line in enumerate(log, 1):
-        m = re.match(r"^\s{2}(§P[0-9]+|§P-[a-z]+)\s+(.*)$", line)
+        m = re.match(r"^\s{2}(§P\S*)\s+(.*)$", line)
         if m:
             cur = dict(id=m.group(1), title=m.group(2).strip(), line=i, items=[]); pblocks.append(cur); continue
-        m = re.match(r"^\s{2}\[(§[PLC][^\]\s]*)\]", line)
+        m = re.match(r"^\s{2}\[(§[A-Z][^\]]*)\]", line)
         if m and cur: cur["items"].append((m.group(1), i))
     psrc = defaultdict(list)
     for i, line in enumerate(src, 1):
-        for m in re.finditer(r"(§P[0-9]+|§P-[a-z]+)\b", line):
+        for m in re.finditer(r"(§P[0-9]+|§P-[A-Za-z]+)(?![A-Za-z0-9])", line):
             psrc[m.group(1)].append(i)
     return head, title, checks, pblocks, psrc
 
@@ -208,13 +208,13 @@ def build_coverage(rows, links=None):
         L.append(f"- 머리말 표에는 있으나 출력 로그에서 `§N` 표제·✓ 줄이 grep 되지 않는 §: "
                  + ", ".join(f"§{s}" for s in noout) + " — 단계 2 에서 소스 본문 위치로 확인 (판정 아님)")
     L.append("")
-    L.append("### B-1. v9.7 추가 블록 (§P0~, S114) — 출력 로그 기준\n")
+    L.append("### B-1. v9.7 추가 블록 (§P0~, S114) — 출력 로그 기준 (완성판 2,662행 / mpmath 1.4.0 출력)\n")
     L.append("| 블록 | 표제 (원문) | 로그 표제 행 | 하위 항목 수 | 하위 항목 ID (로그 행) | 소스 언급 행 | 원장 ID |")
     L.append("|---|---|---|---|---|---|---|")
     for b in pblocks:
         ids = ", ".join(f"{i}({ln})" for i, ln in b["items"]) if len(b["items"]) <= 12 else \
               f"{b['items'][0][0]}({b['items'][0][1]}) … {b['items'][-1][0]}({b['items'][-1][1]})"
-        L.append(f"| {b['id']} | {b['title'].replace('|','∣')} | {b['line']} | {len(b['items'])} | {ids} | {rng(psrc.get(b['id'], []))} | {links.get(('p', b['id']), '')} |")
+        L.append(f"| {b['id']} | {b['title'].replace('|','∣')} | {b['line']} | {len(b['items'])} | {ids} | {rng(psrc.get(b['id'], []))} | {links.get(('p', b['line']), '')} |")
     L.append("")
     # C. sessions
     L.append("## C. 세션 문서 보유 현황 (doc_map.csv 요약)\n")
