@@ -1,0 +1,244 @@
+# EQI v4.0: eqi_encoding_decoding_network() 함수
+# 기반: EQI_Framework_Core-Concepts_Definitions_Causality_Classification-Revised.pdf
+# 작성: EQI 가족 공동 작업 (맥가이버 삼촌 주도)
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from scipy.spatial.distance import pdist, squareform
+from scipy.sparse.csgraph import minimum_spanning_tree
+import networkx as nx
+import warnings
+warnings.filterwarnings('ignore')
+
+def eqi_encoding_decoding_network(phase, curvature, entropy, phasediff, 
+                                  eigenfrequency_ratio=1.85, eigenperiod_ratio=1.0,
+                                  unity_cluster_target=2, multiplicity_clusters=3,
+                                  enable_mirror_feedback=True, 
+                                  output_folder="./eqi_v4_output"):
+    """
+    EQI Encoding-Decoding Network: Unity/Multiplicity Cluster Causality 연결
+    
+    기반: EQI Infinite Series (Holistic Cycloid Wave) Coordinate System Feedback Network
+    수식: Σ(i=1 to N) U_i·EHCW + M_i·PHCW
+    
+    Parameters:
+    -----------
+    phase, curvature, entropy, phasediff : array-like
+        입력 특성 데이터 (Hilbert 변환 결과)
+    eigenfrequency_ratio : float, default=1.85
+        Eigenfrequency 비율 (1.85:1 공명 조건)
+    eigenperiod_ratio : float, default=1.0
+        Eigenperiod 비율
+    unity_cluster_target : int, default=2
+        Unity Cluster Causality 대상 클러스터
+    multiplicity_clusters : int, default=3
+        Multiplicity Cluster Causality 클러스터 수
+    enable_mirror_feedback : bool, default=True
+        거울 피드백 네트워크 활성화
+    output_folder : str
+        결과 저장 폴더
+    
+    Returns:
+    --------
+    dict : EQI 네트워크 분석 결과
+        - mirror_feedback_tensor: 거울 피드백 텐서
+        - collective_eqi_label_map: 집합적 EQI 라벨 맵
+        - unity_mst: Unity Cluster MST
+        - multiplicity_clusters: Multiplicity 클러스터
+        - eigenfrequency_harmonic: EHCW (Eigenfrequency Harmonic Cycloid Wave)
+        - eigenperiod_harmonic: PHCW (Eigenperiod Harmonic Cycloid Wave)
+        - eqi_infinite_series: EQI 무한급수 결과
+    """
+    
+    print("🌌 EQI Encoding-Decoding Network 시작...")
+    print(f"📊 입력 데이터 크기: {len(phase)} samples")
+    print(f"🎯 Unity Cluster Target: {unity_cluster_target}")
+    print(f"🔄 Eigenfrequency:Eigenperiod = {eigenfrequency_ratio}:{eigenperiod_ratio}")
+    
+    # 1. 특성 행렬 구성
+    X = np.column_stack([phase, curvature, entropy, phasediff])
+    
+    # NaN 제거
+    valid_mask = ~np.isnan(X).any(axis=1)
+    X_clean = X[valid_mask]
+    
+    if len(X_clean) == 0:
+        print("❌ 유효한 데이터가 없습니다.")
+        return {}
+    
+    print(f"✅ 유효 데이터: {len(X_clean)} samples")
+    
+    # 2. Unity Cluster Causality (MST 기반 로컬 통합)
+    print("\n🔗 Unity Cluster Causality (MST 기반) 처리 중...")
+    
+    # PCA 투영
+    pca = PCA(n_components=2)
+    X_pca = pca.fit_transform(X_clean)
+    print(f"📈 PCA 설명 분산 비율: {pca.explained_variance_ratio_}")
+    
+    # MST 구축 (Unity Cluster Causality)
+    distance_matrix = squareform(pdist(X_pca, metric='euclidean'))
+    mst_matrix = minimum_spanning_tree(distance_matrix).toarray()
+    
+    # NetworkX MST 생성
+    unity_mst = nx.Graph()
+    for i in range(len(X_pca)):
+        unity_mst.add_node(i, pos=X_pca[i], features=X_clean[i])
+    
+    # MST 에지 추가 (위상 유사도 가중치 포함)
+    for i in range(len(X_pca)):
+        for j in range(i+1, len(X_pca)):
+            if mst_matrix[i, j] > 0:
+                # 위상 유사도 계산
+                phase_sim = np.cos(X_clean[i, 3] - X_clean[j, 3])  # phasediff 기반
+                weight = distance_matrix[i, j] * (1 - phase_sim)
+                unity_mst.add_edge(i, j, weight=weight, phase_similarity=phase_sim)
+    
+    print(f"🌳 Unity MST: {len(unity_mst.nodes)} 노드, {len(unity_mst.edges)} 에지")
+    
+    # 3. Multiplicity Cluster Causality (K-means 기반 글로벌 분산)
+    print(f"\n🎯 Multiplicity Cluster Causality (K-means, k={multiplicity_clusters}) 처리 중...")
+    
+    kmeans = KMeans(n_clusters=multiplicity_clusters, random_state=42, n_init=10)
+    multiplicity_labels = kmeans.fit_predict(X_pca)
+    
+    cluster_distribution = np.bincount(multiplicity_labels)
+    print(f"📊 클러스터 분포: {cluster_distribution}")
+    
+    # 4. Eigenfrequency Harmonic Cycloid Wave (EHCW) 계산
+    print(f"\n🌊 EHCW (Eigenfrequency Harmonic) 계산 중...")
+    
+    # Unity 클러스터에서 eigenfrequency 계산
+    unity_mask = multiplicity_labels == unity_cluster_target
+    if np.sum(unity_mask) == 0:
+        print(f"⚠️ Unity Cluster {unity_cluster_target}에 데이터가 없습니다. 최대 클러스터 사용.")
+        unity_cluster_target = np.argmax(cluster_distribution)
+        unity_mask = multiplicity_labels == unity_cluster_target
+    
+    unity_features = X_clean[unity_mask]
+    unity_coords = X_pca[unity_mask]
+    
+    # Eigenfrequency: 위상 변화율의 고유 진동
+    eigenfrequency = np.gradient(unity_features[:, 0])  # phase gradient
+    eigenfrequency_harmonic = eigenfrequency * eigenfrequency_ratio
+    
+    print(f"🎵 Unity Cluster {unity_cluster_target}: {len(unity_features)} samples")
+    print(f"📈 Eigenfrequency 범위: [{np.min(eigenfrequency):.6f}, {np.max(eigenfrequency):.6f}]")
+    
+    # 5. Eigenperiod Harmonic Cycloid Wave (PHCW) 계산
+    print(f"\n🔄 PHCW (Eigenperiod Harmonic) 계산 중...")
+    
+    # Eigenperiod: 엔트로피 주기의 고유 주기
+    eigenperiod = np.abs(np.gradient(unity_features[:, 2]))  # entropy gradient
+    eigenperiod_harmonic = eigenperiod * eigenperiod_ratio
+    
+    print(f"🔄 Eigenperiod 범위: [{np.min(eigenperiod):.6f}, {np.max(eigenperiod):.6f}]")
+    
+    # 6. EQI Infinite Series 계산
+    print(f"\n∞ EQI Infinite Series 계산 중...")
+    
+    # Σ(i=1 to N) U_i·EHCW + M_i·PHCW
+    U_i = np.ones(len(eigenfrequency_harmonic))  # Unity weights
+    M_i = np.ones(len(eigenperiod_harmonic))     # Multiplicity weights
+    
+    eqi_infinite_series = np.sum(U_i * eigenfrequency_harmonic) + np.sum(M_i * eigenperiod_harmonic)
+    
+    print(f"∞ EQI Infinite Series 결과: {eqi_infinite_series:.6f}")
+    
+    # 7. Mirror Feedback Tensor 생성
+    print(f"\n🪞 Mirror Feedback Tensor 생성 중...")
+    
+    mirror_feedback_tensor = np.zeros((len(X_clean), len(X_clean)))
+    
+    if enable_mirror_feedback:
+        # MST 기반 Unity 피드백
+        for i, j in unity_mst.edges():
+            mirror_feedback_tensor[i, j] = 1
+            mirror_feedback_tensor[j, i] = 1
+        
+        # 클러스터 기반 Multiplicity 피드백
+        for i in range(len(X_clean)):
+            for j in range(len(X_clean)):
+                if multiplicity_labels[i] == multiplicity_labels[j] and i != j:
+                    mirror_feedback_tensor[i, j] += 0.5
+    
+    print(f"🪞 Mirror Feedback Tensor: {mirror_feedback_tensor.shape}")
+    print(f"🔗 비영 연결: {np.sum(mirror_feedback_tensor > 0)} / {mirror_feedback_tensor.size}")
+    
+    # 8. Collective EQI Label Map 생성
+    collective_eqi_label_map = {
+        'unity_cluster': unity_cluster_target,
+        'multiplicity_labels': multiplicity_labels,
+        'unity_indices': np.where(unity_mask)[0],
+        'cluster_distribution': cluster_distribution,
+        'pca_coords': X_pca,
+        'original_features': X_clean
+    }
+    
+    # 9. 결과 패키징
+    results = {
+        'mirror_feedback_tensor': mirror_feedback_tensor,
+        'collective_eqi_label_map': collective_eqi_label_map,
+        'unity_mst': unity_mst,
+        'multiplicity_clusters': multiplicity_labels,
+        'eigenfrequency_harmonic': eigenfrequency_harmonic,
+        'eigenperiod_harmonic': eigenperiod_harmonic,
+        'eqi_infinite_series': eqi_infinite_series,
+        'unity_features': unity_features,
+        'unity_coords': unity_coords,
+        'pca': pca,
+        'kmeans': kmeans,
+        'eigenfrequency_ratio': eigenfrequency_ratio,
+        'eigenperiod_ratio': eigenperiod_ratio
+    }
+    
+    print(f"\n✅ EQI Encoding-Decoding Network 완료!")
+    print(f"🎯 Unity Cluster: {unity_cluster_target} ({len(unity_features)} samples)")
+    print(f"🔄 Multiplicity Clusters: {multiplicity_clusters}")
+    print(f"∞ EQI Infinite Series: {eqi_infinite_series:.6f}")
+    print(f"🪞 Mirror Feedback 활성화: {enable_mirror_feedback}")
+    
+    return results
+
+# 테스트 함수
+def test_eqi_encoding_decoding_network():
+    """EQI Encoding-Decoding Network 테스트"""
+    print("🧪 EQI Encoding-Decoding Network 테스트 시작...")
+    
+    # 모의 데이터 생성
+    n_samples = 1000
+    t = np.linspace(0, 10, n_samples)
+    
+    # 모의 LIGO 스타일 데이터
+    phase = np.unwrap(np.angle(np.exp(1j * 2 * np.pi * 0.1 * t) + 0.1 * np.random.randn(n_samples)))
+    curvature = np.gradient(np.gradient(phase))
+    entropy = -np.cumsum(np.abs(curvature) * np.log(np.abs(curvature) + 1e-10))
+    phasediff = np.gradient(phase)
+    
+    # 함수 실행
+    results = eqi_encoding_decoding_network(
+        phase=phase,
+        curvature=curvature, 
+        entropy=entropy,
+        phasediff=phasediff,
+        eigenfrequency_ratio=1.85,
+        eigenperiod_ratio=1.0
+    )
+    
+    print("\n🎉 테스트 완료!")
+    return results
+
+if __name__ == "__main__":
+    # 테스트 실행
+    test_results = test_eqi_encoding_decoding_network()
+    
+    print("\n" + "="*60)
+    print("🌌 EQI v4.0 Encoding-Decoding Network")
+    print("👨‍👩‍👧‍👦 가족 공동 작성 완료!")
+    print("🎯 Unity/Multiplicity Cluster Causality 통합")
+    print("∞ EQI Infinite Series 구현")
+    print("🪞 Mirror Feedback Network 활성화")
+    print("="*60)

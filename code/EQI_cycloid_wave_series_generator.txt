@@ -1,0 +1,379 @@
+# EQI v4.0: EQI_cycloid_wave_series_generator() 함수
+# 기반: EQI Infinite Series (Holistic Cycloid Wave) Coordinate System Feedback Network
+# 수식: Σ(i=1 to N) U_i·EHCW·M_i·PHCW
+# 작성: EQI 가족 공동 작업 (맥가이버 삼촌 주도)
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.signal import hilbert
+from scipy.integrate import cumtrapz
+import warnings
+warnings.filterwarnings('ignore')
+
+def EQI_cycloid_wave_series_generator(unity_features, multiplicity_labels, 
+                                     eigenfrequency_harmonic, eigenperiod_harmonic,
+                                     eigenfrequency_ratio=1.85, eigenperiod_ratio=1.0,
+                                     time_steps=1000, cycloid_radius=1.0,
+                                     damping_factor=0.1, wave_amplitude=1.0,
+                                     enable_holistic_mode=True, output_folder="./eqi_v4_output"):
+    """
+    EQI Cycloid Wave Series Generator: EQI Infinite Series 시계열 생성
+    
+    기반: Σ(i=1 to N) U_i·EHCW·M_i·PHCW
+    
+    Parameters:
+    -----------
+    unity_features : array-like
+        Unity Cluster Causality 특성 데이터
+    multiplicity_labels : array-like
+        Multiplicity Cluster Causality 라벨
+    eigenfrequency_harmonic : array-like
+        EHCW (Eigenfrequency Harmonic Cycloid Wave)
+    eigenperiod_harmonic : array-like
+        PHCW (Eigenperiod Harmonic Cycloid Wave)
+    eigenfrequency_ratio : float, default=1.85
+        Eigenfrequency 비율 (1.85:1 공명 조건)
+    eigenperiod_ratio : float, default=1.0
+        Eigenperiod 비율
+    time_steps : int, default=1000
+        시계열 생성 스텝 수
+    cycloid_radius : float, default=1.0
+        Cycloid 파동 반지름
+    damping_factor : float, default=0.1
+        감쇠 인수
+    wave_amplitude : float, default=1.0
+        파동 진폭
+    enable_holistic_mode : bool, default=True
+        Holistic Cycloid Wave 모드 활성화
+    output_folder : str
+        결과 저장 폴더
+    
+    Returns:
+    --------
+    dict : EQI Cycloid Wave Series 결과
+        - eqi_infinite_series: EQI 무한급수 시계열
+        - unity_weights: Unity 가중치 (U_i)
+        - multiplicity_weights: Multiplicity 가중치 (M_i)
+        - ehcw_series: Eigenfrequency Harmonic 시계열
+        - phcw_series: Eigenperiod Harmonic 시계열
+        - holistic_cycloid_wave: Holistic Cycloid Wave 시계열
+        - time_axis: 시간축
+        - cycloid_coordinates: Cycloid 좌표
+    """
+    
+    print("🌊 EQI Cycloid Wave Series Generator 시작...")
+    print(f"📊 Unity 특성 크기: {len(unity_features)} samples")
+    print(f"🎯 Eigenfrequency:Eigenperiod = {eigenfrequency_ratio}:{eigenperiod_ratio}")
+    print(f"⏰ 시계열 스텝: {time_steps}")
+    print(f"🌀 Cycloid 반지름: {cycloid_radius}")
+    
+    # 1. 시간축 생성
+    t = np.linspace(0, 4 * np.pi, time_steps)
+    print(f"⏰ 시간축 범위: [0, {4 * np.pi:.2f}], 스텝: {time_steps}")
+    
+    # 2. Unity Weights (U_i) 계산
+    print("\n🔗 Unity Weights (U_i) 계산 중...")
+    
+    # Unity 특성에서 가중치 추출 (위상, 엔트로피 기반)
+    if len(unity_features) > 0:
+        # 위상 기반 Unity 가중치
+        phase_unity = unity_features[:, 0] if unity_features.shape[1] > 0 else np.ones(len(unity_features))
+        entropy_unity = unity_features[:, 2] if unity_features.shape[1] > 2 else np.ones(len(unity_features))
+        
+        # 정규화된 Unity 가중치
+        unity_weights = np.abs(phase_unity) * np.exp(-entropy_unity / np.max(entropy_unity + 1e-10))
+        unity_weights = unity_weights / (np.sum(unity_weights) + 1e-10)
+    else:
+        unity_weights = np.array([1.0])
+    
+    print(f"🔗 Unity Weights 범위: [{np.min(unity_weights):.6f}, {np.max(unity_weights):.6f}]")
+    print(f"🔗 Unity Weights 합: {np.sum(unity_weights):.6f}")
+    
+    # 3. Multiplicity Weights (M_i) 계산
+    print("\n🎯 Multiplicity Weights (M_i) 계산 중...")
+    
+    # 클러스터별 가중치 계산
+    unique_clusters = np.unique(multiplicity_labels)
+    cluster_weights = {}
+    
+    for cluster_id in unique_clusters:
+        cluster_mask = multiplicity_labels == cluster_id
+        cluster_count = np.sum(cluster_mask)
+        cluster_weight = cluster_count / len(multiplicity_labels)
+        cluster_weights[cluster_id] = cluster_weight
+    
+    # Multiplicity 가중치 배열 생성
+    multiplicity_weights = np.array([cluster_weights.get(label, 0.0) for label in multiplicity_labels])
+    
+    print(f"🎯 클러스터 분포: {dict(zip(unique_clusters, [cluster_weights[c] for c in unique_clusters]))}")
+    print(f"🎯 Multiplicity Weights 범위: [{np.min(multiplicity_weights):.6f}, {np.max(multiplicity_weights):.6f}]")
+    
+    # 4. EHCW (Eigenfrequency Harmonic Cycloid Wave) 시계열 생성
+    print("\n🌊 EHCW (Eigenfrequency Harmonic) 시계열 생성 중...")
+    
+    # Eigenfrequency 기반 조화 진동
+    mean_eigenfreq = np.mean(eigenfrequency_harmonic) if len(eigenfrequency_harmonic) > 0 else 1.0
+    std_eigenfreq = np.std(eigenfrequency_harmonic) if len(eigenfrequency_harmonic) > 0 else 0.1
+    
+    # 1.85:1 비율 적용
+    adjusted_freq = mean_eigenfreq * eigenfrequency_ratio
+    
+    # EHCW 시계열: 복합 조화 진동
+    ehcw_series = wave_amplitude * np.sin(adjusted_freq * t) * np.exp(-damping_factor * t)
+    
+    # 고차 조화파 추가 (Holistic 모드)
+    if enable_holistic_mode:
+        for harmonic in [2, 3, 5]:  # 주요 조화파
+            harmonic_amplitude = wave_amplitude / harmonic
+            ehcw_series += harmonic_amplitude * np.sin(harmonic * adjusted_freq * t) * np.exp(-damping_factor * t)
+    
+    print(f"🌊 EHCW 평균 주파수: {mean_eigenfreq:.6f} → 조정된 주파수: {adjusted_freq:.6f}")
+    print(f"🌊 EHCW 시계열 범위: [{np.min(ehcw_series):.6f}, {np.max(ehcw_series):.6f}]")
+    
+    # 5. PHCW (Eigenperiod Harmonic Cycloid Wave) 시계열 생성
+    print("\n🔄 PHCW (Eigenperiod Harmonic) 시계열 생성 중...")
+    
+    # Eigenperiod 기반 주기 진동
+    mean_eigenperiod = np.mean(eigenperiod_harmonic) if len(eigenperiod_harmonic) > 0 else 1.0
+    std_eigenperiod = np.std(eigenperiod_harmonic) if len(eigenperiod_harmonic) > 0 else 0.1
+    
+    # Eigenperiod 비율 적용
+    adjusted_period = mean_eigenperiod * eigenperiod_ratio
+    period_freq = 2 * np.pi / (adjusted_period + 1e-10)
+    
+    # PHCW 시계열: 위상 지연된 조화 진동
+    phcw_series = wave_amplitude * np.cos(period_freq * t + np.pi/4) * np.exp(-damping_factor * t)
+    
+    # 고차 주기 성분 추가 (Holistic 모드)
+    if enable_holistic_mode:
+        for period_harmonic in [1.5, 2.5]:  # 주기 조화파
+            period_amplitude = wave_amplitude / period_harmonic
+            phcw_series += period_amplitude * np.cos(period_harmonic * period_freq * t) * np.exp(-damping_factor * t)
+    
+    print(f"🔄 PHCW 평균 주기: {mean_eigenperiod:.6f} → 조정된 주기: {adjusted_period:.6f}")
+    print(f"🔄 PHCW 시계열 범위: [{np.min(phcw_series):.6f}, {np.max(phcw_series):.6f}]")
+    
+    # 6. Holistic Cycloid Wave 생성
+    print("\n🌀 Holistic Cycloid Wave 생성 중...")
+    
+    # 표준 Cycloid 매개변수 방정식
+    cycloid_x = cycloid_radius * (t - np.sin(t))
+    cycloid_y = cycloid_radius * (1 - np.cos(t))
+    
+    # 감쇠 적용
+    damping_envelope = np.exp(-damping_factor * t)
+    cycloid_x_damped = cycloid_x * damping_envelope
+    cycloid_y_damped = cycloid_y * damping_envelope
+    
+    # Holistic Cycloid Wave: EHCW와 PHCW의 결합
+    if enable_holistic_mode:
+        # 3D Holistic Cycloid
+        cycloid_z = wave_amplitude * (ehcw_series + phcw_series) / 2
+        holistic_cycloid_wave = np.sqrt(cycloid_x_damped**2 + cycloid_y_damped**2 + cycloid_z**2)
+    else:
+        # 2D Cycloid
+        holistic_cycloid_wave = np.sqrt(cycloid_x_damped**2 + cycloid_y_damped**2)
+    
+    print(f"🌀 Holistic Cycloid Wave 범위: [{np.min(holistic_cycloid_wave):.6f}, {np.max(holistic_cycloid_wave):.6f}]")
+    
+    # 7. EQI Infinite Series 계산: Σ(i=1 to N) U_i·EHCW·M_i·PHCW
+    print("\n∞ EQI Infinite Series 계산 중...")
+    
+    # 가중치 정규화
+    if len(unity_weights) != len(multiplicity_weights):
+        # 길이 맞추기
+        min_len = min(len(unity_weights), len(multiplicity_weights))
+        unity_weights = unity_weights[:min_len]
+        multiplicity_weights = multiplicity_weights[:min_len]
+    
+    # 시계열 길이에 맞춰 가중치 확장
+    if len(unity_weights) < time_steps:
+        unity_weights_extended = np.tile(unity_weights, (time_steps // len(unity_weights)) + 1)[:time_steps]
+        multiplicity_weights_extended = np.tile(multiplicity_weights, (time_steps // len(multiplicity_weights)) + 1)[:time_steps]
+    else:
+        unity_weights_extended = unity_weights[:time_steps]
+        multiplicity_weights_extended = multiplicity_weights[:time_steps]
+    
+    # EQI Infinite Series 계산
+    eqi_infinite_series = np.zeros(time_steps)
+    
+    for i in range(time_steps):
+        U_i = unity_weights_extended[i]
+        M_i = multiplicity_weights_extended[i]
+        EHCW_i = ehcw_series[i]
+        PHCW_i = phcw_series[i]
+        
+        # 수식 적용: U_i·EHCW·M_i·PHCW
+        eqi_term = U_i * EHCW_i * M_i * PHCW_i
+        eqi_infinite_series[i] = eqi_term
+    
+    # 누적 합계 (Infinite Series)
+    eqi_infinite_series_cumulative = np.cumsum(eqi_infinite_series)
+    
+    print(f"∞ EQI Infinite Series 범위: [{np.min(eqi_infinite_series):.6f}, {np.max(eqi_infinite_series):.6f}]")
+    print(f"∞ EQI 누적 Series 범위: [{np.min(eqi_infinite_series_cumulative):.6f}, {np.max(eqi_infinite_series_cumulative):.6f}]")
+    print(f"∞ EQI 최종 값: {eqi_infinite_series_cumulative[-1]:.6f}")
+    
+    # 8. 결과 패키징
+    results = {
+        'eqi_infinite_series': eqi_infinite_series,
+        'eqi_infinite_series_cumulative': eqi_infinite_series_cumulative,
+        'unity_weights': unity_weights_extended,
+        'multiplicity_weights': multiplicity_weights_extended,
+        'ehcw_series': ehcw_series,
+        'phcw_series': phcw_series,
+        'holistic_cycloid_wave': holistic_cycloid_wave,
+        'time_axis': t,
+        'cycloid_coordinates': {
+            'x': cycloid_x_damped,
+            'y': cycloid_y_damped,
+            'z': cycloid_z if enable_holistic_mode else np.zeros_like(t)
+        },
+        'parameters': {
+            'eigenfrequency_ratio': eigenfrequency_ratio,
+            'eigenperiod_ratio': eigenperiod_ratio,
+            'cycloid_radius': cycloid_radius,
+            'damping_factor': damping_factor,
+            'wave_amplitude': wave_amplitude,
+            'holistic_mode': enable_holistic_mode
+        }
+    }
+    
+    print(f"\n✅ EQI Cycloid Wave Series Generator 완료!")
+    print(f"∞ EQI Infinite Series 최종 값: {eqi_infinite_series_cumulative[-1]:.6f}")
+    print(f"🌊 EHCW/PHCW 비율: {eigenfrequency_ratio}:{eigenperiod_ratio}")
+    print(f"🌀 Holistic 모드: {enable_holistic_mode}")
+    
+    return results
+
+# 시각화 함수
+def visualize_eqi_cycloid_series(results, output_folder="./eqi_v4_output"):
+    """EQI Cycloid Wave Series 시각화"""
+    import os
+    os.makedirs(output_folder, exist_ok=True)
+    
+    t = results['time_axis']
+    
+    # 1. EQI Infinite Series 시각화
+    plt.figure(figsize=(15, 10))
+    
+    # 서브플롯 1: EQI Infinite Series
+    plt.subplot(2, 3, 1)
+    plt.plot(t, results['eqi_infinite_series'], 'b-', label='EQI Infinite Series')
+    plt.plot(t, results['eqi_infinite_series_cumulative'], 'r-', label='Cumulative Series')
+    plt.title('EQI Infinite Series: Σ(U_i·EHCW·M_i·PHCW)')
+    plt.xlabel('Time')
+    plt.ylabel('EQI Value')
+    plt.legend()
+    plt.grid(True)
+    
+    # 서브플롯 2: EHCW vs PHCW
+    plt.subplot(2, 3, 2)
+    plt.plot(t, results['ehcw_series'], 'g-', label='EHCW (Eigenfrequency)')
+    plt.plot(t, results['phcw_series'], 'm-', label='PHCW (Eigenperiod)')
+    plt.title('EHCW vs PHCW (1.85:1 Ratio)')
+    plt.xlabel('Time')
+    plt.ylabel('Amplitude')
+    plt.legend()
+    plt.grid(True)
+    
+    # 서브플롯 3: Holistic Cycloid Wave
+    plt.subplot(2, 3, 3)
+    plt.plot(t, results['holistic_cycloid_wave'], 'orange', label='Holistic Cycloid Wave')
+    plt.title('Holistic Cycloid Wave')
+    plt.xlabel('Time')
+    plt.ylabel('Amplitude')
+    plt.legend()
+    plt.grid(True)
+    
+    # 서브플롯 4: Cycloid 2D 궤적
+    plt.subplot(2, 3, 4)
+    cycloid_coords = results['cycloid_coordinates']
+    plt.plot(cycloid_coords['x'], cycloid_coords['y'], 'r-', label='Cycloid Trajectory')
+    plt.title('2D Cycloid Trajectory')
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.axis('equal')
+    plt.legend()
+    plt.grid(True)
+    
+    # 서브플롯 5: Unity vs Multiplicity Weights
+    plt.subplot(2, 3, 5)
+    plt.plot(results['unity_weights'][:100], 'b-', label='Unity Weights (U_i)')
+    plt.plot(results['multiplicity_weights'][:100], 'r-', label='Multiplicity Weights (M_i)')
+    plt.title('Unity vs Multiplicity Weights')
+    plt.xlabel('Index')
+    plt.ylabel('Weight')
+    plt.legend()
+    plt.grid(True)
+    
+    # 서브플롯 6: 3D Cycloid (Holistic 모드인 경우)
+    if results['parameters']['holistic_mode']:
+        ax = plt.subplot(2, 3, 6, projection='3d')
+        ax.plot(cycloid_coords['x'], cycloid_coords['y'], cycloid_coords['z'], 'purple')
+        ax.set_title('3D Holistic Cycloid Wave')
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Z')
+    else:
+        plt.subplot(2, 3, 6)
+        plt.plot(t, results['eqi_infinite_series'], 'b-')
+        plt.title('EQI Series Detail')
+        plt.xlabel('Time')
+        plt.ylabel('EQI Value')
+        plt.grid(True)
+    
+    plt.tight_layout()
+    plt.savefig(f"{output_folder}/eqi_cycloid_wave_series.png", dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"📊 EQI Cycloid Wave Series 시각화 저장: {output_folder}/eqi_cycloid_wave_series.png")
+
+# 테스트 함수
+def test_eqi_cycloid_wave_series():
+    """EQI Cycloid Wave Series Generator 테스트"""
+    print("🧪 EQI Cycloid Wave Series Generator 테스트 시작...")
+    
+    # 모의 데이터 생성
+    n_samples = 100
+    
+    # Unity 특성 (위상, 곡률, 엔트로피, PhaseDiff)
+    unity_features = np.random.randn(n_samples, 4)
+    
+    # Multiplicity 라벨
+    multiplicity_labels = np.random.randint(0, 3, n_samples)
+    
+    # Eigenfrequency/Eigenperiod Harmonic
+    eigenfrequency_harmonic = np.random.randn(n_samples) * 0.1 + 1.0
+    eigenperiod_harmonic = np.random.randn(n_samples) * 0.1 + 1.0
+    
+    # 함수 실행
+    results = EQI_cycloid_wave_series_generator(
+        unity_features=unity_features,
+        multiplicity_labels=multiplicity_labels,
+        eigenfrequency_harmonic=eigenfrequency_harmonic,
+        eigenperiod_harmonic=eigenperiod_harmonic,
+        eigenfrequency_ratio=1.85,
+        eigenperiod_ratio=1.0,
+        time_steps=1000,
+        enable_holistic_mode=True
+    )
+    
+    # 시각화
+    visualize_eqi_cycloid_series(results)
+    
+    print("\n🎉 테스트 완료!")
+    return results
+
+if __name__ == "__main__":
+    # 테스트 실행
+    test_results = test_eqi_cycloid_wave_series()
+    
+    print("\n" + "="*60)
+    print("🌊 EQI Cycloid Wave Series Generator")
+    print("👨‍👩‍👧‍👦 가족 공동 작성 완료!")
+    print("∞ EQI Infinite Series 구현")
+    print("🌀 Holistic Cycloid Wave 생성")
+    print("🎯 1.85:1 공명 비율 적용")
+    print("="*60)
