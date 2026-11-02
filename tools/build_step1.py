@@ -50,6 +50,18 @@ def base_and_ver(name):
         ver, base = "", stem
     return base, ver, (dup.group(1) if dup else "")
 
+# MAPSI 보충 지시 (단계 1 확인 후): 최종판 판정은 S118 색인 작업지시서 v2 기록 우선, 그 밖은 v 숫자 최대.
+V2DOC = f"{DOCS}/EQI_색인_작업지시서_v2.md"
+FINAL_OVERRIDE = {   # 파일명 → 근거 (작업지시서 v2 70·87·89·93행)
+    "EQI_Session111_성과정리_v5.md": "S118 색인 작업지시서 v2 70행·87행 (S111 v5)",
+    "EQI_Session113_성과정리_v6.md": "S118 색인 작업지시서 v2 70행·89행 (S113 v6, 파일 1행 헤더 'v5' 는 오기)",
+    "EQI_Session117_성과정리_v2.md": "S118 색인 작업지시서 v2 70행·93행 (S117 성과정리 v2)",
+}
+CURRENT = {          # MAPSI 지시: 현행 표시
+    "EQI_SESSION_PREAMBLE_v6.md": "현행 (MAPSI 지시, 색인 단계 1 확인 후 보충)",
+    "EQI_SESSION_START_TRIGGER_v7.md": "현행 (MAPSI 지시, 색인 단계 1 확인 후 보충)",
+}
+
 def vkey(v):
     return tuple(int(x) for x in v.split(".")) if v else (0,)
 
@@ -85,9 +97,16 @@ def build_doc_map():
     for r in rows: groups[r["_base"]].append(r)
     for base, g in groups.items():
         top = max(vkey(r["_ver"]) for r in g)
+        forced = [r for r in g if r["파일명"] in FINAL_OVERRIDE]
         for r in g:
             r["동명판본수"] = len(g)
-            r["최종판"] = "Y" if vkey(r["_ver"]) == top else "N"
+            if forced:
+                r["최종판"] = "Y" if r in forced else "N"
+                r["최종판_근거"] = FINAL_OVERRIDE.get(r["파일명"], "작업지시서 v2 지정판 아님")
+            else:
+                r["최종판"] = "Y" if vkey(r["_ver"]) == top else "N"
+                r["최종판_근거"] = ("v 숫자 최대" if len(g) > 1 else "단일 판본") if r["최종판"] == "Y" else "v 숫자 최대 아님"
+            r["현행"] = CURRENT.get(r["파일명"], "")
             if len(g) > 1:
                 others = [x["파일명"] for x in g if x is not r]
                 r["동명판본"] = " | ".join(f'{o} ({next(x["바이트"] for x in g if x["파일명"]==o)}B)' for o in others)
@@ -97,7 +116,7 @@ def build_doc_map():
         s = int(r["세션"][1:]) if r["세션"] else 10**6
         return (s, r["분류"], r["_base"], vkey(r["_ver"]))
     rows.sort(key=sk)
-    cols = ["세션", "종류", "분류", "파일명", "판본", "최종판", "동명판본수", "동명판본", "바이트", "형식", "비고", "상대경로"]
+    cols = ["세션", "종류", "분류", "파일명", "판본", "최종판", "최종판_근거", "현행", "동명판본수", "동명판본", "바이트", "형식", "비고", "상대경로"]
     with open(os.path.join(OUT, "doc_map.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
         w.writeheader(); w.writerows(rows)
@@ -147,13 +166,14 @@ def rng(ls):
     if len(ls) == 1: return str(ls[0])
     return f"{ls[0]}–{ls[-1]} ({len(ls)}행)" if ls == list(range(ls[0], ls[-1] + 1)) else ", ".join(map(str, ls))
 
-def build_coverage(rows):
+def build_coverage(rows, links=None):
+    links = links or {}
     hs = v34_headings()
     head, title, checks, pblocks, psrc = engine_sections()
     L = []
-    L.append("# coverage.md — 누락 점검표 (단계 1 초안: 목록만, 원장 연결 없음)\n")
+    L.append("# coverage.md — 누락 점검표" + (" (단계 2: 엔진 § 연결)" if links else " (단계 1 초안: 목록만, 원장 연결 없음)") + "\n")
     L.append("> 생성: `python3 tools/build_step1.py`. 행 번호는 스크립트의 행 단위 grep 결과 그대로.")
-    L.append("> `원장 ID` 열은 단계 2 이후 채운다. 빈칸 = 아직 연결 안 함 (\"미등록\" 판정 아님).\n")
+    L.append("> `원장 ID` 열: B 표(엔진)는 단계 2 에서 연결, A 표(v3.4)는 단계 3~4 에서 연결. 빈칸 = 아직 연결 안 함 (\"미등록\" 판정 아님).\n")
     # A. v3.4
     L.append(f"## A. v3.4 § 제목 목록 — `{V34}` ({len(read_lines(V34))}행, 머리글 {len(hs)}개)\n")
     L.append("| 행 | 수준 | 제목 | 원장 ID |")
@@ -177,7 +197,7 @@ def build_coverage(rows):
     L.append("|---|---|---|---|---|---|")
     for s in sorted(set(head) | set(title) | set(checks)):
         h = head.get(s, ("", ""))
-        L.append(f"| §{s} | {h[1].replace('|', '∣')} | {h[0]} | {rng(title.get(s, []))} | {rng(checks.get(s, []))} | |")
+        L.append(f"| §{s} | {h[1].replace('|', '∣')} | {h[0]} | {rng(title.get(s, []))} | {rng(checks.get(s, []))} | {links.get(('eng', s), '')} |")
     nck = sum(len(v) for v in checks.values())
     L.append(f"\n- 머리말 표 § 수: {len(head)} (§{min(head)}~§{max(head)}), ✓ 줄 중 §번호 포함: {nck}")
     allck = sum(1 for l in read_lines(ENGO) if "✓" in l)
@@ -194,7 +214,7 @@ def build_coverage(rows):
     for b in pblocks:
         ids = ", ".join(f"{i}({ln})" for i, ln in b["items"]) if len(b["items"]) <= 12 else \
               f"{b['items'][0][0]}({b['items'][0][1]}) … {b['items'][-1][0]}({b['items'][-1][1]})"
-        L.append(f"| {b['id']} | {b['title'].replace('|','∣')} | {b['line']} | {len(b['items'])} | {ids} | {rng(psrc.get(b['id'], []))} | |")
+        L.append(f"| {b['id']} | {b['title'].replace('|','∣')} | {b['line']} | {len(b['items'])} | {ids} | {rng(psrc.get(b['id'], []))} | {links.get(('p', b['id']), '')} |")
     L.append("")
     # C. sessions
     L.append("## C. 세션 문서 보유 현황 (doc_map.csv 요약)\n")
@@ -213,6 +233,7 @@ def build_coverage(rows):
     have = sorted(by)
     miss = [s for s in range(min(have), max(have) + 1) if s not in by]
     L.append(f"\n- 저장소 세션 문서 범위: S{min(have)}~S{max(have)} (S1~S{min(have)-1} 세션 문서는 저장소에 없음)")
+    L.append("- MAPSI 보충 지시: S1~S20·S23 은 v3.4 본문을 원천으로 한다 (단계 4). 단계 6 은 저장소에 있는 S21 이후만 보충")
     if miss: L.append(f"- 범위 내 파일 없는 세션 번호: {', '.join('S'+str(s) for s in miss)}")
     no_s = [f"S{s}" for s in have if "성과정리" not in by[s] and s >= 24]
     no_h = [f"S{s}" for s in have if "인수인계" not in by[s] and s >= 24]
