@@ -1,0 +1,15 @@
+{
+  "version": "1.1",
+  "current_items": 32,
+  "resource_links": 35,
+  "latest_handoff_id": "1Gstw02NkMeuXIYKMQsPhP49iseeAi3z5",
+  "latest_handoff_bytes": 13817,
+  "legacy_841_embedded": false,
+  "drive_modified": false,
+  "files": {
+    "EQI_클로드용_자료목록_v1_1.csv": "d9ed301404e979befc62de41e2864cf2d94a87933452e3ac2c5b19a210ed11c5",
+    "EQI_클로드용_통합색인_v1_1.md": "ad95829c54fa1a837621dbe6dc73bced20be41955000043d47ea93975f63c3bf",
+    "EQI_클로드용_현행항목_v1_1.csv": "6ecb8b9a8e8191ab76f8927fc1e48cce7b8cae4b3e261f1384e2f3f4e05fdbe7",
+    "EQI_클로드_전달메모_v1_1.md": "31e911af29af2e03d887c5bc91a8b1741959e2d872b1ec1646977347b402cd0d"
+  }
+}
