@@ -25,7 +25,7 @@ TASKS §1 은 `docs/v3_4`, `docs/sessions` … 하위 폴더 구조를 가정하
 | 단계 | 상태 | 새 원장 행 | 충돌 | 산출물 | 비고 |
 |---|---|---|---|---|---|
 | 1 골격 | **완료** (2026-11-02, 보충 반영) | 0 | 0 | doc_map.csv, coverage.md 초안, tools/build_step1.py | 원장 행 없음 → 표본 대조(§7) 해당 없음 |
-| 2 엔진 § | **완료 (완성판 재실행)** (2026-11-02) | 265 (L0001~L0265; 완성판 신규 58) | 5 (K0001~K0005) | ledger.csv, conflicts.csv, sample_check_2.md (재출력), coverage.md B 연결, tools/build_step2.py | 표본 10행 대조 대기 (MAPSI / perplexity) |
+| 2 엔진 § | **완료 (완성판 재실행)** (2026-11-02) | 265 (L0001~L0265; 완성판 신규 58) | 6 (K0001~K0006, K0004 해소) | ledger.csv, conflicts.csv, sample_check_2.md (재출력), coverage.md B 연결, tools/build_step2.py | 표본 10행 대조 대기 (MAPSI / perplexity) |
 | 3 v3.4 §11 | 대기 | | | | |
 | 4 v3.4 본문 | 대기 | | | | |
 | 5 S109~S119 | 대기 | | | | |
@@ -88,11 +88,29 @@ TASKS §1 은 `docs/v3_4`, `docs/sessions` … 하위 폴더 구조를 가정하
   - 근거_파일 115행, 엔진_§ 85행: 로그 경로 `code/eqi_unified_engine_v9_7_output.txt` → `code/eqi_unified_engine_v9_7_terminal_mpmath140.txt` (행 번호 동일).
   - 근거_위치 22행 (L0139~L0160): §P3 블록 ID 가 두 번 나와 (588행 '3체 층', 759행 '빛 보강') 블록 표제 병기 — "§P3 '3체 층 (빛 속성 + 뤼드베리)' 블록 (표제 588행)".
 - 신규 L0208~L0265 (58행) 추가.
-- conflicts: 이전 K0004 (output.txt / terminal.txt 67행 마지막 자리 0.0007934570312 / …313) 삭제 — 두 파일 모두 교체되어 근거 위치가 저장소에 없음
-  (이전 판 git 74b469a 에서 확인 가능). 현 mpmath140 67행 = 0.0007934570312. 이전 K0005 (Stefan–Boltzmann) → K0004 로 번호 이동.
-  신규 K0005 = §L-7c 브래그 '불일치(문구)' (code/TASKS.md 350행 '7차부터 < 1' / 로그 775행 '계산상 5차(k=2) 0.53125 부터 < 1').
+- conflicts (단계 2 재실행 확인 후 MAPSI 정정 (1) 반영 — ID 불변 규칙, CLAUDE.md 규칙 7):
+  재실행 때 K0004 를 지우고 K0005 → K0004 로 당겼던 것을 원래 번호로 복원.
+  K0004 = 옛 output.txt / terminal.txt 67행 마지막 자리 차이 (0.0007934570312 / …313) — 행 유지, `상태` 열 "근거 파일 교체로 해소, 이전 판 git 74b469a"
+  (위치는 이전 판 경로 그대로 + "(이전 판, git 74b469a)" 표기. 현 기준 로그 67행 = 0.0007934570312 를 비고에 병기).
+  K0005 = Stefan–Boltzmann (원래 번호). K0006 = §L-7c 브래그 '불일치(문구)' (code/TASKS.md 350행 '7차부터 < 1' / 로그 775행 '계산상 5차(k=2) 0.53125 부터 < 1').
+  conflicts.csv 에 `상태` 열 추가 (해소 사유 기록용, 나머지 행은 빈칸).
+- ID 불변 검사: `tools/build_step2.py` `id_guard` — 실행 시 기존 ledger.csv (id → 항목·별칭), conflicts.csv (id → 항목) 와 대조, 어긋나면 파일을 쓰지 않고 중단.
+  복원은 git 74b469a 의 conflicts.csv 를 기준으로 재생성해 검사 통과 확인. 원장 L0001~L0207 은 74b469a 판과 id·항목·별칭 일치 (재실행 때 207/207 대조).
 
-충돌 5건 (판정 없음): K0001 §12 등급 3중 표기 / K0002 a₅_eff §14·§15 귀속 / K0003 §L-6 Near TZ·원문 TZ(S99) / K0004 Stefan–Boltzmann v3.4 2104행 vs 엔진 정정 / K0005 §L-7c 문구.
+충돌 6건 (판정 없음): K0001 §12 등급 3중 표기 / K0002 a₅_eff §14·§15 귀속 / K0003 §L-6 Near TZ·원문 TZ(S99) /
+K0004 옛 output·terminal 67행 마지막 자리 (해소, 이전 판 git 74b469a) / K0005 Stefan–Boltzmann v3.4 2104행 vs 엔진 정정 / K0006 §L-7c 문구.
+
+### code/ 파일 변경 확인 (MAPSI 정정 (2), git 대조 결과)
+
+- 이 작업 브랜치의 커밋 (b12ef1d, 74b469a, 07acf04, bd898f6) 이 바꾼 파일은 `CLAUDE.md`, `TASKS_index_v3.md`, `.gitignore`, `index/*`, `tools/*` 뿐. **code/ 아래 파일은 하나도 수정하지 않음** (`git show --name-only` 확인).
+- `git diff origin/main HEAD -- code/` = 차이 없음. 병합 커밋 de18b5e 는 main c8b9662 의 code/ 를 그대로 가져옴.
+- blob 대조 (내용 동일 = 같은 해시):
+  - `code/eqi_unified_engine_v9_7.py` HEAD = main = ccr-6a187b58-00312y = 557bd9c
+  - `code/eqi_unified_engine_v9_7_terminal_mpmath140.txt` HEAD = main = ccr `code/eqi_unified_engine_v9_7_output.txt` = a8530e0
+  - `code/eqi_unified_engine_v9_7_terminal.txt` HEAD = main = 56fe44b
+- code/ 를 바꾼 커밋은 모두 MAPSI 업로드·삭제: e7ce1ce·c78ae37 (단계 1 이전, terminal 교체) / 703fc85·1edf640·0c9a688 (이전 판 엔진·output·terminal 삭제) / c8b9662 (완성판 3파일 업로드). 교체 외 내용 수정 없음.
+- 재실행 보고의 "블록 머리 주석 처리 수정" 은 **추출 스크립트 `tools/build_step2.py` 쪽** 수정이다 (블록 첫 항목 앞 값 줄과 `[S46 …]`·`[S50 …]` 계보 주석 줄을 원장 행으로 읽도록 파서 변경). 엔진·로그 원문은 손대지 않음.
+
 
 ## 다음 단계 시작 지점
 

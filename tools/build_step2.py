@@ -312,6 +312,18 @@ for key, g in groups.items():
 
 for n, r in enumerate(rows, 1): r["id"] = f"L{n:04d}"
 
+def id_guard(path, new_rows, keys):
+    """ID 불변 규칙 (CLAUDE.md 규칙 7): 기존 파일의 모든 ID 가 같은 항목으로 남아 있어야 한다. 어기면 쓰지 않고 중단."""
+    if not os.path.exists(path): return
+    with open(path, encoding="utf-8") as f:
+        old = {r["id"]: r for r in csv.DictReader(f)}
+    new = {r["id"]: r for r in new_rows}
+    bad = [i for i, r in old.items() if i not in new or any(r.get(k, "") != new[i].get(k, "") for k in keys)]
+    if bad:
+        raise SystemExit(f"ID 불변 규칙 위반 ({os.path.basename(path)}): {bad[:10]} … — 기존 ID 를 바꾸거나 지우지 말 것")
+
+id_guard(os.path.join(OUT, "ledger.csv"), rows, ("항목", "별칭"))
+
 with open(os.path.join(OUT, "ledger.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=COLS, extrasaction="ignore"); w.writeheader(); w.writerows(rows)
 
@@ -333,6 +345,12 @@ CF = [
     dict(항목="§L-6 H&Q 2.95μm 등급", 원장_ID=find(lambda r: "§L-6" in r["별칭"] and "주석" not in r["별칭"]),
          위치_A=f"{LOG} 709행", 내용_A="v9.7 판정 'Near TZ'", 위치_B=f"{LOG} 709행 (원문 인용)", 내용_B="'원문 TZ(S99)'",
          비고="엔진이 두 등급 병기. S99 원문 대조는 단계 6. 판정 없음"),
+    dict(항목="§14 n_ref,6 (k=6 포논13차) 표시값", 원장_ID="",
+         위치_A="code/eqi_unified_engine_v9_7_output.txt 67행 (이전 판, git 74b469a)", 내용_A="k=6(포논13차): 0.0007934570312",
+         위치_B="code/eqi_unified_engine_v9_7_terminal.txt 67행 (이전 판, git 74b469a)", 내용_B="k=6(포논13차): 0.0007934570313",
+         상태="근거 파일 교체로 해소, 이전 판 git 74b469a",
+         비고="같은 엔진 출력 두 파일의 마지막 자리 차이. code/CLAUDE.md '기준 환경' (mpmath 1.4.0 / 1.3.0 반올림 경계값 13/16384) 참조. "
+              f"현 기준 로그 {LOG} 67행 = '{LOG_L(67).strip()}'. 판정 없음"),
     dict(항목="Stefan–Boltzmann 지수 기대값", 원장_ID=find(lambda r: "§L-4" in r["별칭"]),
          위치_A="성과정리문서/EQI_연구지침_프로젝트용_v3_4.md 2104행", 내용_A="§48-E: Stefan-Boltzmann σ ∝ φ^(+1/4) = M_p = 수명 지수  [TZ]",
          위치_B=f"{ENG} 2325–2326행 / {LOG} 707행", 내용_B="기대값 −7/4, '+1/4 … 산술 오기' (정정 S114)",
@@ -342,8 +360,9 @@ CF = [
          위치_B=f"{LOG} {L7C}행 (같은 줄, 엔진 계산 표기)", 내용_B=LOG_L(L7C).strip(),
          비고="엔진 출력 '※ TASKS 문구 … 불일치' 줄. 판정 없음"),
 ]
-for n, c in enumerate(CF, 1): c["id"] = f"K{n:04d}"
-ccols = ["id", "항목", "원장_ID", "위치_A", "내용_A", "위치_B", "내용_B", "비고"]
+for n, c in enumerate(CF, 1): c["id"] = f"K{n:04d}"   # 새 충돌은 목록 끝에만 추가 (CLAUDE.md 규칙 7)
+ccols = ["id", "항목", "원장_ID", "위치_A", "내용_A", "위치_B", "내용_B", "상태", "비고"]
+id_guard(os.path.join(OUT, "conflicts.csv"), CF, ("항목",))
 with open(os.path.join(OUT, "conflicts.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=ccols); w.writeheader(); w.writerows(CF)
 
