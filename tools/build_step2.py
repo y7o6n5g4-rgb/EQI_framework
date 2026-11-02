@@ -1,30 +1,44 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-단계 2 (엔진 §) — TASKS_index_v3.md §4 단계 2
-  index/ledger.csv        : 원장 첫 묶음 (엔진 v9.7 머리말 표 §1~§42 + 출력 로그 ✓ 줄 + v9.7 §P 블록)
+단계 2 (엔진 §) — TASKS_index_v3.md §4 단계 2  (S1 정정판: 원문 한 줄 = 원장 한 행)
+  index/ledger.csv        : 엔진 v9.7 머리말 표 §1~§42 + 출력 로그 ✓ 줄 + v9.7 §P 블록
   index/conflicts.csv     : 엔진 안에서 같은 항목이 다른 등급·귀속·값으로 적힌 곳 (판정 없음)
   index/sample_check_2.md : 무작위 10행 + 원문 해당 행 인용
+  index/coverage.md       : 엔진 § 원장 ID 연결 (tools/build_step1.py 재사용)
+
+규칙 (MAPSI 단계 2 정정):
+  (1) 원문 한 줄 = 원장 한 행. 묶음 행 없음. 식 열 = 원문 문자열 그대로 (덧붙인 문구 금지).
+  (2) 여러 줄 항목은 모든 하위 줄을 식 열에 담는다. 줄 구분자 = " ‖ " (원문에 없는 문자). 근거_위치는 행 범위.
+  (3) 등록_세션 = 원문 해당 줄 또는 블록 표제에 적힌 세션 표기만 원문 그대로. 그 밖은 빈칸 + 비고 "추정: …".
+  ID: index/id_registry.csv (주 원문 줄 키 → ID) 로 고정. 새 키는 끝 번호 뒤에만 추가 (CLAUDE.md 규칙 7).
+
+근거_위치 형식 (tools/verify_step2.py 가 읽음): "<로그|소스> N행 [역할]" 또는 "<로그|소스> N–M행 (k행) [역할]" 을 " / " 로 연결.
+  첫 토큰 = 주 원문 줄 (식·상태·등급·오차가 적힌 줄). 역할: ✓, 항목, 본문, 표, 머리말, 머리말 등급, 계산 블록, 블록 표제.
 원문 읽기 전용. 실행: python3 tools/build_step2.py (저장소 루트)
 """
 import csv, os, re, random
-from collections import OrderedDict
+from collections import OrderedDict, Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENG = "code/eqi_unified_engine_v9_7.py"                       # v9.7 완성판 (2,662행)
 LOG = "code/eqi_unified_engine_v9_7_terminal_mpmath140.txt"     # 완성판 mpmath 1.4.0 출력 (81,311 B) — 기준 로그
-TERM = "code/eqi_unified_engine_v9_7_terminal.txt"              # 같은 실행의 Windows 콘솔 사본 (CRLF, 프롬프트 줄 포함)
 OUT = os.path.join(ROOT, "index")
+REG = os.path.join(OUT, "id_registry.csv")
+SEP = " ‖ "
 COLS = ["id", "항목", "식", "별칭", "상태", "등급", "오차", "층", "등록_세션", "근거_파일", "근거_위치",
-        "엔진_§", "후속_정정", "키워드"]
+        "엔진_§", "후속_정정", "키워드", "비고"]
 
 def lines(rel):
     with open(os.path.join(ROOT, rel), encoding="utf-8", newline="") as f:
         return [l.rstrip("\r\n") for l in f.read().split("\n")]
 
 SRC, LG = lines(ENG), lines(LOG)
-SRC_L = lambda n: SRC[n - 1]
-LOG_L = lambda n: LG[n - 1]
+FILES = {ENG: SRC, LOG: LG}
+TAG = {LOG: "로그", ENG: "소스"}
+def norm(s):            # 비교용 정규화: 앞뒤 공백·상자 테두리 '║' 제거
+    return s.strip().strip("║").strip()
+def L_(f, n): return FILES[f][n - 1]
 
 # ─────────────── 키워드 (문자열 그대로 일치하는 것만, 해석 없음) ───────────────
 KW = OrderedDict([
@@ -39,192 +53,225 @@ KW = OrderedDict([
     ("Re", ["Re"]), ("Ro", ["Ro"]), ("Bi", ["Bi"]), ("GAP", ["GAP"]), ("LC²GD", ["LC²GD"]), ("α⁻¹", ["α⁻¹", "137"]),
     ("μ", ["μ"]), ("n_c", ["n_c"]), ("L_p", ["L_p"]), ("σ", ["σ"]), ("Stefan–Boltzmann", ["Stefan"]),
     ("빛", ["I_p", "Z_p", "V_p", "h/k_B"]), ("메르센", ["메르센"]), ("콜모고로프", ["콜모고로프", "η×GAP"]),
+    ("오비탈", ["오비탈"]), ("브루스터", ["θ_B"]), ("분산", ["분산"]), ("브래그", ["브래그"]),
 ])
-
 def keywords(text, extra=()):
     ks = [k for k, pats in KW.items() if any(re.search(r"(?<![A-Za-z])" + re.escape(p) + r"(?![a-z])", text) for p in pats)]
     for e in extra:
         if e and e not in ks: ks.append(e)
     return ", ".join(ks)
 
-# ─────────────── 머리말 표 (소스 docstring) ───────────────
-HEAD = OrderedDict()           # § → dict(line, text, cont=[(line,text)])
-cur = None
-for i in range(1, 100):
-    l = SRC_L(i)
-    m = re.match(r"^║\s+§(\d+):\s*(.*?)\s*║?\s*$", l)
-    if m:
-        cur = int(m.group(1)); HEAD[cur] = dict(line=i, text=m.group(2).rstrip("║ ").strip(), cont=[])
-        continue
-    if cur and re.match(r"^║\s{4,}\S", l) and "──" not in l:
-        HEAD[cur]["cont"].append((i, l.strip("║ ").strip()))
-    elif "──" in l or l.startswith("╚"):
-        cur = None
-
-def head_session(s):
-    m = re.search(r"\bS(\d+)(?:~S?(\d+))?\b", HEAD[s]["text"])
-    if m: return "S" + m.group(1) + ("~S" + m.group(2) if m.group(2) else "")
-    return ""
-
-def head_grade(s):
-    t = HEAD[s]["text"]
-    for pat in ["True Zero(대수필연)", "True Zero", "Near TZ", "탐색 완료(NTZ)", "ALL True Zero"]:
-        if pat in t: return pat
-    return ""
-
-# 소스 계산 블록 위치 (EQIConstants.__init__ 주석 145~1087행)
-SRCPOS = {}
-for i in range(140, 1090):
-    m = re.match(r"^\s*#\s*(?:──\s*)?§(\d+)(?:,\s*§(\d+))?\s*[:：]", SRC_L(i))
-    if m:
-        for g in m.groups():
-            if g and int(g) not in SRCPOS: SRCPOS[int(g)] = i
-SRCSESS = {}
-for s, i in SRCPOS.items():
-    m = re.search(r"Session (\d+)(?:~(\d+))?", SRC_L(i))
-    if m: SRCSESS[s] = "S" + m.group(1) + ("~S" + m.group(2) if m.group(2) else "")
-
-# 로그 표제 행
-LOGTITLE = {}
-for i, l in enumerate(LG, 1):
-    m = re.match(r"^\s{2}§(\d+)\s", l)
-    if m and int(m.group(1)) not in LOGTITLE: LOGTITLE[int(m.group(1))] = i
-
-def sess_for(s):
-    h = head_session(s)
-    if h: return h, f"머리말 {HEAD[s]['line']}행"
-    if s in SRCSESS: return SRCSESS[s], f"소스 주석 {SRCPOS[s]}행"
-    return "S38~S47 (묶음 표기)", "엔진 122행 'SECTION 0 … (Session 38~47 §1~§16)' — §별 세션 표기 없음"
-
+# ─────────────── 등급 표기 옮김 (원문 표기 그대로, 승격 없음) ───────────────
 GRADE_MAP = [("TZ(대수필연)", "대수필연", "대수필연"), ("True Zero(대수필연)", "대수필연", "대수필연"),
              ("Near True Zero", "Near TZ", "Near TZ"), ("Near TZ", "Near TZ", "Near TZ"),
              ("True Zero", "TZ", "TZ"), ("Real Zero", "Real Zero", "Real Zero"),
              ("대수필연", "대수필연", "대수필연"), ("TZ", "TZ", "TZ")]
-
 def map_grade(label):
     label = (label or "").strip()
     for k, st, gr in GRADE_MAP:
         if label.startswith(k): return st, gr
     return "", "없음"
 
+SESS_RE = re.compile(r"(?<![A-Za-z_])S\d+(?:\s*[~/]\s*S?\d+)*")
+def sess_in(text):
+    m = SESS_RE.search(text or "")
+    return m.group(0) if m else ""
+
+# ─────────────── 근거 토큰 ───────────────
+def cite(f, a, b=None, role=""):
+    return (f, a, b if b else a, role)
+def render(cites):
+    out = []
+    for f, a, b, role in cites:
+        rng = f"{a}행" if a == b else f"{a}–{b}행 ({b - a + 1}행)"
+        out.append(f"{TAG[f]} {rng} [{role}]")
+    return " / ".join(out)
+
 rows = []
-def add(**kw):
+def add(key, cites, **kw):
     if "엔진_S" in kw: kw["엔진_§"] = kw.pop("엔진_S")
     r = {c: "" for c in COLS}; r.update({k: v for k, v in kw.items() if k in COLS})
-    r["_refs"] = kw.get("_refs", []); r["_bline"] = kw.get("_bline")
+    r["근거_위치"] = render(cites)
+    r["_key"], r["_cites"], r["_bline"], r["_grp"] = key, cites, kw.get("_bline"), kw.get("_grp")
     rows.append(r); return r
 
+# ─────────────── 머리말 표 (소스 docstring) ───────────────
+HEAD = OrderedDict()
+cur = None
+for i in range(1, 100):
+    l = SRC[i - 1]
+    m = re.match(r"^║\s+§(\d+):\s*(.*?)\s*║?\s*$", l)
+    if m:
+        cur = int(m.group(1)); HEAD[cur] = dict(line=i, text=norm(m.group(2)), cont=[]); continue
+    if cur and re.match(r"^║\s{4,}\S", l) and "──" not in l:
+        HEAD[cur]["cont"].append((i, norm(l)))
+    elif "──" in l or l.startswith("╚"):
+        cur = None
+def head_last(s): return HEAD[s]["cont"][-1][0] if HEAD[s]["cont"] else HEAD[s]["line"]
+def head_grade(s):
+    for pat in ["True Zero(대수필연)", "True Zero", "Near TZ", "탐색 완료(NTZ)"]:
+        if pat in HEAD[s]["text"]: return pat
+    return ""
+
+SRCPOS = {}
+for i in range(140, 1090):
+    m = re.match(r"^\s*#\s*(?:──\s*)?§(\d+)(?:,\s*§(\d+))?\s*[:：]", SRC[i - 1])
+    if m:
+        for g in m.groups():
+            if g and int(g) not in SRCPOS: SRCPOS[int(g)] = i
+LOGTITLE = {}
+for i, l in enumerate(LG, 1):
+    m = re.match(r"^\s{2}§(\d+)\s", l)
+    if m and int(m.group(1)) not in LOGTITLE: LOGTITLE[int(m.group(1))] = i
+SEC0L = next(i for i, l in enumerate(LG, 1) if "SECTION 0 —" in l)          # 로그 블록 표제 (§1~§16)
+SESSW = lambda t: (re.search(r"Session \d+(?:~\d+)?", t) or re.search(r"$^", "")).group(0) if re.search(r"Session \d+(?:~\d+)?", t) else ""
+SEC0_SESS = SESSW(LG[SEC0L - 1])
+NOTE_SEC0 = f"등록_세션 = 블록 표제 표기 (로그 {SEC0L}행 'SECTION 0 … (Session 38~47 §1~§16)')"
+
+def sess_for_sec(s):
+    """§ 등록_세션: 로그 표제 [S..] → 머리말 행 S.. (원문 그대로). 없으면 ('', 추정 비고)."""
+    if s in LOGTITLE:
+        m = re.search(r"\[(S[^\]]*)\]", LG[LOGTITLE[s] - 1])
+        if m: return sess_in(m.group(1)), cite(LOG, LOGTITLE[s], role="블록 표제")
+    if s in HEAD and sess_in(HEAD[s]["text"]):
+        return sess_in(HEAD[s]["text"]), cite(ENG, HEAD[s]["line"], role="머리말")
+    if s <= 16 and SEC0_SESS:
+        return SEC0_SESS, cite(LOG, SEC0L, role="블록 표제")
+    return "", None
+
 def eng_ref(s, extra=""):
-    h = HEAD.get(s)
     parts = [f"§{s}"]
-    if h: parts.append(f"머리말 {h['line']}행")
+    if s in HEAD: parts.append(f"머리말 {HEAD[s]['line']}행")
     if s in LOGTITLE: parts.append(f"로그 표제 {LOGTITLE[s]}행")
     if extra: parts.append(extra)
     return " / ".join(parts)
 
-# ─────────────── A. 출력 로그 ✓ 줄 (§1~§42) ───────────────
+# ─────────────── A. 출력 로그 ✓ 줄 (§1~§42 + z0) ───────────────
 CK = re.compile(r"^\s*✓\s+(.*?)\s*(?:오차=(\S+))?\s*(?:★\s*(.+?))?\s*$")
-seen = set()
+Z0T = next(i for i, l in enumerate(LG, 1) if "전채널 z0 분류자 계단 구조" in l)
+def z0_table_line(label):
+    return next(j for j, x in enumerate(LG, 1) if x.strip().startswith(label) and "✓" not in x)
+
 for i, l in enumerate(LG, 1):
     if not re.match(r"^\s*✓", l) or i > 470: continue          # 470행 이후 = 요약 블록 (범위 줄)
     m = CK.match(l)
     label, err, grade = m.group(1).strip(), m.group(2) or "", (m.group(3) or "").strip()
     ms = re.search(r"§(\d+)", label)
-    if not ms:   # z0 표 '대칭 이벤트' — § 번호 없음
-        tl = next(j for j, x in enumerate(LG, 1) if x.strip().startswith(label) and "✓" not in x)
-        add(항목=label, 식=re.split(r"\s{2,}", LG[tl - 1].strip())[1] + " ‖ " + LG[tl].strip(),
-            별칭="엔진 SECTION 1 z0 분류자 (§ 번호 없음)", 상태="", 등급="없음", 오차=f"오차={err}", 층="해당 없음",
-            등록_세션="S38~S47 (묶음 표기)", 근거_파일=LOG, 근거_위치=f"로그 z0 표 {tl}행 / ✓ {i}행",
+    z0_sess = SESSW(LG[Z0T - 1])
+    z0_note = f"등록_세션 = 블록 표제 표기 (로그 {Z0T}행 '전채널 z0 분류자 계단 구조 (Session 38~47 §1~§16)')"
+    if not ms:   # z0 표 '대칭 이벤트 (BNS/BBH)' — § 번호 없음
+        tl = z0_table_line(label)
+        f0 = re.split(r"\s{2,}", LG[tl - 1].strip())[1]
+        add(f"LOG:{i}", [cite(LOG, i, role="✓"), cite(LOG, tl, tl + 1, "표"), cite(LOG, Z0T, role="블록 표제")],
+            항목=label, 식=f0 + SEP + norm(LG[tl]), 별칭="엔진 SECTION 1 z0 분류자 (§ 번호 없음)", 상태="", 등급="없음",
+            오차=f"오차={err}", 층="해당 없음", 등록_세션=z0_sess, 근거_파일=LOG,
             엔진_S=f"SECTION 1 (소스 1530행) / 로그 표 {tl}행 / ✓ {i}행", 키워드=keywords(label, ["z0", "리만"]),
-            _refs=[(LOG, tl), (LOG, i)])
+            비고=z0_note)
         continue
     s = int(ms.group(1))
-    seen.add(s)
-    name = re.sub(r"^§\d+\s+", "", label).strip()
-    name = re.sub(r"\s*\[별도 출력\]$", "", name)
-    refs = [(LOG, i)]
-    errtxt = f"{err}" if err else ""
-    if s == 5 and not grade:      # [별도 출력] → 로그 24행
-        grade = "True Zero"; errtxt = "7.2232098e-15 (로그 24행 'SI대비 오차%')"; refs.append((LOG, 24))
+    name = re.sub(r"\s*\[별도 출력\]$", "", re.sub(r"^§\d+\s+", "", label).strip())
+    cites = [cite(LOG, i, role="✓")]
+    errtxt = err
+    if s == 5 and not grade:       # '[별도 출력]' → 로그 23–24행
+        grade = "True Zero"; errtxt = "7.2232098e-15 (로그 24행 'SI대비 오차%')"; cites = [cite(LOG, i, role="✓"), cite(LOG, 23, 24, "본문 등급")]
     if grade: errtxt = (errtxt + f" (★ {grade})").strip()
     st, gr = map_grade(grade)
-    if not grade and re.match(r"GW|SGWB", label):   # z0 전채널 ✓ — 등급 표기 없음, 머리말 § 표기 따름
-        st, gr = "", "없음"
-    h = HEAD.get(s, {})
-    formula = name if "=" in name or "<" in name else " / ".join([h.get("text", "")] + [t for _, t in h.get("cont", [])])
-    if re.match(r"GW|SGWB", label):   # z0 표 수식 열
-        tl = next(j for j, x in enumerate(LG, 1) if x.strip().startswith(label) and "✓" not in x)
-        formula = re.split(r"\s{2,}", LG[tl - 1].strip())[1]; refs.append((LOG, tl))
-    sess, sess_src = sess_for(s)
+    note = ""
+    if re.match(r"GW|SGWB", label):
+        tl = z0_table_line(label)
+        formula = re.split(r"\s{2,}", LG[tl - 1].strip())[1]
+        cites.append(cite(LOG, tl, role="표"))
+        sess = z0_sess; note = z0_note
+        cites.append(cite(LOG, Z0T, role="블록 표제"))
+    else:
+        if "=" in name or "<" in name:
+            formula = name
+        else:
+            h = HEAD[s]; formula = SEP.join([h["text"]] + [t for _, t in h["cont"]])
+        sess, sc = sess_for_sec(s)
+        if sc: cites.append(sc)
+        if sc and sc[1] == SEC0L: note = NOTE_SEC0
+    if s in HEAD: cites.append(cite(ENG, HEAD[s]["line"], head_last(s), "머리말"))
+    if s in SRCPOS: cites.append(cite(ENG, SRCPOS[s], role="계산 블록"))
     layer = {19: "5체", 21: "7체", 24: "5체;7체"}.get(s, "해당 없음")
-    if s in HEAD: refs.append((ENG, HEAD[s]["line"]))
-    add(항목=name, 식=formula, 별칭=f"엔진 §{s}", 상태=st, 등급=gr, 오차=errtxt, 층=layer,
-        등록_세션=sess, 근거_파일=ENG,
-        근거_위치=f"소스 계산 블록 {SRCPOS.get(s, '')}행 (주석 '§{s}') / 세션 근거: {sess_src}",
-        엔진_S=eng_ref(s, f"✓ {i}행 ({LOG})"), 키워드=keywords(label + " " + formula), _refs=refs)
+    add(f"LOG:{i}", cites, 항목=name, 식=formula, 별칭=f"엔진 §{s}", 상태=st, 등급=gr, 오차=errtxt, 층=layer,
+        등록_세션=sess, 근거_파일=ENG, 엔진_S=eng_ref(s, f"✓ {i}행 ({LOG})"), 키워드=keywords(label + " " + formula), 비고=note)
 
 # ─────────────── B. 머리말 표에만 있는 항목 (✓ 줄 없음) ───────────────
-EXTRA = [  # (§, 머리말에서 찾을 원문 문자열 또는 None=머리말 행 전체, 항목명)
-    (2, None, "MAXWELL 4차항 c4×GD⁴"), (9, None, "γ 3항 구조 (오일러-란다우어)"), (29, None, "전달함수 Q/MAXWELL≈34"),
-    (10, "κ×Φ₀=1", "κ×Φ₀=1"), (17, "Fr=1/(2πφ)", "Fr=1/(2πφ)"), (27, "|ln(GAP)|/GAP_D2=213.5", "|ln(GAP)|/GAP_D2=213.5"),
-    (30, "Sh=MAXWELL", "Sh=MAXWELL"),
-]
+EXTRA = [(2, None, "MAXWELL 4차항 c4×GD⁴"), (9, None, "γ 3항 구조 (오일러-란다우어)"), (29, None, "전달함수 Q/MAXWELL≈34"),
+         (10, "κ×Φ₀=1", "κ×Φ₀=1"), (17, "Fr=1/(2πφ)", "Fr=1/(2πφ)"), (27, "|ln(GAP)|/GAP_D2=213.5", "|ln(GAP)|/GAP_D2=213.5"),
+         (30, "Sh=MAXWELL", "Sh=MAXWELL")]
 for s, needle, name in EXTRA:
     h = HEAD[s]
     cand = [(h["line"], h["text"])] + h["cont"]
-    if needle:
-        ln, txt = next((a, b) for a, b in cand if needle in b)
-        formula = needle
-    else:
-        ln, txt = h["line"], h["text"]; formula = txt
+    ln, txt = next((a, b) for a, b in cand if needle in b) if needle else (h["line"], h["text"])
+    formula = needle if needle else txt
     hg = head_grade(s)
     st, gr = map_grade(hg)
     if hg == "탐색 완료(NTZ)": st, gr = "", "없음"
-    sess, sess_src = sess_for(s)
-    note = f"로그에 '§{s}' 표제·✓ 줄 없음 (grep) — 머리말 표·소스 위치만 기록" if not needle else "머리말 표 기재, 로그 ✓ 줄에는 이 식 없음"
-    add(항목=name, 식=formula, 별칭=f"엔진 §{s}", 상태=st, 등급=gr,
+    cites = [cite(ENG, ln, role="머리말")]
+    if ln != h["line"]: cites.append(cite(ENG, h["line"], role="머리말 등급"))
+    if s in SRCPOS: cites.append(cite(ENG, SRCPOS[s], role="계산 블록"))
+    sess, sc = sess_for_sec(s)
+    if sc and sc[1] != ln: cites.append(sc)
+    nt = f"로그에 '§{s}' 표제·✓ 줄 없음 (grep) — 머리말 표·소스 위치만 기록" if not needle else "머리말 표 기재, 로그 ✓ 줄에는 이 식 없음"
+    add(f"ENG:{ln}", cites, 항목=name, 식=formula, 별칭=f"엔진 §{s}", 상태=st, 등급=gr,
         오차=(f"머리말 등급 표기: {hg}" if hg else ""), 층="해당 없음", 등록_세션=sess, 근거_파일=ENG,
-        근거_위치=f"머리말 {ln}행 / " + (f"소스 계산 블록 {SRCPOS[s]}행" if s in SRCPOS else f"소스 주석 '§{s}:' grep 없음") + f" / 세션 근거: {sess_src}",
-        엔진_S=eng_ref(s, note), 키워드=keywords(name + " " + txt), _refs=[(ENG, ln)])
-# §15 메르센 수열 (로그 본문 ✓/✗ 표기, 줄 머리 ✓ 아님)
-m1 = next(i for i, l in enumerate(LG, 1) if "D2 지수 메르센 수열" in l)
-add(항목="D2 지수 메르센 수열 (k=3~5 ✓ / k=6~7 ✗ X7 금지)", 식=" ‖ ".join(LG[j - 1].strip() for j in (m1 + 1, m1 + 4)),
-    별칭="엔진 §15", 상태="TZ", 등급="TZ", 오차="머리말 등급 표기: True Zero (§15 전체)", 층="해당 없음",
-    등록_세션="S46", 근거_파일=LOG, 근거_위치=f"로그 {m1}–{m1+5}행 / 머리말 {HEAD[15]['line']}행 (S46)",
-    엔진_S=eng_ref(15, "로그 본문 ✓·✗ 표기"), 키워드=keywords("메르센 X7 포논 D2"),
-    _refs=[(LOG, m1 + 1), (LOG, m1 + 4)])
-# §13 ε (로그 등급 Real Zero, ✓ 줄 없음)
-ln = next(i for i, l in enumerate(LG, 1) if "ε = σ³/N³×K_EQI" in l)
-add(항목="ε = σ³/N³×K_EQI", 식=LOG_L(ln).strip(), 별칭="엔진 §13", 상태="Real Zero", 등급="Real Zero",
-    오차="0.005% (로그 원문 'Real Zero 0.005%')", 층="해당 없음", 등록_세션="S44", 근거_파일=LOG,
-    근거_위치=f"로그 {ln}행 / 머리말 {HEAD[13]['line']}행 (S44)", 엔진_S=eng_ref(13, "✓ 줄 없음, 로그 본문 등급"),
-    키워드=keywords("ε σ³ K_EQI Leibniz", ["포논"]), _refs=[(LOG, ln)])
+        엔진_S=eng_ref(s, nt), 키워드=keywords(name + " " + txt),
+        비고=((NOTE_SEC0 if sc and sc[1] == SEC0L else "") + ("" if needle else "; 항목명은 색인 부여 (머리말 행 전체가 식)")).lstrip("; "))
 
-# ─────────────── C. v9.7 §P 블록 ───────────────
+# §15 메르센 수열 (로그 본문 73–78행)
+m1 = next(i for i, l in enumerate(LG, 1) if "D2 지수 메르센 수열" in l)
+m2 = m1
+while LG[m2].strip().startswith("k="): m2 += 1
+add(f"LOG:{m1}", [cite(LOG, m1, m2, "본문"), cite(ENG, HEAD[15]["line"], role="머리말 등급"), cite(LOG, LOGTITLE[15], role="블록 표제")],
+    항목="D2 지수 메르센 수열 (k=3~5 ✓ / k=6~7 ✗ X7 금지)", 식=SEP.join(norm(LG[j - 1]) for j in range(m1, m2 + 1)),
+    별칭="엔진 §15", 상태="TZ", 등급="TZ", 오차="머리말 등급 표기: True Zero (§15 전체)", 층="해당 없음",
+    등록_세션=sess_for_sec(15)[0], 근거_파일=LOG, 엔진_S=eng_ref(15, "로그 본문 ✓·✗ 표기"), 키워드=keywords("메르센 X7 포논 D2"),
+    비고="항목명은 색인 부여 (로그 본문 줄 묶음)")
+# §13 ε (로그 본문 등급 Real Zero)
+e1 = next(i for i, l in enumerate(LG, 1) if "ε = σ³/N³×K_EQI" in l)
+add(f"LOG:{e1}", [cite(LOG, e1, role="본문"), cite(LOG, LOGTITLE[13], role="블록 표제"), cite(ENG, HEAD[13]["line"], role="머리말")],
+    항목="ε = σ³/N³×K_EQI", 식=norm(LG[e1 - 1]), 별칭="엔진 §13", 상태="Real Zero", 등급="Real Zero",
+    오차="0.005% (로그 원문 'Real Zero 0.005%')", 층="해당 없음", 등록_세션=sess_for_sec(13)[0], 근거_파일=LOG,
+    엔진_S=eng_ref(13, "✓ 줄 없음, 로그 본문 등급"), 키워드=keywords("ε σ³ K_EQI Leibniz", ["포논"]))
+
+# ─────────────── C. v9.7 §P 블록 (원문 한 줄 = 한 행) ───────────────
 PB = re.compile(r"^\s{2}(§P\S*)\s+(.*)$")
 IT = re.compile(r"^\s{2}\[(§[A-Z][^\]]*)\]\s*(.*)$")
 items, block = [], None
-for i, l in enumerate(LG, 1):
-    if i < 528: continue
-    m = PB.match(l)
-    if m: block = (m.group(1), m.group(2).strip(), i); continue
-    if block and not IT.match(l) and l.strip() and not l.strip().startswith("─"):
-        # 블록 머리 값·주석 (첫 항목 전) 또는 '[S..] 계보' 단독 주석 줄 → 별도 행 (값만)
-        first_item = not any(x["block"] == block and not x.get("pre") for x in items)
-        if (first_item and l.startswith("     ")) or re.match(r"^\s{5}\[S\d+[^\]]*\]", l):
-            if items and items[-1]["block"] == block and items[-1].get("pre") and first_item:
-                items[-1]["sub"].append((i, l.strip())); continue
-            items.append(dict(id=f"{block[0]} 주석@{i}", body=l.strip(), line=i, block=block, sub=[],
-                              pre=first_item and not re.match(r"^\s{5}\[S\d+", l)))
-            continue
-    m = IT.match(l)
-    if m and block:
-        sub = []
-        j = i + 1
-        while j <= len(LG) and LG[j - 1].startswith("     ") and not IT.match(LG[j - 1]):
-            sub.append((j, LG[j - 1].strip())); j += 1
-        items.append(dict(id=m.group(1), body=m.group(2), line=i, block=block, sub=sub))
+i = 528
+while i <= len(LG):
+    l = LG[i - 1]
     if l.startswith("  등급 집계"): break
+    m = PB.match(l)
+    if m:
+        block = (m.group(1), m.group(2).strip(), i); i += 1; continue
+    if block is None or not l.strip() or l.strip().startswith("─") or l.strip().startswith("═"):
+        i += 1; continue
+    m = IT.match(l)
+    if m:
+        j = i + 1
+        while j <= len(LG) and LG[j - 1].startswith("     ") and not IT.match(LG[j - 1]) \
+                and not re.match(r"^\s{5}\[S\d+", LG[j - 1]):
+            j += 1
+        items.append(dict(id=m.group(1), body=m.group(2), line=i, end=j - 1, block=block, kind="항목")); i = j; continue
+    if l.startswith("     "):        # 블록 머리 값·주석 줄 / '[S..] 계보' 줄 (항목 밖)
+        j = i + 1
+        if not re.match(r"^\s{5}\[S\d+", l):
+            while j <= len(LG) and LG[j - 1].startswith("     ") and not IT.match(LG[j - 1]) \
+                    and not re.match(r"^\s{5}\[S\d+", LG[j - 1]):
+                j += 1
+        items.append(dict(id=None, body=l.strip(), line=i, end=j - 1, block=block, kind="본문")); i = j; continue
+    i += 1     # '  ※ …' 같은 2칸 들여쓴 블록 끝 주석은 해당 행 엔진_§ 에 병기
+
+def parse(body):
+    f = [x.strip() for x in body.split(" | ")]
+    d = dict(label=f[0], calc="", tgt="", err="", grade="", src="")
+    if len(f) >= 6: d.update(calc=f[1], tgt=f[2], err=f[3], grade=f[4], src=f[5])
+    elif len(f) == 5: d.update(calc=f[1], tgt=f[2], grade=f[3], src=f[4])
+    elif len(f) == 4: d.update(calc=f[1], grade=f[2], src=f[3])
+    return d
 
 def layer_of(btitle, label):
     m = re.match(r"^(\d)체 층", btitle)
@@ -233,116 +280,149 @@ def layer_of(btitle, label):
         hits = set(re.findall(r"([357])체", label))
         if len(hits) == 1 and not re.search(r"[0-9]체.*[0-9]체", label): return hits.pop() + "체"
     return "해당 없음"
-def parse(it):
-    f = [x.strip() for x in it["body"].split(" | ")]
-    d = dict(label=f[0], calc="", tgt="", err="", grade="", src="")
-    if len(f) >= 6: d.update(calc=f[1], tgt=f[2], err=f[3], grade=f[4], src=f[5])
-    elif len(f) == 4: d.update(calc=f[1], grade=f[2], src=f[3])
-    elif len(f) == 5: d.update(calc=f[1], tgt=f[2], grade=f[3], src=f[4])
-    return d
-
-def gkey(i):
-    for pat, rep in [(r"^(§P3-[12])\.k\d+$", r"\1"), (r"^(§P3-3)\.k\d+([a-f])$", r"\1.k*\2"), (r"^(§C-8)\.\S+$", r"\1"),
-                     (r"^(§O-1)\.[a-z]$", r"\1"), (r"^(§L-7b)\.k\S+$", r"\1")]:
-        if re.match(pat, i): return re.sub(pat, rep, i)
-    return i
 
 _bc = {}
 for it in items: _bc.setdefault(it["block"][0], set()).add(it["block"][2])
 DUP_B = {b for b, v in _bc.items() if len(v) > 1}
-groups = OrderedDict()
-for it in items:
-    it["p"] = parse(it); groups.setdefault(gkey(it["id"]), []).append(it)
-
-def src_session(src, label=""):
-    m = re.search(r"S(\d+)(?:~S?(\d+))?", src) or re.search(r"\bS(\d+)\b()", label)
-    if not m: return "S114 (v9.7 신규 블록)"
-    return "S" + m.group(1) + (("~S" + m.group(2)) if m.group(2) else "")
-
 UNOTE = next(i for i, l in enumerate(LG, 1) if "U-1~U-3 '귀속 확정' 판정 없음" in l)
 S114_NOTE = "엔진 v9.7 블록 (S114 TASKS, S115 'Task 2~6 승인')"
-for key, g in groups.items():
-    first = g[0]; p = first["p"]; bid, btitle, bline = first["block"]
-    grades = {x["p"]["grade"] for x in g}
-    members = [g] if len(grades) == 1 else [[x] for x in g]
-    for mem in members:
-        x0 = mem[0]; p = x0["p"]
-        gid = key if len(mem) > 1 else x0["id"]
-        st, gr = map_grade(p["grade"])
-        if p["grade"] in ("정수", "-", "") or p["grade"].startswith("통과"): st, gr = "", "없음"
-        if len(mem) > 1:
-            errs = [m_["p"]["err"] for m_ in mem if m_["p"]["err"]]
-            err = f"{len(mem)}행: " + ", ".join(errs) if errs else ""
-            ids = f"{mem[0]['id']}~{mem[-1]['id']}"
-            lab = p["label"] + f" 외 {len(mem)-1}행 ({ids})"
-            loc = f"로그 {mem[0]['line']}–{mem[-1]['line']}행 ({len(mem)}행)"
-        else:
-            err = p["err"]; lab = p["label"]; ids = x0["id"]; loc = f"로그 {x0['line']}행"
-        if p["grade"]: err = (err + f" (판정 열: {p['grade']})").strip()
-        formula = lab
-        if not p["calc"] and x0["sub"]:
-            formula = lab + " ‖ " + " ‖ ".join(t for _, t in x0["sub"][:3])
-        fix = ""
-        if x0["id"] == "§L-4":
-            fix = "S114 정정: 기대값 −7/4. 구 기대값 +1/4 (S77 §48-E, 단위계 철학 v3 §11.1, v3.4 2104행) 산술 오기 — 엔진 소스 2325–2326행"
-        if x0["id"] == "§P7-3":
-            fix = "f×We²×Re 폐기(S92) — 원문 표기 '폐기' (엔진 로그 696행)"
-        reg = src_session(p["src"], p["label"])
-        if x0["id"] == "§C-주석":
-            st = "미적용"
-            fix = "S114 v9.7: 현 체제(단일 항등원) 미적용, 계산하지 않음 — 엔진 소스 2408–2409행 / 로그 743행"
-        name = re.sub(r"\s*\(기대[^)]*\)", "", lab).strip()
-        if x0.get("pre") is not None and "주석@" in x0["id"]:
-            ids = f"{bid} 주석 (로그 {x0['line']}행)"
-            name = (f"{bid} 블록 머리 (값·주석)" if x0["pre"] else lab)
-            if x0["pre"]: formula = lab + "".join(" ‖ " + t for _, t in x0["sub"])
-            if x0["pre"] and x0["sub"]: loc = f"로그 {x0['line']}–{x0['sub'][-1][0]}행 ({len(x0['sub'])+1}행)"
-        if x0["id"] == "§C-주석": name = "S64 §6.2 '중력질량 = E_topo² = φ^1.5 = 관성질량' (v15 이중 항등원 표기)"
-        layer = layer_of(btitle, lab)
-        if bid.startswith("§P-DS") and re.match(r"§U", x0["id"]):
-            fix_u = f"로그 {UNOTE}행: '※ U-1~U-3 \'귀속 확정\' 판정 없음 (Architect/MAPSI 판단).'"
-        else:
-            fix_u = ""
-        add(항목=name, 식=formula, 별칭=f"엔진 v9.7 {ids}" + (f"; 출처 표기 '{p['src']}'" if p["src"] else ""),
-            상태=st, 등급=gr, 오차=err, 층=layer, 등록_세션=reg, 근거_파일=LOG,
-            근거_위치=(f"{bid} '{btitle.split(' [')[0]}' 블록" if bid in DUP_B else f"{bid} 블록") + f" (표제 {bline}행) / {loc}",
-            엔진_S=f"v9.7 {bid} {ids} / {S114_NOTE} / 소스 class EQIPhononLattice" + (f" / {fix_u}" if fix_u else ""),
-            후속_정정=fix, _bline=bline, 키워드=keywords(btitle + " " + formula, [bid]),
-            _refs=[(LOG, m_["line"]) for m_ in mem][:3])
+EST_S114 = "추정: S114 (v9.7 신규 블록, S114 성과정리 1. 표) — 원문 줄·블록 표제에 세션 표기 없음"
 
-for n, r in enumerate(rows, 1): r["id"] = f"L{n:04d}"
+def gkey(i):     # 옛 묶음 행 (L0208 등) 의 구성원 판별용 — 묶음 생성에는 쓰지 않음
+    for pat, rep in [(r"^(§P3-[12])\.k\d+$", r"\1"), (r"^(§P3-3)\.k\d+([a-f])$", r"\1.k*\2"), (r"^(§C-8)\.\S+$", r"\1"),
+                     (r"^(§O-1)\.[a-z]$", r"\1"), (r"^(§L-7b)\.k\S+$", r"\1")]:
+        if i and re.match(pat, i): return re.sub(pat, rep, i)
+    return None
 
-def id_guard(path, new_rows, keys):
-    """ID 불변 규칙 (CLAUDE.md 규칙 7): 기존 파일의 모든 ID 가 같은 항목으로 남아 있어야 한다. 어기면 쓰지 않고 중단."""
+for it in items:
+    bid, btitle, bline = it["block"]
+    subs = [(j, norm(LG[j - 1])) for j in range(it["line"] + 1, it["end"] + 1)]
+    bt_cite = cite(LOG, bline, role="블록 표제")
+    loc_block = (f"{bid} '{btitle.split(' [')[0]}'" if bid in DUP_B else bid)
+    if it["kind"] == "본문":
+        lab = it["body"]
+        formula = SEP.join([lab] + [t for _, t in subs])
+        pre = not re.match(r"\[S\d+", lab)
+        name = f"{bid} 블록 머리 (값·주석)" if pre else lab
+        sess = sess_in(lab) if not pre else ""
+        note = "항목명은 색인 부여 (원문 표제 없음)" if pre else ""
+        if not sess:
+            bs = re.search(r"\[(S[^\]]*)\]", btitle)
+            if bs and sess_in(bs.group(1)):
+                sess = sess_in(bs.group(1)); note = (note + "; 등록_세션 = 블록 표제 표기").lstrip("; ")
+            else:
+                note = (note + "; " + EST_S114).lstrip("; ")
+        add(f"LOG:{it['line']}", [cite(LOG, it["line"], it["end"], "본문"), bt_cite],
+            항목=name, 식=formula, 별칭=f"엔진 v9.7 {bid} 주석 (로그 {it['line']}행)", 상태="", 등급="없음", 오차="",
+            층=layer_of(btitle, lab), 등록_세션=sess, 근거_파일=LOG,
+            엔진_S=f"v9.7 {bid} 블록 머리 (표제 {bline}행) / {S114_NOTE} / 소스 class EQIPhononLattice",
+            키워드=keywords(btitle + " " + formula, [bid]), 비고=note, _bline=bline)
+        continue
+    p = parse(it["body"]); xid = it["id"]
+    st, gr = map_grade(p["grade"])
+    if p["grade"] in ("정수", "-", "") or p["grade"].startswith("통과") or p["grade"].startswith("귀속 검토"):
+        st, gr = "", "없음"
+    err = p["err"] + (f" (판정 열: {p['grade']})" if p["grade"] else "")
+    err = err.strip()
+    formula = SEP.join([p["label"]] + [t for _, t in subs])
+    name = re.sub(r"\s*\(기대[^)]*\)", "", p["label"]).strip()
+    fix, note = "", ""
+    if xid == "§L-4":
+        fix = "S114 정정: 기대값 −7/4. 구 기대값 +1/4 (S77 §48-E, 단위계 철학 v3 §11.1, v3.4 2104행) 산술 오기 — 엔진 소스 2325–2326행"
+    if xid == "§P7-3":
+        fix = "f×We²×Re 폐기(S92) — 원문 표기 '폐기' (엔진 로그 696행)"
+    if xid == "§C-주석":
+        st = "미적용"
+        fix = "S114 v9.7: 현 체제(단일 항등원) 미적용, 계산하지 않음 — 엔진 소스 2408–2409행 / 로그 743행"
+        name = "S64 §6.2 '중력질량 = E_topo² = φ^1.5 = 관성질량' (v15 이중 항등원 표기)"
+        note = "항목명은 색인 부여 (원문 줄 요약)"
+    sess = sess_in(p["src"]) or sess_in(p["label"])
+    if not sess:
+        bs = re.search(r"\[(S[^\]]*)\]", btitle)
+        if bs and sess_in(bs.group(1)):
+            sess = sess_in(bs.group(1)); note = (note + "; 등록_세션 = 블록 표제 표기").lstrip("; ")
+        else:
+            note = (note + "; " + EST_S114).lstrip("; ")
+    eng = f"v9.7 {bid} {xid} / {S114_NOTE} / 소스 class EQIPhononLattice"
+    if bid.startswith("§P-DS") and xid.startswith("§U"):
+        eng += f" / 로그 {UNOTE}행: '※ U-1~U-3 '귀속 확정' 판정 없음 (Architect/MAPSI 판단).'"
+    add(f"LOG:{it['line']}", [cite(LOG, it["line"], it["end"], "항목"), bt_cite],
+        항목=name, 식=formula, 별칭=f"엔진 v9.7 {xid}" + (f"; 출처 표기 '{p['src']}'" if p["src"] else ""),
+        상태=st, 등급=gr, 오차=err, 층=layer_of(btitle, p["label"]), 등록_세션=sess, 근거_파일=LOG,
+        엔진_S=eng, 후속_정정=fix, 키워드=keywords(btitle + " " + formula, [bid]), 비고=note,
+        _bline=bline, _grp=(bid, gkey(xid)) if gkey(xid) else None)
+
+# ─────────────── ID 부여 (등록부 고정, 규칙 7) ───────────────
+reg = list(csv.DictReader(open(REG, encoding="utf-8")))
+key2id = {r["키"]: r["id"] for r in reg}
+bykey = {}
+for r in rows:
+    if r["_key"] in bykey: raise SystemExit(f"주 원문 줄 키 중복: {r['_key']}")
+    bykey[r["_key"]] = r
+missing = [r["id"] for r in reg if r["키"] not in bykey]
+if missing: raise SystemExit(f"ID 불변 규칙 위반: 등록부 ID 의 원문 줄이 생성되지 않음 {missing[:10]}")
+nxt = max(int(r["id"][1:]) for r in reg) + 1
+new_reg = []
+old_led = {r["id"]: r for r in csv.DictReader(open(os.path.join(OUT, "ledger.csv"), encoding="utf-8"))}
+# 옛 묶음 행 (별칭에 '~§' 범위) → (블록, 묶음키) → 원 ID
+grp_origin = {}
+for rid, r in old_led.items():
+    m = re.match(r"^엔진 v9\.7 (§\S+)~§\S+", r["별칭"])
+    if m:
+        k = next(x["키"] for x in reg if x["id"] == rid)
+        g = bykey[k]["_grp"]
+        if g: grp_origin[g] = rid
+for r in rows:
+    if r["_key"] in key2id:
+        r["id"] = key2id[r["_key"]]
+    else:
+        r["id"] = f"L{nxt:04d}"; nxt += 1
+        new_reg.append(dict(id=r["id"], 키=r["_key"], 최초_항목=r["항목"], 최초_별칭=r["별칭"],
+                            분리_원ID=grp_origin.get(r["_grp"], "")))
+split_of = {x["id"]: x.get("분리_원ID", "") for x in reg + new_reg}
+for r in rows:
+    if split_of.get(r["id"]):
+        r["비고"] = (f"원 묶음 {split_of[r['id']]}에서 분리; " + r["비고"]).rstrip("; ")
+SPLIT_FIRST = set(grp_origin.values()) | {v for v in split_of.values() if v}   # 묶음 첫 줄만 남긴 원 ID (MAPSI 정정 (1))
+
+def id_guard(path, new_rows, keys, allow=()):
+    """ID 불변 규칙 (CLAUDE.md 규칙 7): 기존 파일의 모든 ID 가 남아 있고, 허용 목록 밖에서는 같은 항목이어야 한다."""
     if not os.path.exists(path): return
     with open(path, encoding="utf-8") as f:
         old = {r["id"]: r for r in csv.DictReader(f)}
     new = {r["id"]: r for r in new_rows}
-    bad = [i for i, r in old.items() if i not in new or any(r.get(k, "") != new[i].get(k, "") for k in keys)]
+    bad = [i for i, r in old.items() if i not in new or (i not in allow and any(r.get(k, "") != new[i].get(k, "") for k in keys))]
     if bad:
         raise SystemExit(f"ID 불변 규칙 위반 ({os.path.basename(path)}): {bad[:10]} … — 기존 ID 를 바꾸거나 지우지 말 것")
 
-id_guard(os.path.join(OUT, "ledger.csv"), rows, ("항목", "별칭"))
+rows.sort(key=lambda r: int(r["id"][1:]))
+id_guard(os.path.join(OUT, "ledger.csv"), rows, ("항목", "별칭"), allow=SPLIT_FIRST)
+for r in rows:
+    if r["id"] in SPLIT_FIRST:
+        r["비고"] = ("묶음 해체: 첫 원문 줄만 유지 (MAPSI 단계 2 정정 (1)); " + r["비고"]).rstrip("; ")
 
 with open(os.path.join(OUT, "ledger.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=COLS, extrasaction="ignore"); w.writeheader(); w.writerows(rows)
+if new_reg:
+    with open(REG, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["id", "키", "최초_항목", "최초_별칭", "분리_원ID"])
+        w.writeheader(); w.writerows([{**x, "분리_원ID": x.get("분리_원ID", "")} for x in reg + new_reg])
 
-# ─────────────── conflicts.csv ───────────────
-def find(pred):
-    return next(r["id"] for r in rows if pred(r))
-TL = lines(TERM)
+# ─────────────── conflicts.csv (K 번호 고정, 새 충돌은 끝에만) ───────────────
+def find(pred): return next(r["id"] for r in rows if pred(r))
 TK = lines("code/TASKS.md")
 T7C = next(i for i, l in enumerate(TK, 1) if "L-7c 브래그" in l)
 L7C = next(i for i, l in enumerate(LG, 1) if "TASKS 문구 '7차부터 < 1'" in l)
 CF = [
     dict(항목="§12 ratio(34)×34 vs 2/R_mem 등급", 원장_ID=find(lambda r: r["항목"].startswith("ratio(34)")),
          위치_A=f"{ENG} 머리말 24행", 내용_A="'S43  True Zero'",
-         위치_B=f"{LOG} 46행 / 395행", 내용_B=f"46행 '{LOG_L(46).strip()}' / 395행 '★ Near TZ'",
+         위치_B=f"{LOG} 46행 / 395행", 내용_B=f"46행 '{LG[45].strip()}' / 395행 '★ Near TZ'",
          비고="같은 오차값(5.4e-3%)에 등급 표기 셋 (머리말·로그 본문 True Zero, ✓ 줄 Near TZ). 판정 없음"),
     dict(항목="a₅_eff = 5σ⁵/4 의 § 귀속", 원장_ID=find(lambda r: r["항목"].startswith("a₅_eff")),
          위치_A=f"{ENG} 머리말 26행 / {LOG} 57행", 내용_A="§14 (머리말 'a₅_eff=5σ⁵/4, 포논 굴절', 로그 §14 블록 57행)",
-         위치_B=f"{LOG} 399행 / 71–72행", 내용_B="'✓ §15 a₅_eff = 5/4×σ⁵' (로그 §15 블록 71–72행에도 a₅_eff 식)", 비고="같은 식이 §14·§15 양쪽에 귀속 표기. 판정 없음"),
-    dict(항목="§L-6 H&Q 2.95μm 등급", 원장_ID=find(lambda r: "§L-6" in r["별칭"] and "주석" not in r["별칭"]),
+         위치_B=f"{LOG} 399행 / 71–72행", 내용_B="'✓ §15 a₅_eff = 5/4×σ⁵' (로그 §15 블록 71–72행에도 a₅_eff 식)",
+         비고="같은 식이 §14·§15 양쪽에 귀속 표기. 판정 없음"),
+    dict(항목="§L-6 H&Q 2.95μm 등급", 원장_ID=find(lambda r: r["별칭"].startswith("엔진 v9.7 §L-6;")),
          위치_A=f"{LOG} 709행", 내용_A="v9.7 판정 'Near TZ'", 위치_B=f"{LOG} 709행 (원문 인용)", 내용_B="'원문 TZ(S99)'",
          비고="엔진이 두 등급 병기. S99 원문 대조는 단계 6. 판정 없음"),
     dict(항목="§14 n_ref,6 (k=6 포논13차) 표시값", 원장_ID="",
@@ -350,14 +430,14 @@ CF = [
          위치_B="code/eqi_unified_engine_v9_7_terminal.txt 67행 (이전 판, git 74b469a)", 내용_B="k=6(포논13차): 0.0007934570313",
          상태="근거 파일 교체로 해소, 이전 판 git 74b469a",
          비고="같은 엔진 출력 두 파일의 마지막 자리 차이. code/CLAUDE.md '기준 환경' (mpmath 1.4.0 / 1.3.0 반올림 경계값 13/16384) 참조. "
-              f"현 기준 로그 {LOG} 67행 = '{LOG_L(67).strip()}'. 판정 없음"),
-    dict(항목="Stefan–Boltzmann 지수 기대값", 원장_ID=find(lambda r: "§L-4" in r["별칭"]),
+              f"현 기준 로그 {LOG} 67행 = '{LG[66].strip()}'. 판정 없음"),
+    dict(항목="Stefan–Boltzmann 지수 기대값", 원장_ID=find(lambda r: r["별칭"].startswith("엔진 v9.7 §L-4;")),
          위치_A="성과정리문서/EQI_연구지침_프로젝트용_v3_4.md 2104행", 내용_A="§48-E: Stefan-Boltzmann σ ∝ φ^(+1/4) = M_p = 수명 지수  [TZ]",
          위치_B=f"{ENG} 2325–2326행 / {LOG} 707행", 내용_B="기대값 −7/4, '+1/4 … 산술 오기' (정정 S114)",
          비고="엔진 측 정정 기록 있음. 원장 후속_정정 열에 옮김. v3.4 원문 미수정"),
-    dict(항목="§L-7c 브래그 N·σ^(2k+1)/2 < 1 시작 차수 (문구)", 원장_ID=find(lambda r: "§L-7c" in r["별칭"]),
+    dict(항목="§L-7c 브래그 N·σ^(2k+1)/2 < 1 시작 차수 (문구)", 원장_ID=find(lambda r: r["별칭"].startswith("엔진 v9.7 §L-7c")),
          위치_A=f"code/TASKS.md {T7C}행", 내용_A=TK[T7C - 1].strip(),
-         위치_B=f"{LOG} {L7C}행 (같은 줄, 엔진 계산 표기)", 내용_B=LOG_L(L7C).strip(),
+         위치_B=f"{LOG} {L7C}행 (같은 줄, 엔진 계산 표기)", 내용_B=LG[L7C - 1].strip(),
          비고="엔진 출력 '※ TASKS 문구 … 불일치' 줄. 판정 없음"),
 ]
 for n, c in enumerate(CF, 1): c["id"] = f"K{n:04d}"   # 새 충돌은 목록 끝에만 추가 (CLAUDE.md 규칙 7)
@@ -366,41 +446,52 @@ id_guard(os.path.join(OUT, "conflicts.csv"), CF, ("항목",))
 with open(os.path.join(OUT, "conflicts.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=ccols); w.writeheader(); w.writerows(CF)
 
-# ─────────────── sample_check_2.md ───────────────
-random.seed(20261102)
-pick = sorted(random.sample(rows, 10), key=lambda r: r["id"])
-S = ["# sample_check_2.md — 단계 2 표본 대조 (무작위 10행, seed 20261102)\n",
-     "> 원장 행 + 원문 해당 행 인용. MAPSI / perplexity 대조용. 틀린 행이 있으면 단계 2 전체 재점검 (TASKS §7).\n"]
-src_cache = {ENG: SRC, LOG: LG}
+# ─────────────── sample_check_2.md (추가 행 2개 이상 포함) ───────────────
+added = {r["id"] for r in rows if int(r["id"][1:]) > 265}
+seed = 20261103
+while True:
+    random.seed(seed)
+    pick = sorted(random.sample(rows, 10), key=lambda r: int(r["id"][1:]))
+    if sum(r["id"] in added for r in pick) >= 2: break
+    seed += 1
+S = [f"# sample_check_2.md — 단계 2 표본 대조 (무작위 10행, seed {seed}, L0266 이후 추가 행 2개 이상 조건)\n",
+     "> 원장 행 + 근거_위치의 원문 행 인용. 식 열의 ' ‖ ' 는 원문 줄 구분자. MAPSI / perplexity 대조용.",
+     "> 틀린 행이 있으면 단계 2 전체 재점검 (TASKS §7). 자동 대조 결과는 `index/verify_step2.md`.\n"]
 for r in pick:
-    S.append(f"## {r['id']} — {r['항목']}\n")
+    S.append(f"## {r['id']} — {r['항목']}" + ("  (추가 행)" if r["id"] in added else "") + "\n")
     S.append("| 열 | 값 |\n|---|---|")
     for c in COLS[1:]:
         if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
     S.append("\n원문 인용:\n")
-    for fpath, ln in r["_refs"]:
-        S.append(f"- `{fpath}:{ln}`\n  ```\n  {src_cache[fpath][ln-1].strip()}\n  ```")
+    for f, a, b, role in r["_cites"]:
+        S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
+        for n in range(a, min(b, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+        S.append("  ```")
     S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
 with open(os.path.join(OUT, "sample_check_2.md"), "w", encoding="utf-8") as f:
     f.write("\n".join(S) + "\n")
 
-# coverage.md 원장 ID 연결 (단계 1 스크립트 재사용)
+# ─────────────── coverage.md 원장 ID 연결 ───────────────
 import importlib.util
 spec = importlib.util.spec_from_file_location("s1", os.path.join(ROOT, "tools", "build_step1.py"))
 s1 = importlib.util.module_from_spec(spec); spec.loader.exec_module(s1)
 def span(ids):
-    return "" if not ids else (ids[0] if len(ids) == 1 else f"{ids[0]}~{ids[-1]} ({len(ids)})" if
-            int(ids[-1][1:]) - int(ids[0][1:]) == len(ids) - 1 else ", ".join(ids))
+    ids = sorted(ids, key=lambda x: int(x[1:]))
+    if not ids: return ""
+    out, a = [], 0
+    while a < len(ids):
+        b = a
+        while b + 1 < len(ids) and int(ids[b + 1][1:]) == int(ids[b][1:]) + 1: b += 1
+        out.append(ids[a] if a == b else f"{ids[a]}~{ids[b]}"); a = b + 1
+    return ", ".join(out) + (f" ({len(ids)})" if len(ids) > 1 else "")
 links = {}
-for sec in HEAD:
-    links[("eng", sec)] = span([r["id"] for r in rows if r["별칭"] == f"엔진 §{sec}"])
+for sec in HEAD: links[("eng", sec)] = span([r["id"] for r in rows if r["별칭"] == f"엔진 §{sec}"])
+pl = {}
 for r in rows:
-    if r.get("_bline"): links.setdefault(("p", r["_bline"]), []).append(r["id"])
-for k in list(links):
-    if k[0] == "p": links[k] = span(links[k])
+    if r.get("_bline"): pl.setdefault(r["_bline"], []).append(r["id"])
+for k, v in pl.items(): links[("p", k)] = span(v)
 s1.build_coverage(s1.build_doc_map(), links)
 
-from collections import Counter
-print("ledger rows:", len(rows), "| conflicts:", len(CF))
-print("상태:", Counter(r["상태"] for r in rows)); print("등급:", Counter(r["등급"] for r in rows))
+print("ledger rows:", len(rows), "| 새 행:", len(new_reg), "| 묶음 해체 원 ID:", sorted(SPLIT_FIRST), "| conflicts:", len(CF))
+print("상태:", dict(Counter(r["상태"] for r in rows)))
 print("엔진 § (§1~§42) 원장 미연결:", [s for s in HEAD if not any(r["별칭"] == f"엔진 §{s}" for r in rows)])
