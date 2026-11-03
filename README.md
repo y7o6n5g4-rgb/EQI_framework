@@ -12,4 +12,6 @@ EQI 색인 저장소. 작업 규칙은 `CLAUDE.md`, 작업 지시는 `TASKS_inde
 
 상태 목록: 확정 (MAPSI) / 대수필연 / TZ / Near TZ / O 보류 / 해석 I / 결정 대기 / 철회 / 미적용 / 설계 배치 / 폐기(원문 표기).
 
-재생성: `python3 tools/build_step2.py` (원장·대응표·보고서), 검사: `python3 tools/verify_step2.py`, `python3 tools/verify_step7.py`.
+**첫 진입 문서: `index/EQI_색인_v2.md`** (조립본). 주제 지도 `index/topics.md`, 목록 현황 `index/step9_lists.md`.
+
+재생성: `python3 tools/build_step2.py` (원장·대응표·보고서) → `build_step8.py` (주제 지도) → `build_step9.py` (목록) → `build_step10.py` (조립본). 검사: `verify_step2.py`, `verify_step7.py`, `verify_step10.py`.

@@ -569,11 +569,29 @@ K0004 옛 output·terminal 67행 마지막 자리 (해소, 이전 판 git 74b469
   원인: 단계 5·6 상태 토큰 (build_step5.py DEC_RE) 은 '(O)'·'(I)'·'| O |'·'| I |'·'O 보류'·'해석 I' 만 표기로 봄.
   후보 목록일 뿐 상태 표기인지 (변수·원소 기호·절 표지 등) 는 판정하지 않음. L1714 재분류도 하지 않음 (상태 빈칸 그대로).
 
+## 단계 8 결과 — 주제 지도 (`index/topics.md`, `index/topics.csv`)
+
+- `tools/build_step8.py` (원장 읽기만). 필수 키워드 (TASKS §6) 54개 먼저, 원장 키워드 열의 그 밖 키워드 40개 뒤.
+  행 걸기 = build_def.kw_hits (항목+식+별칭) 또는 키워드 열 (문자열 기준). 정렬 = 등록 행 먼저 (근거 순위 엔진 → v3.4 §11 표 → v3.4 → 성과정리 → 인수인계 → 그 밖 → ID), 정의·원칙 행 뒤 (ID 만).
+- 결과: topics.csv 7406 (키워드×행). 필수 키워드 중 등록 행 걸림 46, 정의·원칙 행만 6 (9체·홀로그래픽 투영·우주론·프리드만·D1·D2 배정·세 층 구조·Solar 중 등록 0 인 것), 걸린 행 없음 2 (중력 적색편이, G 배치 — 문자열 기준, 미등록 판정 아님).
+
+## 단계 9 결과 — 목록 정리 (`index/step9_lists.md`, 판정 없음)
+
+- MAPSI 지시: 판정 없이 현재 충돌·중복·후보 목록을 그대로 정리만. 원장·conflicts.csv 변경 없음, 새 K 번호 없음.
+- 현황: 충돌 95 (열림 93, 상태 열 기록 2) / 중복 후보 127쌍 / 연결 후보 928행 / 단계 7 짝 후보 원천 33 / 재분류 후보 10 /
+  coverage A v3.4 머리글 원장 ID 빈칸 85/105 (범위 안 근거 토큰 0 인 머리글 15 — 위치 계산만) / coverage B 엔진 § 빈칸 0/42.
+
+## 단계 10 결과 — 조립본 (`index/EQI_색인_v2.md`, 796줄)
+
+- `tools/build_step10.py`. Part A 원칙 = 원문 줄 인용 37줄 (v3.4 §2·§3·§13, S119 인수인계 140·146행 GAP, v1.1 CUR01, S120 인수인계 필수 5줄·설계 원칙·W-1/W-2·운영 원칙, CLAUDE.md 등급),
+  Part B = 필수 키워드마다 등록 행 앞 3행 (130행) + 정의·원칙 ID (20개 넘으면 '외 N'), 그 밖 키워드 40개 한 줄씩,
+  Part C = 상태 분포·현행_상태·결정 대기 18행·O 보류 60행 ID·B 번호 표기 행·대기 표기·코드 최신판 (S120 인수인계 33–40행 인용)·TZ 누적 **73건** (S115 인수인계 4행·S114 성과정리 5행; v3.4 61건·67건 표기 나란히)·v1.1 현행 32 항목 (원장 연결 문자열 규칙: 3항목만 연결)·목록 현황,
+  Part D = doc_map 요약·S109~S120 최종판 표.
+- 검사: `tools/verify_step10.py` (X1 L 번호 존재 / X2 Part B 상태 칸 = 원장 / X3 Part A 인용 = 원문 줄 / X4 topics.csv 키워드 걸림) → `index/verify_step10.md` 불일치 0. check_chars 통과.
+- 참고: S120 인수인계 (S119 작성) 는 원장 범위 (단계 5 = S109~S119 문서) 밖 — Part A·C 에서 원문 인용으로만 씀.
+
 ## 다음 단계 시작 지점
 
-- 단계 6 독립 대조 통과 (perplexity, 2026-11-03) — `index/evidence/step6_independent_check.md`, `sample_check_6.md` 고정 (파일이 없을 때만 생성, 재생성은 REGEN_SAMPLE_6).
-- 단계 6 표본 대조: `index/sample_check_6.md` 10행 (L0035, L0410, L2349, L2602, L2903, L3185, L3486, L4570, L5637, L5639) 원문 대조 후 결과 회신.
-- 단계 7 표본 대조: `index/sample_check_7.md` 10행 (L3335, L4621, L0809, L0505, L3641, L3653 / 원천 L0178, L0531, L1161, L4852) 원문 대조 후 결과 회신.
-- 단계 7 짝 후보: `index/step7_pair_candidates.md` (원천 33행, 1차 확인 3건 제외) perplexity 확인 → 확정 쌍만 다음 반영. 새 행 L6469 부터, 새 충돌 K0096 부터.
-- 단계 9: `index/reclass_candidates.md` (정의·원칙 행 O·I 표기 10행) 원장 반영 여부 결정.
-- 단계 8 (주제 지도): 등록 행을 정의·원칙 행보다 먼저 정렬. 단계 9: dup_candidates_2to5.md (127쌍) 처리 포함.
+- 단계 1~10 산출물 완성. 남은 일 (MAPSI 지시 대기): 단계 7 짝 후보 33 (perplexity 확인 후 확정 쌍만), 재분류 후보 10, 충돌 93·중복 127·연결 후보 928 의 처리 방침.
+- 새 행 L6469 부터, 새 충돌 K0096 부터.
+- 재생성: `python3 tools/build_step2.py` → `python3 tools/build_step8.py` → `python3 tools/build_step9.py` → `python3 tools/build_step10.py`; 검사 `verify_step2.py`·`verify_step7.py`·`verify_step10.py`.
