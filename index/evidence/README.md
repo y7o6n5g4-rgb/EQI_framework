@@ -13,5 +13,5 @@
 | 5 | `step5_independent_sample_5_5b_5c_quotes.csv` | 〃 | 원문 인용 58줄 대조 (sha256 57089e468bd6a046…) |
 | 5 | `step5_independent_sample_5_5b_5c_ledger_fields.csv` | 〃 | 표본 30행 실제 원장 필드 (sha256 95cf96eab76904d7…) |
 | 5 | `step5_samples5_5b_5c_line_checks.csv` | 〃 | 줄 대조 43행 (sha256 0e56fef89dcedd20…) |
+| 6 | `step6_independent_check.md` | sample_check_6.md | 전달 문구 (통과 통보만, 세부 수치 없음) |
 
-- 단계 6 (`sample_check_6.md`) 대조 결과가 오면 `step6_…` 로 추가.
