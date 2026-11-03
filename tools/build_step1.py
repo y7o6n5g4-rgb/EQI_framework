@@ -88,7 +88,12 @@ def build_doc_map():
                 sess, kind = f"S{int(m2.group(1))}", "세션기록(구형식)"
                 base = f"S{int(m2.group(1))}_{m2.group(2)}"
         if dupn: note.append(f"파일명 ' ({dupn})' 사본 표기")
-        if ext in ("docx", "pdf"): note.append(f"{ext} — 텍스트 추출 필요")
+        if ext == "docx" and os.path.exists(os.path.join(ROOT, "derived", os.path.splitext(n)[0] + ".md")):
+            note.append(f"docx — 변환본 derived/{os.path.splitext(n)[0]}.md (원문 아님, tools/make_derived.py)")
+        elif ext in ("docx", "pdf"): note.append(f"{ext} — 텍스트 추출 필요")
+        if ext in ("md", "txt", "csv"):
+            try: open(p, encoding="utf-8").read()
+            except UnicodeDecodeError: note.append("UTF-8 아닌 바이트 포함 — 색인 도구는 대체 문자로 읽음 (줄 번호는 '\\n' 기준 = grep -n)")
         rows.append(dict(세션=sess, 종류=kind, 분류=classify(n), 파일명=n,
                          판본=("v" + ver) if ver else "", 바이트=os.path.getsize(p), 형식=ext,
                          _base=base, _ver=ver, 비고="; ".join(note),

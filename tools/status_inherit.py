@@ -12,7 +12,8 @@
      v3.4 §11 (행에 붙은 §11 표 토큰) → 색인 v1.1 현행항목 csv → 세션 성과정리 최종판 (세션 번호 순) → 인수인계 최종판 (세션 번호 순).
      조건 (문자열 기준, 해석 없음): 그 줄이 행의 식 첫 조각을 공백 제거 후 그대로 포함하고, 상태 목록 표기를 가짐.
      처음 찾은 줄의 표기를 상태로 쓰고 상태_출처에 위치·표기·'(내려받기)' 를 적는다. 끝까지 없으면 빈칸 + 그 사실.
-  docx 최종판 (S29·S37·S109·S110 성과정리, S111 인수인계) 은 행 번호를 원문 그대로 인용할 수 없어 검색하지 않는다 (기록).
+  docx 최종판 (S29·S37·S109·S110 성과정리, S111 인수인계) 은 derived/ 변환본 (tools/make_derived.py) 으로 검색하고,
+  상태_출처에 변환본 경로·행 + '원문 docx 변환본' 을 적는다 (2026-11-03 MAPSI 지시).
 """
 import csv, os, re
 
@@ -60,10 +61,14 @@ def pick_token(line, key=None):
 def tiers(root):
     dm = list(csv.DictReader(open(os.path.join(root, "index", "doc_map.csv"), encoding="utf-8")))
     sess = lambda r: int(r["세션"][1:]) if r["세션"] else 0
-    fin = [r for r in dm if r["분류"] == "sessions" and r["최종판"] == "Y" and r["형식"] == "md"]
+    def path_of(r):     # docx 최종판은 derived/ 변환본 (tools/make_derived.py) 으로 검색
+        if r["형식"] == "md": return r["상대경로"]
+        d = os.path.join("derived", os.path.splitext(r["파일명"])[0] + ".md")
+        return d if r["형식"] == "docx" and os.path.exists(os.path.join(root, d)) else None
+    fin = [dict(r, 상대경로=path_of(r)) for r in dm if r["분류"] == "sessions" and r["최종판"] == "Y" and path_of(r)]
     so = sorted([r for r in fin if r["종류"] == "성과정리"], key=sess)
     ho = sorted([r for r in fin if r["종류"] == "인수인계"], key=sess)
-    skipped = sorted(r["파일명"] for r in dm if r["분류"] == "sessions" and r["최종판"] == "Y" and r["형식"] != "md"
+    skipped = sorted(r["파일명"] for r in dm if r["분류"] == "sessions" and r["최종판"] == "Y" and not path_of(r)
                      and r["종류"] in ("성과정리", "인수인계"))
     return [("v1.1 현행항목", [V11])], [("성과정리", [r["상대경로"] for r in so]), ("인수인계", [r["상대경로"] for r in ho])], skipped
 
@@ -137,7 +142,8 @@ def apply(rows, ctx):
                         for n, t in enumerate(L(rel), 1):
                             if key in nz(t):
                                 tok = pick_token(t, key)
-                                if tok: hit = (f"문서 {rel} {n}행", tok, tier); break
+                                if tok:
+                                    hit = (f"문서 {rel} {n}행", tok, tier + (" (원문 docx 변환본)" if rel.startswith("derived/") else "")); break
                         if hit: break
                     if hit: break
         if hit:

@@ -27,7 +27,7 @@ TASKS §1 은 `docs/v3_4`, `docs/sessions` … 하위 폴더 구조를 가정하
 | 1 골격 | **완료** (2026-11-02, 보충 반영) | 0 | 0 | doc_map.csv, coverage.md 초안, tools/build_step1.py | 원장 행 없음 → 표본 대조(§7) 해당 없음 |
 | 2 엔진 § | **완료 · 독립 대조 통과** (perplexity, 2026-11-02) | 332 (L0001~L0332) | 6 (K0001~K0006, K0004 해소) | ledger.csv, id_registry.csv, conflicts.csv, verify_step2.md, sample_check_2.md (고정), coverage.md, tools/build_step2.py·verify_step2.py·make_id_registry.py | 자동 대조 전 행 일치 / 표본 10행 독립 대조 불일치 0 |
 | 3 v3.4 §11 | **완료 · 독립 대조 통과** (perplexity, 2026-11-03) | 6 (L0333~L0338) + 근거 위치 추가 42행 | +4 (K0007~K0010; K0007 해소) | map_step3.csv, verify_step3.md, sample_check_3.md (고정), tools/build_step3.py·verify_step3.py | 표본 10행 인용 61줄 일치 |
-| 4a v3.4 §12~§30 | **완료** (2026-11-03) | 93 (L0339~L0431) + 근거 위치 추가 16행 | +5 (K0011~K0015) | map_step4a.csv, verify_step4a.md, sample_check_4a.md, tools/build_step4a.py·verify_step4a.py | 표본 10행 대조 대기 |
+| 4a v3.4 §12~§30 | **완료 · 독립 대조 통과** (perplexity, 2026-11-03) | 93 (L0339~L0431) + 근거 위치 추가 16행 | +5 (K0011~K0015) | map_step4a.csv, verify_step4a.md, sample_check_4a.md (고정), tools/build_step4a.py·verify_step4a.py | 표본 인용 31줄 일치 |
 | 4b v3.4 캡슐 S79~S108 | 대기 | | | | |
 | 5 S109~S119 | 대기 | | | | |
 | 6 S1~S108 | 대기 | | | | |
@@ -265,6 +265,25 @@ K0004 옛 output·terminal 67행 마지막 자리 (해소, 이전 판 git 74b469
   결함 주입 (상태 줄 누락, 잘못된 병합, 식 덧붙임, 병합 토큰 삭제, 충돌 누락) 모두 검출.
   `tools/verify_step2.py` (원장 전체 431행, V8 포함) 전부 일치, `verify_step3.py` 불일치 0. 재생성 두 번 바이트 동일. id_guard 통과.
 - 표본: `index/sample_check_4a.md` (seed 20261106, 4a 묶음 중 10행, 새 행·근거 추가 행 각 2개 이상): L0033, L0184, L0292, L0340, L0353, L0364, L0374, L0402, L0406, L0431.
+
+## 단계 4a 독립 대조 통과 (perplexity, 2026-11-03)
+
+- 표본 10행 (L0033, L0184, L0292, L0340, L0353, L0364, L0374, L0402, L0406, L0431): 인용 31줄 일치.
+- 근거 추가 3행 (L0033, L0184, L0292): 첫 변 일치. 블록 표제 상태 전달 L0402·L0406: 원문 (2020행 '…18개 ALL TZ [S76]') 확인.
+- 상태 내려받기 4행 (L0003·L0004·L0005·L0090): 출처 행에 식·상태 실재. S38·S40 성과정리 blob SHA 일치.
+- `index/sample_check_4a.md` 고정 (build_step2.py 는 파일이 없을 때만 생성; 재생성은 환경변수 REGEN_SAMPLE_4A 를 줄 때만).
+
+## 단계 4b 준비 (MAPSI 지시 반영, 2026-11-03)
+
+- **CLAUDE.md 규칙 4**: '명시 표기 비내려받기 원칙' 을 굵은 원칙 항목으로 명시 — 1순위의 정수·값만·'-'·통과·귀속 검토 중·탐색 완료·폐기 표기는
+  1순위 상태 표기이며, 다음 순위에 등급이 있어도 내려받지 않음. docx 원문은 derived/ 변환본으로 검색한다는 항목 추가.
+- **CLAUDE.md 규칙 1**: 원문 위치 = `성과정리문서/`·`code/`, `derived/` = 원문 docx 의 pandoc 변환본 (원문 아님, 인용 시 원문 docx 파일명 병기).
+- **derived/ 커밋**: `tools/make_derived.py` (pandoc 3.1.3, `-f docx -t gfm --wrap=none`) — doc_map 분류 sessions·foundation 의 docx 6개
+  (S29·S37·S109·S110 성과정리, S111 인수인계, EQI_119_압축본_v10). `derived/README.md` 에 원문 경로·sha256·행 수. 두 번 실행 결과 동일.
+  그 밖의 docx (Framework v3~v17 등 역사 문서 19개) 는 아직 변환하지 않음.
+- 상태 내려받기 검색에 derived/ 변환본 포함 (세션 번호 순서 그대로). 재실행 결과 바뀐 행 없음 (내려받기 4행 그대로, 다음 순위에도 없음 9행 그대로).
+- **비UTF-8 비고**: doc_map.csv 비고 열에 "UTF-8 아닌 바이트 포함 — 색인 도구는 대체 문자로 읽음 (줄 번호는 '\n' 기준 = grep -n)" —
+  `EQI_Session50_성과정리_v1.md`, `EQI_Framework_v15_update_session20.md` (역사 문서, 아직 검색 대상 아님). docx 행에는 변환본 경로 비고.
 
 ## 다음 단계 시작 지점
 
