@@ -36,7 +36,7 @@ GRADE_MAP = [("TZ(대수필연)", "대수필연", "대수필연"), ("True Zero(�
              ("Near True Zero", "Near TZ", "Near TZ"), ("Near TZ", "Near TZ", "Near TZ"),
              ("True Zero", "TZ", "TZ"), ("Real Zero", "Real Zero", "Real Zero"),
              ("대수필연", "대수필연", "대수필연"), ("TZ", "TZ", "TZ")]
-RANK = {"": 0, "미적용": 0, "Real Zero": 1, "Near TZ": 2, "TZ": 3, "대수필연": 4}
+RANK = {"": 0, "미적용": 0, "O 보류": 0, "Real Zero": 1, "Near TZ": 2, "TZ": 3, "대수필연": 4}
 WORD = {"TZ": ["True Zero", "TZ"], "Near TZ": ["Near TZ", "Near True Zero"], "Real Zero": ["Real Zero"],
         "대수필연": ["대수필연"], "미적용": ["미적용"]}
 GPH = re.compile(r"(True Zero\(대수필연\)|TZ\(대수필연\)|Near True Zero|Near TZ|탐색 완료\(NTZ\)|True Zero|Real Zero|대수필연|미적용)")
@@ -126,7 +126,7 @@ for r in rows:
             for ro in order:
                 if prim[0] == "v3.4" and ro in ("본문", "블록 등급"):     # v3.4 본문 (단계 4a): 줄들 합친 문자열의 마지막 등급, 없으면 첫 상태 표기
                     jt = " ".join(x[3] for x in texts if x[2] == ro and x[0] == "v3.4")
-                    found = body_token(jt)
+                    found = "보류" if "보류" in jt else body_token(jt)
                     if found: break
                     continue
                 for x in texts:
@@ -134,7 +134,7 @@ for r in rows:
                         gm = GPH.findall(x[3]) if ro == "§11 표" else ([GPH.search(x[3]).group(1)] if GPH.search(x[3]) else [])
                         if gm: found = gm[-1]; break
                 if found: break
-            exp_st, exp_gr = map_any(found) if found != "미적용" else ("미적용", "없음")
+            exp_st, exp_gr = (("O 보류", "없음") if found == "보류" else map_any(found)) if found != "미적용" else ("미적용", "없음")
             if r["상태"] != exp_st:
                 tag = "V5 상태 올림" if RANK.get(r["상태"], 0) > RANK.get(exp_st, 0) else "V4 상태 불일치"
                 why.append(f"{tag}: 원문 표기 '{found or '없음'}'→'{exp_st or '빈칸'}', 원장 '{r['상태'] or '빈칸'}'")
@@ -183,7 +183,7 @@ for r in rows:
             t = F[m.group(1)][int(m.group(2)) - 1]
             if m.group(4) not in t: why.append(f"V8 상태_출처 줄에 표기 '{m.group(4)}' 없음")
             if not any(c[0] == m.group(1) and c[1] <= int(m.group(2)) <= c[2] for c in toks): why.append("V8 상태_출처 줄이 근거_위치에 없음")
-            tk = m.group(4); want = "미적용" if tk == "미적용" else map_any(tk)[0]
+            tk = m.group(4); want = "미적용" if tk == "미적용" else ("O 보류" if tk == "보류" else map_any(tk)[0])
             if want != r["상태"]: why.append(f"V8 상태_출처 표기 '{tk}'→'{want}' ≠ 원장 '{r['상태']}'")
     # V6
     if r["등록_세션"]:

@@ -90,7 +90,12 @@ def apply(rows, ctx):
         if r["상태"]:
             # ① 표기 위치: 주 원문 역할 우선, 그다음 같은 행의 등급 역할 토큰
             src = None
-            if role == "항목":
+            if r["상태"] == "O 보류":          # 보류 우선 행 (build_step4a): '보류' 표기 줄
+                for c in cites:
+                    for n in range(c[1], c[2] + 1):
+                        if "보류" in FILES[c[0]][n - 1]: src = f"{TAG[c[0]]} {n}행 [{c[3]}] '보류'"; break
+                    if src: break
+            if src is None and role == "항목":
                 fs = [x.strip() for x in re.sub(r"^\s*\[[^\]]*\]\s*", "", ptxt[0]).split(" | ")]
                 g = fs[4] if len(fs) >= 6 else (fs[3] if len(fs) == 5 else (fs[2] if len(fs) == 4 else ""))
                 if r["별칭"].startswith("엔진 v9.7 §C-주석"): g = "미적용"
@@ -107,6 +112,11 @@ def apply(rows, ctx):
                         tok = m.group(1) if m else (last_grade(t) or pick_token(t))
                         if tok:
                             src = f"{TAG[c[0]]} {n}행 [{c[3]}] '{tok}'"; break
+                    if src: break
+            if src is None and r["상태"] == "O 보류":
+                for c in cites:
+                    for n in range(c[1], c[2] + 1):
+                        if "보류" in FILES[c[0]][n - 1]: src = f"{TAG[c[0]]} {n}행 [{c[3]}] '보류'"; break
                     if src: break
             if src is None: raise SystemExit(f"상태 표기 위치를 찾지 못함: {r['id']}")
             r["상태_출처"] = src + " — 1순위"

@@ -365,7 +365,8 @@ s4a = _ilu.module_from_spec(_sp4); _sp4.loader.exec_module(s4a)
 _spt = _ilu.spec_from_file_location("si0", os.path.join(ROOT, "tools", "status_inherit.py"))
 _si0 = _ilu.module_from_spec(_spt); _spt.loader.exec_module(_si0)
 CTX["TOKMAP"] = _si0.TOKMAP
-s4a.apply(CTX)
+s4a.apply(CTX, "4a")
+s4a.apply(CTX, "4b")      # 단계 4b: v3.4 캡슐 블록 S79~S108 (2211행 ~ 파일 끝), 같은 규칙
 
 # ─────────────── ID 부여 (등록부 고정, 규칙 7) ───────────────
 reg = list(csv.DictReader(open(REG, encoding="utf-8")))
@@ -435,7 +436,8 @@ if new_reg:
         w.writeheader(); w.writerows([{**x, "분리_원ID": x.get("분리_원ID", "")} for x in reg + new_reg])
 
 s3.write_map(CTX, os.path.join(OUT, "map_step3.csv"))
-s4a.write_map(CTX, os.path.join(OUT, "map_step4a.csv"))
+s4a.write_map(CTX, os.path.join(OUT, "map_step4a.csv"), "4a")
+s4a.write_map(CTX, os.path.join(OUT, "map_step4b.csv"), "4b")
 
 # ─────────────── conflicts.csv (K 번호 고정, 새 충돌은 끝에만) ───────────────
 def find(pred): return next(r["id"] for r in rows if pred(r))
@@ -480,7 +482,7 @@ for c3 in CTX["step3_conf"]:
                    위치_B=f"{V34} {c3['ln']}행 (§11 표)", 내용_B=FILES[V34][c3['ln'] - 1].strip(),
                    비고=f"v3.4 표기 '{c3['g']}' (옮기면 '{c3['st']}'). 등록 표 우선 순서 (CLAUDE.md 규칙 4) 에 따라 원장 상태는 엔진 표기 유지. 판정 없음"))
 # 단계 4a: v3.4 본문 줄 표기와 원장 상태가 다른 곳 (판정 없음)
-for c4 in CTX["step4a_conf"]:
+for c4 in CTX["step4a_conf"] + CTX["step4b_conf"]:
     ids = ", ".join(r["id"] for r in c4["rows_"])
     r0 = c4["rows_"][0]
     CF.append(dict(항목=f"v3.4 본문 {c4['ln']}행 '{c4['text'][:40]}' 상태 (원장 / v3.4 본문)", 원장_ID=ids,
@@ -584,6 +586,36 @@ if not os.path.exists(os.path.join(OUT, "sample_check_4a.md")) or os.environ.get
     with open(os.path.join(OUT, "sample_check_4a.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(S) + "\n")
 
+# ─────────────── sample_check_4b.md (단계 4a 묶음: 새 행 + 근거 위치 추가 행, 각 2개 이상) ───────────────
+b4b_ = sorted({id(m_["_row"]): m_["_row"] for m_ in CTX["step4b_map"]}.values(), key=lambda r: int(r["id"][1:]))
+new4b_ = {m_["_row"]["id"] for m_ in CTX["step4b_map"] if m_["대응"] == "새 행"}
+if not os.path.exists(os.path.join(OUT, "sample_check_4b.md")) or os.environ.get("REGEN_SAMPLE_4B"):
+    seed4 = 20261106
+    while True:
+        random.seed(seed4)
+        pick4 = sorted(random.sample(b4b_, 10), key=lambda r: int(r["id"][1:]))
+        nn = sum(r["id"] in new4b_ for r in pick4)
+        kind_ = {m_["_row"]["id"]: m_["종류"] for m_ in CTX["step4b_map"]}
+        sp = sum(1 for r in pick4 if kind_.get(r["id"]) in ("R3", "R5") or r["상태"] == "O 보류")
+        if nn >= 2 and sp >= 2 and 10 - nn >= 1: break
+        seed4 += 1
+    S = [f"# sample_check_4b.md — 단계 4b 표본 대조 (v3.4 캡슐 블록 S79~S108, 2211행~끝 묶음 {len(b4b_)}행 중 무작위 10행, seed {seed4}, 새 행 2개 이상 · R3/R5/보류 행 2개 이상 · 근거 추가 행 1개)\n",
+         "> 원장 행 + 근거_위치의 원문 행 인용. 식 열의 ' ‖ ' 는 원문 줄 구분자.",
+         "> 행 단위 규칙 R1~R4·같은 항목 판정은 `tools/build_step4a.py` 머리말, 줄별 결과는 `index/map_step4b.csv`, 자동 대조는 `index/verify_step4b.md`.\n"]
+    for r in pick4:
+        S.append(f"## {r['id']} — {r['항목']}" + ("  (단계 4b 새 행)" if r["id"] in new4b_ else "  (기존 행 + v3.4 본문 근거 추가)") + "\n")
+        S.append("| 열 | 값 |\n|---|---|")
+        for c in COLS[1:]:
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
+        S.append("\n원문 인용:\n")
+        for f, a, b, role in r["_cites"]:
+            S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
+            for n in range(a, min(b, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+            S.append("  ```")
+        S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
+    with open(os.path.join(OUT, "sample_check_4b.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(S) + "\n")
+
 # ─────────────── coverage.md 원장 ID 연결 ───────────────
 import importlib.util
 spec = importlib.util.spec_from_file_location("s1", os.path.join(ROOT, "tools", "build_step1.py"))
@@ -603,7 +635,7 @@ pl = {}
 for r in rows:
     if r.get("_bline"): pl.setdefault(r["_bline"], []).append(r["id"])
 for k, v in pl.items(): links[("p", k)] = span(v)
-for h_, r_ in CTX["step4a_sec"]:
+for h_, r_ in CTX["step4a_sec"] + CTX["step4b_sec"]:
     links.setdefault(("v34l", h_), []).append(r_["id"])
 for k_ in [k for k in links if k[0] == "v34l"]:
     links[("v34", k_[1])] = span(sorted(set(links.pop(k_)), key=lambda x: int(x[1:])))

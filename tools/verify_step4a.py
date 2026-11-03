@@ -10,16 +10,24 @@
   X5 블록 등급 : R3 행의 '블록 등급' 토큰 줄에 'ALL TZ'
   X6 상태 차이 : 대응표 상태_대조 '다름' 인 줄은 conflicts.csv 위치_B 에 그 줄 번호로 기록
   X7 제외 사유 : '수식 문자 없는' 제외 줄에 수식 문자 없음, '굵은 블록 표제' 제외 줄은 ** 로 시작
+  X5 보충     : R3 행 비고에 블록 표제 행 번호 (MAPSI 지시, 2026-11-03)
+  X8 R5       : § 현황 줄은 '§' 로 시작   X9 보류 우선 : '보류' 가 들어 있는 행의 상태 = O 보류
+실행: python3 tools/verify_step4a.py [4a|4b]
 실행: python3 tools/verify_step4a.py
 """
-import csv, os, re
+import csv, os, re, sys
+TAG = sys.argv[1] if len(sys.argv) > 1 else "4a"      # 4a: §12~§30 / 4b: 캡슐 블록 S79~S108 (2211행 ~ 끝)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 V34 = "성과정리문서/EQI_연구지침_프로젝트용_v3_4.md"
 V = [l.rstrip("\r\n") for l in open(os.path.join(ROOT, V34), encoding="utf-8").read().split("\n")]
 rd = lambda n: list(csv.DictReader(open(os.path.join(ROOT, "index", n), encoding="utf-8")))
-led = {r["id"]: r for r in rd("ledger.csv")}; mp = rd("map_step4a.csv"); cf = rd("conflicts.csv")
-S0 = next(i for i, l in enumerate(V, 1) if l.startswith("## §12."))
-E0 = next(i for i, l in enumerate(V, 1) if l.startswith("## §S79/S80")) - 1
+led = {r["id"]: r for r in rd("ledger.csv")}; mp = rd(f"map_step{TAG}.csv"); cf = rd("conflicts.csv")
+if TAG == "4a":
+    S0 = next(i for i, l in enumerate(V, 1) if l.startswith("## §12."))
+    E0 = next(i for i, l in enumerate(V, 1) if l.startswith("## §S79/S80")) - 1
+else:
+    S0 = next(i for i, l in enumerate(V, 1) if l.startswith("## §S79/S80"))
+    E0 = len(V) - (1 if V[-1] == "" else 0)
 STAT = re.compile(r"True Zero|Near TZ|Real Zero|대수필연|(?<![A-Za-z])TZ(?![A-Za-z(])|결정 대기|O 보류|해석 I|설계 배치|(?<![불미])확정|철회|미적용")
 MATH = re.compile(r"[=≈<>∝×φ^π√/]")
 nz = lambda s: re.sub(r"\s+", "", s)
@@ -59,6 +67,9 @@ for m in mp:
             if m["종류"] == "R3":
                 bg = [int(x) for x, y, ro in toks if ro == "블록 등급"]
                 if not bg or "ALL TZ" not in V[bg[0] - 1]: why.append("X5 블록 등급 줄에 'ALL TZ' 없음")
+                elif f"v3.4 {bg[0]}행" not in r["비고"]: why.append("X5 비고에 블록 표제 행 번호 없음")
+            if m["종류"] == "R5" and not V[a - 1].strip().startswith("§"): why.append("X8 R5 줄이 § 로 시작하지 않음")
+            if "보류" in " ".join(parts) and r["상태"] != "O 보류": why.append("X9 '보류' 줄인데 상태 ≠ O 보류")
         else:
             if not any(x <= a <= y for x, y in body): why.append("X3 원장 행에 v3.4 토큰 없음")
             secs = {int(x) for k in range(a, b + 1) for x in re.findall(r"§(\d+)(?![-\d])", V[k - 1]) if int(x) <= 42}
@@ -75,7 +86,7 @@ for m in mp:
     res.append((m, why))
 from collections import Counter
 k = Counter(m["종류"] for m in mp); d = Counter(m["대응"] for m in mp if m["종류"] != "제외")
-O = ["# verify_step4a.md — 단계 4a (v3.4 본문 §12~§30) 자동 대조\n",
+O = [f"# verify_step{TAG}.md — 단계 {TAG} (" + ("v3.4 본문 §12~§30" if TAG == "4a" else "v3.4 캡슐 블록 S79~S108") + ") 자동 대조\n",
      f"> 생성: `python3 tools/verify_step4a.py`. 원문: `{V34}` {S0}~{E0}행. 원장 전체 원문 대조는 `index/verify_step2.md`.\n",
      "## 요약\n",
      f"- 대응표 행: {len(mp)} — 종류 {dict(k)} / 대응 {dict(d)}",
@@ -86,5 +97,5 @@ O = ["# verify_step4a.md — 단계 4a (v3.4 본문 §12~§30) 자동 대조\n",
 for m, why in res:
     O.append("| " + " | ".join(x.replace("|", "∣") for x in [m["v34행"], m["종류"], m["원장_ID"], m["대응"], m["표기"], m["상태_대조"], m["공통"], m["원문"][:60]])
              + f" | {'불일치: ' + '; '.join(why) if why else '일치'} |")
-open(os.path.join(ROOT, "index", "verify_step4a.md"), "w", encoding="utf-8").write("\n".join(O) + "\n")
+open(os.path.join(ROOT, "index", f"verify_step{TAG}.md"), "w", encoding="utf-8").write("\n".join(O) + "\n")
 print(f"대응표 {len(mp)} {dict(k)} / 불일치 {len(bad)}", bad[:5])
