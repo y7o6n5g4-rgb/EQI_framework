@@ -326,7 +326,7 @@ for it in items:
     err = p["err"] + (f" (판정 열: {p['grade']})" if p["grade"] else "")
     err = err.strip()
     formula = SEP.join([p["label"]] + [t for _, t in subs])
-    name = re.sub(r"\s*\(기대[^)]*\)", "", p["label"]).strip()
+    name = p["label"]          # 원문 라벨 그대로 (2026-11-03 MAPSI 정정: '(기대 …)' 삭제 등 원문 문자 변경 금지)
     fix, note = "", ""
     if xid == "§L-4":
         fix = "S114 정정: 기대값 −7/4. 구 기대값 +1/4 (S77 §48-E, 단위계 철학 v3 §11.1, v3.4 2104행) 산술 오기 — 엔진 소스 2325–2326행"
@@ -412,7 +412,9 @@ def id_guard(path, new_rows, keys, allow=()):
         raise SystemExit(f"ID 불변 규칙 위반 ({os.path.basename(path)}): {bad[:10]} … — 기존 ID 를 바꾸거나 지우지 말 것")
 
 rows.sort(key=lambda r: int(r["id"][1:]))
-id_guard(os.path.join(OUT, "ledger.csv"), rows, ("항목", "별칭"), allow=SPLIT_FIRST)
+# 항목 원문 복원 (2026-11-03 MAPSI 정정: 원문 문자 대체·삭제 금지) — 이전 판이 '(기대 …)' 를 지운 12행. ID 유지, 항목만 원문으로.
+RESTORED_ITEM = {"L0114", "L0115", "L0116", "L0145", "L0278", "L0284", "L0290", "L0296", "L0302", "L0308", "L0314", "L0320"}
+id_guard(os.path.join(OUT, "ledger.csv"), rows, ("항목", "별칭"), allow=SPLIT_FIRST | RESTORED_ITEM)
 for r in rows:
     if r["id"] in SPLIT_FIRST:
         r["비고"] = ("묶음 해체: 첫 원문 줄만 유지 (MAPSI 단계 2 정정 (1)); " + r["비고"]).rstrip("; ")
@@ -520,7 +522,7 @@ if not os.path.exists(os.path.join(OUT, "sample_check_2.md")):
         S.append(f"## {r['id']} — {r['항목']}" + ("  (추가 행)" if r["id"] in added else "") + "\n")
         S.append("| 열 | 값 |\n|---|---|")
         for c in COLS[1:]:
-            if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', '\\|')} |")
         S.append("\n원문 인용:\n")
         for f, a, b, role in r["_cites"]:
             S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
@@ -548,7 +550,7 @@ if not os.path.exists(os.path.join(OUT, "sample_check_3.md")):
         S.append(f"## {r['id']} — {r['항목']}" + ("  (단계 3 새 행)" if r["id"] in new3 else "  (엔진 행 + v3.4 근거 추가)") + "\n")
         S.append("| 열 | 값 |\n|---|---|")
         for c in COLS[1:]:
-            if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', '\\|')} |")
         S.append("\n원문 인용:\n")
         for f, a, b, role in r["_cites"]:
             S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
@@ -576,7 +578,7 @@ if not os.path.exists(os.path.join(OUT, "sample_check_4a.md")) or os.environ.get
         S.append(f"## {r['id']} — {r['항목']}" + ("  (단계 4a 새 행)" if r["id"] in new4 else "  (기존 행 + v3.4 본문 근거 추가)") + "\n")
         S.append("| 열 | 값 |\n|---|---|")
         for c in COLS[1:]:
-            if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', '\\|')} |")
         S.append("\n원문 인용:\n")
         for f, a, b, role in r["_cites"]:
             S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
@@ -606,7 +608,7 @@ if not os.path.exists(os.path.join(OUT, "sample_check_4b.md")) or os.environ.get
         S.append(f"## {r['id']} — {r['항목']}" + ("  (단계 4b 새 행)" if r["id"] in new4b_ else "  (기존 행 + v3.4 본문 근거 추가)") + "\n")
         S.append("| 열 | 값 |\n|---|---|")
         for c in COLS[1:]:
-            if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', '\\|')} |")
         S.append("\n원문 인용:\n")
         for f, a, b, role in r["_cites"]:
             S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")

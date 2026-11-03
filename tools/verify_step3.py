@@ -67,6 +67,6 @@ O = ["# verify_step3.md — 단계 3 (v3.4 §11) 대응 자동 대조\n",
      "## 대응표 행별 결과\n", "| v3.4 행 | 조각 | 원장 ID | 대응 | 공통 변 / 근거 | 등급 대조 | 오차 대조 | 결과 |", "|---|---|---|---|---|---|---|---|"]
 for m, why in res:
     basis = m["공통변"] if m["공통변"] not in ("—", "") and not m["공통변"].startswith("공통 변 없음") else (m["근거"] or m["공통변"])
-    O.append(f"| {m['v34행']} | {m['조각'].replace('|', '∣')} | {m['원장_ID']} | {m['대응']} | {basis.replace('|', '∣')} | {m['등급_대조']} | {m['오차_대조']} | {'불일치: ' + '; '.join(why) if why else '일치'} |")
+    O.append(f"| {m['v34행']} | {m['조각'].replace('|', '\\|')} | {m['원장_ID']} | {m['대응']} | {basis.replace('|', '\\|')} | {m['등급_대조']} | {m['오차_대조']} | {'불일치: ' + '; '.join(why) if why else '일치'} |")
 open(os.path.join(ROOT, "index", "verify_step3.md"), "w", encoding="utf-8").write("\n".join(O) + "\n")
 print(f"표 행 {len(table)} / 대응 {len(mp)} (추가 {len(add)}, 새 {len(new)}) / 불일치 {len(bad)}", bad[:5])

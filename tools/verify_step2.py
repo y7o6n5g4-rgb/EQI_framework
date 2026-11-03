@@ -211,13 +211,13 @@ O = ["# verify_step2.md — 단계 2 원장 전체 자동 대조\n",
 if bad:
     O.append("## 불일치 행\n\n| id | 항목 | 사유 |\n|---|---|---|")
     for r, w in bad:
-        O.append(f"| {r['id']} | {r['항목'][:50].replace('|', '∣')} | {'; '.join(w).replace('|', '∣')} |")
+        O.append(f"| {r['id']} | {r['항목'][:50].replace('|', '\\|')} | {'; '.join(w).replace('|', '\\|')} |")
     O.append("")
 O.append("## 행별 결과\n\n| id | 판정 | 주 원문 줄 | 상태 | 등록_세션 | 사유 |\n|---|---|---|---|---|---|")
 for r, w in res:
     m = TOK.search(r["근거_위치"])
     prim = f"{m.group(1)} {m.group(2)}" + (f"–{m.group(3)}" if m.group(3) else "") + f" [{m.group(4)}]" if m else ""
-    O.append(f"| {r['id']} | {'불일치' if w else '일치'} | {prim} | {r['상태'] or '—'} | {r['등록_세션'] or '—'} | {'; '.join(w).replace('|', '∣')} |")
+    O.append(f"| {r['id']} | {'불일치' if w else '일치'} | {prim} | {r['상태'] or '—'} | {r['등록_세션'] or '—'} | {'; '.join(w).replace('|', '\\|')} |")
 with open(OUTMD, "w", encoding="utf-8") as f:
     f.write("\n".join(O) + "\n")
 print(f"rows={len(rows)} 일치={len(rows) - len(bad)} 불일치={len(bad)} id_ok={id_ok}", dict(cnt))

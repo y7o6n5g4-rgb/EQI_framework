@@ -95,7 +95,7 @@ O = [f"# verify_step{TAG}.md — 단계 {TAG} (" + ("v3.4 본문 §12~§30" if T
      f"- **불일치: {len(bad)}**" + ("" if not bad else " — " + "; ".join(bad[:20])), "",
      "## 대응표 행별 결과\n", "| v3.4 행 | 종류 | 원장 ID | 대응 | 표기 | 상태 대조 | 근거 / 후보 | 원문 | 결과 |", "|---|---|---|---|---|---|---|---|---|"]
 for m, why in res:
-    O.append("| " + " | ".join(x.replace("|", "∣") for x in [m["v34행"], m["종류"], m["원장_ID"], m["대응"], m["표기"], m["상태_대조"], m["공통"], m["원문"][:60]])
+    O.append("| " + " | ".join(x.replace("|", "\\|") for x in [m["v34행"], m["종류"], m["원장_ID"], m["대응"], m["표기"], m["상태_대조"], m["공통"], m["원문"][:60]])
              + f" | {'불일치: ' + '; '.join(why) if why else '일치'} |")
 open(os.path.join(ROOT, "index", f"verify_step{TAG}.md"), "w", encoding="utf-8").write("\n".join(O) + "\n")
 print(f"대응표 {len(mp)} {dict(k)} / 불일치 {len(bad)}", bad[:5])

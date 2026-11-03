@@ -184,7 +184,7 @@ def build_coverage(rows, links=None):
     L.append("| 행 | 수준 | 제목 | 원장 ID |")
     L.append("|---|---|---|---|")
     for i, lv, t in hs:
-        L.append(f"| {i} | {'#'*lv} | {t.replace('|', '∣')} | {links.get(('v34', i), '')} |")
+        L.append(f"| {i} | {'#'*lv} | {t.replace('|', '\\|')} | {links.get(('v34', i), '')} |")
     L.append("")
     L.append("### A-1. 구조 메모 (원문 열람 확인 사항, 판정 아님)\n")
     caps = [(i, t) for i, lv, t in hs if t.startswith("[S9") and lv == 3]
@@ -202,7 +202,7 @@ def build_coverage(rows, links=None):
     L.append("|---|---|---|---|---|---|")
     for s in sorted(set(head) | set(title) | set(checks)):
         h = head.get(s, ("", ""))
-        L.append(f"| §{s} | {h[1].replace('|', '∣')} | {h[0]} | {rng(title.get(s, []))} | {rng(checks.get(s, []))} | {links.get(('eng', s), '')} |")
+        L.append(f"| §{s} | {h[1].replace('|', '\\|')} | {h[0]} | {rng(title.get(s, []))} | {rng(checks.get(s, []))} | {links.get(('eng', s), '')} |")
     nck = sum(len(v) for v in checks.values())
     L.append(f"\n- 머리말 표 § 수: {len(head)} (§{min(head)}~§{max(head)}), ✓ 줄 중 §번호 포함: {nck}")
     allck = sum(1 for l in read_lines(ENGO) if "✓" in l)
@@ -219,7 +219,7 @@ def build_coverage(rows, links=None):
     for b in pblocks:
         ids = ", ".join(f"{i}({ln})" for i, ln in b["items"]) if len(b["items"]) <= 12 else \
               f"{b['items'][0][0]}({b['items'][0][1]}) … {b['items'][-1][0]}({b['items'][-1][1]})"
-        L.append(f"| {b['id']} | {b['title'].replace('|','∣')} | {b['line']} | {len(b['items'])} | {ids} | {rng(psrc.get(b['id'], []))} | {links.get(('p', b['line']), '')} |")
+        L.append(f"| {b['id']} | {b['title'].replace('|', '\\|')} | {b['line']} | {len(b['items'])} | {ids} | {rng(psrc.get(b['id'], []))} | {links.get(('p', b['line']), '')} |")
     L.append("")
     # C. sessions
     L.append("## C. 세션 문서 보유 현황 (doc_map.csv 요약)\n")
