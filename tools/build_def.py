@@ -46,28 +46,53 @@ def candidates(V, used_lines, tokens):
         if h: out.append((n, h))
     return out
 
-def apply(ctx):
+NARROW = re.compile(r"MAPSI|원칙|정의|공리|선언|(?<![불미])확정")   # 단계 6 좁힌 기준 (MAPSI 2026-11-03): 줄 또는 가장 가까운 상위 머리글
+
+def apply(ctx, tag="5"):
     rows, add, cite, FILES, TAG, s5 = ctx["rows"], ctx["add"], ctx["cite"], ctx["FILES"], ctx["TAG"], ctx["s5"]
-    # (1) 단계 5 문서: map_step5 행 범위 (새 행·근거 추가) 제외
+    # (1) 그 단계 문서: map_step{tag} 행 범위 (새 행·근거 추가) 제외
     used5 = {}
-    for m in ctx["step5_map"]:
+    for m in ctx[f"step{tag}_map"]:
         a, _, b = m["행"].partition("–"); used5.setdefault(m["문서"], set()).update(range(int(a), int(b or a) + 1))
-    targets = [(p, used5.get(p, set()), kind) for kind, ses, p, src in ctx["step5_files"]]
-    # (2) v3.4: 원장 근거 토큰 전부 제외
-    u34 = set()
-    for r in rows:
-        for c in r["_cites"]:
-            if c[0] == V34: u34.update(range(c[1], c[2] + 1))
-    targets.append((V34, u34, "v3.4"))
+    targets = [(p, used5.get(p, set()), kind) for kind, ses, p, src in ctx[f"step{tag}_files"]]
+    if tag == "5":
+        # (2) v3.4: 원장 근거 토큰 전부 제외 (단계 5 때 함께 반영)
+        u34 = set()
+        for r in rows:
+            for c in r["_cites"]:
+                if c[0] == V34: u34.update(range(c[1], c[2] + 1))
+        targets.append((V34, u34, "v3.4"))
     out = []
     for p, used, kind in targets:
         V = FILES[p]
         heads, h = {}, None
+        lv = {}
         for n, l in enumerate(V, 1):
-            if re.match(r"^#{1,4} ", l): h = n
+            if re.match(r"^#{1,4} ", l): h = n; lv[n] = len(l) - len(l.lstrip("#"))
             heads[n] = h
-        src = next((s for k_, ses, pp, s in ctx["step5_files"] if pp == p), "")
+        def chain_of(n):       # 가장 가까운 머리글과 그 위 (수준이 더 높은) 머리글들
+            out, h_ = [], heads.get(n)
+            while h_:
+                out.append(h_)
+                h_ = next((k for k in range(h_ - 1, 0, -1) if k in lv and lv[k] < lv[out[-1]]), None)
+            return out
+        src = next((s for k_, ses, pp, s in ctx[f"step{tag}_files"] if pp == p), "")
+        pool6 = []
+        if tag == "6" and ctx.get("NORM6"):
+            sd_, fs_ = ctx["_norm_sides"], ctx["_norm_first"]
+            nz_ = lambda x: re.sub(r"\s+", "", x)
+            _LB = re.compile(r"^\s*(?:\d체\[[A-Z0-9]+\]|§[A-Z]'?|\[[A-Z]'?\]|[*□]+)\s*")
+            pool6 = [(nz_(_LB.sub("", r["식"].split(" ‖ ")[0].strip().strip("*"))), sd_(r["식"].split(" ‖ ")[0]), fs_(r["식"].split(" ‖ ")[0]), r) for r in rows if r.get("행_종류", "등록") != "정의·원칙" and not r["_key"].startswith("DEF:")]
         for n, hits in candidates(V, used, s5.tokens):
+            if pool6:
+                tt = V[n - 1].strip(); jn = re.sub(r"\s+", "", _LB.sub("", tt.strip("*"))); sd = sd_(tt); fl = fs_(tt) if "=" in tt else None
+                hit = [r for k, ks, fr, r in pool6 if (((len(k) >= 8 and "=" in k and k in jn) or len(ks & sd) >= 2) and fr == fl)]
+                if hit:
+                    ctx.setdefault("def6_merged", []).append((p, n, hit)); continue
+            if tag == "6":                                 # 단계 6: 좁힌 기준 (줄 또는 가장 가까운 상위 머리글; 시험 C 는 상위 머리글 사슬 전체)
+                chain = [heads.get(n)] if not ctx.get("CHAIN6") else chain_of(n)
+                if not (NARROW.search(V[n - 1]) or any(h_ and NARROW.search(V[h_ - 1]) for h_ in chain)):
+                    continue
             t = V[n - 1].strip()
             cites = [cite(p, n, role="정의·원칙")]
             hl = heads.get(n)
@@ -78,6 +103,12 @@ def apply(ctx):
             if hl: cites.append(cite(p, hl, role="머리글"))
             if sl and not any(c[1] <= sl <= c[2] for c in cites): cites.append(cite(p, sl, role="문서 제목" if sl == 1 else "머리글"))
             note = [f"걸린 키워드: {', '.join(hits)}"]
+            if tag == "6":
+                nw = NARROW.search(V[n - 1])
+                if nw: note.append(f"좁힌 기준: 줄의 '{nw.group(0)}'")
+                else:
+                    hh = next(h_ for h_ in (chain_of(n) if ctx.get("CHAIN6") else [heads.get(n)]) if h_ and NARROW.search(V[h_ - 1]))
+                    note.append(f"좁힌 기준: 머리글 {hh}행의 '{NARROW.search(V[hh - 1]).group(0)}'")
             if src: note.append(f"원문 docx 변환본: {src}")
             if not sess: note.append("등록_세션: 줄·머리글·문서 제목에 세션 표기 없음")
             r = add(f"DEF:{p}:{n}", cites, 항목=t[:80], 식=t, 별칭=f"정의·원칙 ({p.split('/')[-1]} {n}행)", 상태="", 등급="없음",
@@ -85,4 +116,4 @@ def apply(ctx):
             r["행_종류"] = "정의·원칙"
             r["상태_출처"] = "정의·원칙 행 — 상태 빈칸 고정, 내려받기 금지"
             out.append(dict(문서=p, 행=n, 키워드=", ".join(hits), _row=r, 원문=t[:120]))
-    ctx["def_rows"] = out
+    ctx["def_rows" if tag == "5" else f"def_rows{tag}"] = out

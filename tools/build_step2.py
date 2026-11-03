@@ -380,6 +380,13 @@ _spd = _ilu.spec_from_file_location("sdef", os.path.join(ROOT, "tools", "build_d
 sdef = _ilu.module_from_spec(_spd); _spd.loader.exec_module(sdef)
 CTX["s5"] = s5
 sdef.apply(CTX)
+# ─────────────── 단계 6 (S21~S108) — 지금은 건수 보고용 시험 실행만 (STEP6_DRYRUN=1): 원장·등록부 등 파일 쓰기 전에 멈춤 ───────────────
+STEP6 = os.environ.get("STEP6_DRYRUN") == "1"
+if STEP6:
+    CTX["NORM6"] = os.environ.get("STEP6_NORM") == "1"
+    CTX["CHAIN6"] = os.environ.get("STEP6_CHAIN") == "1"
+    s5.apply(CTX, "6")
+    sdef.apply(CTX, "6")
 for r in rows:
     if not r.get("행_종류"): r["행_종류"] = "등록"
 
@@ -445,6 +452,11 @@ for m in CTX["step3_map"]:          # 대응표: 내려받기 뒤 원장 상태 
         if map_grade(m["v34_등급"])[0] == r["상태"]:
             m["원장_상태"] = r["상태"]; m["등급_대조"] = "같음 (내려받기 후 — 1순위 엔진 표기 없음, 원장 상태 = v3.4 표기)"
 
+if STEP6:
+    _sp6 = _ilu.spec_from_file_location("r6", os.path.join(ROOT, "tools", "report_step6.py"))
+    r6 = _ilu.module_from_spec(_sp6); _sp6.loader.exec_module(r6)
+    r6.report(CTX, rows, OUT)
+    raise SystemExit("STEP6_DRYRUN: 건수 보고만 쓰고 멈춤 (원장·등록부·대응표 등은 쓰지 않음)")
 with open(os.path.join(OUT, "ledger.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=COLS, extrasaction="ignore"); w.writeheader(); w.writerows(rows)
 if new_reg:

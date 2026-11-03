@@ -84,7 +84,7 @@ def is_grade_only(t):
     u = re.sub(r"오차|[\d.,~+\-−×⁻⁰¹²³⁴⁵⁶⁷⁸⁹%★\[\]():：\s*]", "", u)
     return u == ""
 
-def files_of(root):
+def files_of(root, lo=109, hi=119, trans=True):
     dm = list(csv.DictReader(open(os.path.join(root, "index", "doc_map.csv"), encoding="utf-8")))
     out = []
     def pth(r):
@@ -93,21 +93,34 @@ def files_of(root):
         return d, r["상대경로"]
     for kind in ("성과정리", "인수인계"):
         sel = [r for r in dm if r["분류"] == "sessions" and r["최종판"] == "Y" and r["종류"] == kind and r["세션"]
-               and 109 <= int(r["세션"][1:]) <= 119]
+               and lo <= int(r["세션"][1:]) <= hi]
         for r in sorted(sel, key=lambda r: int(r["세션"][1:])):
             p, src = pth(r); out.append((kind, r["세션"], p, src))
-    for r in sorted([r for r in dm if r["분류"] == "translations"], key=lambda r: r["파일명"]):
-        out.append(("번역·설계", "", r["상대경로"], ""))
+    if trans:
+        for r in sorted([r for r in dm if r["분류"] == "translations"], key=lambda r: r["파일명"]):
+            out.append(("번역·설계", "", r["상대경로"], ""))
     return out
 
-def apply(ctx):
+RANGES = {"5": (109, 119, True), "6": (21, 108, False)}   # 단계 → (세션 시작, 끝, 번역·설계 문서 포함)
+
+def apply(ctx, tag="5"):
     rows, add, cite, render, FILES, TAG = ctx["rows"], ctx["add"], ctx["cite"], ctx["render"], ctx["FILES"], ctx["TAG"]
     root = ctx["ROOT"]; sides, first_side = ctx["sides"], ctx["first_side"]
-    out, conf, excluded, files = [], [], [], files_of(root)
+    PFX = f"S{tag}:"
+    _LBL = re.compile(r"^\s*(?:\d체\[[A-Z0-9]+\]|§[A-Z]'?|\[[A-Z]'?\]|[*□]+)\s*")
+    if tag == "6" and ctx.get("NORM6"):        # 단계 6 시험: '§R'·'[R]'·'7체[R]'·'5체[D1]' 같은 꼬리표를 변 비교 전에 뗌 (단계 2~5 결과에는 적용 안 함)
+        _LBL = re.compile(r"^\s*(?:\d체\[[A-Z0-9]+\]|§[A-Z]'?|\[[A-Z]'?\]|[*□]+)\s*")
+        _s0, _f0 = sides, first_side
+        sides = lambda t: _s0(_LBL.sub("", t.strip().strip("*")))
+        first_side = lambda t: _f0(_LBL.sub("", t.strip().strip("*")))
+        ctx["_norm_sides"], ctx["_norm_first"] = sides, first_side
+    out, conf, excluded, files = [], [], [], files_of(root, *RANGES[tag])
     pool = []
     for r in rows:
-        if r["_key"].startswith("S5:"): continue
-        k = nz(r["식"].split(SEP)[0]); pool.append((k, sides(r["식"].split(SEP)[0]), r, first_side(r["식"].split(SEP)[0])))
+        if r["_key"].startswith((PFX, "DEF:")): continue   # 같은 단계 새 행·정의·원칙 행에는 병합하지 않음
+        p0 = r["식"].split(SEP)[0]
+        k = nz(_LBL.sub("", p0.strip().strip("*"))) if (tag == "6" and ctx.get("NORM6")) else nz(p0)
+        pool.append((k, sides(p0), r, first_side(p0)))
     for kind, ses, p, src in files:
         b = open(os.path.join(root, p), "rb").read()
         V = [l.rstrip("\r") for l in b.decode("utf-8", errors="replace").split("\n")]
@@ -171,7 +184,7 @@ def apply(ctx):
             if tok == "후보": note.append("원문 표기 '후보' — 규칙 2 에 따라 상태 올리지 않음 (상태 빈칸)")
             if not sess: note.append("등록_세션: 줄·머리글·문서 제목에 세션 표기 없음")
             if cands: note.append("같은 항목 후보 (병합 안 함): " + ", ".join(sorted({c["_key"] for c in cands})[:5]))
-            r = add(f"S5:{p}:{a}", cites, 항목=text[0][:80], 식=SEP.join(text),
+            r = add(f"{PFX}{p}:{a}", cites, 항목=text[0][:80], 식=SEP.join(text),
                     별칭=f"{kind} {ses or os.path.basename(p)[:30]} ({p.split('/')[-1]} {a}행)", 상태=st, 등급=gr,
                     오차=(f"원문 표기: {tok}" if tok else ""), 층=ctx["layer"](" ".join(text)), 등록_세션=sess,
                     근거_파일=p, 엔진_S="엔진 원장 행 없음 (식 문자열·변 대조)", 키워드=ctx["keywords"](" ".join(text)), 비고="; ".join(note))
@@ -224,13 +237,13 @@ def apply(ctx):
             elif has:
                 excluded.append((p, n, "T4 수식 없는 문단 표기 줄", t))
             n += 1
-    ctx["step5_map"], ctx["step5_conf"], ctx["step5_excluded"], ctx["step5_files"] = out, conf, excluded, files
+    ctx[f"step{tag}_map"], ctx[f"step{tag}_conf"], ctx[f"step{tag}_excluded"], ctx[f"step{tag}_files"] = out, conf, excluded, files
 
-def write_map(ctx, path):
+def write_map(ctx, path, tag="5"):
     cols = ["문서", "행", "종류", "원장_ID", "대응", "표기", "상태_대조", "비고", "원문"]
     with open(path, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore"); w.writeheader()
-        for m in ctx["step5_map"]:
+        for m in ctx[f"step{tag}_map"]:
             m = dict(m); m["원장_ID"] = m["_row"]["id"]; w.writerow(m)
-        for p, n, why, t in ctx["step5_excluded"]:
+        for p, n, why, t in ctx[f"step{tag}_excluded"]:
             w.writerow(dict(문서=p, 행=n, 종류="제외", 원장_ID="", 대응=why, 원문=t[:120]))
