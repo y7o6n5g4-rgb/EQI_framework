@@ -92,8 +92,9 @@ def apply(rows, ctx):
                 if g: src = f"{TAG[f]} {a}행 [{role}] '{g}'"     # 판정 열은 항목 첫 줄
             if src is None:
                 for c in cites:
-                    if c[3] not in (role, "✓", "본문 등급", "머리말 등급", "머리말", "본문", "§11 표"): continue
+                    if c[3] not in (role, "✓", "본문 등급", "머리말 등급", "머리말", "본문", "§11 표", "블록 등급"): continue
                     if c[3] == "§11 표" and role != "§11 표": continue
+                    if c[3] == "본문" and c[0] != f: continue           # 덧붙인 v3.4 본문 토큰은 다른 파일 주 원문 행의 상태 근거가 아님
                     for n in range(c[1], c[2] + 1):
                         t = FILES[c[0]][n - 1]
                         m = re.search(r"★\s*(.+?)\s*$", t) if c[3] == "✓" else None

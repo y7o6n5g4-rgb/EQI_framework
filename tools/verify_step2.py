@@ -42,6 +42,16 @@ WORD = {"TZ": ["True Zero", "TZ"], "Near TZ": ["Near TZ", "Near True Zero"], "Re
 GPH = re.compile(r"(True Zero\(대수필연\)|TZ\(대수필연\)|Near True Zero|Near TZ|탐색 완료\(NTZ\)|True Zero|Real Zero|대수필연|미적용)")
 SESS_RE = re.compile(r"(?<![A-Za-z_])S\d+(?:\s*[~/]\s*S?\d+)*")
 SESSW = re.compile(r"Session \d+(?:~\d+)?")
+LISTTOK = {"확정": "확정", "철회": "철회", "미적용": "미적용", "결정 대기": "결정 대기", "O 보류": "O 보류", "해석 I": "해석 I", "설계 배치": "설계 배치"}
+STAT2 = re.compile(r"True Zero\(대수필연\)|TZ\(대수필연\)|Near True Zero|Near TZ|True Zero|Real Zero|대수필연|(?<![A-Za-z])TZ(?![A-Za-z(])"
+                   r"|결정 대기|O 보류|해석 I|설계 배치|(?<![불미])확정|철회|미적용")
+GRD2 = re.compile(r"True Zero\(대수필연\)|TZ\(대수필연\)|Near True Zero|Near TZ|True Zero|Real Zero|대수필연|(?<![A-Za-z])TZ(?![A-Za-z(])")
+def body_token(t):
+    g = GRD2.findall(t)
+    if g: return g[-1]
+    a = STAT2.findall(t); return a[0] if a else ""
+def map_any(tok):
+    return (LISTTOK[tok], "없음") if tok in LISTTOK else map_grade(tok)
 def map_grade(label):
     label = (label or "").strip()
     if label in ("정수", "-", "") or label.startswith(("통과", "귀속 검토", "탐색 완료")): return "", "없음"
@@ -111,15 +121,20 @@ for r in rows:
         else:
             # [머리말]·[본문] 주 원문: 인용 행의 첫 등급 표기 (본문 → 머리말 등급 → 머리말 순) 로 기대 상태
             # 주 원문 역할 먼저. 덧붙인 v3.4 §11 토큰은 주 원문일 때만 (엔진 행의 v3.4 표기 차이는 conflicts.csv 로 따로 기록)
-            order = [prim[3]] + [x for x in ["본문", "본문 등급", "머리말 등급", "머리말"] if x != prim[3]]
+            order = [prim[3]] + [x for x in ["본문", "본문 등급", "블록 등급", "머리말 등급", "머리말"] if x != prim[3]]
             found = ""
             for ro in order:
+                if prim[0] == "v3.4" and ro in ("본문", "블록 등급"):     # v3.4 본문 (단계 4a): 줄들 합친 문자열의 마지막 등급, 없으면 첫 상태 표기
+                    jt = " ".join(x[3] for x in texts if x[2] == ro and x[0] == "v3.4")
+                    found = body_token(jt)
+                    if found: break
+                    continue
                 for x in texts:
                     if x[2] == ro:
                         gm = GPH.findall(x[3]) if ro == "§11 표" else ([GPH.search(x[3]).group(1)] if GPH.search(x[3]) else [])
                         if gm: found = gm[-1]; break
                 if found: break
-            exp_st, exp_gr = map_grade(found) if found != "미적용" else ("미적용", "없음")
+            exp_st, exp_gr = map_any(found) if found != "미적용" else ("미적용", "없음")
             if r["상태"] != exp_st:
                 tag = "V5 상태 올림" if RANK.get(r["상태"], 0) > RANK.get(exp_st, 0) else "V4 상태 불일치"
                 why.append(f"{tag}: 원문 표기 '{found or '없음'}'→'{exp_st or '빈칸'}', 원장 '{r['상태'] or '빈칸'}'")
@@ -168,7 +183,7 @@ for r in rows:
             t = F[m.group(1)][int(m.group(2)) - 1]
             if m.group(4) not in t: why.append(f"V8 상태_출처 줄에 표기 '{m.group(4)}' 없음")
             if not any(c[0] == m.group(1) and c[1] <= int(m.group(2)) <= c[2] for c in toks): why.append("V8 상태_출처 줄이 근거_위치에 없음")
-            tk = m.group(4); want = "미적용" if tk == "미적용" else map_grade(tk)[0]
+            tk = m.group(4); want = "미적용" if tk == "미적용" else map_any(tk)[0]
             if want != r["상태"]: why.append(f"V8 상태_출처 표기 '{tk}'→'{want}' ≠ 원장 '{r['상태']}'")
     # V6
     if r["등록_세션"]:

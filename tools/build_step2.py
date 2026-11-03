@@ -359,6 +359,13 @@ _sp = _ilu.spec_from_file_location("s3", os.path.join(ROOT, "tools", "build_step
 s3 = _ilu.module_from_spec(_sp); _sp.loader.exec_module(s3)
 CTX = dict(rows=rows, add=add, cite=cite, render=render, FILES=FILES, map_grade=map_grade, keywords=keywords, ENG=ENG)
 s3.apply(CTX)
+# ─────────────── 단계 4a hook: v3.4 본문 §12~§30 (tools/build_step4a.py) ───────────────
+_sp4 = _ilu.spec_from_file_location("s4a", os.path.join(ROOT, "tools", "build_step4a.py"))
+s4a = _ilu.module_from_spec(_sp4); _sp4.loader.exec_module(s4a)
+_spt = _ilu.spec_from_file_location("si0", os.path.join(ROOT, "tools", "status_inherit.py"))
+_si0 = _ilu.module_from_spec(_spt); _spt.loader.exec_module(_si0)
+CTX["TOKMAP"] = _si0.TOKMAP
+s4a.apply(CTX)
 
 # ─────────────── ID 부여 (등록부 고정, 규칙 7) ───────────────
 reg = list(csv.DictReader(open(REG, encoding="utf-8")))
@@ -428,6 +435,7 @@ if new_reg:
         w.writeheader(); w.writerows([{**x, "분리_원ID": x.get("분리_원ID", "")} for x in reg + new_reg])
 
 s3.write_map(CTX, os.path.join(OUT, "map_step3.csv"))
+s4a.write_map(CTX, os.path.join(OUT, "map_step4a.csv"))
 
 # ─────────────── conflicts.csv (K 번호 고정, 새 충돌은 끝에만) ───────────────
 def find(pred): return next(r["id"] for r in rows if pred(r))
@@ -471,6 +479,15 @@ for c3 in CTX["step3_conf"]:
                    위치_A=r["근거_위치"].split(" / ")[0] + f" ({r['근거_파일']})", 내용_A=f"원장 상태 '{r['상태'] or '빈칸'}' / 등급 '{r['등급']}' (오차 열: {r['오차'] or '—'})",
                    위치_B=f"{V34} {c3['ln']}행 (§11 표)", 내용_B=FILES[V34][c3['ln'] - 1].strip(),
                    비고=f"v3.4 표기 '{c3['g']}' (옮기면 '{c3['st']}'). 등록 표 우선 순서 (CLAUDE.md 규칙 4) 에 따라 원장 상태는 엔진 표기 유지. 판정 없음"))
+# 단계 4a: v3.4 본문 줄 표기와 원장 상태가 다른 곳 (판정 없음)
+for c4 in CTX["step4a_conf"]:
+    ids = ", ".join(r["id"] for r in c4["rows_"])
+    r0 = c4["rows_"][0]
+    CF.append(dict(항목=f"v3.4 본문 {c4['ln']}행 '{c4['text'][:40]}' 상태 (원장 / v3.4 본문)", 원장_ID=ids,
+                   위치_A=f"{r0['근거_위치'].split(' / ')[0]} ({r0['근거_파일']})" + (f" 외 {len(c4['rows_'])-1}행" if len(c4["rows_"]) > 1 else ""),
+                   내용_A=f"원장 상태 '{r0['상태'] or '빈칸'}' (상태_출처: {r0.get('상태_출처', '')[:60]})",
+                   위치_B=f"{V34} {c4['ln']}행" + (f"–{c4['lb']}행" if c4['lb'] != c4['ln'] else "") + " (본문)", 내용_B=c4["text"],
+                   비고=f"v3.4 본문 표기 '{c4['tok']}' (옮기면 '{c4['st']}'). v3.4 본문은 등록 표 우선 순서 밖 — 원장 상태 유지. 판정 없음"))
 # K 번호: 기존 conflicts.csv 의 항목 → ID 유지, 새 항목만 끝 번호 뒤 (CLAUDE.md 규칙 7)
 _cfp = os.path.join(OUT, "conflicts.csv")
 _old = {r["항목"]: r["id"] for r in csv.DictReader(open(_cfp, encoding="utf-8"))} if os.path.exists(_cfp) else {}
@@ -539,6 +556,34 @@ if not os.path.exists(os.path.join(OUT, "sample_check_3.md")):
     with open(os.path.join(OUT, "sample_check_3.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(S) + "\n")
 
+# ─────────────── sample_check_4a.md (단계 4a 묶음: 새 행 + 근거 위치 추가 행, 각 2개 이상) ───────────────
+b4 = sorted({id(m_["_row"]): m_["_row"] for m_ in CTX["step4a_map"]}.values(), key=lambda r: int(r["id"][1:]))
+new4 = {m_["_row"]["id"] for m_ in CTX["step4a_map"] if m_["대응"] == "새 행"}
+if not os.path.exists(os.path.join(OUT, "sample_check_4a.md")) or os.environ.get("REGEN_SAMPLE_4A"):
+    seed4 = 20261105
+    while True:
+        random.seed(seed4)
+        pick4 = sorted(random.sample(b4, 10), key=lambda r: int(r["id"][1:]))
+        nn = sum(r["id"] in new4 for r in pick4)
+        if nn >= 2 and 10 - nn >= 2: break
+        seed4 += 1
+    S = [f"# sample_check_4a.md — 단계 4a 표본 대조 (v3.4 본문 §12~§30 묶음 {len(b4)}행 중 무작위 10행, seed {seed4}, 새 행·근거 추가 행 각 2개 이상)\n",
+         "> 원장 행 + 근거_위치의 원문 행 인용. 식 열의 ' ‖ ' 는 원문 줄 구분자.",
+         "> 행 단위 규칙 R1~R4·같은 항목 판정은 `tools/build_step4a.py` 머리말, 줄별 결과는 `index/map_step4a.csv`, 자동 대조는 `index/verify_step4a.md`.\n"]
+    for r in pick4:
+        S.append(f"## {r['id']} — {r['항목']}" + ("  (단계 4a 새 행)" if r["id"] in new4 else "  (기존 행 + v3.4 본문 근거 추가)") + "\n")
+        S.append("| 열 | 값 |\n|---|---|")
+        for c in COLS[1:]:
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
+        S.append("\n원문 인용:\n")
+        for f, a, b, role in r["_cites"]:
+            S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
+            for n in range(a, min(b, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+            S.append("  ```")
+        S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
+    with open(os.path.join(OUT, "sample_check_4a.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(S) + "\n")
+
 # ─────────────── coverage.md 원장 ID 연결 ───────────────
 import importlib.util
 spec = importlib.util.spec_from_file_location("s1", os.path.join(ROOT, "tools", "build_step1.py"))
@@ -558,6 +603,10 @@ pl = {}
 for r in rows:
     if r.get("_bline"): pl.setdefault(r["_bline"], []).append(r["id"])
 for k, v in pl.items(): links[("p", k)] = span(v)
+for h_, r_ in CTX["step4a_sec"]:
+    links.setdefault(("v34l", h_), []).append(r_["id"])
+for k_ in [k for k in links if k[0] == "v34l"]:
+    links[("v34", k_[1])] = span(sorted(set(links.pop(k_)), key=lambda x: int(x[1:])))
 links[("v34", s3.T0)] = span([r["id"] for r in rows if any(c[0] == V34 and c[3] == "§11 표" for c in r["_cites"])])
 s1.build_coverage(s1.build_doc_map(), links)
 
