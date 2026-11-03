@@ -13,6 +13,9 @@
   V5 상태 올림 없음 : 원장 상태가 원문 표기에서 옮긴 값보다 높지 않음 (V4 결과에서 판정)
   V6 등록_세션      : 값이 있으면 인용 행 (원문 해당 줄·블록 표제) 의 부분 문자열. 없으면 비고에 '추정' 또는 빈칸 허용
   V7 ID             : L 번호 유일·연속, id_registry.csv 와 일치
+  V10 상태 열 불변  : 단계 7 은 상태 열을 바꾸지 않음 — 원장 상태 = index/step7_status_snapshot.csv (단계 7 직전) 의 상태
+  V11 현행_상태     : 값이 있으면 상태와 다르고, 허용 목록 (상태 목록 + '폐기(원문 표기)') 안이며,
+                      후속_정정에 '단계 7: 현행_상태 '<값>' ← L<원천>' 이 있고, 그 원천 행의 식에 그 낱말이 원문 그대로 있음
 실행: python3 tools/verify_step2.py (저장소 루트)
 """
 import csv, os, re, sys
@@ -72,6 +75,10 @@ LEDGER = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "index", "ledg
 OUTMD = sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, "index", "verify_step2.md")
 rows = list(csv.DictReader(open(LEDGER, encoding="utf-8")))
 reg = {r["id"]: r for r in csv.DictReader(open(os.path.join(ROOT, "index", "id_registry.csv"), encoding="utf-8"))}
+BYID = {r["id"]: r for r in rows}
+_snp = os.path.join(ROOT, "index", "step7_status_snapshot.csv")
+SNAP7 = {r["id"]: r["상태"] for r in csv.DictReader(open(_snp, encoding="utf-8"))} if os.path.exists(_snp) else None
+CUR_OK = {"확정", "대수필연", "TZ", "Near TZ", "Real Zero", "O 보류", "해석 I", "결정 대기", "철회", "미적용", "설계 배치", "폐기"}
 res = []
 for r in rows:
     why = []
@@ -212,6 +219,21 @@ for r in rows:
         km = re.search(r"걸린 키워드: ([^;]+)", r["비고"])
         if not km: why.append("V9 비고에 걸린 키워드 없음")
     elif so.startswith("정의·원칙 행"): why.append("V9 등록 행인데 정의·원칙 상태_출처")
+    # V10 상태 열 불변 (단계 7) / V11 현행_상태 (MAPSI 결정 2026-11-03 방식 (나))
+    if SNAP7 is None: why.append("V10 step7_status_snapshot.csv 없음")
+    elif SNAP7.get(r["id"]) != r["상태"]: why.append(f"V10 상태 '{r['상태']}' ≠ 단계 7 직전 '{SNAP7.get(r['id'])}'")
+    cur = r.get("현행_상태", None)
+    if cur is None: why.append("V11 현행_상태 열 없음")
+    elif cur:
+        if cur == r["상태"]: why.append("V11 현행_상태가 상태와 같음 (빈칸이어야 함)")
+        if cur not in CUR_OK: why.append(f"V11 현행_상태 '{cur}' 허용 목록 밖")
+        if kind != "등록": why.append("V11 정의·원칙 행에 현행_상태")
+        srcs = re.findall(r"현행_상태 '" + re.escape(cur) + r"' ← (L\d{4})", r["후속_정정"])
+        if not srcs: why.append("V11 현행_상태가 있는데 후속_정정에 원천 ID 없음")
+        for sid in srcs:
+            sr = BYID.get(sid)
+            if not sr: why.append(f"V11 원천 {sid} 원장에 없음")
+            elif cur not in sr["식"]: why.append(f"V11 원천 {sid} 식에 '{cur}' 없음")
     # V6
     if r["등록_세션"]:
         exprs = {e for tx in alltext for e in SESS_RE.findall(tx)} | {e for tx in alltext for e in SESSW.findall(tx)}
@@ -234,7 +256,7 @@ O = ["# verify_step2.md — 단계 2 원장 전체 자동 대조\n",
      f"- 일치: {len(rows) - len(bad)} / 불일치: {len(bad)}",
      f"- ID 검사 (유일·연속·등록부 일치): {'통과' if id_ok else '실패'}",
      "- 불일치 사유별: " + (", ".join(f"{k} {v}건" for k, v in sorted(cnt.items())) if cnt else "없음"),
-     "- 검사 항목: V1 근거 행 존재 / V2 식 원문 일치 / V3 여러 줄 완전성 / V4 상태·등급·오차 / V5 상태 올림 없음 / V6 등록_세션 / V7 ID / V8 상태_출처 (1순위 표기 위치·내려받기 줄·무등급 표기) / V9 정의·원칙 행은 상태 빈칸 (내려받기 금지·상태 표기 없음·키워드)\n"]
+     "- 검사 항목: V1 근거 행 존재 / V2 식 원문 일치 / V3 여러 줄 완전성 / V4 상태·등급·오차 / V5 상태 올림 없음 / V6 등록_세션 / V7 ID / V8 상태_출처 (1순위 표기 위치·내려받기 줄·무등급 표기) / V9 정의·원칙 행은 상태 빈칸 (내려받기 금지·상태 표기 없음·키워드) / V10 상태 열은 단계 7 에서 바뀌지 않음 / V11 현행_상태가 있으면 상태와 다르고 후속_정정에 원천 ID 있음\n"]
 if bad:
     O.append("## 불일치 행\n\n| id | 항목 | 사유 |\n|---|---|---|")
     for r, w in bad:

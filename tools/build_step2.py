@@ -26,7 +26,7 @@ LOG = "code/eqi_unified_engine_v9_7_terminal_mpmath140.txt"     # 완성판 mpma
 OUT = os.path.join(ROOT, "index")
 REG = os.path.join(OUT, "id_registry.csv")
 SEP = " ‖ "
-COLS = ["id", "행_종류", "항목", "식", "별칭", "상태", "등급", "상태_출처", "오차", "층", "등록_세션", "근거_파일", "근거_위치",
+COLS = ["id", "행_종류", "항목", "식", "별칭", "상태", "현행_상태", "등급", "상태_출처", "오차", "층", "등록_세션", "근거_파일", "근거_위치",
         "엔진_§", "후속_정정", "키워드", "비고"]
 
 def lines(rel):
@@ -460,6 +460,12 @@ for m in CTX["step3_map"]:          # 대응표: 내려받기 뒤 원장 상태 
         if map_grade(m["v34_등급"])[0] == r["상태"]:
             m["원장_상태"] = r["상태"]; m["등급_대조"] = "같음 (내려받기 후 — 1순위 엔진 표기 없음, 원장 상태 = v3.4 표기)"
 
+# ─────────────── 단계 7 (후속_정정 채우기, MAPSI 결정 2026-11-03 방식 (나)) — tools/build_step7.py ───────────────
+_sp7 = _ilu.spec_from_file_location("s7", os.path.join(ROOT, "tools", "build_step7.py"))
+s7 = _ilu.module_from_spec(_sp7); _sp7.loader.exec_module(s7)
+S7_CTX = dict(OUT=OUT, s4a=s4a)
+if not STEP6: s7.apply(rows, S7_CTX)
+
 if STEP6:
     _sp6 = _ilu.spec_from_file_location("r6", os.path.join(ROOT, "tools", "report_step6.py"))
     r6 = _ilu.module_from_spec(_sp6); _sp6.loader.exec_module(r6)
@@ -467,6 +473,7 @@ if STEP6:
     raise SystemExit("STEP6_DRYRUN: 건수 보고만 쓰고 멈춤 (원장·등록부·대응표 등은 쓰지 않음)")
 with open(os.path.join(OUT, "ledger.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=COLS, extrasaction="ignore"); w.writeheader(); w.writerows(rows)
+s7.write(rows, S7_CTX)
 if new_reg:
     with open(REG, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["id", "키", "최초_항목", "최초_별칭", "분리_원ID"])
