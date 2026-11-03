@@ -15,7 +15,8 @@
   V7 ID             : L 번호 유일·연속, id_registry.csv 와 일치
   V10 상태 열 불변  : 단계 7 은 상태 열을 바꾸지 않음 — 원장 상태 = index/step7_status_snapshot.csv (단계 7 직전) 의 상태
   V11 현행_상태     : 값이 있으면 상태와 다르고, 허용 목록 (상태 목록 + '폐기(원문 표기)') 안이며,
-                      후속_정정에 '단계 7: 현행_상태 '<값>' ← L<원천>' 이 있고, 그 원천 행의 식에 그 낱말이 원문 그대로 있음
+                      후속_정정에 '단계 7: 현행_상태 '<값>' ← L<원천>' (또는 MAPSI 확정 쌍의 원문 파일 줄) 이 있고, 그 원천 행의 식 (또는 그 줄) 에 그 낱말이 원문 그대로 있음.
+                      정의·원칙 행은 MAPSI 확정 쌍일 때만
 실행: python3 tools/verify_step2.py (저장소 루트)
 """
 import csv, os, re, sys
@@ -227,9 +228,14 @@ for r in rows:
     elif cur:
         if cur == r["상태"]: why.append("V11 현행_상태가 상태와 같음 (빈칸이어야 함)")
         if cur not in CUR_OK: why.append(f"V11 현행_상태 '{cur}' 허용 목록 밖")
-        if kind != "등록": why.append("V11 정의·원칙 행에 현행_상태")
+        fsrc = re.findall(r"현행_상태 '" + re.escape(cur) + r"' ← ((?:code|성과정리문서)/\S+) (\d+)행 \(MAPSI 확정 쌍", r["후속_정정"])
+        if kind != "등록" and not fsrc: why.append("V11 정의·원칙 행에 현행_상태 (MAPSI 확정 쌍 아님)")
         srcs = re.findall(r"현행_상태 '" + re.escape(cur) + r"' ← (L\d{4})", r["후속_정정"])
-        if not srcs: why.append("V11 현행_상태가 있는데 후속_정정에 원천 ID 없음")
+        if not srcs and not fsrc: why.append("V11 현행_상태가 있는데 후속_정정에 원천 ID·원천 파일 줄 없음")
+        for fp_, fn_ in fsrc:
+            try: fl_ = open(os.path.join(ROOT, fp_), encoding="utf-8", errors="replace").read().split("\n")[int(fn_) - 1]
+            except Exception: fl_ = ""
+            if cur not in fl_: why.append(f"V11 원천 {fp_} {fn_}행에 '{cur}' 없음")
         for sid in srcs:
             sr = BYID.get(sid)
             if not sr: why.append(f"V11 원천 {sid} 원장에 없음")

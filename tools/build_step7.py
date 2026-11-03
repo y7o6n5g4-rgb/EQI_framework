@@ -22,6 +22,13 @@ OBJ = re.compile(r"([^\s,/(:→\"'|]*[=×÷^²³⁴§φ√/·][^\s,/(:→\"'|]*)
 SECW = re.compile(r"(§\d+[a-z]?)(?![\d-])[^,/|]*?(폐기|철회)")
 # MAPSI 승인 (2026-11-03): 대상 6행 / 원천 4행. 현행_상태 값은 원천 원문의 낱말 그대로.
 APPROVED = {"L3335": "폐기", "L4621": "폐기", "L0505": "철회", "L3641": "철회", "L3653": "철회", "L0809": ""}
+# MAPSI 확정 쌍 (2026-11-03, 짝 후보 확인 1차): 원천은 원문 파일 줄 (원장 행 아님). 원천 줄은 인용 문자열로 grep 해 1줄일 때만, 대상은 주 근거 위치로 원장에서 찾음.
+CONFIRMED = [dict(일자="2026-11-03", 원천_파일="code/eqi_extended_v2_7_terminal.txt", 원천_문자열="S117 '≈ h·ν_p·ln2 (0.13 %)' 는 단위 혼합 → 철회",
+                  MAPSI_행=166, 대상_위치="문서 성과정리문서/EQI_S117_플랑크_양자에너지_확장번역_v4.md 195행", 현행_상태="철회",
+                  같은_기록_행="L0855")]      # L0855 = 같은 철회를 적은 원장 행 (식에 '확장 번역 v4 195행' · '철회')
+# MAPSI 확정 '대상 없음' (2026-11-03)
+NO_TARGET = {"L0869": "S119 성과정리 §5 n* 행 — 이전 세션 등록 없음",
+             "L0870": "HKr 'n̄ ≫ σ 극한' 문장 — 코드 출력 문장, 원장 항목 아님"}
 QUOTE = re.compile(r"['‘’\"“”`]([^'‘’\"“”`]{3,60})['‘’\"“”`]")
 SYMTOK = re.compile(r"[^\s,()（）\[\]{}:;|→\"'“”‘’`*]*[=×÷^²³⁴φ√·≈][^\s,()（）\[\]{}:;|→\"'“”‘’`*]*")
 SECT = re.compile(r"§\d+[a-z]?(?:-[A-Za-z0-9]+)?(?![\d])")
@@ -111,13 +118,39 @@ def apply(rows, ctx):
                            원천_상태=s_["상태"], 규칙=ru, 근거=why, 원천_낱말=word, 원천_위치=prim(s_), 원천_식=frag))
         t["현행_상태"] = cur
         t["후속_정정"] = (t["후속_정정"] + "; " if t["후속_정정"] else "") + "단계 7: " + " / ".join(notes)
+    # MAPSI 확정 쌍 (원천 = 원문 파일 줄)
+    ROOT = os.path.dirname(OUT); cf_out = []
+    for c in CONFIRMED:
+        V = open(os.path.join(ROOT, c["원천_파일"]), encoding="utf-8", errors="replace").read().split("\n")
+        ln = [n for n, l in enumerate(V, 1) if c["원천_문자열"] in l]
+        if len(ln) != 1: raise SystemExit(f"단계 7 확정 쌍: 원천 문자열 줄 {ln} — 1줄 아님")
+        n = ln[0]; word = c["현행_상태"]
+        if word not in V[n - 1]: raise SystemExit("단계 7 확정 쌍: 원천 줄에 낱말 없음")
+        tg = [r for r in rows if r["근거_위치"].split(" / ")[0].startswith(c["대상_위치"] + " ")]
+        rec = dict(c, 원천_행=n, 대상=[r["id"] for r in tg])
+        cf_out.append(rec)
+        if len(tg) != 1: continue                    # 원장 행이 아니면 (또는 하나가 아니면) 반영하지 않고 보고만
+        t = tg[0]
+        if t["현행_상태"]: raise SystemExit(f"단계 7 확정 쌍: {t['id']} 현행_상태 이미 있음")
+        if word == t["상태"]: raise SystemExit(f"단계 7 확정 쌍: {t['id']} 현행_상태가 상태와 같음")
+        sr = next(r for r in rows if r["id"] == c["같은_기록_행"])
+        if "철회" not in sr["식"] or "확장 번역 v4 195행" not in sr["식"]: raise SystemExit("단계 7 확정 쌍: 같은 기록 행 문자열 불일치")
+        note = (f"현행_상태 '{word}' ← {c['원천_파일']} {n}행 (MAPSI 확정 쌍 {c['일자']}; 원장 행 아님, 세션 표기 없음) "
+                f"원문 표기 '{word}' — 원문 '{c['원천_문자열']}' (grep -n {n}행, MAPSI 지시 {c['MAPSI_행']}행); "
+                f"같은 철회를 적은 원장 행 {sr['id']} ({sr['등록_세션']}, {prim(sr)})")
+        t["현행_상태"] = word
+        t["후속_정정"] = (t["후속_정정"] + "; " if t["후속_정정"] else "") + "단계 7: " + note
+        mp.append(dict(대상_ID=t["id"], 대상_세션=t["등록_세션"], 상태=t["상태"], 현행_상태=word, 원천_ID=f"{c['원천_파일']} {n}행", 원천_세션="세션 표기 없음",
+                       원천_상태="원장 행 아님", 규칙="MAPSI 확정 쌍", 근거=f"{c['일자']}; 같은 기록 행 {sr['id']}", 원천_낱말=word, 원천_위치=f"{c['원천_파일']} {n}행",
+                       원천_식=c["원천_문자열"]))
     # 상태 열 불변 확인
     if [(r["id"], r["상태"]) for r in rows] != snap: raise SystemExit("단계 7: 상태 열이 바뀜 — 쓰지 않고 멈춤")
-    ctx["step7"] = dict(src=src, L=L, map=mp, snap=snap, reg=reg)
+    ctx["step7"] = dict(src=src, L=L, map=mp, snap=snap, reg=reg, cf=cf_out)
 
 
 def write(rows, ctx):
-    OUT = ctx["OUT"]; d = ctx["step7"]; src, L, mp, reg = d["src"], d["L"], d["map"], d["reg"]
+    OUT = ctx["OUT"]; d = ctx["step7"]; src, L, mp, reg, cf = d["src"], d["L"], d["map"], d["reg"], d["cf"]
+    cf_same = {c["같은_기록_행"]: c for c in cf if len(c["대상"]) == 1}
     with open(os.path.join(OUT, "step7_status_snapshot.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f); w.writerow(["id", "상태"]); w.writerows(d["snap"])
     cols = ["대상_ID", "대상_세션", "상태", "현행_상태", "원천_ID", "원천_세션", "원천_상태", "규칙", "근거", "원천_낱말", "원천_위치", "원천_식"]
@@ -130,6 +163,10 @@ def write(rows, ctx):
         ss = sess(s_)
         text = " ".join(s_["식"].split(" ‖ "))
         ks = keywords(text)
+        if s_["id"] in cf_same:
+            c = cf_same[s_["id"]]; cls.append((s_, f"MAPSI 확정 쌍 반영 → {c['대상'][0]} (원천 {c['원천_파일']} {c['원천_행']}행; 이 행은 같은 철회 기록)", ks, {})); continue
+        if s_["id"] in NO_TARGET:
+            cls.append((s_, f"대상 없음 (MAPSI 확정 2026-11-03: {NO_TARGET[s_['id']]})", ks, {})); continue
         if ss is None:
             cls.append((s_, "대상 없음 (등록_세션 숫자 없음 — 이른 세션 비교 불가)", ks, {})); continue
         early = [t for t in reg if t is not s_ and sess(t) is not None and sess(t) < ss]
@@ -144,17 +181,19 @@ def write(rows, ctx):
         elif not hits: cls.append((s_, "대상 없음 (키워드가 이른 세션 원장 항목에 없음)", ks, {}))
         else:
             cls.append((s_, "이름으로만 적힌 정정 → 짝 후보 (미반영)", ks, hits)); pairs.append((s_, ks, hits))
-    cc = Counter(c.split(" (")[0] if c.startswith("대상 없음") else c for _, c, _, _ in cls)
+    cc = Counter(c.split(" (")[0] if c.startswith("대상 없음") else (c.split(" →")[0] if c.startswith("MAPSI") else c) for _, c, _, _ in cls)
+    n_conf_no = sum(1 for _, c, _, _ in cls if c.startswith("대상 없음 (MAPSI 확정"))
     O = ["# step7_report.md — 단계 7 (후속_정정 채우기) 반영 보고\n",
          "> 생성: `python3 tools/build_step2.py` (tools/build_step7.py). MAPSI 결정 2026-11-03 방식 (나): 상태 열 유지, 현행_상태 열 신설.",
-         "> 현행_상태 = 후속 정정으로 바뀐 행만 채움 (빈칸 = 상태와 같음). '폐기' 는 원문 표기 그대로. 문자열 규칙 연결 6행만 반영.\n",
+         "> 현행_상태 = 후속 정정으로 바뀐 행만 채움 (빈칸 = 상태와 같음). '폐기' 는 원문 표기 그대로. 문자열 규칙 연결 6행 + MAPSI 확정 쌍만 반영.\n",
          "## 합계\n",
          f"- 정정 원천 행: {len(src)} (규칙은 tools/dryrun_step7.py 와 같음)",
-         f"- 반영: 원천 {len(linked)} → 대상 {len({m['대상_ID'] for m in mp})}행 (연결 {len(mp)}건)",
+         f"- 반영: 원천 {len(linked)} (규칙) + 원문 파일 줄 {sum(1 for c in cf if len(c['대상']) == 1)} (MAPSI 확정 쌍) → 대상 {len({m['대상_ID'] for m in mp})}행 (연결 {len(mp)}건)",
          f"  - 현행_상태 채움: {sum(1 for r in rows if r.get('현행_상태'))}행 (" + ", ".join(f"{k} {v}" for k, v in Counter(r['현행_상태'] for r in rows if r.get('현행_상태')).items()) + ")",
          f"  - 재확정 (현행_상태 비움, 후속_정정만): {len({m['대상_ID'] for m in mp if not m['현행_상태']})}행",
+         f"  - 그중 MAPSI 확정 쌍 (원천 = 원문 파일 줄): " + ("; ".join(f"{c['원천_파일']} {c['원천_행']}행 → " + (c['대상'][0] if len(c['대상']) == 1 else f"원장 행 {len(c['대상'])}개 — 반영 안 함") for c in cf) or "없음"),
          f"- 상태 열 변경: 0 (단계 7 직전 스냅샷 index/step7_status_snapshot.csv 와 같음)",
-         f"- 연결 없는 원천 {len(src) - len(linked)}: " + ", ".join(f"{k} {v}" for k, v in cc.items()), "",
+         f"- 연결 없는 원천 {len(src) - len(linked)}: " + ", ".join(f"{k} {v}" for k, v in cc.items()) + f" (대상 없음 중 MAPSI 확정 {n_conf_no})", "",
          "## 반영 (map_step7.csv)\n", "| 대상 | 대상 세션 | 상태 | 현행_상태 | ← 원천 | 원천 세션·상태 | 규칙 | 원천 낱말 | 원천 위치 |", "|---|---|---|---|---|---|---|---|---|"]
     for m in mp:
         O.append(f"| {m['대상_ID']} | {m['대상_세션']} | {m['상태'] or '빈칸'} | {m['현행_상태'] or '(빈칸 — 재확정)'} | {m['원천_ID']} | {m['원천_세션']} · {m['원천_상태'] or '빈칸'} | {m['규칙']} | {m['원천_낱말'] or '—'} | {esc(m['원천_위치'])} |")
@@ -169,6 +208,7 @@ def write(rows, ctx):
          "> 생성: `python3 tools/build_step2.py` (tools/build_step7.py). 이름으로만 적힌 정정 (철회·폐기·미적용·정정·오기) 원천 행과,",
          "> 그 키워드 (따옴표 문자열 · 수식 기호 조각 · §N, 공백 제거 뒤 그대로 포함) 를 식·항목·별칭에 가진 이른 세션 등록 행. 문자열 기준, 해석 없음.",
          "> 원장에는 반영하지 않았다. 확인 후 확정된 쌍만 다음 반영에서 현행_상태·후속_정정에 옮긴다. 원천마다 후보 행을 일치 키워드 수 → 가장 긴 일치 키워드 길이 → ID 순으로 앞 12행까지 (전체 건수 병기). '§N' 키워드는 §N0·§N.x 와 맞추지 않음.\n",
+         "> MAPSI 확인 1차 (2026-11-03) 로 목록에서 빠진 원천: " + "; ".join([f"{c['같은_기록_행']} (확정 쌍 반영 → {', '.join(c['대상']) or '원장 행 없음'})" for c in cf] + [f"{k} (대상 없음 확정)" for k in NO_TARGET]) + ". 나머지는 perplexity 확인 후.\n",
          f"- 원천 행: {len(pairs)} / 후보 쌍 (원천×대상, 중복 제외): {len({(s_['id'], t['id']) for s_, ks, h in pairs for v in h.values() for t in v})}\n"]
     for s_, ks, hits in pairs:
         P += [f"## {s_['id']} — {s_['등록_세션']} · {s_['상태'] or '빈칸'}\n",

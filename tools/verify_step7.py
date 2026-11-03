@@ -7,14 +7,14 @@
   W2 다른 열 불변      : 현행_상태·후속_정정 밖 모든 열 = BASE. 후속_정정은 바뀐 행만, BASE 값이 앞에 그대로 남고 '단계 7:' 덧붙임
   W3 현행_상태 원천    : 현행_상태가 있는 행마다 후속_정정에 원천 L-ID, 그 원천의 주 근거 원문 줄에 그 낱말 ('폐기'/'철회' 원문 그대로)
   W4 현행_상태 ≠ 상태  : 같으면 빈칸이어야 함 (재확정은 후속_정정에만)
-  W5 반영 범위         : 후속_정정이 바뀐 행 = map_step7.csv 대상 행 = MAPSI 승인 6행 (L3335 L4621 L0505 L3641 L3653 L0809)
+  W5 반영 범위         : 후속_정정이 바뀐 행 = map_step7.csv 대상 행 = MAPSI 승인 6행 (L3335 L4621 L0505 L3641 L3653 L0809) + 확정 쌍 L1714
   W6 대응표 일치       : map_step7.csv 의 현행_상태·원천 ID 가 원장 후속_정정·현행_상태와 같음
 실행: python3 tools/verify_step7.py [BASE커밋] (기본 5f705de)
 """
 import csv, io, os, re, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = sys.argv[1] if len(sys.argv) > 1 else "5f705de"
-APPROVED = {"L3335", "L4621", "L0505", "L3641", "L3653", "L0809"}
+APPROVED = {"L3335", "L4621", "L0505", "L3641", "L3653", "L0809", "L1714"}   # L1714 = MAPSI 확정 쌍 (2026-11-03)
 TAGF = {"로그": "code/eqi_unified_engine_v9_7_terminal_mpmath140.txt", "소스": "code/eqi_unified_engine_v9_7.py",
         "v3.4": "성과정리문서/EQI_연구지침_프로젝트용_v3_4.md"}
 cur = list(csv.DictReader(open(os.path.join(ROOT, "index", "ledger.csv"), encoding="utf-8")))
@@ -47,7 +47,11 @@ for i, r in C.items():
     if v:
         if v == r["상태"]: bad.append((i, "W4", "현행_상태 = 상태"))
         srcs = re.findall(r"현행_상태 '" + re.escape(v) + r"' ← (L\d{4})", r["후속_정정"])
-        if not srcs: bad.append((i, "W3", "후속_정정에 원천 ID 없음"))
+        fsrc = re.findall(r"현행_상태 '" + re.escape(v) + r"' ← ((?:code|성과정리문서)/\S+) (\d+)행 \(MAPSI 확정 쌍", r["후속_정정"])
+        for fp_, fn_ in fsrc:
+            if v not in open(os.path.join(ROOT, fp_), encoding="utf-8", errors="replace").read().split("\n")[int(fn_) - 1]:
+                bad.append((i, "W3", f"원천 {fp_} {fn_}행에 '{v}' 없음"))
+        if not srcs and not fsrc: bad.append((i, "W3", "후속_정정에 원천 ID·원천 파일 줄 없음"))
         for s in srcs:
             sr = C.get(s)
             if not sr: bad.append((i, "W3", f"원천 {s} 없음")); continue
@@ -67,7 +71,7 @@ O = ["# verify_step7.md — 단계 7 (후속_정정 채우기) 자동 대조\n",
      f"- 현행_상태 채운 행: {len(filled)} ({', '.join(f'{i} {C[i]['현행_상태']}' for i in filled)})",
      f"- 후속_정정 바뀐 행: {len(changed)} ({', '.join(sorted(changed))})",
      f"- 불일치: {len(bad)}" + (" — 통과" if not bad else ""),
-     "- 항목: W1 상태 열 불변 (BASE·스냅샷) / W2 다른 열 불변·후속_정정 덧붙임만 / W3 현행_상태 원천 ID·원문 낱말 / W4 현행_상태 ≠ 상태 / W5 반영 범위 = 승인 6행 / W6 대응표 일치\n"]
+     "- 항목: W1 상태 열 불변 (BASE·스냅샷) / W2 다른 열 불변·후속_정정 덧붙임만 / W3 현행_상태 원천 ID·원문 낱말 / W4 현행_상태 ≠ 상태 / W5 반영 범위 = 승인 6행 + 확정 쌍 / W6 대응표 일치\n"]
 if bad:
     O += ["## 불일치\n", "| id | 항목 | 사유 |", "|---|---|---|"] + [f"| {a} | {b} | {c.replace('|', chr(92) + '|')} |" for a, b, c in bad[:200]]
 open(os.path.join(ROOT, "index", "verify_step7.md"), "w", encoding="utf-8").write("\n".join(O) + "\n")
