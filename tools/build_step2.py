@@ -26,7 +26,7 @@ LOG = "code/eqi_unified_engine_v9_7_terminal_mpmath140.txt"     # 완성판 mpma
 OUT = os.path.join(ROOT, "index")
 REG = os.path.join(OUT, "id_registry.csv")
 SEP = " ‖ "
-COLS = ["id", "항목", "식", "별칭", "상태", "등급", "오차", "층", "등록_세션", "근거_파일", "근거_위치",
+COLS = ["id", "항목", "식", "별칭", "상태", "등급", "상태_출처", "오차", "층", "등록_세션", "근거_파일", "근거_위치",
         "엔진_§", "후속_정정", "키워드", "비고"]
 
 def lines(rel):
@@ -409,6 +409,17 @@ for r in rows:
     if r["id"] in SPLIT_FIRST:
         r["비고"] = ("묶음 해체: 첫 원문 줄만 유지 (MAPSI 단계 2 정정 (1)); " + r["비고"]).rstrip("; ")
 
+# ─────────────── 상태 내려받기 (CLAUDE.md 규칙 4 보충) — tools/status_inherit.py ───────────────
+_sp2 = _ilu.spec_from_file_location("si", os.path.join(ROOT, "tools", "status_inherit.py"))
+si = _ilu.module_from_spec(_sp2); _sp2.loader.exec_module(si)
+SI_CTX = dict(ROOT=ROOT, FILES=FILES, render=render, TAG=TAG)
+si.apply(rows, SI_CTX)
+for m in CTX["step3_map"]:          # 대응표: 내려받기 뒤 원장 상태 반영
+    r = m["_row"]
+    if m["등급_대조"].startswith("다름") and "(내려받기" in r.get("상태_출처", "") and m["v34_등급"]:
+        if map_grade(m["v34_등급"])[0] == r["상태"]:
+            m["원장_상태"] = r["상태"]; m["등급_대조"] = "같음 (내려받기 후 — 1순위 엔진 표기 없음, 원장 상태 = v3.4 표기)"
+
 with open(os.path.join(OUT, "ledger.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=COLS, extrasaction="ignore"); w.writeheader(); w.writerows(rows)
 if new_reg:
@@ -454,7 +465,9 @@ CF = [
 # 단계 3: 같은 항목의 상태가 엔진 원장과 v3.4 §11 에서 다르게 적힌 곳 (판정 없음, 원장 상태는 엔진 기준 그대로)
 for c3 in CTX["step3_conf"]:
     r = c3["row"]
-    CF.append(dict(항목=f"{r['항목']} 상태 (엔진 / v3.4 §11)", 원장_ID=r["id"],
+    _res = ("해소: 상태 내려받기 (CLAUDE.md 규칙 4 보충, 2026-11-03) — 1순위 엔진 표기 없음, 원장 상태 = " + r["상태_출처"].split(" (내려받기")[0])
+    _res = _res if ("(내려받기" in r.get("상태_출처", "") and r["상태"] == c3["st"]) else ""
+    CF.append(dict(상태=_res, 항목=f"{r['항목']} 상태 (엔진 / v3.4 §11)", 원장_ID=r["id"],
                    위치_A=r["근거_위치"].split(" / ")[0] + f" ({r['근거_파일']})", 내용_A=f"원장 상태 '{r['상태'] or '빈칸'}' / 등급 '{r['등급']}' (오차 열: {r['오차'] or '—'})",
                    위치_B=f"{V34} {c3['ln']}행 (§11 표)", 내용_B=FILES[V34][c3['ln'] - 1].strip(),
                    비고=f"v3.4 표기 '{c3['g']}' (옮기면 '{c3['st']}'). 등록 표 우선 순서 (CLAUDE.md 규칙 4) 에 따라 원장 상태는 엔진 표기 유지. 판정 없음"))
@@ -499,30 +512,32 @@ if not os.path.exists(os.path.join(OUT, "sample_check_2.md")):
         f.write("\n".join(S) + "\n")
 
 # ─────────────── sample_check_3.md (단계 3 묶음: v3.4 §11 토큰이 있는 행, 새 행 2개 이상) ───────────────
-b3 = [r for r in rows if any(c[0] == V34 for c in r["_cites"])]
-new3 = {r["id"] for r in b3 if r["근거_파일"] == V34}
-seed3 = 20261104
-while True:
-    random.seed(seed3)
-    pick3 = sorted(random.sample(b3, 10), key=lambda r: int(r["id"][1:]))
-    if sum(r["id"] in new3 for r in pick3) >= 2: break
-    seed3 += 1
-S = [f"# sample_check_3.md — 단계 3 표본 대조 (v3.4 §11 묶음 {len(b3)}행 중 무작위 10행, seed {seed3}, 새 행 2개 이상 조건)\n",
-     "> 원장 행 + 근거_위치의 원문 행 인용 (엔진·로그·v3.4). 식 열의 ' ‖ ' 는 원문 줄 구분자.",
-     "> 엔진 행은 근거_위치 끝의 'v3.4 N행 [§11 표]' 토큰이 단계 3 에서 추가된 것. 대응 근거는 `index/map_step3.csv`, 자동 대조는 `index/verify_step3.md`.\n"]
-for r in pick3:
-    S.append(f"## {r['id']} — {r['항목']}" + ("  (단계 3 새 행)" if r["id"] in new3 else "  (엔진 행 + v3.4 근거 추가)") + "\n")
-    S.append("| 열 | 값 |\n|---|---|")
-    for c in COLS[1:]:
-        if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
-    S.append("\n원문 인용:\n")
-    for f, a, b, role in r["_cites"]:
-        S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
-        for n in range(a, min(b, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
-        S.append("  ```")
-    S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
-with open(os.path.join(OUT, "sample_check_3.md"), "w", encoding="utf-8") as f:
-    f.write("\n".join(S) + "\n")
+# perplexity 독립 대조 통과본 (2026-11-03) — 고정. 파일이 없을 때만 생성
+if not os.path.exists(os.path.join(OUT, "sample_check_3.md")):
+    b3 = [r for r in rows if any(c[0] == V34 for c in r["_cites"])]
+    new3 = {r["id"] for r in b3 if r["근거_파일"] == V34}
+    seed3 = 20261104
+    while True:
+        random.seed(seed3)
+        pick3 = sorted(random.sample(b3, 10), key=lambda r: int(r["id"][1:]))
+        if sum(r["id"] in new3 for r in pick3) >= 2: break
+        seed3 += 1
+    S = [f"# sample_check_3.md — 단계 3 표본 대조 (v3.4 §11 묶음 {len(b3)}행 중 무작위 10행, seed {seed3}, 새 행 2개 이상 조건)\n",
+         "> 원장 행 + 근거_위치의 원문 행 인용 (엔진·로그·v3.4). 식 열의 ' ‖ ' 는 원문 줄 구분자.",
+         "> 엔진 행은 근거_위치 끝의 'v3.4 N행 [§11 표]' 토큰이 단계 3 에서 추가된 것. 대응 근거는 `index/map_step3.csv`, 자동 대조는 `index/verify_step3.md`.\n"]
+    for r in pick3:
+        S.append(f"## {r['id']} — {r['항목']}" + ("  (단계 3 새 행)" if r["id"] in new3 else "  (엔진 행 + v3.4 근거 추가)") + "\n")
+        S.append("| 열 | 값 |\n|---|---|")
+        for c in COLS[1:]:
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', '∣')} |")
+        S.append("\n원문 인용:\n")
+        for f, a, b, role in r["_cites"]:
+            S.append(f"- `{f}:{a}" + (f"-{b}" if b != a else "") + f"` [{role}]\n  ```")
+            for n in range(a, min(b, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+            S.append("  ```")
+        S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
+    with open(os.path.join(OUT, "sample_check_3.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(S) + "\n")
 
 # ─────────────── coverage.md 원장 ID 연결 ───────────────
 import importlib.util
@@ -546,6 +561,8 @@ for k, v in pl.items(): links[("p", k)] = span(v)
 links[("v34", s3.T0)] = span([r["id"] for r in rows if any(c[0] == V34 and c[3] == "§11 표" for c in r["_cites"])])
 s1.build_coverage(s1.build_doc_map(), links)
 
+_ih = SI_CTX["inherit"]
+print("상태 내려받기: 변경", [(c[0], c[2]) for c in _ih["changed"]], "| 무등급 표기 유지", len(_ih["nograde"]), "| 다음 순위에도 없음", _ih["none"], "| docx 미검색", _ih["skipped"], "| 비UTF-8", _ih["badenc"])
 print("ledger rows:", len(rows), "| 새 행:", len(new_reg), "| 묶음 해체 원 ID:", sorted(SPLIT_FIRST), "| conflicts:", len(CF))
 print("상태:", dict(Counter(r["상태"] for r in rows)))
 print("엔진 § (§1~§42) 원장 미연결:", [s for s in HEAD if not any(r["별칭"] == f"엔진 §{s}" for r in rows)])

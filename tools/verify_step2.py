@@ -81,6 +81,7 @@ for r in rows:
     # V4/V5
     prim = toks[0] if toks else None
     exp_st = None
+    toks_ = toks
     if prim:
         t, a, b, role = prim
         line = F[t][a - 1]
@@ -127,6 +128,48 @@ for r in rows:
                 if not any(qq in tx for tx in alltext): why.append(f"V4 오차 인용 '{qq}' 원문에 없음")
             m = re.match(r"(?:머리말|v3\.4) (?:등급 )?표기: (\S.*?)(?: \(|$)", r["오차"]) or re.search(r"\(v3\.4 표기: (.+)\)$", r["오차"])
             if m and not any(m.group(1) in tx for tx in alltext): why.append(f"V4 머리말 등급 '{m.group(1)}' 원문에 없음")
+    # V8 상태_출처 (CLAUDE.md 규칙 4 보충: 상태 내려받기)
+    so = r.get("상태_출처", "")
+    if not so: why.append("V8 상태_출처 빈칸")
+    elif "(내려받기" in so:
+        # 1순위 기대 상태가 빈칸일 때만 내려받기 허용 → 1순위 비교의 상태·등급 불일치 줄은 V8 로 대체
+        if (exp_st or "") != "": why.append(f"V8 1순위 표기('{exp_st}') 가 있는데 내려받음")
+        why[:] = [w for w in why if not re.match(r"V[45] (상태|등급)", w)]
+        m = re.match(r"^(?:문서 (\S+) (\d+)행|v3\.4 (\d+)행 \[§11 표\]) '([^']+)'", so)
+        if not m: why.append("V8 내려받기 위치 형식 오류")
+        else:
+            rel, n, tok = (m.group(1) or V34), int(m.group(2) or m.group(3)), m.group(4)
+            try: t = (F["v3.4"] if rel == V34 else lines(rel))[n - 1]
+            except Exception: t = ""; why.append(f"V8 {rel} {n}행 읽기 실패")
+            key = re.sub(r"\s+", "", r["식"].split(SEP)[0])
+            if key not in re.sub(r"\s+", "", t): why.append("V8 내려받기 줄에 식 첫 조각 없음")
+            if tok not in t: why.append(f"V8 내려받기 줄에 표기 '{tok}' 없음")
+            want = {"확정": "확정", "철회": "철회", "미적용": "미적용", "결정 대기": "결정 대기", "O 보류": "O 보류",
+                    "해석 I": "해석 I", "설계 배치": "설계 배치"}.get(tok) or map_grade(tok)[0]
+            if r["상태"] != want: why.append(f"V8 내려받은 표기 '{tok}'→'{want}' ≠ 원장 '{r['상태']}'")
+            # 1순위에 아무 표기도 없어야 함
+            pt = " ".join(x[3] for x in texts if x[2] == (prim[3] if prim else ""))
+            jf = ""
+            if prim and prim[3] == "항목":
+                fs8 = [x.strip() for x in re.sub(r"^\s*\[[^\]]*\]\s*", "", F[prim[0]][prim[1] - 1]).split(" | ")]
+                jf = fs8[4] if len(fs8) >= 6 else (fs8[3] if len(fs8) == 5 else (fs8[2] if len(fs8) == 4 else ""))
+            if jf or GPH.search(pt) or any(w in pt for w in ["값만", "등급 없음", "계산 없음", "탐색 완료", "폐기"]):
+                why.append("V8 1순위 원문에 표기가 있음 (내려받기 대상 아님)")
+    elif so.startswith("1순위 표기 '"):
+        w8 = so.split("'")[1]
+        if w8 not in " ".join(alltext): why.append(f"V8 1순위 표기 '{w8}' 원문에 없음")
+        if r["상태"]: why.append("V8 무등급 표기 행인데 상태 있음")
+    elif so.startswith("1순위 표기 없음"):
+        if r["상태"]: why.append("V8 표기 없음 행인데 상태 있음")
+    else:
+        m = re.match(r"^(로그|소스|v3\.4) (\d+)행 \[([^\]]+)\] '([^']+)' — 1순위$", so)
+        if not m: why.append("V8 1순위 상태_출처 형식 오류")
+        else:
+            t = F[m.group(1)][int(m.group(2)) - 1]
+            if m.group(4) not in t: why.append(f"V8 상태_출처 줄에 표기 '{m.group(4)}' 없음")
+            if not any(c[0] == m.group(1) and c[1] <= int(m.group(2)) <= c[2] for c in toks): why.append("V8 상태_출처 줄이 근거_위치에 없음")
+            tk = m.group(4); want = "미적용" if tk == "미적용" else map_grade(tk)[0]
+            if want != r["상태"]: why.append(f"V8 상태_출처 표기 '{tk}'→'{want}' ≠ 원장 '{r['상태']}'")
     # V6
     if r["등록_세션"]:
         exprs = {e for tx in alltext for e in SESS_RE.findall(tx)} | {e for tx in alltext for e in SESSW.findall(tx)}
@@ -149,7 +192,7 @@ O = ["# verify_step2.md — 단계 2 원장 전체 자동 대조\n",
      f"- 일치: {len(rows) - len(bad)} / 불일치: {len(bad)}",
      f"- ID 검사 (유일·연속·등록부 일치): {'통과' if id_ok else '실패'}",
      "- 불일치 사유별: " + (", ".join(f"{k} {v}건" for k, v in sorted(cnt.items())) if cnt else "없음"),
-     "- 검사 항목: V1 근거 행 존재 / V2 식 원문 일치 / V3 여러 줄 완전성 / V4 상태·등급·오차 / V5 상태 올림 없음 / V6 등록_세션 / V7 ID\n"]
+     "- 검사 항목: V1 근거 행 존재 / V2 식 원문 일치 / V3 여러 줄 완전성 / V4 상태·등급·오차 / V5 상태 올림 없음 / V6 등록_세션 / V7 ID / V8 상태_출처 (1순위 표기 위치·내려받기 줄·무등급 표기)\n"]
 if bad:
     O.append("## 불일치 행\n\n| id | 항목 | 사유 |\n|---|---|---|")
     for r, w in bad:
