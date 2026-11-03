@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+단계 5 대조 — 세션 문서 S109~S119 + 번역·설계 문서 ↔ 원장 / index/map_step5.csv → index/verify_step5.md
+원장·대응표·충돌 CSV 와 원문 (derived 변환본 포함) 줄만 본다. 상태 선택 규칙은 build_step5.py 와 독립으로 다시 씀. 해석·재판정 없음.
+  Y1 전수     : 대상 문서의 상태 표기 줄 (머리글·표 구분 행 제외) 이 모두 대응표에 있음 (새 행 / 근거 추가 / 제외 사유)
+  Y2 새 행    : 식 조각 = 인용 줄 원문, 근거_파일 = 그 문서, derived 행은 비고에 원문 docx 경로
+  Y3 상태     : 독립 재구현한 선택 규칙 (결정 표기 우선 → 등급 → 확정, 부정·등급 언급 제외, '후보' → 빈칸) 결과 = 원장 상태
+                T3 행은 비고·근거에 머리글 행 번호, 그 머리글의 범주 표기가 하나, '확정' 머리글은 MAPSI 포함
+  Y4 병합     : 대상 행 근거_위치에 그 문서 줄 토큰
+  Y5 상태 차이 : 대응표 '다름' 은 conflicts.csv 에 기록
+  Y6 지정 행  : S119 성과정리 W-1~W-4 (미적용) · D-1~D-4 (설계 배치) 가 각각 별도 행
+실행: python3 tools/verify_step5.py
+"""
+import csv, os, re
+from collections import Counter
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+rd = lambda n: list(csv.DictReader(open(os.path.join(ROOT, "index", n), encoding="utf-8")))
+led = {r["id"]: r for r in rd("ledger.csv")}; mp = rd("map_step5.csv"); cf = rd("conflicts.csv")
+def L(p):
+    return [l.rstrip("\r") for l in open(os.path.join(ROOT, p), "rb").read().decode("utf-8", errors="replace").split("\n")]
+NEG = r"(?!\s*(?:표기\s*)?(?:안 함|안함|아님|금지|불가|하지 않|않음|없음))(?!\s*(?:임계|기준|카운트|급\b|급 ))"
+D = re.compile(r"(철회|미적용|O 보류|(?<![가-힣A-Za-z])보류|\(O\)|(?<=\| )O(?= \|)|해석 I|\(I\)|(?<=\| )I(?= \|)|결정 대기|설계 배치|(?<![불미])확정)" + NEG)
+G = re.compile(r"(True Zero\(대수필연\)|TZ\(대수필연\)|Near True Zero|Near[- ]TZ|True Zero|Real Zero|대수필연|(?<![A-Za-z-])TZ(?![A-Za-z(]))" + NEG)
+DM = {"철회": "철회", "미적용": "미적용", "O 보류": "O 보류", "보류": "O 보류", "(O)": "O 보류", "O": "O 보류", "해석 I": "해석 I", "(I)": "해석 I",
+      "I": "해석 I", "결정 대기": "결정 대기", "설계 배치": "설계 배치", "확정": "확정"}
+ORD = ["철회", "미적용", "O 보류", "해석 I", "결정 대기", "설계 배치", "확정"]
+GM = lambda t: {"True Zero(대수필연)": "대수필연", "TZ(대수필연)": "대수필연", "Near True Zero": "Near TZ", "Near TZ": "Near TZ", "Near-TZ": "Near TZ",
+                "True Zero": "TZ", "Real Zero": "Real Zero", "대수필연": "대수필연", "TZ": "TZ"}[t]
+def expect(t):
+    if "후보" in t: return ""
+    d = [m.group(1) for m in D.finditer(t)]; g = [m.group(1) for m in G.finditer(t)]
+    if d:
+        st = min({DM[x] for x in d}, key=ORD.index)
+        if st == "확정" and g: return GM(g[-1])
+        return st
+    return GM(g[-1]) if g else None
+bad = []
+files = sorted({m["문서"] for m in mp})
+for p in files:
+    V = L(p); rows_ = {int(m["행"].split("–")[0]): m for m in mp if m["문서"] == p}
+    cov = set()
+    for m in mp:
+        if m["문서"] == p:
+            a, _, b = m["행"].partition("–"); cov.update(range(int(a), int(b or a) + 1))
+    for n, l in enumerate(V, 1):
+        t = l.strip()
+        if not t or l.startswith("#") or l.startswith("```") or re.match(r"^\|[-\s|:]+\|$", t): continue
+        if t.startswith("|") and n < len(V) and re.match(r"^\|[-\s|:]+\|$", V[n].strip()): continue
+        if (D.search(t) or G.search(t)) and n not in cov: bad.append(f"Y1 {p} {n}행 대응표에 없음")
+res = []
+for m in mp:
+    why = []
+    if m["종류"] == "제외": res.append((m, why)); continue
+    r = led.get(m["원장_ID"]); p = m["문서"]; V = L(p)
+    a, _, b = m["행"].partition("–"); a, b = int(a), int(b or a)
+    if not r: why.append("원장 ID 없음")
+    elif m["대응"] == "새 행":
+        if r["근거_파일"] != p: why.append("Y2 근거_파일 ≠ 문서")
+        if r["식"].split(" ‖ ") != [V[k - 1].strip() for k in range(a, b + 1)]: why.append("Y2 식 ≠ 인용 줄")
+        if p.startswith("derived/") and "원문 docx 변환본" not in r["비고"]: why.append("Y2 derived 행 비고에 원문 docx 없음")
+        if m["종류"] == "T3":
+            hm = re.search(r"\(문서 \S+ (\d+)행\)", r["비고"])
+            if not hm: why.append("Y3 T3 비고에 머리글 행 번호 없음")
+            else:
+                h = V[int(hm.group(1)) - 1]
+                if not re.match(r"^#{2,4} ", h): why.append("Y3 T3 머리글 행이 머리글 아님")
+                if m["표기"] == "확정" and "MAPSI" not in h: why.append("Y3 '확정' 머리글에 MAPSI 없음")
+                if m["표기"] not in h: why.append("Y3 머리글에 범주 표기 없음")
+                if DM.get(m["표기"], m["표기"]) != r["상태"]: why.append("Y3 T3 상태 ≠ 머리글 범주")
+        else:
+            e = expect(" ".join(V[k - 1] for k in range(a, b + 1)))
+            if e is not None and e != r["상태"]: why.append(f"Y3 상태 기대 '{e or '빈칸'}' ≠ 원장 '{r['상태'] or '빈칸'}'")
+    else:
+        if f"문서 {p} {a}" not in r["근거_위치"]: why.append("Y4 대상 행에 문서 줄 토큰 없음")
+        if m["상태_대조"].startswith("다름") and not any(r["id"] in c["원장_ID"] and f"{p} {a}행" in c["위치_B"] for c in cf):
+            why.append("Y5 상태 차이 conflicts.csv 에 없음")
+    bad.extend(f"{p.split('/')[-1]} {m['행']} {m['원장_ID']}: {w}" for w in why)
+    res.append((m, why))
+s119 = "성과정리문서/EQI_Session119_성과정리_v1.md"
+for lab, want in [("W-1", "미적용"), ("W-2", "미적용"), ("W-3", "미적용"), ("W-4", "미적용"), ("D-1", "설계 배치"), ("D-2", "설계 배치"), ("D-3", "설계 배치"), ("D-4", "설계 배치")]:
+    hit = [x for x in led.values() if x["근거_파일"] == s119 and x["식"].startswith(f"| {lab} |")]
+    if len(hit) != 1 or hit[0]["상태"] != want: bad.append(f"Y6 S119 {lab}: 행 {len(hit)}개, 상태 {[h['상태'] for h in hit]} (기대 {want})")
+k = Counter(m["종류"] for m in mp); dd = Counter(m["대응"][:12] for m in mp)
+O = ["# verify_step5.md — 단계 5 (세션 문서 S109~S119 + 번역·설계) 자동 대조\n",
+     f"> 생성: `python3 tools/verify_step5.py`. 대상 {len(files)}개 문서. 원장 전체 원문 대조는 `index/verify_step2.md`, 문자 보존은 `index/check_chars.md`.\n",
+     "## 요약\n", f"- 대응표 행: {len(mp)} — 종류 {dict(k)} / 대응 {dict(dd)}",
+     "- Y6 지정 행 (S119 W-1~W-4 미적용, D-1~D-4 설계 배치): " + ("통과" if not any(x.startswith("Y6") for x in bad) else "실패"),
+     f"- **불일치: {len(bad)}**" + ("" if not bad else " — " + "; ".join(bad[:20])), "",
+     "## 대응표 행별 결과\n", "| 문서 | 행 | 종류 | 원장 ID | 대응 | 표기 | 상태 대조 | 원문 | 결과 |", "|---|---|---|---|---|---|---|---|---|"]
+for m, why in res:
+    O.append("| " + " | ".join(x.replace("|", "\\|") for x in [m["문서"].split("/")[-1], m["행"], m["종류"], m["원장_ID"], m["대응"], m["표기"], m["상태_대조"], m["원문"][:60]])
+             + f" | {'불일치: ' + '; '.join(why) if why else '일치'} |")
+open(os.path.join(ROOT, "index", "verify_step5.md"), "w", encoding="utf-8").write("\n".join(O) + "\n")
+print(f"문서 {len(files)} / 대응표 {len(mp)} {dict(k)} / 불일치 {len(bad)}", bad[:8])

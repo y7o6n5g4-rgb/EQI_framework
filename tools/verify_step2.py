@@ -26,11 +26,17 @@ def lines(rel):
     with open(os.path.join(ROOT, rel), encoding="utf-8", newline="") as f:
         return [l.rstrip("\r\n") for l in f.read().split("\n")]
 V34 = "성과정리문서/EQI_연구지침_프로젝트용_v3_4.md"
-F = {"로그": lines(LOG), "소스": lines(ENG), "v3.4": lines(V34)}
+class _LazyF(dict):        # '문서 <경로>' 토큰 (단계 5 세션 문서·derived 변환본) 은 필요할 때 읽음 (UTF-8 아닌 바이트는 대체 문자)
+    def __missing__(self, k):
+        if not k.startswith("문서 "): raise KeyError(k)
+        b = open(os.path.join(ROOT, k[3:]), "rb").read()
+        v = [l.rstrip("\r") for l in b.decode("utf-8", errors="replace").split("\n")]
+        self[k] = v; return v
+F = _LazyF({"로그": lines(LOG), "소스": lines(ENG), "v3.4": lines(V34)})
 FN = {"로그": LOG, "소스": ENG, "v3.4": V34}
 norm = lambda s: s.strip().strip("║").strip()
 
-TOK = re.compile(r"(로그|소스|v3\.4) (\d+)(?:–(\d+))?행(?: \(\d+행\))? \[([^\]]+)\]")
+TOK = re.compile(r"(로그|소스|v3\.4|문서 \S+) (\d+)(?:–(\d+))?행(?: \(\d+행\))? \[([^\]]+)\]")
 CK = re.compile(r"^\s*✓\s+(.*?)\s*(?:오차=(\S+))?\s*(?:★\s*(.+?))?\s*$")
 GRADE_MAP = [("TZ(대수필연)", "대수필연", "대수필연"), ("True Zero(대수필연)", "대수필연", "대수필연"),
              ("Near True Zero", "Near TZ", "Near TZ"), ("Near TZ", "Near TZ", "Near TZ"),
@@ -41,7 +47,7 @@ WORD = {"TZ": ["True Zero", "TZ"], "Near TZ": ["Near TZ", "Near True Zero"], "Re
         "대수필연": ["대수필연"], "미적용": ["미적용"]}
 GPH = re.compile(r"(True Zero\(대수필연\)|TZ\(대수필연\)|Near True Zero|Near TZ|탐색 완료\(NTZ\)|True Zero|Real Zero|대수필연|미적용)")
 SESS_RE = re.compile(r"(?<![A-Za-z_])S\d+(?:\s*[~/]\s*S?\d+)*")
-SESSW = re.compile(r"Session \d+(?:~\d+)?")
+SESSW = re.compile(r"Session ?\d+(?:~\d+)?")
 LISTTOK = {"확정": "확정", "철회": "철회", "미적용": "미적용", "결정 대기": "결정 대기", "O 보류": "O 보류", "해석 I": "해석 I", "설계 배치": "설계 배치"}
 STAT2 = re.compile(r"True Zero\(대수필연\)|TZ\(대수필연\)|Near True Zero|Near TZ|True Zero|Real Zero|대수필연|(?<![A-Za-z])TZ(?![A-Za-z(])"
                    r"|결정 대기|O 보류|해석 I|설계 배치|(?<![불미])확정|철회|미적용")
@@ -50,7 +56,10 @@ def body_token(t):
     g = GRD2.findall(t)
     if g: return g[-1]
     a = STAT2.findall(t); return a[0] if a else ""
+SESSTOK = {"O": "O 보류", "(O)": "O 보류", "보류": "O 보류", "I": "해석 I", "(I)": "해석 I", "후보": ""}   # 단계 5 세션 문서 표기
 def map_any(tok):
+    if tok in SESSTOK: return SESSTOK[tok], "없음"
+    if tok == "Near-TZ": return "Near TZ", "Near TZ"
     return (LISTTOK[tok], "없음") if tok in LISTTOK else map_grade(tok)
 def map_grade(label):
     label = (label or "").strip()
@@ -83,6 +92,7 @@ for r in rows:
             why.append(f"V2 식 조각이 원문에 없음: '{p_[:40]}'")
     # V3
     for t, a, b, role in toks:
+        if toks and t != toks[0][0]: continue          # 덧붙인 다른 원문의 근거 토큰 (단계 3~5 근거 위치 추가) 은 V3 대상 아님
         if role in ("항목", "본문", "표") and b > a:
             for n in range(a + 1, b + 1):
                 tx = norm(F[t][n - 1])
@@ -113,12 +123,14 @@ for r in rows:
             if parts and parts[0] != fs[0]: why.append(f"V2 식 첫 조각 ≠ 원문 라벨 '{fs[0][:40]}'")
             if err and err not in r["오차"]: why.append(f"V4 오차 '{err}' 원장에 없음")
             if grade and f"판정 열: {grade}" not in r["오차"]: why.append(f"V4 판정 열 '{grade}' 원장 오차 열에 없음")
+        if prim[0].startswith("문서 "):
+            exp_st = None; doc_prim = True        # 상태 선택 규칙 대조는 tools/verify_step5.py (독립 재구현)
         if exp_st is not None:
             if r["상태"] != exp_st:
                 tag = "V5 상태 올림" if RANK.get(r["상태"], 0) > RANK.get(exp_st, 0) else "V4 상태 불일치"
                 why.append(f"{tag}: 원문→'{exp_st or '빈칸'}', 원장 '{r['상태'] or '빈칸'}'")
             if r["등급"] != exp_gr: why.append(f"V4 등급 불일치: 원문→'{exp_gr}', 원장 '{r['등급']}'")
-        else:
+        elif not prim[0].startswith("문서 "):
             # [머리말]·[본문] 주 원문: 인용 행의 첫 등급 표기 (본문 → 머리말 등급 → 머리말 순) 로 기대 상태
             # 주 원문 역할 먼저. 덧붙인 v3.4 §11 토큰은 주 원문일 때만 (엔진 행의 v3.4 표기 차이는 conflicts.csv 로 따로 기록)
             order = [prim[3]] + [x for x in ["본문", "본문 등급", "블록 등급", "머리말 등급", "머리말"] if x != prim[3]]
@@ -177,7 +189,7 @@ for r in rows:
     elif so.startswith("1순위 표기 없음"):
         if r["상태"]: why.append("V8 표기 없음 행인데 상태 있음")
     else:
-        m = re.match(r"^(로그|소스|v3\.4) (\d+)행 \[([^\]]+)\] '([^']+)' — 1순위$", so)
+        m = re.match(r"^(로그|소스|v3\.4|문서 \S+) (\d+)행 \[([^\]]+)\] '([^']+)' — 1순위$", so)
         if not m: why.append("V8 1순위 상태_출처 형식 오류")
         else:
             t = F[m.group(1)][int(m.group(2)) - 1]

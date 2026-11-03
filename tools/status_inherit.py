@@ -82,6 +82,7 @@ def apply(rows, ctx):
         return cache[rel]
     changed, nograde, none = [], [], []
     for r in rows:
+        if r.get("상태_출처") and r["_key"].startswith("S5:"): continue     # 단계 5 행은 build_step5 가 상태_출처를 적음
         cites = r["_cites"]
         prim = cites[0]
         f, a, b, role = prim

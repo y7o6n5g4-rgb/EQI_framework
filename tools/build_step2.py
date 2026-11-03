@@ -367,6 +367,14 @@ _si0 = _ilu.module_from_spec(_spt); _spt.loader.exec_module(_si0)
 CTX["TOKMAP"] = _si0.TOKMAP
 s4a.apply(CTX, "4a")
 s4a.apply(CTX, "4b")      # 단계 4b: v3.4 캡슐 블록 S79~S108 (2211행 ~ 파일 끝), 같은 규칙
+# ─────────────── 단계 5 hook: 세션 문서 S109~S119 + 번역·설계 (tools/build_step5.py) ───────────────
+_sp5 = _ilu.spec_from_file_location("s5", os.path.join(ROOT, "tools", "build_step5.py"))
+s5 = _ilu.module_from_spec(_sp5); _sp5.loader.exec_module(s5)
+def _layer5(t):
+    h = re.findall(r"([357])체", t)
+    return (h[0] + "체") if len(h) == 1 else "해당 없음"
+CTX.update(ROOT=ROOT, TAG=TAG, sides=s4a.sides, first_side=s4a.first_side, layer=_layer5)
+s5.apply(CTX)
 
 # ─────────────── ID 부여 (등록부 고정, 규칙 7) ───────────────
 reg = list(csv.DictReader(open(REG, encoding="utf-8")))
@@ -440,6 +448,7 @@ if new_reg:
 s3.write_map(CTX, os.path.join(OUT, "map_step3.csv"))
 s4a.write_map(CTX, os.path.join(OUT, "map_step4a.csv"), "4a")
 s4a.write_map(CTX, os.path.join(OUT, "map_step4b.csv"), "4b")
+s5.write_map(CTX, os.path.join(OUT, "map_step5.csv"))
 
 # ─────────────── conflicts.csv (K 번호 고정, 새 충돌은 끝에만) ───────────────
 def find(pred): return next(r["id"] for r in rows if pred(r))
@@ -484,6 +493,12 @@ for c3 in CTX["step3_conf"]:
                    위치_B=f"{V34} {c3['ln']}행 (§11 표)", 내용_B=FILES[V34][c3['ln'] - 1].strip(),
                    비고=f"v3.4 표기 '{c3['g']}' (옮기면 '{c3['st']}'). 등록 표 우선 순서 (CLAUDE.md 규칙 4) 에 따라 원장 상태는 엔진 표기 유지. 판정 없음"))
 # 단계 4a: v3.4 본문 줄 표기와 원장 상태가 다른 곳 (판정 없음)
+for c5 in CTX["step5_conf"]:
+    ids = ", ".join(r["id"] for r in c5["rows_"]); r0 = c5["rows_"][0]
+    CF.append(dict(항목=f"{c5['p'].split('/')[-1]} {c5['ln']}행 '{c5['text'][:40]}' 상태 (원장 / 세션 문서)", 원장_ID=ids,
+                   위치_A=f"{r0['근거_위치'].split(' / ')[0]} ({r0['근거_파일']})", 내용_A=f"원장 상태 '{r0['상태'] or '빈칸'}'",
+                   위치_B=f"{c5['p']} {c5['ln']}행" + (f"–{c5['lb']}행" if c5['lb'] != c5['ln'] else "") + (f" (원문 docx: {c5['src']})" if c5['src'] else ""),
+                   내용_B=c5["text"], 비고=f"세션 문서 표기 '{c5['tok']}' (옮기면 '{c5['st']}'). 등록 표 우선 순서상 원장 상태 유지. 판정 없음"))
 for c4 in CTX["step4a_conf"] + CTX["step4b_conf"]:
     ids = ", ".join(r["id"] for r in c4["rows_"])
     r0 = c4["rows_"][0]
@@ -616,6 +631,40 @@ if not os.path.exists(os.path.join(OUT, "sample_check_4b.md")) or os.environ.get
             S.append("  ```")
         S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
     with open(os.path.join(OUT, "sample_check_4b.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(S) + "\n")
+
+# ─────────────── sample_check_5.md (단계 5: 세션 문서 S109~S119 + 번역·설계) ───────────────
+b5 = sorted({id(m_["_row"]): m_["_row"] for m_ in CTX["step5_map"]}.values(), key=lambda r: int(r["id"][1:]))
+k5 = {m_["_row"]["id"]: m_ for m_ in CTX["step5_map"]}
+if not os.path.exists(os.path.join(OUT, "sample_check_5.md")) or os.environ.get("REGEN_SAMPLE_5"):
+    WD = [r for r in b5 if r["근거_파일"].endswith("Session119_성과정리_v1.md") and re.match(r"^\| [WD]-[1-4] \|", r["식"])]
+    seed5 = 20261107
+    while True:
+        random.seed(seed5)
+        pick5 = random.sample(WD, 1) + random.sample([r for r in b5 if r not in WD], 9)
+        c_t3 = sum(1 for r in pick5[1:] if k5[r["id"]]["종류"] == "T3")
+        c_der = sum(1 for r in pick5 if r["근거_파일"].startswith("derived/"))
+        c_oi = sum(1 for r in pick5 if k5[r["id"]]["표기"] in ("O", "I", "(O)", "(I)", "후보", "보류"))
+        if c_t3 >= 1 and c_der >= 1 and c_oi >= 1: break
+        seed5 += 1
+    pick5 = sorted(pick5, key=lambda r: int(r["id"][1:]))
+    S = [f"# sample_check_5.md — 단계 5 표본 대조 (세션 문서 S109~S119 + 번역·설계 묶음 {len(b5)}행 중 10행, seed {seed5})\n",
+         "> 조건: S119 W-1~W-4·D-1~D-4 중 1행, 그 밖의 머리글 범주 (T3) 행 1개 이상, derived/ 변환본 행 1개 이상, O·I·후보·보류 표기 행 1개 이상.",
+         "> 원장 행 + 근거_위치의 원문 행 인용. 식 열의 ' ‖ ' 는 원문 줄 구분자. md 표의 원문 '|' 는 '\\|' 로 이스케이프 (원문 문자 대체 없음).",
+         "> 규칙 T1~T4·상태 선택·같은 항목 판정은 `tools/build_step5.py` 머리말, 줄별 결과는 `index/map_step5.csv`, 자동 대조는 `index/verify_step5.md`.\n"]
+    for r in pick5:
+        mk = k5[r["id"]]
+        S.append(f"## {r['id']} — {r['항목'].replace('|', chr(92) + '|')}  ({mk['종류']}, {mk['대응']})\n")
+        S.append("| 열 | 값 |\n|---|---|")
+        for c in COLS[1:]:
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', chr(92) + '|')} |")
+        S.append("\n원문 인용:\n")
+        for f, a, b_, role in r["_cites"]:
+            S.append(f"- `{f}:{a}" + (f"-{b_}" if b_ != a else "") + f"` [{role}]\n  ```")
+            for n in range(a, min(b_, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+            S.append("  ```")
+        S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
+    with open(os.path.join(OUT, "sample_check_5.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(S) + "\n")
 
 # ─────────────── coverage.md 원장 ID 연결 ───────────────
