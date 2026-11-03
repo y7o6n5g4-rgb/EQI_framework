@@ -10,6 +10,7 @@
   Y4 병합     : 대상 행 근거_위치에 그 문서 줄 토큰
   Y5 상태 차이 : 대응표 '다름' 은 conflicts.csv 에 기록
   Y6 지정 행  : S119 성과정리 W-1~W-4 (미적용) · D-1~D-4 (설계 배치) 가 각각 별도 행
+  Y7 T5 행    : 범주 둘 머리글 아래 행 — 상태 빈칸, 비고 '머리글 N행 범주 둘 — 상태 미전달', 그 머리글 범주 둘 이상, 처리 칸 인용이 원문 줄에 있음, 내려받기 없음
 실행: python3 tools/verify_step5.py
 """
 import csv, os, re
@@ -68,6 +69,17 @@ for m in mp:
                 if m["표기"] == "확정" and "MAPSI" not in h: why.append("Y3 '확정' 머리글에 MAPSI 없음")
                 if m["표기"] not in h: why.append("Y3 머리글에 범주 표기 없음")
                 if DM.get(m["표기"], m["표기"]) != r["상태"]: why.append("Y3 T3 상태 ≠ 머리글 범주")
+        elif m["종류"] == "T5":
+            hm = re.search(r"머리글 (\d+)행 범주 둘", r["비고"])
+            if not hm or "상태 미전달" not in r["비고"]: why.append("Y7 T5 비고에 '머리글 N행 범주 둘 — 상태 미전달' 없음")
+            else:
+                h = V[int(hm.group(1)) - 1]
+                cats = [w for w in ("설계 배치", "(O)", "(I)", "철회", "미적용", "결정 대기") if w in h] + (["확정"] if "확정" in h and "MAPSI" in h else [])
+                if len(cats) < 2: why.append(f"Y7 T5 머리글 범주 {cats} (둘 이상 아님)")
+            if r["상태"]: why.append("Y7 T5 상태가 빈칸이 아님")
+            q = re.match(r"^1순위 표기 '([^']+)'", r["상태_출처"])
+            if q and q.group(1) not in V[a - 1]: why.append("Y7 상태_출처 인용 칸 글이 원문 줄에 없음")
+            if "(내려받기" in r["상태_출처"]: why.append("Y7 T5 행이 내려받음")
         else:
             e = expect(" ".join(V[k - 1] for k in range(a, b + 1)))
             if e is not None and e != r["상태"]: why.append(f"Y3 상태 기대 '{e or '빈칸'}' ≠ 원장 '{r['상태'] or '빈칸'}'")

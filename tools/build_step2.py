@@ -667,6 +667,48 @@ if not os.path.exists(os.path.join(OUT, "sample_check_5.md")) or os.environ.get(
     with open(os.path.join(OUT, "sample_check_5.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(S) + "\n")
 
+# ─────────────── sample_check_5b.md (단계 5 보충 표본, MAPSI 지정 범주 포함) — sample_check_5.md 는 그대로 ───────────────
+if not os.path.exists(os.path.join(OUT, "sample_check_5b.md")) or os.environ.get("REGEN_SAMPLE_5B"):
+    random.seed(20261109)
+    s119 = "성과정리문서/EQI_Session119_성과정리_v1.md"; s117x = "성과정리문서/EQI_S117_플랑크_양자에너지_확장번역_v4.md"
+    V17 = FILES[s117x]
+    sec0 = next(i for i, l in enumerate(V17, 1) if l.startswith("## 0.")); sec1 = next(i for i, l in enumerate(V17, 1) if l.startswith("## 1."))
+    CATS = [
+        ("설계 배치 D 행 (S119 §4)", [r for r in b5 if r["근거_파일"] == s119 and re.match(r"^\| D-[1-4] \|", r["식"])]),
+        ("철회 행", [r for r in b5 if r["상태"] == "철회"]),
+        ("결정 대기 행", [r for r in b5 if r["상태"] == "결정 대기"]),
+        ("범주 둘 머리글 아래 새 행 (T5, 보충 (1))", [r for r in b5 if k5[r["id"]]["종류"] == "T5"]),
+        (f"S117 확장번역 v4 §0 ({sec0}~{sec1 - 1}행) — 관측·tip·부정적분 상수",
+         [r for r in b5 if r["근거_파일"] == s117x and sec0 <= r["_cites"][0][1] < sec1 and re.search(r"TIP|tip|관측|부정적분|C =", r["식"])]),
+    ]
+    pick5b, why5b = [], {}
+    for nm, cand in CATS:
+        cand = [r for r in cand if r not in pick5b]
+        if not cand: raise SystemExit(f"sample_check_5b: 후보 없음 — {nm}")
+        r = random.choice(sorted(cand, key=lambda r: int(r["id"][1:]))); pick5b.append(r); why5b[r["id"]] = f"{nm} — 후보 {len(cand)}행 중 1"
+    rest = sorted([r for r in b5 if r not in pick5b], key=lambda r: int(r["id"][1:]))
+    for r in random.sample(rest, 5): pick5b.append(r); why5b[r["id"]] = "무작위 (단계 5 묶음)"
+    pick5b.sort(key=lambda r: int(r["id"][1:]))
+    S = [f"# sample_check_5b.md — 단계 5 보충 표본 (10행, seed 20261109)\n",
+         "> MAPSI 지정 (2026-11-03): 설계 배치 D 행 1 · 철회 행 1 · 결정 대기 행 1 · 보충 (1) 로 새로 들어온 행 1 이상 · S117 확장번역 v4 §0 (관측·tip·부정적분 상수) 행 1 + 무작위 5.",
+         "> 각 범주는 후보 중 seed 고정 무작위 1행. sample_check_5.md 는 수정하지 않음. md 표의 원문 '|' 는 '\\|' 이스케이프.\n",
+         "| 원장 ID | 뽑힌 범주 |", "|---|---|"] + [f"| {r['id']} | {why5b[r['id']]} |" for r in pick5b] + [""]
+    for r in pick5b:
+        mk = k5[r["id"]]
+        S.append(f"## {r['id']} — {r['항목'].replace('|', chr(92) + '|')}  ({mk['종류']}, {mk['대응']})\n")
+        S.append(f"> 뽑힌 범주: {why5b[r['id']]}\n")
+        S.append("| 열 | 값 |\n|---|---|")
+        for c in COLS[1:]:
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', chr(92) + '|')} |")
+        S.append("\n원문 인용:\n")
+        for f, a, b_, role in r["_cites"]:
+            S.append(f"- `{f}:{a}" + (f"-{b_}" if b_ != a else "") + f"` [{role}]\n  ```")
+            for n in range(a, min(b_, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+            S.append("  ```")
+        S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
+    with open(os.path.join(OUT, "sample_check_5b.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(S) + "\n")
+
 # ─────────────── coverage.md 원장 ID 연결 ───────────────
 import importlib.util
 spec = importlib.util.spec_from_file_location("s1", os.path.join(ROOT, "tools", "build_step1.py"))

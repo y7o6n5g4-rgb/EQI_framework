@@ -15,6 +15,9 @@
                  결정 대기 / 확정) 를 가지면 그 상태. 비고에 머리글 행 번호. 범주가 둘 이상인 머리글 (예 '관찰 (O) · 철회 기록') 은 넘기지 않음.
                  '확정' 머리글은 'MAPSI' 가 함께 적힌 것만 (예 '확정 결정 (MAPSI S116)'). '확정 서지'·'확정 설계'·'실행 전 확정안' 등은 넘기지 않음.
   T4 제외      : 머리글, 표 머리 행·구분 행, 상태 표기 없는 줄 (T3 해당 없음), 수식 없는 문단 표기 줄.
+  T5 범주 둘   : 자체 표기 없는 표 행·목록 항목인데 머리글 범주가 둘 이상 (예 '관찰 (O) · 철회 기록') → 행으로 넣고 상태는 빈칸 (MAPSI 보충 2026-11-03).
+                 표 머리에 '처리'·'상태'·'판정' 칸이 있으면 그 칸 글을 1순위 표기로 상태_출처에 원문 그대로 인용 (상태 목록 표기가 아니므로 상태는 빈칸).
+                 비고 "머리글 N행 범주 둘 (…) — 상태 미전달". 다음 순위 내려받기 하지 않음.
   상태 선택    : 한 행에 표기가 여럿이면 MAPSI 결정 표기가 등급보다 우선 — 철회 > 미적용 > O 보류 > 해석 I > 결정 대기 > 설계 배치 > 확정,
                  결정 표기가 없으면 마지막 등급 표기 (단계 4 와 같음), 그것도 없으면 확정. 나머지 표기는 비고.
                  O·I 는 상태 목록 이름 (O 보류·해석 I) 으로 적고, 원문 표기는 상태_출처에 그대로 인용.
@@ -121,7 +124,7 @@ def apply(ctx):
         def is_table(t): return t.startswith("|") and t.endswith("|")
         def is_sep(t): return bool(re.match(r"^\|[-\s|:]+\|$", t))
         def is_list(t): return bool(re.match(r"^([-*]|\d+\.|[①-⑳])\s", t))
-        def emit(lines_, tok_info, rule, hline=None):
+        def emit(lines_, tok_info, rule, hline=None, t5=None):
             a, b_ = lines_[0], lines_[-1]
             text = [V[k - 1].strip() for k in lines_]
             tok, st, gr, others = tok_info
@@ -160,6 +163,7 @@ def apply(ctx):
                 if bad: conf.append(dict(rows_=bad, p=p, ln=a, lb=b_, tok=tok, st=st, text=text[0], src=src))
                 return
             note = []
+            if t5: note.append(f"머리글 {t5[0]}행 범주 둘 ({t5[1]}) — 상태 미전달")
             if src: note.append(f"원문 docx 변환본: {src}")
             if hline: note.append(f"상태 = 머리글 범주 '{tok}' ({TAG[p]} {hline}행), 줄 자체 표기 없음")
             if others: note.append(f"같은 행 다른 표기 병기: {', '.join(others)}")
@@ -172,6 +176,9 @@ def apply(ctx):
                     오차=(f"원문 표기: {tok}" if tok else ""), 층=ctx["layer"](" ".join(text)), 등록_세션=sess,
                     근거_파일=p, 엔진_S="엔진 원장 행 없음 (식 문자열·변 대조)", 키워드=ctx["keywords"](" ".join(text)), 비고="; ".join(note))
             r["상태_출처"] = (srcline + " — 1순위") if tok else ""
+            if t5:
+                r["상태_출처"] = (f"1순위 표기 '{t5[2][1]}' ({TAG[p]} {a}행, 표 '{t5[2][0]}' 칸) — 상태 목록 밖 표기, 머리글 {t5[0]}행 범주 둘 — 상태 미전달"
+                               if t5[2] else f"1순위 표기 없음 — 머리글 {t5[0]}행 범주 둘 ({t5[1]}) — 상태 미전달 (내려받기 안 함)")
             out.append(dict(rec, _row=r, 대응="새 행", 상태_대조="—", 비고="후보: " + ", ".join(sorted({c["_key"] for c in cands})[:3]) if cands else ""))
         n = 1
         while n <= len(V):
@@ -202,7 +209,18 @@ def apply(ctx):
                 if len(hc) == 1:
                     w, st = hc[0]
                     emit([n], (w, st, "없음", []), "T3", hline=heads[n]); used.add(n); n += 1; continue
-                if len(hc) > 1: excluded.append((p, n, f"T4 머리글 범주 둘 이상 ({' · '.join(x[0] for x in hc)}, {heads[n]}행) — 넘기지 않음", t))
+                if len(hc) > 1:                                              # T5: 범주 둘 머리글 아래 행 — 행으로 넣되 상태 미전달
+                    hl5 = heads[n]
+                    cell = None
+                    if is_table(t):        # 표 머리의 '처리'·'상태'·'판정' 칸 = 행 자체의 표기 (원문 그대로 인용)
+                        k = n - 1
+                        while k >= 1 and is_table(V[k - 1].strip()): k -= 1
+                        hdr = V[k].strip() if k < n - 1 else ""
+                        hc_ = [c.strip() for c in hdr.strip("|").split("|")]
+                        cc_ = [c.strip() for c in re.split(r"(?<!\\)\|", t.strip("|"))]
+                        for ci, nm in enumerate(hc_):
+                            if nm in ("처리", "상태", "판정", "처리 결과", "결과") and ci < len(cc_) and cc_[ci]: cell = (nm, cc_[ci]); break
+                    emit([n], (None, "", "없음", []), "T5", t5=(hl5, " · ".join(x[0] for x in hc), cell)); used.add(n); n += 1; continue
             elif has:
                 excluded.append((p, n, "T4 수식 없는 문단 표기 줄", t))
             n += 1
