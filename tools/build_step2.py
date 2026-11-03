@@ -381,12 +381,13 @@ sdef = _ilu.module_from_spec(_spd); _spd.loader.exec_module(sdef)
 CTX["s5"] = s5
 sdef.apply(CTX)
 # ─────────────── 단계 6 (S21~S108) — 지금은 건수 보고용 시험 실행만 (STEP6_DRYRUN=1): 원장·등록부 등 파일 쓰기 전에 멈춤 ───────────────
-STEP6 = os.environ.get("STEP6_DRYRUN") == "1"
-if STEP6:
-    CTX["NORM6"] = os.environ.get("STEP6_NORM") == "1"
-    CTX["CHAIN6"] = os.environ.get("STEP6_CHAIN") == "1"
-    s5.apply(CTX, "6")
-    sdef.apply(CTX, "6")
+# 단계 6 (S21~S108) — MAPSI 승인 판 C: 꼬리표 정규화 + 정의·원칙→등록 병합 + 머리글 사슬 기준어 (단계 6 에만 적용)
+STEP6 = os.environ.get("STEP6_DRYRUN") == "1"          # 1 이면 건수 보고만 쓰고 멈춤
+CTX["NORM6"] = True; CTX["CHAIN6"] = True
+s5.apply(CTX, "6")
+sdef.apply(CTX, "6")
+for r in rows:
+    if not r.get("행_종류"): r["행_종류"] = "등록"
 for r in rows:
     if not r.get("행_종류"): r["행_종류"] = "등록"
 
@@ -441,6 +442,13 @@ for r in rows:
     if r["id"] in SPLIT_FIRST:
         r["비고"] = ("묶음 해체: 첫 원문 줄만 유지 (MAPSI 단계 2 정정 (1)); " + r["비고"]).rstrip("; ")
 
+# 단계 6 '연결 후보' (MAPSI 보충 (2)): 짧거나 표기만 다른 연결은 합치지 않고 비고에 ID
+for r in rows:
+    cs = [c["id"] for c in r.get("_cands6", []) if c is not r and c.get("id")]
+    if cs:
+        cs = sorted(set(cs), key=lambda x: int(x[1:]))[:5]
+        if "연결 후보:" not in r["비고"]: r["비고"] = (r["비고"] + "; " if r["비고"] else "") + "연결 후보: " + ", ".join(cs)
+
 # ─────────────── 상태 내려받기 (CLAUDE.md 규칙 4 보충) — tools/status_inherit.py ───────────────
 _sp2 = _ilu.spec_from_file_location("si", os.path.join(ROOT, "tools", "status_inherit.py"))
 si = _ilu.module_from_spec(_sp2); _sp2.loader.exec_module(si)
@@ -468,6 +476,12 @@ s3.write_map(CTX, os.path.join(OUT, "map_step3.csv"))
 s4a.write_map(CTX, os.path.join(OUT, "map_step4a.csv"), "4a")
 s4a.write_map(CTX, os.path.join(OUT, "map_step4b.csv"), "4b")
 s5.write_map(CTX, os.path.join(OUT, "map_step5.csv"))
+s5.write_map(CTX, os.path.join(OUT, "map_step6.csv"), "6")
+with open(os.path.join(OUT, "map_def6.csv"), "w", encoding="utf-8", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=["문서", "행", "원장_ID", "대응", "키워드", "원문"], extrasaction="ignore"); w.writeheader()
+    for m in CTX["def_rows6"]: w.writerow(dict(m, 원장_ID=m["_row"]["id"], 대응="새 행"))
+    for p_, n_, hs in CTX.get("def6_merged", []):
+        w.writerow(dict(문서=p_, 행=n_, 원장_ID=", ".join(r["id"] for r in hs), 대응="등록 행 근거 위치 추가", 원문=FILES[p_][n_ - 1].strip()[:120]))
 with open(os.path.join(OUT, "map_def.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=["문서", "행", "원장_ID", "키워드", "원문"], extrasaction="ignore"); w.writeheader()
     for m in CTX["def_rows"]: w.writerow(dict(m, 원장_ID=m["_row"]["id"]))
@@ -515,7 +529,7 @@ for c3 in CTX["step3_conf"]:
                    위치_B=f"{V34} {c3['ln']}행 (§11 표)", 내용_B=FILES[V34][c3['ln'] - 1].strip(),
                    비고=f"v3.4 표기 '{c3['g']}' (옮기면 '{c3['st']}'). 등록 표 우선 순서 (CLAUDE.md 규칙 4) 에 따라 원장 상태는 엔진 표기 유지. 판정 없음"))
 # 단계 4a: v3.4 본문 줄 표기와 원장 상태가 다른 곳 (판정 없음)
-for c5 in CTX["step5_conf"]:
+for c5 in CTX["step5_conf"] + CTX["step6_conf"]:
     ids = ", ".join(r["id"] for r in c5["rows_"]); r0 = c5["rows_"][0]
     CF.append(dict(항목=f"{c5['p'].split('/')[-1]} {c5['ln']}행 '{c5['text'][:40]}' 상태 (원장 / 세션 문서)", 원장_ID=ids,
                    위치_A=f"{r0['근거_위치'].split(' / ')[0]} ({r0['근거_파일']})", 내용_A=f"원장 상태 '{r0['상태'] or '빈칸'}'",
@@ -765,6 +779,58 @@ if not os.path.exists(os.path.join(OUT, "sample_check_5c.md")) or os.environ.get
             S.append("  ```")
         S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
     with open(os.path.join(OUT, "sample_check_5c.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(S) + "\n")
+
+# ─────────────── sample_check_6.md (단계 6 판 C, MAPSI 지정 조건) ───────────────
+if not os.path.exists(os.path.join(OUT, "sample_check_6.md")) or os.environ.get("REGEN_SAMPLE_6"):
+    random.seed(20261111)
+    s63 = "성과정리문서/EQI_Session63_성과정리_v1.md"; s64 = "성과정리문서/EQI_Session64_성과정리_v1.md"
+    V64 = FILES[s64]
+    h3 = next(i for i, l in enumerate(V64, 1) if l.startswith("## §3.")); h4 = next(i for i, l in enumerate(V64, 1) if l.startswith("## §4."))
+    h7 = next(i for i, l in enumerate(V64, 1) if l.startswith("## §7.")); h8 = next(i for i, l in enumerate(V64, 1) if l.startswith("## §8."))
+    b6 = [m_["_row"] for m_ in CTX["step6_map"] if m_["대응"] == "새 행"] + [d["_row"] for d in CTX["def_rows6"]]
+    byid = {r["id"]: r for r in rows}
+    cf6 = [c for c in CF if int(c["id"][1:]) >= 17]
+    CATS6 = [
+        ("S63 §21 병합 (L0034·L0035 의 S63 새 근거 위치)", [byid[i] for i in ("L0034", "L0035")]),
+        (f"S64 §3 ({h3}~{h4 - 1}행) 행", [r for r in b6 if r["근거_파일"] == s64 and h3 <= r["_cites"][0][1] < h4]),
+        (f"S64 §3 ({h3}~{h4 - 1}행) 행", None),
+        (f"S64 §7 H_ratio ({h7}~{h8 - 1}행) 행", [r for r in b6 if r["근거_파일"] == s64 and h7 <= r["_cites"][0][1] < h8 and "H_ratio" in r["식"]]),
+        ("충돌 K 행 (K0017~) 에 걸린 등록 행", [byid[i] for i in sorted({i for c in cf6 for i in c["원장_ID"].split(", ")}, key=lambda x: int(x[1:]))]),
+    ]
+    pick6, why6, last = [], {}, None
+    for nm, cand in CATS6:
+        src_ = cand if cand is not None else last
+        last = src_
+        cand = [r for r in src_ if r not in pick6]
+        if not cand: raise SystemExit(f"sample_check_6: 후보 없음 — {nm}")
+        r = random.choice(cand); pick6.append(r)
+        extra = ""
+        if nm.startswith("충돌"):
+            extra = " — " + ", ".join(c["id"] for c in cf6 if r["id"] in c["원장_ID"].split(", "))
+        why6[r["id"]] = f"{nm} (후보 {len(src_)}행 중){extra}"
+    rest = sorted([r for r in b6 if r not in pick6], key=lambda r: int(r["id"][1:]))
+    for r in random.sample(rest, 5): pick6.append(r); why6[r["id"]] = "무작위 (단계 6 새 행)"
+    pick6.sort(key=lambda r: int(r["id"][1:]))
+    S = [f"# sample_check_6.md — 단계 6 표본 (판 C, 10행, seed 20261111)\n",
+         "> 조건 (MAPSI 2026-11-03): S63 §21 병합 행 1 · S64 §3 행 2 · S64 §7 H_ratio 행 1 · 충돌 K 행에 걸린 등록 행 1 · 무작위 5.",
+         "> 판 C = 단계 5 규칙 + 꼬리표 정규화 (단계 6 만) + 정의·원칙→등록 병합 + 좁힌 기준 머리글 사슬. md 표의 원문 '|' 는 '\\|' 이스케이프.",
+         "> 규칙: `tools/build_step5.py`·`tools/build_def.py`, 줄 목록: `index/map_step6.csv`·`index/map_def6.csv`, 자동 대조: `index/verify_step6.md`.\n",
+         "| 원장 ID | 뽑힌 조건 |", "|---|---|"] + [f"| {r['id']} | {why6[r['id']]} |" for r in pick6] + [""]
+    for r in pick6:
+        S.append(f"## {r['id']} — {r['항목'].replace('|', chr(92) + '|')}  ({r['행_종류']})\n")
+        S.append(f"> 뽑힌 조건: {why6[r['id']]}\n")
+        S.append("| 열 | 값 |\n|---|---|")
+        for c in COLS[1:]:
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', chr(92) + '|')} |")
+        S.append("\n원문 인용:\n")
+        cites_ = r["_cites"] if r["id"] not in ("L0034", "L0035") else [c for c in r["_cites"] if c[0] in (ENG, LOG) or c[0] == s63][:12]
+        for f, a, b_, role in cites_:
+            S.append(f"- `{f}:{a}" + (f"-{b_}" if b_ != a else "") + f"` [{role}]" + (" ← 단계 6 새 근거 위치" if f == s63 else "") + "\n  ```")
+            for n in range(a, min(b_, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+            S.append("  ```")
+        S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
+    with open(os.path.join(OUT, "sample_check_6.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(S) + "\n")
 
 # ─────────────── coverage.md 원장 ID 연결 ───────────────

@@ -18,7 +18,7 @@ class _L(dict):
         v = [l.rstrip("\r") for l in b.decode("utf-8", errors="replace").split("\n")]; self[k] = v; return v
 L = _L({k: [l.rstrip("\r\n") for l in open(os.path.join(ROOT, v), encoding="utf-8", newline="").read().split("\n")] for k, v in F.items()})
 SUB = {"∣": "∣ U+2223", "｜": "｜ U+FF5C", "¦": "¦ U+00A6", "│": "│ U+2502", "ǀ": "ǀ U+01C0"}
-TOK = re.compile(r"(로그|소스|v3\.4|문서 \S+) (\d+)(?:–(\d+))?행(?: \(\d+행\))? \[([^\]]+)\]")
+TOK = re.compile(r"(로그|소스|v3\.4|문서 [^\[\]]+?\.md) (\d+)(?:–(\d+))?행(?: \(\d+행\))? \[([^\]]+)\]")
 norm = lambda s: s.strip().strip("║").strip()
 rows = list(csv.DictReader(open(os.path.join(ROOT, "index", "ledger.csv"), encoding="utf-8")))
 c1, c2, c3, c3i = [], [], [], 0

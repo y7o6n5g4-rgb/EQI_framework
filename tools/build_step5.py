@@ -183,7 +183,7 @@ def apply(ctx, tag="5"):
             if tok in ("O", "I", "(O)", "(I)", "보류", "Near-TZ"): note.append(f"원문 표기 '{tok}' → 상태 목록 '{st}'")
             if tok == "후보": note.append("원문 표기 '후보' — 규칙 2 에 따라 상태 올리지 않음 (상태 빈칸)")
             if not sess: note.append("등록_세션: 줄·머리글·문서 제목에 세션 표기 없음")
-            if cands: note.append("같은 항목 후보 (병합 안 함): " + ", ".join(sorted({c["_key"] for c in cands})[:5]))
+            if cands and tag != "6": note.append("같은 항목 후보 (병합 안 함): " + ", ".join(sorted({c["_key"] for c in cands})[:5]))
             r = add(f"{PFX}{p}:{a}", cites, 항목=text[0][:80], 식=SEP.join(text),
                     별칭=f"{kind} {ses or os.path.basename(p)[:30]} ({p.split('/')[-1]} {a}행)", 상태=st, 등급=gr,
                     오차=(f"원문 표기: {tok}" if tok else ""), 층=ctx["layer"](" ".join(text)), 등록_세션=sess,
@@ -192,6 +192,7 @@ def apply(ctx, tag="5"):
             if t5:
                 r["상태_출처"] = (f"1순위 표기 '{t5[2][1]}' ({TAG[p]} {a}행, 표 '{t5[2][0]}' 칸) — 상태 목록 밖 표기, 머리글 {t5[0]}행 범주 둘 — 상태 미전달"
                                if t5[2] else f"1순위 표기 없음 — 머리글 {t5[0]}행 범주 둘 ({t5[1]}) — 상태 미전달 (내려받기 안 함)")
+            if tag == "6": r["_cands6"] = [c for c in cands if c.get("행_종류", "등록") != "정의·원칙"]   # ID 부여 뒤 비고 '연결 후보: L…'
             out.append(dict(rec, _row=r, 대응="새 행", 상태_대조="—", 비고="후보: " + ", ".join(sorted({c["_key"] for c in cands})[:3]) if cands else ""))
         n = 1
         while n <= len(V):

@@ -36,7 +36,7 @@ F = _LazyF({"로그": lines(LOG), "소스": lines(ENG), "v3.4": lines(V34)})
 FN = {"로그": LOG, "소스": ENG, "v3.4": V34}
 norm = lambda s: s.strip().strip("║").strip()
 
-TOK = re.compile(r"(로그|소스|v3\.4|문서 \S+) (\d+)(?:–(\d+))?행(?: \(\d+행\))? \[([^\]]+)\]")
+TOK = re.compile(r"(로그|소스|v3\.4|문서 [^\[\]]+?\.md) (\d+)(?:–(\d+))?행(?: \(\d+행\))? \[([^\]]+)\]")
 CK = re.compile(r"^\s*✓\s+(.*?)\s*(?:오차=(\S+))?\s*(?:★\s*(.+?))?\s*$")
 GRADE_MAP = [("TZ(대수필연)", "대수필연", "대수필연"), ("True Zero(대수필연)", "대수필연", "대수필연"),
              ("Near True Zero", "Near TZ", "Near TZ"), ("Near TZ", "Near TZ", "Near TZ"),
@@ -142,7 +142,7 @@ for r in rows:
                     if found: break
                     continue
                 for x in texts:
-                    if x[2] == ro:
+                    if x[2] == ro and (x[0] == prim[0] or ro != "본문"):   # 덧붙인 다른 원문의 [본문] 근거 (단계 4~6 근거 추가) 는 상태 대조에 쓰지 않음
                         gm = GPH.findall(x[3]) if ro == "§11 표" else ([GPH.search(x[3]).group(1)] if GPH.search(x[3]) else [])
                         if gm: found = gm[-1]; break
                 if found: break
@@ -191,7 +191,7 @@ for r in rows:
     elif so.startswith("1순위 표기 없음"):
         if r["상태"]: why.append("V8 표기 없음 행인데 상태 있음")
     else:
-        m = re.match(r"^(로그|소스|v3\.4|문서 \S+) (\d+)행 \[([^\]]+)\] '([^']+)' — 1순위$", so)
+        m = re.match(r"^(로그|소스|v3\.4|문서 [^\[\]]+?\.md) (\d+)행 \[([^\]]+)\] '([^']+)' — 1순위$", so)
         if not m: why.append("V8 1순위 상태_출처 형식 오류")
         else:
             t = F[m.group(1)][int(m.group(2)) - 1]
