@@ -26,7 +26,7 @@ LOG = "code/eqi_unified_engine_v9_7_terminal_mpmath140.txt"     # 완성판 mpma
 OUT = os.path.join(ROOT, "index")
 REG = os.path.join(OUT, "id_registry.csv")
 SEP = " ‖ "
-COLS = ["id", "항목", "식", "별칭", "상태", "등급", "상태_출처", "오차", "층", "등록_세션", "근거_파일", "근거_위치",
+COLS = ["id", "행_종류", "항목", "식", "별칭", "상태", "등급", "상태_출처", "오차", "층", "등록_세션", "근거_파일", "근거_위치",
         "엔진_§", "후속_정정", "키워드", "비고"]
 
 def lines(rel):
@@ -375,6 +375,13 @@ def _layer5(t):
     return (h[0] + "체") if len(h) == 1 else "해당 없음"
 CTX.update(ROOT=ROOT, TAG=TAG, sides=s4a.sides, first_side=s4a.first_side, layer=_layer5)
 s5.apply(CTX)
+# ─────────────── '정의·원칙' 행 hook (tools/build_def.py, MAPSI 승인 2026-11-03) ───────────────
+_spd = _ilu.spec_from_file_location("sdef", os.path.join(ROOT, "tools", "build_def.py"))
+sdef = _ilu.module_from_spec(_spd); _spd.loader.exec_module(sdef)
+CTX["s5"] = s5
+sdef.apply(CTX)
+for r in rows:
+    if not r.get("행_종류"): r["행_종류"] = "등록"
 
 # ─────────────── ID 부여 (등록부 고정, 규칙 7) ───────────────
 reg = list(csv.DictReader(open(REG, encoding="utf-8")))
@@ -449,6 +456,9 @@ s3.write_map(CTX, os.path.join(OUT, "map_step3.csv"))
 s4a.write_map(CTX, os.path.join(OUT, "map_step4a.csv"), "4a")
 s4a.write_map(CTX, os.path.join(OUT, "map_step4b.csv"), "4b")
 s5.write_map(CTX, os.path.join(OUT, "map_step5.csv"))
+with open(os.path.join(OUT, "map_def.csv"), "w", encoding="utf-8", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=["문서", "행", "원장_ID", "키워드", "원문"], extrasaction="ignore"); w.writeheader()
+    for m in CTX["def_rows"]: w.writerow(dict(m, 원장_ID=m["_row"]["id"]))
 
 # ─────────────── conflicts.csv (K 번호 고정, 새 충돌은 끝에만) ───────────────
 def find(pred): return next(r["id"] for r in rows if pred(r))
@@ -707,6 +717,42 @@ if not os.path.exists(os.path.join(OUT, "sample_check_5b.md")) or os.environ.get
             S.append("  ```")
         S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
     with open(os.path.join(OUT, "sample_check_5b.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(S) + "\n")
+
+# ─────────────── sample_check_5c.md ('정의·원칙' 행 10개, MAPSI 지정 조건) ───────────────
+if not os.path.exists(os.path.join(OUT, "sample_check_5c.md")) or os.environ.get("REGEN_SAMPLE_5C"):
+    random.seed(20261110)
+    dr = sorted([m_["_row"] for m_ in CTX["def_rows"]], key=lambda r: int(r["id"][1:]))
+    s117x = "성과정리문서/EQI_S117_플랑크_양자에너지_확장번역_v4.md"
+    must = [r for r in dr if r["근거_파일"] == s117x and r["_cites"][0][1] == 40]
+    if len(must) != 1: raise SystemExit("sample_check_5c: S117 확장번역 §0 40행 정의·원칙 행 없음")
+    why5c = {must[0]["id"]: "지정: S117 확장번역 v4 §0 40행"}
+    pick5c = list(must)
+    v34r = [r for r in dr if r["근거_파일"] == V34 and r not in pick5c]
+    for r in random.sample(v34r, 3): pick5c.append(r); why5c[r["id"]] = f"v3.4 출처 (후보 {len(v34r)}행 중)"
+    com = [r for r in dr if r not in pick5c and r["식"].startswith("|") and re.search(r"MAXWELL|π_EQI", r["식"])]
+    for r in random.sample(com, 2): pick5c.append(r); why5c[r["id"]] = f"흔한 키워드 (MAXWELL·π_EQI) 표 행 (후보 {len(com)}행 중)"
+    rest = [r for r in dr if r not in pick5c]
+    for r in random.sample(rest, 10 - len(pick5c)): pick5c.append(r); why5c[r["id"]] = "무작위 (정의·원칙 행)"
+    pick5c.sort(key=lambda r: int(r["id"][1:]))
+    S = [f"# sample_check_5c.md — '정의·원칙' 행 표본 (정의·원칙 {len(dr)}행 중 10행, seed 20261110)\n",
+         "> 조건 (MAPSI 2026-11-03): S117 확장번역 v4 §0 40행 포함 · v3.4 출처 3개 · 흔한 키워드 (MAXWELL·π_EQI 등) 표 행 2개 · 나머지 무작위.",
+         "> 정의·원칙 행 = 상태 표기 없음 + TASKS §6 필수 키워드 1개 이상 + '=' 또는 '→'. 상태 빈칸 고정, 내려받기 금지, 비고에 걸린 키워드.",
+         "> md 표의 원문 '|' 는 '\\|' 로 이스케이프 (원문 문자 대체 없음). 규칙: `tools/build_def.py`, 줄 목록: `index/map_def.csv`.\n",
+         "| 원장 ID | 뽑힌 조건 |", "|---|---|"] + [f"| {r['id']} | {why5c[r['id']]} |" for r in pick5c] + [""]
+    for r in pick5c:
+        S.append(f"## {r['id']} — {r['항목'].replace('|', chr(92) + '|')}\n")
+        S.append(f"> 뽑힌 조건: {why5c[r['id']]}\n")
+        S.append("| 열 | 값 |\n|---|---|")
+        for c in COLS[1:]:
+            if r[c]: S.append(f"| {c} | {r[c].replace('|', chr(92) + '|')} |")
+        S.append("\n원문 인용:\n")
+        for f, a, b_, role in r["_cites"]:
+            S.append(f"- `{f}:{a}" + (f"-{b_}" if b_ != a else "") + f"` [{role}]\n  ```")
+            for n in range(a, min(b_, a + 9) + 1): S.append(f"  {n}: {FILES[f][n - 1].strip()}")
+            S.append("  ```")
+        S.append("\n대조 결과: [ ] 일치  [ ] 불일치 → 메모:\n")
+    with open(os.path.join(OUT, "sample_check_5c.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(S) + "\n")
 
 # ─────────────── coverage.md 원장 ID 연결 ───────────────

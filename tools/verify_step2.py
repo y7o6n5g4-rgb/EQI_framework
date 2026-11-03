@@ -182,6 +182,8 @@ for r in rows:
                 jf = fs8[4] if len(fs8) >= 6 else (fs8[3] if len(fs8) == 5 else (fs8[2] if len(fs8) == 4 else ""))
             if jf or GPH.search(pt) or any(w in pt for w in ["값만", "등급 없음", "계산 없음", "탐색 완료", "폐기"]):
                 why.append("V8 1순위 원문에 표기가 있음 (내려받기 대상 아님)")
+    elif so.startswith("정의·원칙 행"):
+        pass                                           # V9 에서 검사
     elif so.startswith("1순위 표기 '"):
         w8 = so.split("'")[1]
         if w8 not in " ".join(alltext): why.append(f"V8 1순위 표기 '{w8}' 원문에 없음")
@@ -197,6 +199,19 @@ for r in rows:
             if not any(c[0] == m.group(1) and c[1] <= int(m.group(2)) <= c[2] for c in toks): why.append("V8 상태_출처 줄이 근거_위치에 없음")
             tk = m.group(4); want = "미적용" if tk == "미적용" else ("O 보류" if tk == "보류" else map_any(tk)[0])
             if want != r["상태"]: why.append(f"V8 상태_출처 표기 '{tk}'→'{want}' ≠ 원장 '{r['상태']}'")
+    # V9 정의·원칙 행 (MAPSI 승인 2026-11-03): 상태 빈칸 고정·내려받기 금지·상태 표기 없는 줄·'=' 또는 '→'·비고 키워드가 원문 줄에 있음
+    kind = r.get("행_종류", "")
+    if kind not in ("등록", "정의·원칙"): why.append(f"V9 행_종류 '{kind}' (등록 / 정의·원칙 아님)")
+    if kind == "정의·원칙":
+        if r["상태"]: why.append("V9 정의·원칙 행인데 상태 있음")
+        if r["등급"] != "없음": why.append("V9 정의·원칙 행인데 등급 있음")
+        if not so.startswith("정의·원칙 행 — 상태 빈칸 고정"): why.append("V9 정의·원칙 행 상태_출처 문구 아님 (내려받기 금지)")
+        pl = alltext[0] if alltext else ""
+        if STAT2.search(pl) or GRD2.search(pl): why.append("V9 정의·원칙 줄에 상태 표기 있음")
+        if "=" not in pl and "→" not in pl: why.append("V9 정의·원칙 줄에 '=' / '→' 없음")
+        km = re.search(r"걸린 키워드: ([^;]+)", r["비고"])
+        if not km: why.append("V9 비고에 걸린 키워드 없음")
+    elif so.startswith("정의·원칙 행"): why.append("V9 등록 행인데 정의·원칙 상태_출처")
     # V6
     if r["등록_세션"]:
         exprs = {e for tx in alltext for e in SESS_RE.findall(tx)} | {e for tx in alltext for e in SESSW.findall(tx)}
@@ -219,7 +234,7 @@ O = ["# verify_step2.md — 단계 2 원장 전체 자동 대조\n",
      f"- 일치: {len(rows) - len(bad)} / 불일치: {len(bad)}",
      f"- ID 검사 (유일·연속·등록부 일치): {'통과' if id_ok else '실패'}",
      "- 불일치 사유별: " + (", ".join(f"{k} {v}건" for k, v in sorted(cnt.items())) if cnt else "없음"),
-     "- 검사 항목: V1 근거 행 존재 / V2 식 원문 일치 / V3 여러 줄 완전성 / V4 상태·등급·오차 / V5 상태 올림 없음 / V6 등록_세션 / V7 ID / V8 상태_출처 (1순위 표기 위치·내려받기 줄·무등급 표기)\n"]
+     "- 검사 항목: V1 근거 행 존재 / V2 식 원문 일치 / V3 여러 줄 완전성 / V4 상태·등급·오차 / V5 상태 올림 없음 / V6 등록_세션 / V7 ID / V8 상태_출처 (1순위 표기 위치·내려받기 줄·무등급 표기) / V9 정의·원칙 행은 상태 빈칸 (내려받기 금지·상태 표기 없음·키워드)\n"]
 if bad:
     O.append("## 불일치 행\n\n| id | 항목 | 사유 |\n|---|---|---|")
     for r, w in bad:
