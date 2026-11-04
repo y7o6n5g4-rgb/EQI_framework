@@ -200,7 +200,7 @@ for r in rows:
         if r["상태"]: why.append("V8 표기 없음 행인데 상태 있음")
     else:
         so, rc_ = (so.split(" → MAPSI 정정 2026-11-04 ")[0], so.split(" → MAPSI 정정 2026-11-04 ")[1]) if " → MAPSI 정정 2026-11-04 " in so else (so, "")
-        if rc_ and int(r["id"][1:]) < 6469: why.append("V8 MAPSI 정정 규칙 (2026-11-04) 이 앞 행에 적용됨")
+        if rc_ and "규칙 정정 전 상태: " not in r["비고"]: why.append("V8 MAPSI 정정 규칙 (2026-11-04) 행인데 비고에 정정 전 상태 없음")
         m = re.match(r"^(로그|소스|v3\.4|문서 [^\[\]]+?\.md) (\d+)행 \[([^\]]+)\] '([^']+)' — 1순위$", so)
         if not m: why.append("V8 1순위 상태_출처 형식 오류")
         else:

@@ -4,6 +4,7 @@
 단계 7 (후속_정정 채우기) 자동 대조 → index/verify_step7.md
   원장 CSV · map_step7.csv · 원문 파일 · git 기준판 (단계 7 직전 커밋 BASE 의 index/ledger.csv) 만 본다. 생성 스크립트 내부 값 미사용.
   W1 상태 열 불변      : 모든 행의 상태 = BASE 원장의 상태 = step7_status_snapshot.csv 의 상태
+                         (예외: 생성 규칙 정정 행 — 비고 '규칙 정정 전 상태: <BASE 상태> (S119 말미 rule_change)' 와 상태_출처 'MAPSI 정정 2026-11-04')
   W2 다른 열 불변      : 현행_상태·후속_정정 밖 모든 열 = BASE. 후속_정정은 바뀐 행만, BASE 값이 앞에 그대로 남고 '단계 7:' 덧붙임
   W3 현행_상태 원천    : 현행_상태가 있는 행마다 후속_정정에 원천 L-ID, 그 원천의 주 근거 원문 줄에 그 낱말 ('폐기'/'철회' 원문 그대로)
   W4 현행_상태 ≠ 상태  : 같으면 빈칸이어야 함 (재확정은 후속_정정에만)
@@ -35,9 +36,11 @@ for i, r in C.items():
     b = B.get(i)
     if r["상태"] != snap.get(i): bad.append((i, "W1", f"상태 '{r['상태']}' ≠ 스냅샷 '{snap.get(i)}'"))
     if b is None: continue
-    if r["상태"] != b["상태"]: bad.append((i, "W1", f"상태 '{r['상태']}' ≠ BASE '{b['상태']}'"))
+    rcx = f"규칙 정정 전 상태: {b['상태']} (S119 말미 rule_change)" in r["비고"] and "MAPSI 정정 2026-11-04" in r["상태_출처"]   # 생성 규칙 정정 (tools/rule_change.py)
+    if r["상태"] != b["상태"] and not rcx: bad.append((i, "W1", f"상태 '{r['상태']}' ≠ BASE '{b['상태']}'"))
     for k in b:
         if k in ("후속_정정",): continue
+        if rcx and k in ("상태", "등급", "비고", "상태_출처"): continue
         if r.get(k) != b[k]: bad.append((i, "W2", f"열 '{k}' 바뀜"))
     if r["후속_정정"] != b["후속_정정"]:
         changed.add(i)

@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-MAPSI 정정 규칙 (2026-11-04) — 새 행 L6469 이후에만 적용, 앞 행 (L0001~L6468) 상태 불변.
+MAPSI 정정 규칙 (2026-11-04) — 생성 규칙 정정으로 전 행 적용, 전 상태는 비고에 보존
+  (처음 L6469 이후에만 적용 → MAPSI 2026-11-04 지시로 앞 행 20행에도 적용: 머리글 전달 규칙이 원문에 없는 상태를 붙인 생성 오류).
   (1) 상태 표기 줄에 '교체 확정 대기'·'확정 대기'·'확정 전' 이 있으면 상태 '결정 대기'.
   (2) 상위 머리글 (상태_출처 [머리글 범주] / [블록 등급]) 과 대상 줄 사이에 상태 표기 없는 굵은 소제목 줄 (줄 전체가 **…** 하나) 이 끼어 있으면
       상위 머리글 상태를 넘기지 않음 → 상태 빈칸, 비고 "머리글 N행 (…) — M행 굵은 소제목 개입으로 전달 안 함".
-  apply(rows, ctx): build_step2 가 ID 부여 뒤 (상태 내려받기·단계 7 전) 에 부름 — id ≥ FROM 인 등록 행만.
-  impact(rows, ctx): 앞 행 전체에 적용했을 때 상태가 바뀔 행 → index/rule_change_impact.md (반영 없음).
+  apply(rows, ctx): build_step2 가 ID 부여 뒤 (상태 내려받기·단계 7 전) 에 부름 — 전 등록 행. 비고에 '규칙 정정 전 상태: X (S119 말미 rule_change)'.
+  impact(rows, ctx): 바뀐 행 전후 목록 → index/rule_change_impact.md.
 """
 import os, re
-FROM = 6469
+FROM = 6469          # 처음 적용 범위 (기록용) — 지금은 전 행 적용
 PH = re.compile(r"교체 확정 대기|확정 대기|확정 전")
 TAGF = {"로그": "code/eqi_unified_engine_v9_7_terminal_mpmath140.txt", "소스": "code/eqi_unified_engine_v9_7.py",
         "v3.4": "성과정리문서/EQI_연구지침_프로젝트용_v3_4.md"}
@@ -60,44 +61,33 @@ def apply(rows, ctx):
     root, tokens = ctx["ROOT"], ctx["tokens"]
     done = []
     for r in rows:
-        if r.get("id") and int(r["id"][1:]) >= FROM:
+        if r.get("id"):
             c = check(r, root, tokens)
             if not c: continue
             rule, st, why = c
+            old = r["상태"]
             r["상태"] = st
             if st == "": r["등급"] = "없음"
-            r["비고"] = re.sub(r"상태 = 머리글 범주 '[^']*' \([^)]*\), 줄 자체 표기 없음; ?", "", r["비고"])
+            r["비고"] = re.sub(r"(?:; )?상태 = 머리글 범주 '[^']*' \([^)]*\), 줄 자체 표기 없음(?=;|$)", "", r["비고"]).lstrip("; ")
             r["비고"] = (why + "; " + r["비고"]).rstrip("; ") if rule == "(2)" else (r["비고"] + "; " if r["비고"] else "") + why
+            r["비고"] += f"; 규칙 정정 전 상태: {old} (S119 말미 rule_change)"
             r["상태_출처"] = r["상태_출처"] + f" → MAPSI 정정 2026-11-04 {rule}: " + why
-            done.append((r["id"], rule, st))
+            done.append((r, rule, old, st, why))
     ctx["rule_change_done"] = done
     return done
 
 
 def impact(rows, ctx):
-    root, tokens, out = ctx["ROOT"], ctx["tokens"], ctx["OUT"]
-    hit = []
-    for r in rows:
-        if r.get("id") and int(r["id"][1:]) < FROM:
-            c = check(r, root, tokens)
-            if c: hit.append((r, c))
+    out = ctx["OUT"]; done = ctx.get("rule_change_done", [])
     esc = lambda x: x.replace("|", "\\|")
-    c1 = [x for x in hit if x[1][0] == "(1)"]; c2 = [x for x in hit if x[1][0] == "(2)"]
-    def span(ids):
-        ids = sorted(ids, key=lambda x: int(x[1:])); o, a = [], 0
-        while a < len(ids):
-            b = a
-            while b + 1 < len(ids) and int(ids[b + 1][1:]) == int(ids[b][1:]) + 1: b += 1
-            o.append(ids[a] if a == b else f"{ids[a]}~{ids[b]}"); a = b + 1
-        return ", ".join(o) or "없음"
-    O = ["# rule_change_impact.md — MAPSI 정정 규칙 (2026-11-04) 을 앞 행 전체에 적용했을 때 (반영 없음)\n",
-         "> 생성: `python3 tools/build_step2.py` (tools/rule_change.py impact). 규칙은 L6469 이후 새 행에만 적용 중. 앞 행 L0001~L6468 상태는 바꾸지 않았다.",
-         "> (1) 상태 표기 줄에 '교체 확정 대기'·'확정 대기'·'확정 전' → 결정 대기. (2) 상위 머리글·블록 등급 줄과 대상 줄 사이에 상태 표기 없는 굵은 소제목 줄 → 상태 빈칸.",
-         "> 상태 표기 줄 = 상태_출처 에 적힌 1순위 위치 (문자열 기준). 상태_출처 형식이 다른 행 (내려받기·무등급 표기 등) 은 대상 아님.\n",
-         f"- 상태가 바뀔 행: **{len(hit)}** — (1) {len(c1)} / (2) {len(c2)}",
-         f"- (1) ID: {span([r['id'] for r, c in c1])}", f"- (2) ID: {span([r['id'] for r, c in c2])}", "",
-         "| ID | 규칙 | 현재 상태 | 적용 시 | 근거 |", "|---|---|---|---|---|"]
-    for r, (ru, st, why) in hit:
-        O.append(f"| {r['id']} | {ru} | {r['상태']} | {st or '빈칸'} | {esc(why)} |")
+    old_ = [d for d in done if int(d[0]["id"][1:]) < FROM]; new_ = [d for d in done if int(d[0]["id"][1:]) >= FROM]
+    O = ["# rule_change_impact.md — MAPSI 정정 규칙 (2026-11-04) 반영 기록 (전후 상태)\n",
+         "> 생성: `python3 tools/build_step2.py` (tools/rule_change.py). (1) 상태 표기 줄의 '교체 확정 대기'·'확정 대기'·'확정 전' → 결정 대기.",
+         "> (2) 상위 머리글·블록 등급 줄과 대상 줄 사이에 상태 표기 없는 굵은 소제목 줄 (줄 전체가 **…** 하나) → 상태 전달 안 함 (빈칸).",
+         "> 처음엔 L6469 이후만 적용 (앞 행 20행은 보고만) → MAPSI 2026-11-04: 머리글 전달 규칙의 생성 오류이므로 앞 행에도 적용. 전 상태는 각 행 비고 '규칙 정정 전 상태: …' 에 보존.\n",
+         f"- 바뀐 행: {len(done)} — 앞 행 (L{FROM - 1:04d} 이전) {len(old_)} / 새 행 (L{FROM:04d} 이후) {len(new_)}", "",
+         "| ID | 규칙 | 정정 전 | 정정 후 | 근거 |", "|---|---|---|---|---|"]
+    for r, ru, o, st, why in done:
+        O.append(f"| {r['id']} | {ru} | {o} | {st or '빈칸'} | {esc(why)} |")
     open(os.path.join(out, "rule_change_impact.md"), "w", encoding="utf-8").write("\n".join(O) + "\n")
-    print("규칙 영향 (앞 행):", len(hit), "(1)", len(c1), "(2)", len(c2), "| 새 행 적용:", ctx.get("rule_change_done"))
+    print("규칙 정정:", len(done), "앞 행", len(old_), "새 행", len(new_))
