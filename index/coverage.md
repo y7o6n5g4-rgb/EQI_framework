@@ -290,7 +290,7 @@
 | S115 | EQI_Session115_성과정리_v1.md | EQI_Session115_인수인계_v1.md |  |  |
 | S116 | EQI_Session116_성과정리_v1.md | EQI_Session116_인수인계_v2.md |  |  |
 | S117 | EQI_Session117_성과정리_v2.md | EQI_Session117_인수인계_v1.md |  |  |
-| S118 | EQI_Session118_성과정리_v1.md | EQI_Session118_인수인계_v8.md |  |  |
+| S118 | EQI_Session118_성과정리_v1.md | EQI_Session118_인수인계_v9.md |  | EQI_Session118_인수인계_v8.md(14366B); EQI_Session118_인수인계_v9.md(15807B) |
 | S119 | EQI_Session119_성과정리_v1.md | EQI_Session119_인수인계_v1.md |  |  |
 | S120 | — | EQI_Session120_인수인계_v1.md |  |  |
 

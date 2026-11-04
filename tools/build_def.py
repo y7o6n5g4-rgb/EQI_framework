@@ -54,7 +54,8 @@ def apply(ctx, tag="5"):
     used5 = {}
     for m in ctx[f"step{tag}_map"]:
         a, _, b = m["행"].partition("–"); used5.setdefault(m["문서"], set()).update(range(int(a), int(b or a) + 1))
-    targets = [(p, used5.get(p, set()), kind) for kind, ses, p, src in ctx[f"step{tag}_files"]]
+    targets = [(p, used5.get(p, set()) | ((set(range(1, len(FILES[p]) + 1)) - s5.LINE_ONLY[p]) if p in getattr(s5, "LINE_ONLY", {}) else set()), kind)
+               for kind, ses, p, src in ctx[f"step{tag}_files"]]
     if tag == "5":
         # (2) v3.4: 원장 근거 토큰 전부 제외 (단계 5 때 함께 반영)
         u34 = set()
@@ -123,5 +124,8 @@ def apply(ctx, tag="5"):
             r["행_종류"] = "정의·원칙"
             if cand6: r["_cands6"] = cand6
             r["상태_출처"] = "정의·원칙 행 — 상태 빈칸 고정, 내려받기 금지"
+            if p in getattr(s5, "EXTRA_KW", {}):
+                kw_ = [x.strip() for x in r["키워드"].split(",") if x.strip()]
+                r["키워드"] = ", ".join(kw_ + [x for x in s5.EXTRA_KW[p] if x not in kw_]); r["비고"] += "; " + s5.EXTRA_NOTE[p]
             out.append(dict(문서=p, 행=n, 키워드=", ".join(hits), _row=r, 원문=t[:120]))
     ctx["def_rows" if tag == "5" else f"def_rows{tag}"] = out

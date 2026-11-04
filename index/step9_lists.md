@@ -9,7 +9,7 @@
 | 충돌 (같은 항목 다른 값·상태) | index/conflicts.csv | 95 (K0001~K0095) | 열림 93 / 상태 열 기록 2 (해소 사유) |
 | 중복 후보 (단계 2~5 등록 행 쌍) | index/dup_candidates_2to5.md | 127 쌍 | 보고만 — 병합 안 함 |
 | 연결 후보 (단계 6, 비고 '연결 후보:') | index/ledger.csv 비고 열 | 928 행 | 합치지 않음 |
-| 단계 7 짝 후보 (이름으로만 적힌 정정) | index/step7_pair_candidates.md | 원천 33 행 | perplexity 확인 후 확정 쌍만 반영 |
+| 단계 7 짝 후보 (이름으로만 적힌 정정) | index/step7_pair_candidates.md | 원천 34 행 | perplexity 확인 후 확정 쌍만 반영 |
 | 정의·원칙 행 O·I 표기 (재분류 후보) | index/reclass_candidates.md | 10 행 | 원장 반영 미결정 |
 | v3.4 머리글 원장 ID 빈칸 (coverage A) | index/coverage.md | 85 / 105 머리글 | 빈칸 = 연결 안 함 (미등록 판정 아님) |
 | 엔진 § 원장 ID 빈칸 (coverage B) | index/coverage.md | 0 / 42 § | — |

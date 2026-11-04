@@ -57,6 +57,10 @@ FINAL_OVERRIDE = {   # 파일명 → 근거 (작업지시서 v2 70·87·89·93�
     "EQI_Session113_성과정리_v6.md": "S118 색인 작업지시서 v2 70행·89행 (S113 v6, 파일 1행 헤더 'v5' 는 오기)",
     "EQI_Session117_성과정리_v2.md": "S118 색인 작업지시서 v2 70행·93행 (S117 성과정리 v2)",
 }
+PIN_NOTE = {         # MAPSI 2026-11-04: 최종판 = v9, 단계 5 원장 근거 판본은 v8 고정
+    "EQI_Session118_인수인계_v8.md": "단계 5 원장 근거 판본 (ID 불변 고정, tools/build_step5.py PIN5) — 최종판은 v9",
+    "EQI_Session118_인수인계_v9.md": "v8 대비 v9 에만 있는 줄 110~117·127행만 단계 5 규칙으로 원장 추가 (MAPSI 2026-11-04)",
+}
 CURRENT = {          # MAPSI 지시: 현행 표시
     "EQI_SESSION_PREAMBLE_v6.md": "현행 (MAPSI 지시, 색인 단계 1 확인 후 보충)",
     "EQI_SESSION_START_TRIGGER_v7.md": "현행 (MAPSI 지시, 색인 단계 1 확인 후 보충)",
@@ -112,6 +116,7 @@ def build_doc_map():
                 r["최종판"] = "Y" if vkey(r["_ver"]) == top else "N"
                 r["최종판_근거"] = ("v 숫자 최대" if len(g) > 1 else "단일 판본") if r["최종판"] == "Y" else "v 숫자 최대 아님"
             r["현행"] = CURRENT.get(r["파일명"], "")
+            if r["파일명"] in PIN_NOTE: r["비고"] = (r["비고"] + "; " if r["비고"] else "") + PIN_NOTE[r["파일명"]]
             if len(g) > 1:
                 others = [x["파일명"] for x in g if x is not r]
                 r["동명판본"] = " | ".join(f'{o} ({next(x["바이트"] for x in g if x["파일명"]==o)}B)' for o in others)

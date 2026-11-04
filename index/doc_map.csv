@@ -165,7 +165,8 @@ S116,인수인계,sessions,EQI_Session116_인수인계_v2.md,v2,Y,단일 판본,
 S117,성과정리,sessions,EQI_Session117_성과정리_v2.md,v2,Y,S118 색인 작업지시서 v2 70행·93행 (S117 성과정리 v2),,1,,8676,md,,성과정리문서/EQI_Session117_성과정리_v2.md
 S117,인수인계,sessions,EQI_Session117_인수인계_v1.md,v1,Y,단일 판본,,1,,8226,md,,성과정리문서/EQI_Session117_인수인계_v1.md
 S118,성과정리,sessions,EQI_Session118_성과정리_v1.md,v1,Y,단일 판본,,1,,13402,md,,성과정리문서/EQI_Session118_성과정리_v1.md
-S118,인수인계,sessions,EQI_Session118_인수인계_v8.md,v8,Y,단일 판본,,1,,14366,md,,성과정리문서/EQI_Session118_인수인계_v8.md
+S118,인수인계,sessions,EQI_Session118_인수인계_v8.md,v8,N,v 숫자 최대 아님,,2,EQI_Session118_인수인계_v9.md (15807B),14366,md,"단계 5 원장 근거 판본 (ID 불변 고정, tools/build_step5.py PIN5) — 최종판은 v9",성과정리문서/EQI_Session118_인수인계_v8.md
+S118,인수인계,sessions,EQI_Session118_인수인계_v9.md,v9,Y,v 숫자 최대,,2,EQI_Session118_인수인계_v8.md (14366B),15807,md,v8 대비 v9 에만 있는 줄 110~117·127행만 단계 5 규칙으로 원장 추가 (MAPSI 2026-11-04),성과정리문서/EQI_Session118_인수인계_v9.md
 S119,성과정리,sessions,EQI_Session119_성과정리_v1.md,v1,Y,단일 판본,,1,,11157,md,,성과정리문서/EQI_Session119_성과정리_v1.md
 S119,인수인계,sessions,EQI_Session119_인수인계_v1.md,v1,Y,단일 판본,,1,,13817,md,,성과정리문서/EQI_Session119_인수인계_v1.md
 S120,인수인계,sessions,EQI_Session120_인수인계_v1.md,v1,Y,단일 판본,,1,,13246,md,,성과정리문서/EQI_Session120_인수인계_v1.md

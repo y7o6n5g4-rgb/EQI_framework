@@ -94,12 +94,25 @@ def files_of(root, lo=109, hi=119, trans=True):
     for kind in ("성과정리", "인수인계"):
         sel = [r for r in dm if r["분류"] == "sessions" and r["최종판"] == "Y" and r["종류"] == kind and r["세션"]
                and lo <= int(r["세션"][1:]) <= hi]
+        for (ses_, kind_), fn in PIN5.items():            # 단계 5 반영 당시 판본으로 고정 (최종판 표시와 별개)
+            if kind_ == kind and lo <= int(ses_[1:]) <= hi:
+                sel = [r for r in sel if r["세션"] != ses_] + [r for r in dm if r["파일명"] == fn]
         for r in sorted(sel, key=lambda r: int(r["세션"][1:])):
             p, src = pth(r); out.append((kind, r["세션"], p, src))
     if trans:
         for r in sorted([r for r in dm if r["분류"] == "translations"], key=lambda r: r["파일명"]):
             out.append(("번역·설계", "", r["상대경로"], ""))
+    for pth_ in LINE_ONLY:                                 # 판본 차이 줄만 (끝에 붙임 → 앞 문서 처리·ID 순서 그대로)
+        if lo <= 118 <= hi and os.path.exists(os.path.join(root, pth_)): out.append(("인수인계", "S118", pth_, ""))
     return out
+
+# MAPSI 2026-11-04: S118 인수인계 최종판 = v9 (doc_map). 단계 5 원장 행은 반영 당시 판본 v8 에 고정 (ID 불변, CLAUDE.md 규칙 7),
+#   v9 에만 있는 줄 (110~117·127행) 만 같은 단계 5 규칙으로 추가 (원장 끝 번호), 키워드에 관측창·지불·tip·A_c 추가 (MAPSI 지시).
+PIN5 = {("S118", "인수인계"): "EQI_Session118_인수인계_v8.md"}
+V9_118 = "성과정리문서/EQI_Session118_인수인계_v9.md"
+LINE_ONLY = {V9_118: set(range(110, 118)) | {127}}
+EXTRA_KW = {V9_118: ["관측창", "지불", "tip", "A_c"]}
+EXTRA_NOTE = {V9_118: "S118 인수인계 v9 에만 있는 줄 (110~117·127행, v8 대조) — MAPSI 지시 2026-11-04 로 단계 5 규칙 추가; 키워드 관측창·지불·tip·A_c 는 MAPSI 지시"}
 
 RANGES = {"5": (109, 119, True), "6": (21, 108, False)}   # 단계 → (세션 시작, 끝, 번역·설계 문서 포함)
 
@@ -133,7 +146,7 @@ def apply(ctx, tag="5"):
             fence[n] = infence
             if re.match(r"^#{2,4} ", l): h = n
             heads[n] = h
-        used = set()
+        used = set(range(1, len(V) + 1)) - LINE_ONLY[p] if p in LINE_ONLY else set()
         def is_table(t): return t.startswith("|") and t.endswith("|")
         def is_sep(t): return bool(re.match(r"^\|[-\s|:]+\|$", t))
         def is_list(t): return bool(re.match(r"^([-*]|\d+\.|[①-⑳])\s", t))
@@ -189,6 +202,10 @@ def apply(ctx, tag="5"):
                     오차=(f"원문 표기: {tok}" if tok else ""), 층=ctx["layer"](" ".join(text)), 등록_세션=sess,
                     근거_파일=p, 엔진_S="엔진 원장 행 없음 (식 문자열·변 대조)", 키워드=ctx["keywords"](" ".join(text)), 비고="; ".join(note))
             r["상태_출처"] = (srcline + " — 1순위") if tok else ""
+            if p in EXTRA_KW:
+                kw_ = [x.strip() for x in r["키워드"].split(",") if x.strip()]
+                r["키워드"] = ", ".join(kw_ + [x for x in EXTRA_KW[p] if x not in kw_])
+                r["비고"] = (r["비고"] + "; " if r["비고"] else "") + EXTRA_NOTE[p]
             if t5:
                 r["상태_출처"] = (f"1순위 표기 '{t5[2][1]}' ({TAG[p]} {a}행, 표 '{t5[2][0]}' 칸) — 상태 목록 밖 표기, 머리글 {t5[0]}행 범주 둘 — 상태 미전달"
                                if t5[2] else f"1순위 표기 없음 — 머리글 {t5[0]}행 범주 둘 ({t5[1]}) — 상태 미전달 (내려받기 안 함)")

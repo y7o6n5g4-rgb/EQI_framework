@@ -15,6 +15,9 @@
 """
 import csv, os, re, sys
 from collections import Counter
+import importlib.util as _iu
+_sp = _iu.spec_from_file_location("b5", os.path.join(os.path.dirname(os.path.abspath(__file__)), "build_step5.py")); _b5 = _iu.module_from_spec(_sp); _sp.loader.exec_module(_b5)
+LINE_ONLY = _b5.LINE_ONLY
 TAG = sys.argv[1] if len(sys.argv) > 1 else "5"     # 5: S109~S119+번역·설계 / 6: S21~S108 (판 C)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 rd = lambda n: list(csv.DictReader(open(os.path.join(ROOT, "index", n), encoding="utf-8")))
@@ -49,6 +52,7 @@ for p in files:
         t = l.strip()
         if not t or l.startswith("#") or l.startswith("```") or re.match(r"^\|[-\s|:]+\|$", t): continue
         if t.startswith("|") and n < len(V) and re.match(r"^\|[-\s|:]+\|$", V[n].strip()): continue
+        if p in LINE_ONLY and n not in LINE_ONLY[p]: continue      # 판본 차이 줄만 대상 (build_step5.LINE_ONLY)
         if (D.search(t) or G.search(t)) and n not in cov: bad.append(f"Y1 {p} {n}행 대응표에 없음")
 res = []
 for m in mp:
