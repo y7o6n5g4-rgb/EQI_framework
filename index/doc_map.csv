@@ -1,0 +1,229 @@
+세션,종류,분류,파일명,판본,최종판,최종판_근거,현행,동명판본수,동명판본,바이트,형식,비고,상대경로
+S21,세션기록(구형식),sessions,session_21_ellipse_validation.md,,Y,단일 판본,,1,,12636,md,,성과정리문서/session_21_ellipse_validation.md
+S22,세션기록(구형식),sessions,session_22_v8_ellipse_integration.md,v8,Y,단일 판본,,1,,12503,md,,성과정리문서/session_22_v8_ellipse_integration.md
+S24,성과정리,sessions,EQI_Session24_성과정리_v2.md,v2,Y,단일 판본,,1,,13654,md,,성과정리문서/EQI_Session24_성과정리_v2.md
+S25,성과정리,sessions,EQI_Session25_성과정리_v1.md,v1,Y,단일 판본,,1,,59357,md,,성과정리문서/EQI_Session25_성과정리_v1.md
+S26,성과정리,sessions,EQI_Session26_성과정리_v1.md,v1,Y,단일 판본,,1,,55646,md,,성과정리문서/EQI_Session26_성과정리_v1.md
+S27,성과정리,sessions,EQI_Session27_성과정리_v1.md,v1,Y,단일 판본,,1,,17708,md,,성과정리문서/EQI_Session27_성과정리_v1.md
+S28,성과정리,sessions,EQI_Session28_성과정리_v2.md,v2,Y,단일 판본,,1,,15740,md,,성과정리문서/EQI_Session28_성과정리_v2.md
+S29,성과정리,sessions,EQI_Session29_성과정리_v9_final.docx,v9,Y,단일 판본,,1,,13300,docx,"파일명 _final; docx — 변환본 derived/EQI_Session29_성과정리_v9_final.md (원문 아님, tools/make_derived.py)",성과정리문서/EQI_Session29_성과정리_v9_final.docx
+S30,성과정리,sessions,EQI_Session30_성과정리_v1 (2).md,v1,Y,단일 판본,,1,,12740,md,파일명 ' (2)' 사본 표기,성과정리문서/EQI_Session30_성과정리_v1 (2).md
+S31,성과정리,sessions,EQI_Session31_성과정리_v1.md,v1,Y,단일 판본,,1,,16711,md,,성과정리문서/EQI_Session31_성과정리_v1.md
+S32,성과정리,sessions,EQI_Session32_성과정리_v1 (1).md,v1,Y,단일 판본,,1,,29688,md,파일명 ' (1)' 사본 표기,성과정리문서/EQI_Session32_성과정리_v1 (1).md
+S33,성과정리,sessions,EQI_Session33_성과정리_v1.md,v1,Y,단일 판본,,1,,18123,md,,성과정리문서/EQI_Session33_성과정리_v1.md
+S34,성과정리,sessions,EQI_Session34_성과정리_v7.md,v7,Y,단일 판본,,1,,70298,md,,성과정리문서/EQI_Session34_성과정리_v7.md
+S35,성과정리,sessions,EQI_Session35_성과정리_v1.md,v1,Y,단일 판본,,1,,48667,md,,성과정리문서/EQI_Session35_성과정리_v1.md
+S36,성과정리,sessions,EQI_Session36_성과정리_v9.md,v9,Y,단일 판본,,1,,63973,md,,성과정리문서/EQI_Session36_성과정리_v9.md
+S37,성과정리,sessions,EQI_Session37_성과정리_v1.docx,v1,Y,단일 판본,,1,,15014,docx,"docx — 변환본 derived/EQI_Session37_성과정리_v1.md (원문 아님, tools/make_derived.py)",성과정리문서/EQI_Session37_성과정리_v1.docx
+S38,성과정리,sessions,EQI_Session38_성과정리_v1.md,v1,Y,단일 판본,,1,,19494,md,,성과정리문서/EQI_Session38_성과정리_v1.md
+S39,성과정리,sessions,EQI_Session39_성과정리_v2.md,v2,Y,단일 판본,,1,,10134,md,,성과정리문서/EQI_Session39_성과정리_v2.md
+S40,성과정리,sessions,EQI_Session40_성과정리_v1.md,v1,Y,단일 판본,,1,,14665,md,,성과정리문서/EQI_Session40_성과정리_v1.md
+S41,성과정리,sessions,EQI_Session41_성과정리_v1.md,v1,Y,단일 판본,,1,,33711,md,,성과정리문서/EQI_Session41_성과정리_v1.md
+S41,인수인계,sessions,EQI_Session41_인수인계.md,,Y,단일 판본,,1,,7763,md,,성과정리문서/EQI_Session41_인수인계.md
+S42,성과정리,sessions,EQI_Session42_성과정리_v1.md,v1,Y,단일 판본,,1,,14473,md,,성과정리문서/EQI_Session42_성과정리_v1.md
+S42,인수인계,sessions,EQI_Session42_인수인계.md,,Y,단일 판본,,1,,9062,md,,성과정리문서/EQI_Session42_인수인계.md
+S43,성과정리,sessions,EQI_Session43_성과정리_v1.md,v1,Y,단일 판본,,1,,8678,md,,성과정리문서/EQI_Session43_성과정리_v1.md
+S44,성과정리,sessions,EQI_Session44_성과정리_v1.md,v1,Y,단일 판본,,1,,19028,md,,성과정리문서/EQI_Session44_성과정리_v1.md
+S44,인수인계,sessions,EQI_Session44_인수인계.md,,Y,단일 판본,,1,,10331,md,,성과정리문서/EQI_Session44_인수인계.md
+S45,성과정리,sessions,EQI_Session45_성과정리_v1.md,v1,Y,단일 판본,,1,,24055,md,,성과정리문서/EQI_Session45_성과정리_v1.md
+S45,인수인계,sessions,EQI_Session45_인수인계.md,,Y,단일 판본,,1,,12080,md,,성과정리문서/EQI_Session45_인수인계.md
+S46,성과정리,sessions,EQI_Session46_성과정리_v1.md,v1,Y,단일 판본,,1,,13061,md,,성과정리문서/EQI_Session46_성과정리_v1.md
+S46,인수인계,sessions,EQI_Session46_인수인계.md,,Y,단일 판본,,1,,8182,md,,성과정리문서/EQI_Session46_인수인계.md
+S47,성과정리,sessions,EQI_Session47_성과정리_v1.md,v1,Y,단일 판본,,1,,14554,md,,성과정리문서/EQI_Session47_성과정리_v1.md
+S47,인수인계,sessions,EQI_Session47_인수인계.md,,Y,단일 판본,,1,,5546,md,,성과정리문서/EQI_Session47_인수인계.md
+S48,성과정리,sessions,EQI_Session48_성과정리_v1.md,v1,Y,단일 판본,,1,,16868,md,,성과정리문서/EQI_Session48_성과정리_v1.md
+S48,인수인계,sessions,EQI_Session48_인수인계.md,,Y,단일 판본,,1,,6498,md,,성과정리문서/EQI_Session48_인수인계.md
+S49,성과정리,sessions,EQI_Session49_성과정리_v1.md,v1,Y,단일 판본,,1,,13477,md,,성과정리문서/EQI_Session49_성과정리_v1.md
+S49,인수인계,sessions,EQI_Session49_인수인계.md,,Y,단일 판본,,1,,7611,md,,성과정리문서/EQI_Session49_인수인계.md
+S50,성과정리,sessions,EQI_Session50_성과정리_v1.md,v1,Y,단일 판본,,1,,19616,md,UTF-8 아닌 바이트 포함 — 색인 도구는 대체 문자로 읽음 (줄 번호는 '\n' 기준 = grep -n),성과정리문서/EQI_Session50_성과정리_v1.md
+S50,인수인계,sessions,EQI_Session50_인수인계.md,,Y,단일 판본,,1,,7153,md,,성과정리문서/EQI_Session50_인수인계.md
+S51,성과정리,sessions,EQI_Session51_성과정리_v1.md,v1,Y,단일 판본,,1,,13385,md,,성과정리문서/EQI_Session51_성과정리_v1.md
+S51,인수인계,sessions,EQI_Session51_인수인계.md,,Y,단일 판본,,1,,7744,md,,성과정리문서/EQI_Session51_인수인계.md
+S52,성과정리,sessions,EQI_Session52_성과정리_v1.md,v1,Y,단일 판본,,1,,11951,md,,성과정리문서/EQI_Session52_성과정리_v1.md
+S52,인수인계,sessions,EQI_Session52_인수인계.md,,Y,단일 판본,,1,,6071,md,,성과정리문서/EQI_Session52_인수인계.md
+S53,성과정리,sessions,EQI_Session53_성과정리_v1.md,v1,Y,단일 판본,,1,,13645,md,,성과정리문서/EQI_Session53_성과정리_v1.md
+S53,인수인계,sessions,EQI_Session53_인수인계.md,,Y,단일 판본,,1,,11639,md,,성과정리문서/EQI_Session53_인수인계.md
+S54,성과정리,sessions,EQI_Session54_성과정리_v1.md,v1,Y,단일 판본,,1,,14005,md,,성과정리문서/EQI_Session54_성과정리_v1.md
+S54,인수인계,sessions,EQI_Session54_인수인계.md,,Y,단일 판본,,1,,6524,md,,성과정리문서/EQI_Session54_인수인계.md
+S55,성과정리,sessions,EQI_Session55_성과정리_v1.md,v1,Y,단일 판본,,1,,9207,md,,성과정리문서/EQI_Session55_성과정리_v1.md
+S55,인수인계,sessions,EQI_Session55_인수인계.md,,Y,단일 판본,,1,,6826,md,,성과정리문서/EQI_Session55_인수인계.md
+S56,성과정리,sessions,EQI_Session56_성과정리_v1.md,v1,Y,단일 판본,,1,,10322,md,,성과정리문서/EQI_Session56_성과정리_v1.md
+S56,인수인계,sessions,EQI_Session56_인수인계.md,,Y,단일 판본,,1,,5165,md,,성과정리문서/EQI_Session56_인수인계.md
+S57,성과정리,sessions,EQI_Session57_성과정리_v1.md,v1,Y,단일 판본,,1,,12911,md,,성과정리문서/EQI_Session57_성과정리_v1.md
+S57,인수인계,sessions,EQI_Session57_인수인계.md,,Y,단일 판본,,1,,7149,md,,성과정리문서/EQI_Session57_인수인계.md
+S58,성과정리,sessions,EQI_Session58_성과정리_v1.md,v1,Y,단일 판본,,1,,8122,md,,성과정리문서/EQI_Session58_성과정리_v1.md
+S58,인수인계,sessions,EQI_Session58_인수인계.md,,Y,단일 판본,,1,,8698,md,,성과정리문서/EQI_Session58_인수인계.md
+S59,성과정리,sessions,EQI_Session59_성과정리_v1.md,v1,Y,단일 판본,,1,,9593,md,,성과정리문서/EQI_Session59_성과정리_v1.md
+S59,인수인계,sessions,EQI_Session59_인수인계.md,,Y,단일 판본,,1,,7082,md,,성과정리문서/EQI_Session59_인수인계.md
+S60,성과정리,sessions,EQI_Session60_성과정리_v1.md,v1,Y,단일 판본,,1,,12484,md,,성과정리문서/EQI_Session60_성과정리_v1.md
+S60,인수인계,sessions,EQI_Session60_인수인계.md,,Y,단일 판본,,1,,6550,md,,성과정리문서/EQI_Session60_인수인계.md
+S61,성과정리,sessions,EQI_Session61_성과정리_v1.md,v1,Y,단일 판본,,1,,9360,md,,성과정리문서/EQI_Session61_성과정리_v1.md
+S61,인수인계,sessions,EQI_Session61_인수인계.md,,Y,단일 판본,,1,,8165,md,,성과정리문서/EQI_Session61_인수인계.md
+S62,성과정리,sessions,EQI_Session62_성과정리_v1.md,v1,Y,단일 판본,,1,,6377,md,,성과정리문서/EQI_Session62_성과정리_v1.md
+S63,성과정리,sessions,EQI_Session63_성과정리_v1.md,v1,Y,단일 판본,,1,,20075,md,,성과정리문서/EQI_Session63_성과정리_v1.md
+S63,인수인계,sessions,EQI_Session63_인수인계.md,,Y,단일 판본,,1,,7526,md,,성과정리문서/EQI_Session63_인수인계.md
+S64,성과정리,sessions,EQI_Session64_성과정리_v1.md,v1,Y,단일 판본,,1,,12667,md,,성과정리문서/EQI_Session64_성과정리_v1.md
+S64,인수인계,sessions,EQI_Session64_인수인계.md,,Y,단일 판본,,1,,7535,md,,성과정리문서/EQI_Session64_인수인계.md
+S65,성과정리,sessions,EQI_Session65_성과정리_v1.md,v1,Y,단일 판본,,1,,10509,md,,성과정리문서/EQI_Session65_성과정리_v1.md
+S65,인수인계,sessions,EQI_Session65_인수인계.md,,Y,단일 판본,,1,,6187,md,,성과정리문서/EQI_Session65_인수인계.md
+S66,성과정리,sessions,EQI_Session66_성과정리_v1.md,v1,Y,단일 판본,,1,,9634,md,,성과정리문서/EQI_Session66_성과정리_v1.md
+S66,인수인계,sessions,EQI_Session66_인수인계.md,,Y,단일 판본,,1,,4925,md,,성과정리문서/EQI_Session66_인수인계.md
+S67,성과정리,sessions,EQI_Session67_성과정리_v1.md,v1,Y,단일 판본,,1,,28080,md,,성과정리문서/EQI_Session67_성과정리_v1.md
+S67,인수인계,sessions,EQI_Session67_인수인계.md,,Y,단일 판본,,1,,4775,md,,성과정리문서/EQI_Session67_인수인계.md
+S68,성과정리,sessions,EQI_Session68_성과정리_v1.md,v1,Y,단일 판본,,1,,8063,md,,성과정리문서/EQI_Session68_성과정리_v1.md
+S68,인수인계,sessions,EQI_Session68_인수인계.md,,Y,단일 판본,,1,,7086,md,,성과정리문서/EQI_Session68_인수인계.md
+S69,성과정리,sessions,EQI_Session69_성과정리_v1.md,v1,Y,단일 판본,,1,,23246,md,,성과정리문서/EQI_Session69_성과정리_v1.md
+S69,인수인계,sessions,EQI_Session69_인수인계.md,,Y,단일 판본,,1,,5245,md,,성과정리문서/EQI_Session69_인수인계.md
+S70,성과정리,sessions,EQI_Session70_성과정리_v1.md,v1,Y,단일 판본,,1,,18608,md,,성과정리문서/EQI_Session70_성과정리_v1.md
+S70,인수인계,sessions,EQI_Session70_인수인계.md,,Y,단일 판본,,1,,6327,md,,성과정리문서/EQI_Session70_인수인계.md
+S71,성과정리,sessions,EQI_Session71_성과정리_v1.md,v1,Y,단일 판본,,1,,13006,md,,성과정리문서/EQI_Session71_성과정리_v1.md
+S71,인수인계,sessions,EQI_Session71_인수인계.md,,Y,단일 판본,,1,,16757,md,,성과정리문서/EQI_Session71_인수인계.md
+S72,성과정리,sessions,EQI_Session72_성과정리_v1.md,v1,Y,단일 판본,,1,,3582,md,,성과정리문서/EQI_Session72_성과정리_v1.md
+S72,인수인계,sessions,EQI_Session72_인수인계.md,,Y,단일 판본,,1,,6250,md,,성과정리문서/EQI_Session72_인수인계.md
+S73,성과정리,sessions,EQI_Session73_성과정리_v1.md,v1,Y,단일 판본,,1,,6575,md,,성과정리문서/EQI_Session73_성과정리_v1.md
+S73,인수인계,sessions,EQI_Session73_인수인계.md,,Y,단일 판본,,1,,4113,md,,성과정리문서/EQI_Session73_인수인계.md
+S74,성과정리,sessions,EQI_Session74_성과정리_v1.md,v1,Y,단일 판본,,1,,4268,md,,성과정리문서/EQI_Session74_성과정리_v1.md
+S74,인수인계,sessions,EQI_Session74_인수인계.md,,Y,단일 판본,,1,,7456,md,,성과정리문서/EQI_Session74_인수인계.md
+S75,성과정리,sessions,EQI_Session75_성과정리_v1.md,v1,Y,단일 판본,,1,,8998,md,,성과정리문서/EQI_Session75_성과정리_v1.md
+S75,인수인계,sessions,EQI_Session75_인수인계.md,,Y,단일 판본,,1,,9217,md,,성과정리문서/EQI_Session75_인수인계.md
+S76,성과정리,sessions,EQI_Session76_성과정리_v1.md,v1,Y,단일 판본,,1,,19427,md,,성과정리문서/EQI_Session76_성과정리_v1.md
+S76,인수인계,sessions,EQI_Session76_인수인계.md,,Y,단일 판본,,1,,6698,md,,성과정리문서/EQI_Session76_인수인계.md
+S77,성과정리,sessions,EQI_Session77_성과정리_v1.md,v1,Y,단일 판본,,1,,13845,md,,성과정리문서/EQI_Session77_성과정리_v1.md
+S77,인수인계,sessions,EQI_Session77_인수인계.md,,Y,단일 판본,,1,,10347,md,,성과정리문서/EQI_Session77_인수인계.md
+S78,성과정리,sessions,EQI_Session78_성과정리_v1.md,v1,Y,단일 판본,,1,,7317,md,,성과정리문서/EQI_Session78_성과정리_v1.md
+S78,인수인계,sessions,EQI_Session78_인수인계.md,,Y,단일 판본,,1,,11303,md,,성과정리문서/EQI_Session78_인수인계.md
+S79,성과정리,sessions,EQI_Session79_성과정리_v1.md,v1,Y,단일 판본,,1,,8687,md,,성과정리문서/EQI_Session79_성과정리_v1.md
+S79,인수인계,sessions,EQI_Session79_인수인계.md,,Y,단일 판본,,1,,7334,md,,성과정리문서/EQI_Session79_인수인계.md
+S80,성과정리,sessions,EQI_Session80_성과정리_v1.md,v1,Y,단일 판본,,1,,9108,md,,성과정리문서/EQI_Session80_성과정리_v1.md
+S80,인수인계,sessions,EQI_Session80_인수인계.md,,Y,단일 판본,,1,,5752,md,,성과정리문서/EQI_Session80_인수인계.md
+S81,성과정리,sessions,EQI_Session81_성과정리_v1.md,v1,Y,단일 판본,,1,,11057,md,,성과정리문서/EQI_Session81_성과정리_v1.md
+S81,인수인계,sessions,EQI_Session81_인수인계.md,,Y,단일 판본,,1,,10587,md,,성과정리문서/EQI_Session81_인수인계.md
+S82,성과정리,sessions,EQI_Session82_성과정리_v2.md,v2,Y,단일 판본,,1,,10063,md,,성과정리문서/EQI_Session82_성과정리_v2.md
+S82,인수인계,sessions,EQI_Session82_인수인계.md,,Y,단일 판본,,1,,10281,md,,성과정리문서/EQI_Session82_인수인계.md
+S83,성과정리,sessions,EQI_Session83_성과정리_v3.md,v3,Y,단일 판본,,1,,12552,md,,성과정리문서/EQI_Session83_성과정리_v3.md
+S83,인수인계,sessions,EQI_Session83_인수인계.md,,Y,단일 판본,,1,,9098,md,,성과정리문서/EQI_Session83_인수인계.md
+S84,성과정리,sessions,EQI_Session84_성과정리_v2.md,v2,Y,단일 판본,,1,,10899,md,,성과정리문서/EQI_Session84_성과정리_v2.md
+S84,인수인계,sessions,EQI_Session84_인수인계.md,,Y,단일 판본,,1,,9861,md,,성과정리문서/EQI_Session84_인수인계.md
+S85,성과정리,sessions,EQI_Session85_성과정리_v1.md,v1,Y,단일 판본,,1,,7974,md,,성과정리문서/EQI_Session85_성과정리_v1.md
+S85,인수인계,sessions,EQI_Session85_인수인계.md,,Y,단일 판본,,1,,9048,md,,성과정리문서/EQI_Session85_인수인계.md
+S86,성과정리,sessions,EQI_Session86_성과정리_v3.md,v3,Y,단일 판본,,1,,8756,md,,성과정리문서/EQI_Session86_성과정리_v3.md
+S86,인수인계,sessions,EQI_Session86_인수인계.md,,Y,단일 판본,,1,,7672,md,,성과정리문서/EQI_Session86_인수인계.md
+S87,성과정리,sessions,EQI_Session87_성과정리_v2.md,v2,Y,단일 판본,,1,,7286,md,,성과정리문서/EQI_Session87_성과정리_v2.md
+S87,인수인계,sessions,EQI_Session87_인수인계.md,,Y,단일 판본,,1,,8218,md,,성과정리문서/EQI_Session87_인수인계.md
+S88,성과정리,sessions,EQI_Session88_성과정리_v4_final.md,v4,Y,단일 판본,,1,,19868,md,파일명 _final,성과정리문서/EQI_Session88_성과정리_v4_final.md
+S88,인수인계,sessions,EQI_Session88_인수인계.md,,Y,단일 판본,,1,,8300,md,,성과정리문서/EQI_Session88_인수인계.md
+S89,성과정리,sessions,EQI_Session89_성과정리_v2.md,v2,Y,단일 판본,,1,,11459,md,,성과정리문서/EQI_Session89_성과정리_v2.md
+S90,성과정리,sessions,EQI_Session90_성과정리_v1.md,v1,Y,단일 판본,,1,,6791,md,,성과정리문서/EQI_Session90_성과정리_v1.md
+S90,인수인계,sessions,EQI_Session90_인수인계.md,,Y,단일 판본,,1,,3990,md,,성과정리문서/EQI_Session90_인수인계.md
+S91,성과정리,sessions,EQI_Session91_성과정리_v2.md,v2,Y,단일 판본,,1,,9171,md,,성과정리문서/EQI_Session91_성과정리_v2.md
+S91,인수인계,sessions,EQI_Session91_인수인계.md,,Y,단일 판본,,1,,4996,md,,성과정리문서/EQI_Session91_인수인계.md
+S92,성과정리,sessions,EQI_Session92_성과정리_v1.md,v1,Y,단일 판본,,1,,11301,md,,성과정리문서/EQI_Session92_성과정리_v1.md
+S92,인수인계,sessions,EQI_Session92_인수인계.md,,Y,단일 판본,,1,,7380,md,,성과정리문서/EQI_Session92_인수인계.md
+S93,성과정리,sessions,EQI_Session93_성과정리_v3.md,v3,Y,단일 판본,,1,,12575,md,,성과정리문서/EQI_Session93_성과정리_v3.md
+S94,성과정리,sessions,EQI_Session94_성과정리_v2.md,v2,Y,단일 판본,,1,,11877,md,,성과정리문서/EQI_Session94_성과정리_v2.md
+S94,인수인계,sessions,EQI_Session94_인수인계_v4.md,v4,Y,단일 판본,,1,,18254,md,,성과정리문서/EQI_Session94_인수인계_v4.md
+S95,성과정리,sessions,EQI_Session95_성과정리_v2.md,v2,Y,단일 판본,,1,,10232,md,,성과정리문서/EQI_Session95_성과정리_v2.md
+S96,성과정리,sessions,EQI_Session96_성과정리_v2.md,v2,Y,단일 판본,,1,,10314,md,,성과정리문서/EQI_Session96_성과정리_v2.md
+S97,성과정리,sessions,EQI_Session97_성과정리_v2.md,v2,Y,단일 판본,,1,,6671,md,,성과정리문서/EQI_Session97_성과정리_v2.md
+S98,성과정리,sessions,EQI_Session98_성과정리_v4.md,v4,N,v 숫자 최대 아님,,2,EQI_Session98_성과정리_v5.md (13771B),13569,md,,성과정리문서/EQI_Session98_성과정리_v4.md
+S98,성과정리,sessions,EQI_Session98_성과정리_v5.md,v5,Y,v 숫자 최대,,2,EQI_Session98_성과정리_v4.md (13569B),13771,md,,성과정리문서/EQI_Session98_성과정리_v5.md
+S99,성과정리,sessions,EQI_Session99_성과정리_v1.md,v1,Y,단일 판본,,1,,28632,md,,성과정리문서/EQI_Session99_성과정리_v1.md
+S99,인수인계,sessions,EQI_Session99_인수인계_v1.md,v1,Y,단일 판본,,1,,11040,md,,성과정리문서/EQI_Session99_인수인계_v1.md
+S100,성과정리,sessions,EQI_Session100_성과정리_v2.md,v2,Y,단일 판본,,1,,13818,md,,성과정리문서/EQI_Session100_성과정리_v2.md
+S100,인수인계,sessions,EQI_Session100_인수인계_v2.md,v2,Y,단일 판본,,1,,7868,md,,성과정리문서/EQI_Session100_인수인계_v2.md
+S101,성과정리,sessions,EQI_Session101_성과정리_v1.md,v1,Y,단일 판본,,1,,10112,md,,성과정리문서/EQI_Session101_성과정리_v1.md
+S101,인수인계,sessions,EQI_Session101_인수인계_v2.md,v2,Y,단일 판본,,1,,5060,md,,성과정리문서/EQI_Session101_인수인계_v2.md
+S102,성과정리,sessions,EQI_Session102_성과정리_v1.md,v1,Y,단일 판본,,1,,11994,md,,성과정리문서/EQI_Session102_성과정리_v1.md
+S102,인수인계,sessions,EQI_Session102_인수인계_v3.md,v3,Y,단일 판본,,1,,4913,md,,성과정리문서/EQI_Session102_인수인계_v3.md
+S103,성과정리,sessions,EQI_Session103_성과정리_v1.md,v1,Y,단일 판본,,1,,12177,md,,성과정리문서/EQI_Session103_성과정리_v1.md
+S104,성과정리,sessions,EQI_Session104_성과정리_v1.md,v1,Y,단일 판본,,1,,8115,md,,성과정리문서/EQI_Session104_성과정리_v1.md
+S105,성과정리,sessions,EQI_Session105_성과정리_v2.md,v2,Y,단일 판본,,1,,12797,md,,성과정리문서/EQI_Session105_성과정리_v2.md
+S105,인수인계,sessions,EQI_Session105_인수인계_v1.md,v1,Y,단일 판본,,1,,6240,md,,성과정리문서/EQI_Session105_인수인계_v1.md
+S106,성과정리,sessions,EQI_Session106_성과정리_v4.md,v4,Y,단일 판본,,1,,13285,md,,성과정리문서/EQI_Session106_성과정리_v4.md
+S107,성과정리,sessions,EQI_Session107_성과정리_v1.md,v1,Y,단일 판본,,1,,10396,md,,성과정리문서/EQI_Session107_성과정리_v1.md
+S107,인수인계,sessions,EQI_Session107_인수인계_v1.md,v1,Y,단일 판본,,1,,8774,md,,성과정리문서/EQI_Session107_인수인계_v1.md
+S108,성과정리,sessions,EQI_Session108_성과정리_v6.md,v6,Y,단일 판본,,1,,23116,md,,성과정리문서/EQI_Session108_성과정리_v6.md
+S108,인수인계,sessions,EQI_Session108_인수인계_v1.md,v1,Y,단일 판본,,1,,7856,md,,성과정리문서/EQI_Session108_인수인계_v1.md
+S109,성과정리,sessions,EQI_Session109_성과정리_v4.docx,v4,Y,단일 판본,,1,,11675,docx,"docx — 변환본 derived/EQI_Session109_성과정리_v4.md (원문 아님, tools/make_derived.py)",성과정리문서/EQI_Session109_성과정리_v4.docx
+S109,인수인계,sessions,EQI_Session109_인수인계_v1.md,v1,Y,단일 판본,,1,,9608,md,,성과정리문서/EQI_Session109_인수인계_v1.md
+S110,성과정리,sessions,EQI_Session110_성과정리_v4.docx,v4,Y,단일 판본,,1,,11407,docx,"docx — 변환본 derived/EQI_Session110_성과정리_v4.md (원문 아님, tools/make_derived.py)",성과정리문서/EQI_Session110_성과정리_v4.docx
+S110,인수인계,sessions,EQI_Session110_인수인계_v2.md,v2,Y,단일 판본,,1,,7782,md,,성과정리문서/EQI_Session110_인수인계_v2.md
+S111,성과정리,sessions,EQI_Session111_성과정리_v5.md,v5,Y,S118 색인 작업지시서 v2 70행·87행 (S111 v5),,1,,12361,md,,성과정리문서/EQI_Session111_성과정리_v5.md
+S111,인수인계,sessions,EQI_Session111_인수인계_v3.docx,v3,Y,단일 판본,,1,,12619,docx,"docx — 변환본 derived/EQI_Session111_인수인계_v3.md (원문 아님, tools/make_derived.py)",성과정리문서/EQI_Session111_인수인계_v3.docx
+S112,성과정리,sessions,EQI_Session112_성과정리_v1.md,v1,Y,단일 판본,,1,,10371,md,,성과정리문서/EQI_Session112_성과정리_v1.md
+S112,인수인계,sessions,EQI_Session112_인수인계_v4.md,v4,Y,단일 판본,,1,,9724,md,,성과정리문서/EQI_Session112_인수인계_v4.md
+S113,성과정리,sessions,EQI_Session113_성과정리_v3.md,v3,N,작업지시서 v2 지정판 아님,,2,EQI_Session113_성과정리_v6.md (16261B),8076,md,,성과정리문서/EQI_Session113_성과정리_v3.md
+S113,성과정리,sessions,EQI_Session113_성과정리_v6.md,v6,Y,"S118 색인 작업지시서 v2 70행·89행 (S113 v6, 파일 1행 헤더 'v5' 는 오기)",,2,EQI_Session113_성과정리_v3.md (8076B),16261,md,,성과정리문서/EQI_Session113_성과정리_v6.md
+S113,인수인계,sessions,EQI_Session113_인수인계_v1.md,v1,Y,단일 판본,,1,,12638,md,,성과정리문서/EQI_Session113_인수인계_v1.md
+S113,추가논의,sessions,EQI_Session113_추가논의_v3.md,v3,Y,단일 판본,,1,,9083,md,,성과정리문서/EQI_Session113_추가논의_v3.md
+S114,성과정리,sessions,EQI_Session114_성과정리_v1.md,v1,Y,단일 판본,,1,,15124,md,,성과정리문서/EQI_Session114_성과정리_v1.md
+S114,인수인계,sessions,EQI_Session114_인수인계_v1.md,v1,Y,단일 판본,,1,,6792,md,,성과정리문서/EQI_Session114_인수인계_v1.md
+S115,성과정리,sessions,EQI_Session115_성과정리_v1.md,v1,Y,단일 판본,,1,,9530,md,,성과정리문서/EQI_Session115_성과정리_v1.md
+S115,인수인계,sessions,EQI_Session115_인수인계_v1.md,v1,Y,단일 판본,,1,,10891,md,,성과정리문서/EQI_Session115_인수인계_v1.md
+S116,성과정리,sessions,EQI_Session116_성과정리_v1.md,v1,Y,단일 판본,,1,,14436,md,,성과정리문서/EQI_Session116_성과정리_v1.md
+S116,인수인계,sessions,EQI_Session116_인수인계_v2.md,v2,Y,단일 판본,,1,,22238,md,,성과정리문서/EQI_Session116_인수인계_v2.md
+S117,성과정리,sessions,EQI_Session117_성과정리_v2.md,v2,Y,S118 색인 작업지시서 v2 70행·93행 (S117 성과정리 v2),,1,,8676,md,,성과정리문서/EQI_Session117_성과정리_v2.md
+S117,인수인계,sessions,EQI_Session117_인수인계_v1.md,v1,Y,단일 판본,,1,,8226,md,,성과정리문서/EQI_Session117_인수인계_v1.md
+S118,성과정리,sessions,EQI_Session118_성과정리_v1.md,v1,Y,단일 판본,,1,,13402,md,,성과정리문서/EQI_Session118_성과정리_v1.md
+S118,인수인계,sessions,EQI_Session118_인수인계_v8.md,v8,N,v 숫자 최대 아님,,2,EQI_Session118_인수인계_v9.md (15807B),14366,md,"단계 5 원장 근거 판본 (ID 불변 고정, tools/build_step5.py PIN5) — 최종판은 v9",성과정리문서/EQI_Session118_인수인계_v8.md
+S118,인수인계,sessions,EQI_Session118_인수인계_v9.md,v9,Y,v 숫자 최대,,2,EQI_Session118_인수인계_v8.md (14366B),15807,md,v8 대비 v9 에만 있는 줄 110~117·127행만 단계 5 규칙으로 원장 추가 (MAPSI 2026-11-04),성과정리문서/EQI_Session118_인수인계_v9.md
+S119,성과정리,sessions,EQI_Session119_성과정리_v1.md,v1,Y,단일 판본,,1,,11157,md,,성과정리문서/EQI_Session119_성과정리_v1.md
+S119,인수인계,sessions,EQI_Session119_인수인계_v1.md,v1,Y,단일 판본,,1,,13817,md,,성과정리문서/EQI_Session119_인수인계_v1.md
+S120,인수인계,sessions,EQI_Session120_인수인계_v1.md,v1,Y,단일 판본,,1,,13246,md,,성과정리문서/EQI_Session120_인수인계_v1.md
+,,foundation,EQI_119_압축본_v10.docx,v10,Y,단일 판본,,1,,20012,docx,"docx — 변환본 derived/EQI_119_압축본_v10.md (원문 아님, tools/make_derived.py)",성과정리문서/EQI_119_압축본_v10.docx
+,,foundation,EQI_SESSION_PREAMBLE_v5.md,v5,N,v 숫자 최대 아님,,2,EQI_SESSION_PREAMBLE_v6.md (10928B),8379,md,,성과정리문서/EQI_SESSION_PREAMBLE_v5.md
+,,foundation,EQI_SESSION_PREAMBLE_v6.md,v6,Y,v 숫자 최대,"현행 (MAPSI 지시, 색인 단계 1 확인 후 보충)",2,EQI_SESSION_PREAMBLE_v5.md (8379B),10928,md,,성과정리문서/EQI_SESSION_PREAMBLE_v6.md
+,,foundation,EQI_SESSION_START_TRIGGER_v6.md,v6,N,v 숫자 최대 아님,,2,EQI_SESSION_START_TRIGGER_v7.md (3783B),3795,md,,성과정리문서/EQI_SESSION_START_TRIGGER_v6.md
+,,foundation,EQI_SESSION_START_TRIGGER_v7.md,v7,Y,v 숫자 최대,"현행 (MAPSI 지시, 색인 단계 1 확인 후 보충)",2,EQI_SESSION_START_TRIGGER_v6.md (3795B),3783,md,,성과정리문서/EQI_SESSION_START_TRIGGER_v7.md
+,,foundation,EQI_Section118_이중공리연역사슬_v1.md,v1,N,v 숫자 최대 아님,,2,EQI_Section118_이중공리연역사슬_v2.md (4448B),3755,md,,성과정리문서/EQI_Section118_이중공리연역사슬_v1.md
+,,foundation,EQI_Section118_이중공리연역사슬_v2.md,v2,Y,v 숫자 최대,,2,EQI_Section118_이중공리연역사슬_v1.md (3755B),4448,md,,성과정리문서/EQI_Section118_이중공리연역사슬_v2.md
+,,foundation,EQI_단위계_철학_v3.md,v3,Y,단일 판본,,1,,35521,md,,성과정리문서/EQI_단위계_철학_v3.md
+,,foundation,EQI_이론적_기반_v1.md,v1,Y,단일 판본,,1,,6851,md,,성과정리문서/EQI_이론적_기반_v1.md
+,,index_v1_1,EQI_클로드_전달메모_v1_1.md,v1.1,Y,단일 판본,,1,,731,md,,성과정리문서/EQI_클로드_전달메모_v1_1.md
+,,index_v1_1,EQI_클로드용_자료목록_v1_1.csv,v1.1,Y,단일 판본,,1,,6521,csv,,성과정리문서/EQI_클로드용_자료목록_v1_1.csv
+,,index_v1_1,EQI_클로드용_통합색인_v1_1.md,v1.1,Y,단일 판본,,1,,21617,md,,성과정리문서/EQI_클로드용_통합색인_v1_1.md
+,,index_v1_1,EQI_클로드용_패키지명세_v1_1.json,v1.1,Y,단일 판본,,1,,689,json,,성과정리문서/EQI_클로드용_패키지명세_v1_1.json
+,,index_v1_1,EQI_클로드용_현행항목_v1_1.csv,v1.1,Y,단일 판본,,1,,6547,csv,,성과정리문서/EQI_클로드용_현행항목_v1_1.csv
+,,translations,EQI_S116_물리법칙_비율1_번역_v4.md,v4,Y,단일 판본,,1,,37179,md,,성과정리문서/EQI_S116_물리법칙_비율1_번역_v4.md
+,,translations,EQI_S117_LIGO_v2_3_설계서_v4.md,v4,Y,단일 판본,,1,,17857,md,,성과정리문서/EQI_S117_LIGO_v2_3_설계서_v4.md
+,,translations,EQI_S117_물리법칙_비율1_번역_v5_재료역학.md,v5,Y,단일 판본,,1,,7931,md,,성과정리문서/EQI_S117_물리법칙_비율1_번역_v5_재료역학.md
+,,translations,EQI_S117_플랑크_양자에너지_확장번역_v4.md,v4,Y,단일 판본,,1,,14408,md,,성과정리문서/EQI_S117_플랑크_양자에너지_확장번역_v4.md
+,,v3_4,EQI_연구지침_프로젝트용_v3_4.md,v3.4,Y,단일 판본,,1,,139997,md,,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md
+,,기타(역사문서·메모),0이 덧셈의 항등원인데.txt,,Y,단일 판본,,1,,3609,txt,,성과정리문서/0이 덧셈의 항등원인데.txt
+,,기타(역사문서·메모),EQI Framework — 핵심 구조 정리 문서 v15 (대수학 완전 록온판).pdf,,Y,단일 판본,,1,,237687,pdf,pdf — 텍스트 추출 필요,성과정리문서/EQI Framework — 핵심 구조 정리 문서 v15 (대수학 완전 록온판).pdf
+,,기타(역사문서·메모),EQI_Framework_v3.docx,v3,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),17707,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v3.docx
+,,기타(역사문서·메모),EQI_Framework_v4.docx,v4,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),18371,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v4.docx
+,,기타(역사문서·메모),EQI_Framework_v5.docx,v5,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),19311,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v5.docx
+,,기타(역사문서·메모),EQI_Framework_v6.docx,v6,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),17110,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v6.docx
+,,기타(역사문서·메모),EQI_Framework_v7.docx,v7,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),17968,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v7.docx
+,,기타(역사문서·메모),EQI_Framework_v8.docx,v8,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v9.docx (15008B),16790,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v8.docx
+,,기타(역사문서·메모),EQI_Framework_v9.docx,v9,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B),15008,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v9.docx
+,,기타(역사문서·메모),EQI_Framework_v10.docx,v10,N,v 숫자 최대 아님,,15,EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),15666,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v10.docx
+,,기타(역사문서·메모),EQI_Framework_v11.docx,v11,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),12947,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v11.docx
+,,기타(역사문서·메모),EQI_Framework_v12.docx,v12,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),12761,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v12.docx
+,,기타(역사문서·메모),EQI_Framework_v13.docx,v13,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),13760,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v13.docx
+,,기타(역사문서·메모),EQI_Framework_v14.docx,v14,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),14479,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v14.docx
+,,기타(역사문서·메모),EQI_Framework_v15.docx,v15,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),13895,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v15.docx
+,,기타(역사문서·메모),EQI_Framework_v16 (1).docx,v16,N,v 숫자 최대 아님,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v17.docx (17383B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),18435,docx,파일명 ' (1)' 사본 표기; docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v16 (1).docx
+,,기타(역사문서·메모),EQI_Framework_v17.docx,v17,Y,v 숫자 최대,,15,EQI_Framework_v10.docx (15666B) | EQI_Framework_v11.docx (12947B) | EQI_Framework_v12.docx (12761B) | EQI_Framework_v13.docx (13760B) | EQI_Framework_v14.docx (14479B) | EQI_Framework_v15.docx (13895B) | EQI_Framework_v16 (1).docx (18435B) | EQI_Framework_v3.docx (17707B) | EQI_Framework_v4.docx (18371B) | EQI_Framework_v5.docx (19311B) | EQI_Framework_v6.docx (17110B) | EQI_Framework_v7.docx (17968B) | EQI_Framework_v8.docx (16790B) | EQI_Framework_v9.docx (15008B),17383,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v17.docx
+,,기타(역사문서·메모),EQI_Framework_Core_Structure.docx,,N,v 숫자 최대 아님,,2,EQI_Framework_Core_Structure_v2.docx (16721B),14751,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_Core_Structure.docx
+,,기타(역사문서·메모),EQI_Framework_Core_Structure_v2.docx,v2,Y,v 숫자 최대,,2,EQI_Framework_Core_Structure.docx (14751B),16721,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_Core_Structure_v2.docx
+,,기타(역사문서·메모),EQI_Framework_v16_coordinate_summary.docx,v16,Y,단일 판본,,1,,2947253,docx,docx — 텍스트 추출 필요,성과정리문서/EQI_Framework_v16_coordinate_summary.docx
+,,기타(역사문서·메모),EQI_Framework_v15_reconstructed.md,v15,Y,단일 판본,,1,,60759,md,,성과정리문서/EQI_Framework_v15_reconstructed.md
+,,기타(역사문서·메모),EQI_Framework_v15_update_session20.md,v15,Y,단일 판본,,1,,100479,md,UTF-8 아닌 바이트 포함 — 색인 도구는 대체 문자로 읽음 (줄 번호는 '\n' 기준 = grep -n),성과정리문서/EQI_Framework_v15_update_session20.md
+,,기타(역사문서·메모),EQI_색인_작업지시서_v2.md,v2,Y,단일 판본,,1,,8404,md,,성과정리문서/EQI_색인_작업지시서_v2.md
+,,기타(역사문서·메모),eqi_monster_v91_ellipse_spec.md,v91,Y,단일 판본,,1,,5771,md,,성과정리문서/eqi_monster_v91_ellipse_spec.md
+,,기타(역사문서·메모),eqi_monster_v90_spec.md,v90,Y,단일 판본,,1,,13873,md,,성과정리문서/eqi_monster_v90_spec.md
+,,기타(역사문서·메모),ln25갭.txt,,Y,단일 판본,,1,,1696,txt,,성과정리문서/ln25갭.txt
+,,기타(역사문서·메모),readme.md,,Y,단일 판본,,1,,20,md,,성과정리문서/readme.md
+,,기타(역사문서·메모),가족문서.txt,,Y,단일 판본,,1,,2662,txt,,성과정리문서/가족문서.txt
+,,기타(역사문서·메모),실행해서 검증합니다..txt,,Y,단일 판본,,1,,1760,txt,,성과정리문서/실행해서 검증합니다..txt
+,,기타(역사문서·메모),아까 엔트로피 0의.txt,,Y,단일 판본,,1,,3851,txt,,성과정리문서/아까 엔트로피 0의.txt
+,,기타(역사문서·메모),에일리어싱 텐션.txt,,Y,단일 판본,,1,,2303,txt,,성과정리문서/에일리어싱 텐션.txt
+,,기타(역사문서·메모),유클리드 점 폐기.txt,,Y,단일 판본,,1,,1659,txt,,성과정리문서/유클리드 점 폐기.txt
+,,기타(역사문서·메모),이미지와 코드와 결과를.txt,,Y,단일 판본,,1,,9445,txt,,성과정리문서/이미지와 코드와 결과를.txt
+,,기타(역사문서·메모),이제 리만 가설 해결된건가.txt,,Y,단일 판본,,1,,3823,txt,,성과정리문서/이제 리만 가설 해결된건가.txt
+,,기타(역사문서·메모),적분 면적이 들어간 확률.txt,,Y,단일 판본,,1,,4070,txt,,성과정리문서/적분 면적이 들어간 확률.txt
+,,기타(역사문서·메모),정보 특이점과 플랑크 밀도 환원.docx,,Y,단일 판본,,1,,2982271,docx,docx — 텍스트 추출 필요,성과정리문서/정보 특이점과 플랑크 밀도 환원.docx
+,,기타(역사문서·메모),정보특이점.txt,,Y,단일 판본,,1,,2177,txt,,성과정리문서/정보특이점.txt
+,,기타(역사문서·메모),🐉 EQI 3대 좌표계 및 재정규화 토폴로지 대통합 (v15 핵심 확장) 🐉.pdf,,Y,단일 판본,,1,,188994,pdf,pdf — 텍스트 추출 필요,성과정리문서/🐉 EQI 3대 좌표계 및 재정규화 토폴로지 대통합 (v15 핵심 확장) 🐉.pdf

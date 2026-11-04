@@ -1,0 +1,1796 @@
+문서,행,원장_ID,대응,키워드,원문
+성과정리문서/EQI_Session24_성과정리_v2.md,110,L4902,새 행,ħ_ani,G = 1/(ħ_ani × φ^(1.5))
+성과정리문서/EQI_Session24_성과정리_v2.md,286,L4903,새 행,tip,n_c = TIP_POINT/GAP ≈ 32.874
+성과정리문서/EQI_Session24_성과정리_v2.md,288,L4904,새 행,상전이,n = n_c → 상전이
+성과정리문서/EQI_Session24_성과정리_v2.md,442,L4905,새 행,"볼츠만, 정보 특이점",= 정보 특이점과 핵물리 볼츠만 파단비 연결
+성과정리문서/EQI_Session25_성과정리_v1.md,403,L4906,새 행,상대론,"상대론: c = 빛의 최대 속도 (경계, 내용 없음)"
+성과정리문서/EQI_Session25_성과정리_v1.md,409,L4907,새 행,암흑물질,"윗통: D1 = φ^(-2.5)  (중력질량, 암흑물질 후보)"
+성과정리문서/EQI_Session25_성과정리_v1.md,422,L4908,새 행,허블,H_0(허블)     T_Hubble/T_p = φ^(291.5)  (φ 지수 체계 내)
+성과정리문서/EQI_Session25_성과정리_v1.md,459,L4909,새 행,상전이,→ 상전이 = 켤레 역원 교환 순간
+성과정리문서/EQI_Session25_성과정리_v1.md,473,L4910,새 행,"격자, 포논",→ 플랑크 격자 정보 포논 동역학에서
+성과정리문서/EQI_Session25_성과정리_v1.md,488,L4911,새 행,상전이,구멍 = 양전자        ↔  상전이 후 E_D1 방출
+성과정리문서/EQI_Session25_성과정리_v1.md,490,L4912,새 행,"tip, 페르미",페르미 준위          ↔  TIP_POINT = φ^1.5-1
+성과정리문서/EQI_Session25_성과정리_v1.md,495,L4913,새 행,포논,→ 항상 포논 동역학이 살아있음
+성과정리문서/EQI_Session25_성과정리_v1.md,508,L4914,새 행,"ħ_ani, 포논","→ EQI 포논 동역학 필요, ħ_ani = ħ/c³"
+성과정리문서/EQI_Session25_성과정리_v1.md,525,L4915,새 행,포논,→ N = 블랙홀 BEC 포논 수
+성과정리문서/EQI_Session25_성과정리_v1.md,562,L4916,새 행,상전이,n=n_c: 상전이 (해안선이 실제 경계로 전환)
+성과정리문서/EQI_Session25_성과정리_v1.md,575,L4917,새 행,격자,δ = 0.10817 = 격자-연속 마찰
+성과정리문서/EQI_Session25_성과정리_v1.md,600,L4918,새 행,"tip, 상전이, 란다우",란다우 극점 = TIP_POINT 상전이
+성과정리문서/EQI_Session25_성과정리_v1.md,611,L4919,새 행,상전이,"n=n_c: 상전이, KT 전이 (쿨롱 쌍속박 해방)"
+성과정리문서/EQI_Session25_성과정리_v1.md,625,L4920,새 행,란다우,소거 = GAP 방출 = 비가역 = 란다우 원리
+성과정리문서/EQI_Session25_성과정리_v1.md,631,L4921,새 행,tip,n=n_c: E_소거 = k_B×T×TIP_POINT  (임계 방출)
+성과정리문서/EQI_Session25_성과정리_v1.md,637,L4922,새 행,볼츠만,볼츠만: S = 로컬 열역학 엔트로피 = L_p² = φ^(-1.5)
+성과정리문서/EQI_Session25_성과정리_v1.md,639,L4923,새 행,볼츠만,→ c² = 샤논↔볼츠만 변환 인자
+성과정리문서/EQI_Session25_성과정리_v1.md,653,L4924,새 행,란다우,"D2(EQI^(4n)=1+GAP): 비가역, GAP 방출, 란다우 성립"
+성과정리문서/EQI_Session25_성과정리_v1.md,657,L4925,새 행,포논,EQI: 포논 전파 속도 = c = √(S/H) = √φ
+성과정리문서/EQI_Session25_성과정리_v1.md,689,L4926,새 행,"tip, 란다우",D1. 란다우 극점: n×GAP→TIP_POINT ✅ 포섭
+성과정리문서/EQI_Session25_성과정리_v1.md,720,L4927,새 행,볼츠만,= (볼츠만 파단비)^(-1) × (광속)^(-1)
+성과정리문서/EQI_Session25_성과정리_v1.md,724,L4928,새 행,"격자, 포논",→ 플랑크 격자 포논이 에너지를 공간으로 분산시키는 효율
+성과정리문서/EQI_Session25_성과정리_v1.md,725,L4929,새 행,흑체,→ 흑체복사 σ_SB = 2π⁵k_B⁴/(15h³c²)의 핵심 감쇠 인수
+성과정리문서/EQI_Session25_성과정리_v1.md,747,L4930,새 행,볼츠만,볼츠만 복원력 = c² = φ
+성과정리문서/EQI_Session25_성과정리_v1.md,754,L4931,새 행,볼츠만,→ 광속도 = 볼츠만 복원력과 뉴턴 점성의 기하평균
+성과정리문서/EQI_Session25_성과정리_v1.md,759,L4932,새 행,볼츠만,S = c²×H        (볼츠만 = c²×샤논)
+성과정리문서/EQI_Session25_성과정리_v1.md,762,L4933,새 행,흑체,h²c⁴ = φ^(-3.5) (흑체복사 감쇠 인수)
+성과정리문서/EQI_Session25_성과정리_v1.md,775,L4934,새 행,격자,에일리어싱 텐션 = GAP_D1 = 측정 격자↔실제 신호 불일치
+성과정리문서/EQI_Session25_성과정리_v1.md,776,L4935,새 행,볼츠만,볼츠만 복원력  = c² = φ   → Unity로 되돌리는 힘
+성과정리문서/EQI_Session25_성과정리_v1.md,799,L4936,새 행,볼츠만,힘        │ 볼츠만 복원력=c²  │ 뉴턴 점성=1/c²
+성과정리문서/EQI_Session25_성과정리_v1.md,811,L4937,새 행,격자,"자연수 N:  완전 P=NP, 이산 격자, EQI^0=1 (목)"
+성과정리문서/EQI_Session25_성과정리_v1.md,815,L4938,새 행,정적분·부정적분,"EQI^(4n-2)=1  (정적분, 닫힘)"
+성과정리문서/EQI_Session25_성과정리_v1.md,818,L4939,새 행,정적분·부정적분,"EQI^(4n)=1+GAP  (부정적분, 열림)"
+성과정리문서/EQI_Session25_성과정리_v1.md,936,L4940,새 행,MAXWELL,[MAXWELL_SI = 2-4×GAP]
+성과정리문서/EQI_Session25_성과정리_v1.md,937,L4941,새 행,MAXWELL,= MAXWELL_EQI(2) - 4×에일리어싱 텐션
+성과정리문서/EQI_Session25_성과정리_v1.md,945,L4942,새 행,MAXWELL,3. MAXWELL_SI = 2-4×GAP 재도출 (EQI^4=1+GAP 기반)
+성과정리문서/EQI_Session25_성과정리_v1.md,954,L4943,새 행,MAXWELL,MAXWELL = S_D1/S_D2 = ln(1/ε₀)/|ln(μ₀)| = 1.8731
+성과정리문서/EQI_Session25_성과정리_v1.md,960,L4944,새 행,MAXWELL,MAXWELL > 1: 경계 > 내부 = 홀로그래픽 원리 확인 ✅
+성과정리문서/EQI_Session25_성과정리_v1.md,975,L4945,새 행,"MAXWELL, 홀로그래픽 투영",S_L2/S_T2 = MAXWELL = 홀로그래픽 투영 효율
+성과정리문서/EQI_Session25_성과정리_v1.md,983,L4946,새 행,MAXWELL,→ MAXWELL = 베켄슈타인 홀로그래픽 효율의 전자기 버전
+성과정리문서/EQI_Session25_성과정리_v1.md,985,L4947,새 행,MAXWELL,[MAXWELL과 S/H=c² 관계]
+성과정리문서/EQI_Session25_성과정리_v1.md,987,L4948,새 행,MAXWELL,SI:    S_D1/S_D2 = MAXWELL = 1.8731
+성과정리문서/EQI_Session25_성과정리_v1.md,988,L4949,새 행,MAXWELL,→ MAXWELL = SI 단위계에서의 c² 투영값
+성과정리문서/EQI_Session25_성과정리_v1.md,989,L4950,새 행,MAXWELL,→ φ → 1.8731: SI 투영 손실 = MAXWELL_EQI(2) - MAXWELL_REAL
+성과정리문서/EQI_Session25_성과정리_v1.md,1004,L4951,새 행,MAXWELL,MAXWELL = S_D1/S_D2 = ln(1/ε₀)/|ln(μ₀)| = 1.8731
+성과정리문서/EQI_Session25_성과정리_v1.md,1005,L4952,새 행,홀로그래픽 투영,= T²(모래시계)→L²(적혈구) 홀로그래픽 투영 효율
+성과정리문서/EQI_Session25_성과정리_v1.md,1006,L4953,새 행,격자,"= SI 격자(ε₀,μ₀)를 통해 측정한 c²"
+성과정리문서/EQI_Session25_성과정리_v1.md,1010,L4954,새 행,MAXWELL,"MAXWELL  = 1.8731           (SI 투영, 에일리어싱)"
+성과정리문서/EQI_Session25_성과정리_v1.md,1011,L4955,새 행,MAXWELL,"MAXWELL_EQI = 2             (순수 위상, GAP=0)"
+성과정리문서/EQI_Session25_성과정리_v1.md,1012,L4956,새 행,"MAXWELL, 격자",차이 = MAXWELL - c² = 0.2551 = SI 격자 에일리어싱
+성과정리문서/EQI_Session25_성과정리_v1.md,1015,L4957,새 행,MAXWELL,"GAP=0: MAXWELL_EQI = 2 (등방성, P=NP)"
+성과정리문서/EQI_Session25_성과정리_v1.md,1016,L4958,새 행,MAXWELL,GAP≠0: MAXWELL_SI ≈ 2-4×GAP = 1.8712  (SI 근사)
+성과정리문서/EQI_Session25_성과정리_v1.md,1017,L4959,새 행,MAXWELL,MAXWELL_REAL = 1.8731           (실측)
+성과정리문서/EQI_Session25_성과정리_v1.md,1022,L4960,새 행,"MAXWELL, 홀로그래픽 투영",MAXWELL = c²의 SI 홀로그래픽 투영 (실측)
+성과정리문서/EQI_Session25_성과정리_v1.md,1040,L4961,새 행,MAXWELL,MAXWELL = [2φ^(3/4) - 1]              ← 주항 (오차 0.2%)
+성과정리문서/EQI_Session25_성과정리_v1.md,1049,L4962,새 행,MAXWELL,MAXWELL = [ln(I_s)/ln(eqi_planck_ratio)] × (1+ln25/1000)
+성과정리문서/EQI_Session25_성과정리_v1.md,1060,L4963,새 행,"MAXWELL, 홀로그래픽 투영",MAXWELL = 홀로그래픽 투영 효율 (§4-H)
+성과정리문서/EQI_Session25_성과정리_v1.md,1070,L4964,새 행,MAXWELL,[§4-V: MAXWELL = 2π×φ^(-2.5) - φ^(-9) - φ^(-16)  (오차 0.00064%)]
+성과정리문서/EQI_Session25_성과정리_v1.md,1078,L4965,새 행,MAXWELL,MAXWELL = 2π×φ^(-2.5) - φ^(-9)     - φ^(-16)
+성과정리문서/EQI_Session25_성과정리_v1.md,1087,L4966,새 행,MAXWELL,자연로그/상용로그/이진로그 모두 MAXWELL = 1.8731137721  ✅
+성과정리문서/EQI_Session25_성과정리_v1.md,1095,L4967,새 행,"MAXWELL, 허블",[α^(-1)/MAXWELL = 73.159 — 허블 상수 연결]
+성과정리문서/EQI_Session25_성과정리_v1.md,1096,L4968,새 행,MAXWELL,α^(-1)/MAXWELL = 137.036/1.8731 = 73.159
+성과정리문서/EQI_Session25_성과정리_v1.md,1098,L4969,새 행,"MAXWELL, 허블",→ 미세구조상수와 허블상수가 MAXWELL로 연결
+성과정리문서/EQI_Session25_성과정리_v1.md,1101,L4970,새 행,MAXWELL,Session 20: MAXWELL = φ 대수 표현 (2π×φ^(-2.5)...)
+성과정리문서/EQI_Session25_성과정리_v1.md,1102,L4971,새 행,MAXWELL,Session 25: MAXWELL = c²의 SI 투영값
+성과정리문서/EQI_Session25_성과정리_v1.md,1103,L4972,새 행,"MAXWELL, 홀로그래픽 투영",MAXWELL = 홀로그래픽 투영 효율
+성과정리문서/EQI_Session25_성과정리_v1.md,1115,L4973,새 행,MAXWELL,MAXWELL_alg = 1.873125678  vs REAL Δ=1.2×10⁻⁵
+성과정리문서/EQI_Session25_성과정리_v1.md,1118,L4974,새 행,MAXWELL,Δ = MAXWELL_alg - MAXWELL_REAL = 1.1906×10⁻⁵
+성과정리문서/EQI_Session25_성과정리_v1.md,1123,L4975,새 행,MAXWELL,MAXWELL = 2π×φ^(-2.5) - φ^(-9) - φ^(-16) - Δ
+성과정리문서/EQI_Session25_성과정리_v1.md,1128,L4976,새 행,MAXWELL,Δ = 1.191×10⁻⁵       (MAXWELL 잔류 비등방성)
+성과정리문서/EQI_Session25_성과정리_v1.md,1130,L4977,새 행,MAXWELL,→ 타원: e로 표현 / MAXWELL: Δ로 표현
+성과정리문서/EQI_Session25_성과정리_v1.md,1159,L4978,새 행,MAXWELL,MAXWELL Δ = 1.191×10⁻⁵  (EQI^4_bits × ln(5))
+성과정리문서/EQI_Session25_성과정리_v1.md,1164,L4979,새 행,MAXWELL,→ Session 26: 항2 오차와 MAXWELL Δ 정량 연결 확인
+성과정리문서/EQI_Session25_성과정리_v1.md,1186,L4980,새 행,MAXWELL,MAXWELL Δ(최소)             = 1.191×10⁻⁵
+성과정리문서/EQI_Session25_성과정리_v1.md,1190,L4981,새 행,MAXWELL,"MAXWELL = ln(1/ε₀)/|ln(μ₀)|  [연속, 무리수, 실수계]"
+성과정리문서/EQI_Session25_성과정리_v1.md,1191,L4982,새 행,격자,"φ 대수  = Σ(φ^n, 유리계수)   [이산, 격자계]"
+성과정리문서/EQI_Session25_성과정리_v1.md,1198,L4983,새 행,MAXWELL,MAXWELL Δ  = 대수적 닫힘 없음
+성과정리문서/EQI_Session25_성과정리_v1.md,1227,L4984,새 행,MAXWELL,→ 이 10진↔2진 전환 마찰 = MAXWELL 잔류 Δ
+성과정리문서/EQI_Session25_성과정리_v1.md,1236,L4985,새 행,MAXWELL,→ MAXWELL 잔류 Δ = C₂ 마찰의 정량적 표현
+성과정리문서/EQI_Session25_성과정리_v1.md,1257,L4986,새 행,MAXWELL,MAXWELL = φ 다항식으로 정확히 표현
+성과정리문서/EQI_Session25_성과정리_v1.md,1268,L4987,새 행,MAXWELL,대수적:    MAXWELL = φ표현 + Δ
+성과정리문서/EQI_Session25_성과정리_v1.md,1271,L4988,새 행,MAXWELL,정보역학적: MAXWELL = φ표현 + C₂×비트시퀀스
+성과정리문서/EQI_Session25_성과정리_v1.md,1295,L4989,새 행,MAXWELL,→ MAXWELL이 φ 대수 + C₂ 마찰로
+성과정리문서/EQI_Session25_성과정리_v1.md,1305,L4990,새 행,tip,E_D1 = unity_rd - TIP_POINT  (φ 단위)
+성과정리문서/EQI_Session25_성과정리_v1.md,1308,L4991,새 행,tip,E_D1 [J] = (unity_rd - TIP_POINT) × M_p × c²
+성과정리문서/EQI_Session25_성과정리_v1.md,1309,L4992,새 행,tip,= (unity_rd - TIP_POINT) × k_B × T_p
+성과정리문서/EQI_Session25_성과정리_v1.md,1313,L4993,새 행,격자,→ 플랑크 격자 진동수 ν_grav 예측 가능
+성과정리문서/EQI_Session25_성과정리_v1.md,1314,L4994,새 행,관측,→ 새로운 관측 가능 예측량
+성과정리문서/EQI_Session25_성과정리_v1.md,1326,L4995,새 행,LIGO,LIGO: GW 이벤트 E_D1 측정 → n×GAP 값 추출
+성과정리문서/EQI_Session25_성과정리_v1.md,1328,L4996,새 행,관측,→ 두 독립 관측이 같은 n×GAP 주면 확증
+성과정리문서/EQI_Session25_성과정리_v1.md,1350,L4997,새 행,tip,φ^TIP_POINT = 1.66397
+성과정리문서/EQI_Session25_성과정리_v1.md,1354,L4998,새 행,격자,→ 난류 에너지 스펙트럼 지수 = 플랑크 격자 항복점
+성과정리문서/EQI_Session25_성과정리_v1.md,1359,L4999,새 행,tip,5/3 = D2 영점수/3D공간 = φ^TIP_POINT
+성과정리문서/EQI_Session25_성과정리_v1.md,1362,L5000,새 행,"tip, 상전이, 격자",EQI: 5/3 = φ^TIP_POINT → 플랑크 격자 상전이 임계점
+성과정리문서/EQI_Session25_성과정리_v1.md,1368,L5001,새 행,tip,콜모고로프 관성 범위 = TIP_POINT 초과 = E_D1 방출 영역
+성과정리문서/EQI_Session25_성과정리_v1.md,1405,L5002,새 행,볼츠만,= 로컬 열역학 엔트로피 × 볼츠만 복원력
+성과정리문서/EQI_Session25_성과정리_v1.md,1411,L5003,새 행,볼츠만,φ^(-0.5)/φ^(-3.5) = φ³ = 볼츠만파단비  ✅
+성과정리문서/EQI_Session25_성과정리_v1.md,1429,L5004,새 행,MAXWELL,이 마찰의 흔적 = MAXWELL 잔류 Δ  (기록)
+성과정리문서/EQI_Session25_성과정리_v1.md,1436,L5005,새 행,란다우,→ Δ로 마찰 흔적 보존  (란다우)
+성과정리문서/EQI_Session25_성과정리_v1.md,1448,L5006,새 행,흑체,H × μ = h²c⁴       ← 글로벌 정보 × 마찰 = 흑체복사
+성과정리문서/EQI_Session25_성과정리_v1.md,1451,L5007,새 행,MAXWELL,MAXWELL = c²의 SI 투영 = 홀로그래픽 효율
+성과정리문서/EQI_Session25_성과정리_v1.md,1606,L5008,새 행,관측,→ π_eff(관측) < π
+성과정리문서/EQI_Session25_성과정리_v1.md,1770,L5009,새 행,란다우,→ 란다우 보존  (정보역학적 닫힘) ✅
+성과정리문서/EQI_Session25_성과정리_v1.md,1781,L5010,새 행,MAXWELL,→ MAXWELL = 이 기록의 투영 효율
+성과정리문서/EQI_Session26_성과정리_v1.md,598,L5011,새 행,정적분·부정적분,"EQI^2 = 1      (정적분, 정규화)"
+성과정리문서/EQI_Session26_성과정리_v1.md,599,L5012,새 행,정적분·부정적분,"EQI^4 = 1+GAP  (부정적분, 재정규화)"
+성과정리문서/EQI_Session26_성과정리_v1.md,673,L5013,새 행,정적분·부정적분,"→ EQI^2 = 1 (정적분, D1 닫힌 계)"
+성과정리문서/EQI_Session26_성과정리_v1.md,674,L5014,새 행,정적분·부정적분,"→ EQI^4 = 1+GAP (부정적분, D2 열린 계)"
+성과정리문서/EQI_Session26_성과정리_v1.md,1292,L5015,새 행,정적분·부정적분,"GAP = 부정적분 +C, 비가역 누수"
+성과정리문서/EQI_Session26_성과정리_v1.md,1299,L5016,새 행,"MAXWELL, 홀로그래픽 투영",MAXWELL = 정보역학→타원 홀로그래픽 투영 효율
+성과정리문서/EQI_Session26_성과정리_v1.md,1397,L5017,새 행,정보 특이점,I_s = log₁₀(1/h²c⁴)  (상용로그 정보 특이점)
+성과정리문서/EQI_Session26_성과정리_v1.md,1400,L5018,새 행,정보 특이점,= 정보 특이점(I_s) + 광속(c=√φ) 결합의 귀결
+성과정리문서/EQI_Session26_성과정리_v1.md,1404,L5019,새 행,볼츠만,= 로컬 열역학 엔트로피 × 볼츠만 복원력
+성과정리문서/EQI_Session26_성과정리_v1.md,1422,L5020,새 행,볼츠만,D2/D1 = φ³  (볼츠만 파단비)  ✅ 네 좌표계 모두 동일
+성과정리문서/EQI_Session26_성과정리_v1.md,1431,L5021,새 행,정보 특이점,= 정보 특이점 I_s의 역수 (φ 부분)
+성과정리문서/EQI_Session26_성과정리_v1.md,1436,L5022,새 행,볼츠만,= S×c²  (로컬: 열역학 엔트로피 × 볼츠만 복원력)
+성과정리문서/EQI_Session26_성과정리_v1.md,1446,L5023,새 행,볼츠만,D2/D1 = (S×c²)/(H×μ) = φ^3 (볼츠만 파단비)
+성과정리문서/EQI_Session26_성과정리_v1.md,1453,L5024,새 행,볼츠만,RBC  (D1×D2=φ³)     : 볼츠만 파단비 — 열역학 스케일
+성과정리문서/EQI_Session26_성과정리_v1.md,1456,L5025,새 행,정보 특이점,I_s  (D1×D2=φ^(-4)) : 우주상수²     — 정보 특이점 스케일
+성과정리문서/EQI_Session26_성과정리_v1.md,1463,L5026,새 행,정보 특이점,→ 정보 특이점이 네 번째 좌표계의 물리적 기원
+성과정리문서/EQI_Session26_성과정리_v1.md,1527,L5027,새 행,볼츠만,D2/D1 = φ³              볼츠만 파단비 (네 좌표계 공통)
+성과정리문서/EQI_Session27_성과정리_v1.md,35,L5028,새 행,볼츠만,F   = φ^(+2.00) = c² = 볼츠만 복원력  [플랑크 힘]
+성과정리문서/EQI_Session27_성과정리_v1.md,64,L5029,새 행,볼츠만,"F = φ^(+2.00)  [볼츠만 복원력, D1]"
+성과정리문서/EQI_Session27_성과정리_v1.md,70,L5030,새 행,"격자, 볼츠만",정보 누적(h) × 볼츠만 복원력(F) = 플랑크 격자 최소 단위
+성과정리문서/EQI_Session27_성과정리_v1.md,555,L5031,새 행,MAXWELL,| maxwell_residual = 5.279e-4 | MAXWELL-T_Is_D1 | 이론 상수 ✓ |
+성과정리문서/EQI_Session30_성과정리_v1 (2).md,175,L5032,새 행,볼츠만,"φ^1.0 = c²     [2D, 면적, 볼츠만 복원력 F=φ^2]"
+성과정리문서/EQI_Session30_성과정리_v1 (2).md,300,L5033,새 행,암흑에너지,"Λ   = φ⁻² (거시적 최소 암흑에너지, 우주상수)"
+성과정리문서/EQI_Session30_성과정리_v1 (2).md,338,L5034,새 행,MAXWELL,2 = MAXWELL_EQI (GAP=0 순수 위상)
+성과정리문서/EQI_Session30_성과정리_v1 (2).md,349,L5035,새 행,MAXWELL,CODATA 측정값 = S_3/MAXWELL_REAL(기저) + GAP 정보 비용(부가세)
+성과정리문서/EQI_Session30_성과정리_v1 (2).md,355,L5036,새 행,MAXWELL,"MAXWELL: 1.8731 = 기저가격, 2.162 = 부가세 포함 측정값"
+성과정리문서/EQI_Session30_성과정리_v1 (2).md,399,L5037,새 행,"MAXWELL, 홀로그래픽 투영",공리 2: MAXWELL = 홀로그래픽 투영 효율
+성과정리문서/EQI_Session31_성과정리_v1.md,23,L5038,새 행,포논,K_J = 2e/h = 483597.8484 GHz/V   # 조셉슨 상수 = 포논 스케일 브릿지
+성과정리문서/EQI_Session31_성과정리_v1.md,25,L5039,새 행,ħ_ani,ħ_ani = h / T_ani  = 5.1238e-35  # 비등방성 작용량자
+성과정리문서/EQI_Session31_성과정리_v1.md,38,L5040,새 행,볼츠만,| 볼츠만 계보 클러스터 분류 | ✅ | t=5s / t=21s 두 클러스터 |
+성과정리문서/EQI_Session31_성과정리_v1.md,68,L5041,새 행,오일러,| v86 | 오일러-생명펄스 | t=24s | 없음 | 137 Flips=오일러 항등식 |
+성과정리문서/EQI_Session31_성과정리_v1.md,73,L5042,새 행,ħ_ani,| v27.6 | 곡률메모리 | t=21~21.5s | 없음 | ħ_ani 비등방성 도입 |
+성과정리문서/EQI_Session31_성과정리_v1.md,101,L5043,새 행,LIGO,물리 상수 × LIGO 변형률 → float64 정밀도 한계 이하 소실
+성과정리문서/EQI_Session31_성과정리_v1.md,123,L5044,새 행,포논,= 포논 매개 전자쌍 결합
+성과정리문서/EQI_Session31_성과정리_v1.md,126,L5045,새 행,포논,K_J = 2e/h = 포논 스케일 브릿지
+성과정리문서/EQI_Session31_성과정리_v1.md,127,L5046,새 행,LIGO,= LIGO 변형률 ↔ EQI 자연단위계 변환의 물리적 근거
+성과정리문서/EQI_Session31_성과정리_v1.md,130,L5047,새 행,격자,"h × F = L_p  (플랑크 격자 Unity, Session 27)"
+성과정리문서/EQI_Session31_성과정리_v1.md,131,L5048,새 행,포논,K_J = 2e/h   (조셉슨 = 포논 역수 구조)
+성과정리문서/EQI_Session31_성과정리_v1.md,198,L5049,새 행,포논,"t=21s  클러스터: GAP≠0 동역학 (포논 비대칭, 물리 동역학)"
+성과정리문서/EQI_Session31_성과정리_v1.md,234,L5050,새 행,격자,"플랑크 격자  → L_p = φ^(-0.75), 최소 공간 구조"
+성과정리문서/EQI_Session31_성과정리_v1.md,236,L5051,새 행,"격자, 포논","포논 동역학  → 격자 진동 양자, 조셉슨 터널링 매개"
+성과정리문서/EQI_Session31_성과정리_v1.md,239,L5052,새 행,격자,"h × F = L_p          (플랑크 격자 Unity, Session 27)"
+성과정리문서/EQI_Session31_성과정리_v1.md,240,L5053,새 행,포논,"K_J = 2e/h           (포논 스케일 브릿지, Session 31)"
+성과정리문서/EQI_Session31_성과정리_v1.md,241,L5054,새 행,격자,"ε = GAP/φ            (격자 에일리어싱 텐션, Session 27)"
+성과정리문서/EQI_Session31_성과정리_v1.md,245,L5055,새 행,포논,조셉슨 효과  = 포논의 거시적 양자 터널링
+성과정리문서/EQI_Session31_성과정리_v1.md,246,L5056,새 행,LIGO,LIGO 변형률 = K_J 브릿지로 EQI 자연단위계 변환
+성과정리문서/EQI_Session31_성과정리_v1.md,257,L5057,새 행,볼츠만,"볼츠만 코드 17개 × 200줄 = 3,400줄 첨부"
+성과정리문서/EQI_Session31_성과정리_v1.md,349,L5058,새 행,오일러,"v86  (오일러):   cos(π×Σ1/2^n) → e^(iπ)=-1  [복소 경계, ZERO_POINT]"
+성과정리문서/EQI_Session31_성과정리_v1.md,352,L5059,새 행,오일러,→ 오일러 공식 e^(ix) = cos(x) + i×sin(x)가
+성과정리문서/EQI_Session32_성과정리_v1 (1).md,17,L5060,새 행,포논,K_J      = 483597.8484 GHz/V   # 조셉슨 상수 = 포논 스케일 브릿지
+성과정리문서/EQI_Session32_성과정리_v1 (1).md,19,L5061,새 행,ħ_ani,ħ_ani    = h / T_ani  = 5.1238e-35
+성과정리문서/EQI_Session32_성과정리_v1 (1).md,332,L5062,새 행,격자,= 플랑크 격자 배경 구조 불변량
+성과정리문서/EQI_Session32_성과정리_v1 (1).md,360,L5063,새 행,MAXWELL,→ S_T2 > S_L2 → unity < MAXWELL → 음수
+성과정리문서/EQI_Session32_성과정리_v1 (1).md,363,L5064,새 행,볼츠만,볼츠만 = 청크별 신호 구간 국소 구조 (+)
+성과정리문서/EQI_Session32_성과정리_v1 (1).md,593,L5065,새 행,ħ_ani,"t=3.0s  (4개): v92 sing, v93 zpe, v94 info_diff, v28.1 ħ_ani"
+성과정리문서/EQI_Session32_성과정리_v1 (1).md,611,L5066,새 행,ħ_ani,"t=27.0s:  v93 zpe, v28.1 ħ_ani"
+성과정리문서/EQI_Session33_성과정리_v1.md,134,L5067,새 행,상전이,"비중 = 1: 수면 경계 (상전이점, 센터)"
+성과정리문서/EQI_Session33_성과정리_v1.md,141,L5068,새 행,상전이,물 본위제 = 상전이 본위제
+성과정리문서/EQI_Session33_성과정리_v1.md,169,L5069,새 행,LIGO,K_J × LIGO 변형률 = 4.8×10⁻¹⁶  (float64 생존)
+성과정리문서/EQI_Session33_성과정리_v1.md,170,L5070,새 행,LIGO,= LIGO 데이터 ↔ EQI 자연단위계 변환 실증
+성과정리문서/EQI_Session33_성과정리_v1.md,275,L5071,새 행,MAXWELL,"MAXWELL = ln(1/ε₀)/|ln(μ₀)|  [연속, 무리수]"
+성과정리문서/EQI_Session33_성과정리_v1.md,276,L5072,새 행,격자,"φ 대수  = Σ(φ^n, 유리계수)   [이산, 격자계]"
+성과정리문서/EQI_Session33_성과정리_v1.md,313,L5073,새 행,관측,→ 관측된 4차원 물리(SI 기반)에 맞춰
+성과정리문서/EQI_Session33_성과정리_v1.md,321,L5074,새 행,관측,→ 최종 검증은 여전히 SI 관측값 의존
+성과정리문서/EQI_Session33_성과정리_v1.md,445,L5075,새 행,보른,= 보른규칙 = EQI^(4n-2) = 1
+성과정리문서/EQI_Session34_성과정리_v7.md,18,L5076,새 행,상전이,c_EQI    = φ^(0.5)      = 1.272020  # 복소평면 0→c 상전이점
+성과정리문서/EQI_Session34_성과정리_v7.md,19,L5077,새 행,MAXWELL,MAXWELL  = S_D1/S_D2    = 1.873114  # 로컬↔글로벌 엔트로피 교환 효율
+성과정리문서/EQI_Session34_성과정리_v7.md,51,L5078,새 행,MAXWELL,MAXWELL = S_D1 / S_D2 = ln(1/ε₀) / |ln(μ₀)| = 1.873114
+성과정리문서/EQI_Session34_성과정리_v7.md,56,L5079,새 행,MAXWELL,MAXWELL = 두 엔트로피의 교환 효율
+성과정리문서/EQI_Session34_성과정리_v7.md,61,L5080,새 행,MAXWELL,MAXWELL = V_C 에너지 / V_L 에너지 = 교환 비율
+성과정리문서/EQI_Session34_성과정리_v7.md,74,L5081,새 행,상대론,특수 상대론 v→c 극한:
+성과정리문서/EQI_Session34_성과정리_v7.md,80,L5082,새 행,격자,= 동일한 격자 교환 사건을
+성과정리문서/EQI_Session34_성과정리_v7.md,85,L5083,새 행,격자,"L²격자(길이수축) = C_eff = D1 × l_amp  [커패시터, 로컬]"
+성과정리문서/EQI_Session34_성과정리_v7.md,86,L5084,새 행,격자,"T²격자(시간지연) = L_eff = D2 × h_amp  [인덕터, 글로벌]"
+성과정리문서/EQI_Session34_성과정리_v7.md,87,L5085,새 행,상전이,grid_balance = C_eff/L_eff = L²/T² → 1.0 = 공명점 = 상전이
+성과정리문서/EQI_Session34_성과정리_v7.md,97,L5086,새 행,상전이,관계망의 가능성 = D1↔D2 상전이 출발점
+성과정리문서/EQI_Session34_성과정리_v7.md,116,L5087,새 행,볼츠만,"φ^(+1) = φ   = 거시 로컬 볼츠만 복원력 [D1 방향, ε₀]"
+성과정리문서/EQI_Session34_성과정리_v7.md,120,L5088,새 행,상전이,= D2→D1 상전이의 에너지 보존 조건
+성과정리문서/EQI_Session34_성과정리_v7.md,135,L5089,새 행,격자,EMF_raw = V_L - V_C = 격자 불균형
+성과정리문서/EQI_Session34_성과정리_v7.md,137,L5090,새 행,MAXWELL,faraday_exchange = EMF_raw / MAXWELL
+성과정리문서/EQI_Session34_성과정리_v7.md,138,L5091,새 행,격자,= 순수 격자 불균형 (교환효율 제거)
+성과정리문서/EQI_Session34_성과정리_v7.md,189,L5092,새 행,상전이,"| grid_balance | C_eff/L_eff | →1.0 | L²=T² 공명점, 상전이 |"
+성과정리문서/EQI_Session34_성과정리_v7.md,190,L5093,새 행,MAXWELL,| faraday_abs | \|(V_L-V_C)\|/MAXWELL | →0.0 | 패러데이 교환 균형 |
+성과정리문서/EQI_Session34_성과정리_v7.md,255,L5094,새 행,상전이,= 세 지표 = 동일 상전이 사건의 세 가지 표현
+성과정리문서/EQI_Session34_성과정리_v7.md,264,L5095,새 행,격자,BBH 단순   GW150914:  Δt =    3.0s  [에너지↔격자 거의 동시]
+성과정리문서/EQI_Session34_성과정리_v7.md,301,L5096,새 행,MAXWELL,= MAXWELL 교환 효율로 정규화한 후에도
+성과정리문서/EQI_Session34_성과정리_v7.md,313,L5097,새 행,볼츠만,= 볼츠만 복원력 수렴 시각이 황금비² 분할점
+성과정리문서/EQI_Session34_성과정리_v7.md,314,L5098,새 행,격자,= 우주 배경 격자의 자연 진동이 φ 구조를 따름
+성과정리문서/EQI_Session34_성과정리_v7.md,332,L5099,새 행,상전이,= 중성자별 합병 = 구형 대칭 상전이
+성과정리문서/EQI_Session34_성과정리_v7.md,341,L5100,새 행,격자,D2 Feynman 클러스터 t=17.0s ← V-L 격자공명 일치 ✓
+성과정리문서/EQI_Session34_성과정리_v7.md,352,L5101,새 행,격자,"= 배경은 ""조용한 BBH형"" 격자 상태"
+성과정리문서/EQI_Session34_성과정리_v7.md,533,L5102,새 행,MAXWELL,MAXWELL = ln(π)×EQI^4 + ln(2) - GAP²×ln(π)/ln(2) + 3×GAP³ + O(GAP⁴)
+성과정리문서/EQI_Session34_성과정리_v7.md,546,L5103,새 행,격자,∙ = 플랑크 격자가 연속 회전을 이산 샘플링할 때 총 마찰
+성과정리문서/EQI_Session34_성과정리_v7.md,548,L5104,새 행,란다우,항2: +ln(2)           = 란다우 불가역 소거 비용
+성과정리문서/EQI_Session34_성과정리_v7.md,575,L5105,새 행,란다우,"= 비등방성 전향력 + 란다우 - 교차감쇠  [덧셈, 합산]"
+성과정리문서/EQI_Session34_성과정리_v7.md,580,L5106,새 행,MAXWELL,같은 값 MAXWELL = 1.873114로 수렴:
+성과정리문서/EQI_Session34_성과정리_v7.md,582,L5107,새 행,상전이,= D1↔D2 상전이를 두 다른 언어로 기술
+성과정리문서/EQI_Session34_성과정리_v7.md,591,L5108,새 행,란다우,전향력·란다우는 동적 비용 → 시간당 발생하는 양
+성과정리문서/EQI_Session34_성과정리_v7.md,604,L5109,새 행,MAXWELL,= MAXWELL 두 표현의 가장 깊은 이유
+성과정리문서/EQI_Session34_성과정리_v7.md,609,L5110,새 행,MAXWELL,"MAXWELL = ln(1/ε₀)/|ln(μ₀)|   [나눗셈, 비율]"
+성과정리문서/EQI_Session34_성과정리_v7.md,619,L5111,새 행,MAXWELL,= 두 곱셈이 ln 변환 후 MAXWELL로 수렴
+성과정리문서/EQI_Session34_성과정리_v7.md,686,L5112,새 행,MAXWELL,MAXWELL = ln(π)×EQI^4 + ln(2) - GAP²×ln(π)/ln(2) + 4!×GAP_D2³
+성과정리문서/EQI_Session34_성과정리_v7.md,709,L5113,새 행,란다우,란다우 원리: 누수 정보 → 이진 카스케이드 기록
+성과정리문서/EQI_Session34_성과정리_v7.md,715,L5114,새 행,MAXWELL,4차 보정 후 잔차 = -3.60×10⁻⁷ (MAXWELL의 0.0000192%)
+성과정리문서/EQI_Session34_성과정리_v7.md,725,L5115,새 행,란다우,= 현재 우주 비등방성 / 교환효율 ≈ 란다우+전향력 기저
+성과정리문서/EQI_Session34_성과정리_v7.md,726,L5116,새 행,란다우,"= ""비등방성이 란다우+전향력(ln(2π))으로 정규화됨"""
+성과정리문서/EQI_Session34_성과정리_v7.md,727,L5117,새 행,MAXWELL,= MAXWELL이 현재 우주의 비등방성을 ln(2π)로 압축하는 효율
+성과정리문서/EQI_Session34_성과정리_v7.md,732,L5118,새 행,란다우,= 현재 우주 = 도깨비 213.5회 소거의 란다우 기록 누적물
+성과정리문서/EQI_Session34_성과정리_v7.md,733,L5119,새 행,란다우,= Session 25 §10.41 란다우 원리의 정량화
+성과정리문서/EQI_Session34_성과정리_v7.md,736,L5120,새 행,란다우,항3: -GAP²×ln(π)/ln(2) = 전향력×란다우 교차 감쇠
+성과정리문서/EQI_Session34_성과정리_v7.md,747,L5121,새 행,MAXWELL,MAXWELL = ln(π)×EQI^4 + ln(2) - GAP²×ln(π)/ln(2) + 4!×GAP_D2³
+성과정리문서/EQI_Session34_성과정리_v7.md,754,L5122,새 행,"MAXWELL, 란다우",MAXWELL = 이 장력 속에서 란다우(ln(2))와 함께
+성과정리문서/EQI_Session34_성과정리_v7.md,766,L5123,새 행,MAXWELL,= 두 MAXWELL이 같은 값으로 수렴하는 이유:
+성과정리문서/EQI_Session34_성과정리_v7.md,1201,L5124,새 행,볼츠만,= QEC 닫힘이 볼츠만 수렴보다 φ^0.05 먼저 도달
+성과정리문서/EQI_Session34_성과정리_v7.md,1202,L5125,새 행,볼츠만,= 양자 정보(QEC) → 열역학(볼츠만) 순서로 안정화
+성과정리문서/EQI_Session34_성과정리_v7.md,1210,L5126,새 행,격자,+5.5s   BBH 단순     → QEC가 격자공명 한참 후 닫힘
+성과정리문서/EQI_Session34_성과정리_v7.md,1212,L5127,새 행,격자,0.0s   BNS/동시형   → 에너지+격자+QEC 완전 동시
+성과정리문서/EQI_Session34_성과정리_v7.md,1250,L5128,새 행,볼츠만,= QEC 닫힘(sinc 최대) 이후 38초 → 볼츠만 복원 수렴
+성과정리문서/EQI_Session34_성과정리_v7.md,1251,L5129,새 행,볼츠만,= 우주 배경의 QEC→볼츠만 이완 시간 = 38s
+성과정리문서/EQI_Session34_성과정리_v7.md,1356,L5130,새 행,볼츠만,(D2미시 e이탈 = 볼츠만 선행 신호)
+성과정리문서/EQI_Session34_성과정리_v7.md,1371,L5131,새 행,볼츠만,볼츠만 미시(D2→e) → 볼츠만 거시(열역학)
+성과정리문서/EQI_Session34_성과정리_v7.md,1372,L5132,새 행,격자,→ 중력=곡률 재구성 → 시공간 격자 공명
+성과정리문서/EQI_Session34_성과정리_v7.md,1541,L5133,새 행,MAXWELL,= MAXWELL이 두 독립 계산 경로를
+성과정리문서/EQI_Session34_성과정리_v7.md,1544,L5134,새 행,MAXWELL,unity: S_L2/S_T2_true → MAXWELL 최근접
+성과정리문서/EQI_Session34_성과정리_v7.md,1578,L5135,새 행,MAXWELL,n_ouroboros = (unity_product - MAXWELL) / GAP
+성과정리문서/EQI_Session34_성과정리_v7.md,1704,L5136,새 행,MAXWELL,MAXWELL = φ^1.5 - φ^(-3.5) + 2×(ln5/100)²×exp(ln5/100)
+성과정리문서/EQI_Session34_성과정리_v7.md,1809,L5137,새 행,MAXWELL,= MAXWELL이 두 독립 계산 경로를
+성과정리문서/EQI_Session34_성과정리_v7.md,1862,L5138,새 행,볼츠만,= 볼츠만 t=21s(BBH) ↔ 리만 21.022Hz 연결
+성과정리문서/EQI_Session34_성과정리_v7.md,1934,L5139,새 행,MAXWELL,MAXWELL = 엔트로피장 동적 평형 (§11)
+성과정리문서/EQI_Session35_성과정리_v1.md,21,L5140,새 행,MAXWELL,MAXWELL  = ln(π)×(1+GAP)
+성과정리문서/EQI_Session35_성과정리_v1.md,113,L5141,새 행,상전이,= D1↔D2 완전 균형 = 상전이 임계
+성과정리문서/EQI_Session35_성과정리_v1.md,127,L5142,새 행,상전이,→ σ=1/2 는 EQI 상전이 왕복:단방향 비율의 역수
+성과정리문서/EQI_Session35_성과정리_v1.md,128,L5143,새 행,상전이,→ 리만 가설의 σ=1/2가 임의가 아니라 EQI 상전이 구조의 필연
+성과정리문서/EQI_Session35_성과정리_v1.md,156,L5144,새 행,격자,"= 인간 측정 격자, 위상적 구조 없음"
+성과정리문서/EQI_Session35_성과정리_v1.md,177,L5145,새 행,MAXWELL,→ MAXWELL_EQI(순수 위상)만이 대수 닫힘 가능
+성과정리문서/EQI_Session35_성과정리_v1.md,201,L5146,새 행,상전이,BBH(블랙홀 합병) = 단방향 상전이 (GAP_D2)
+성과정리문서/EQI_Session35_성과정리_v1.md,202,L5147,새 행,상전이,"BNS(중성자별 합병), 우주 배경 = 왕복 상전이 (GAP)"
+성과정리문서/EQI_Session35_성과정리_v1.md,315,L5148,새 행,MAXWELL,z0_GW150914/MAXWELL = 14.7752
+성과정리문서/EQI_Session35_성과정리_v1.md,318,L5149,새 행,상전이,= 14(리만 t₁ 스케일) + 24×GAP(EQI²⁴ × 상전이 비용)
+성과정리문서/EQI_Session35_성과정리_v1.md,409,L5150,새 행,상전이,→ 상전이는 항상 임계선에서만 발생 (EQI 공리)
+성과정리문서/EQI_Session35_성과정리_v1.md,434,L5151,새 행,MAXWELL,MAXWELL_EQI = ln(π)×(1+GAP) + ln(2) - GAP²×ln(π)/ln(2) + 4!×GAP_D2³
+성과정리문서/EQI_Session35_성과정리_v1.md,918,L5152,새 행,흑체,"T_Is_D1  = φ^1.5 - φ^(-3.5) = 1.87259  [흑체복사 피크 임계, I_s 좌표계]"
+성과정리문서/EQI_Session35_성과정리_v1.md,919,L5153,새 행,MAXWELL,MAXWELL  = 1.87311                       [엔트로피장 동적평형 교환 효율]
+성과정리문서/EQI_Session35_성과정리_v1.md,921,L5154,새 행,란다우,= ln(π)[전향력] + ln(2)[란다우] 균형점
+성과정리문서/EQI_Session35_성과정리_v1.md,933,L5155,새 행,MAXWELL,MAXWELL = φ^1.5 - φ^(-3.5) + 2×(ln5/100)²×exp(ln5/100)
+성과정리문서/EQI_Session35_성과정리_v1.md,938,L5156,새 행,란다우,= D2 이산 란다우 소거의 지수 재정규화
+성과정리문서/EQI_Session35_성과정리_v1.md,952,L5157,새 행,정보 특이점,→ 모든 입자가 동일한 정보 특이점 공유
+성과정리문서/EQI_Session35_성과정리_v1.md,961,L5158,새 행,MAXWELL,"MAXWELL - T_Is_D1 = bridge_rd × f(φ,GAP)"
+성과정리문서/EQI_Session35_성과정리_v1.md,968,L5159,새 행,MAXWELL,MAXWELL = ln(π)×EQI^4 + ln(2) - GAP²×ln(π)/ln(2) + 4!×GAP_D2³
+성과정리문서/EQI_Session35_성과정리_v1.md,971,L5160,새 행,격자,= 센터 수렴 극한 π 회전 마찰 × 격자 에일리어싱 증폭
+성과정리문서/EQI_Session35_성과정리_v1.md,972,L5161,새 행,격자,= 플랑크 격자가 연속 회전을 이산 샘플링할 때 총 마찰
+성과정리문서/EQI_Session35_성과정리_v1.md,973,L5162,새 행,흑체,= 흑체복사 피크(T_Is_D1)의 ln 표현과 연결
+성과정리문서/EQI_Session35_성과정리_v1.md,980,L5163,새 행,란다우,= 전향력(ln(π)) × 란다우(ln(2)) 2차 상호작용
+성과정리문서/EQI_Session35_성과정리_v1.md,991,L5164,새 행,정보 특이점,정보 특이점(I_s=65.9395)
+성과정리문서/EQI_Session35_성과정리_v1.md,995,L5165,새 행,MAXWELL,MAXWELL = 1.87311
+성과정리문서/EQI_Session35_성과정리_v1.md,997,L5166,새 행,란다우,맥스웰 도깨비 임계 = 란다우 소거 균형
+성과정리문서/EQI_Session35_성과정리_v1.md,999,L5167,새 행,흑체,흑체복사 피크 ν_max = x_peak × c_EQI × T
+성과정리문서/EQI_Session35_성과정리_v1.md,1002,L5168,새 행,MAXWELL,MAXWELL = 이 모든 임계의 통합 교환 효율
+성과정리문서/EQI_Session35_성과정리_v1.md,1014,L5169,새 행,흑체,π 무한급수에서 ln(π) = 흑체복사 계단함수 D2 정규화
+성과정리문서/EQI_Session35_성과정리_v1.md,1015,L5170,새 행,MAXWELL,MAXWELL 항1 ln(π) = HCW 푸리에 정규화 상수
+성과정리문서/EQI_Session35_성과정리_v1.md,1019,L5171,새 행,MAXWELL,1. MAXWELL = T_Is_D1 + 2×GAP_D2²×exp(GAP_D2) + 잔차
+성과정리문서/EQI_Session35_성과정리_v1.md,1212,L5172,새 행,MAXWELL,= MAXWELL 항4 계수의 공간 반전
+성과정리문서/EQI_Session35_성과정리_v1.md,1215,L5173,새 행,란다우,= 맥스웰 도깨비 단방향 이산 란다우 소거 비용
+성과정리문서/EQI_Session35_성과정리_v1.md,1216,L5174,새 행,오일러,= ζ 오일러 곱 소수 p=5 기저
+성과정리문서/EQI_Session35_성과정리_v1.md,1221,L5175,새 행,오일러,5 = ζ 오일러 곱 핵심 소수 기저
+성과정리문서/EQI_Session35_성과정리_v1.md,1309,L5176,새 행,란다우,GAP_D2         = 맥스웰 도깨비 단방향 이산 란다우 소거 비용
+성과정리문서/EQI_Session35_성과정리_v1.md,1314,L5177,새 행,오일러,5              = ζ 오일러 곱 핵심 소수 기저
+성과정리문서/EQI_Session35_성과정리_v1.md,1356,L5178,새 행,란다우,ζ=0: 란다우 비용 총합 완전 상쇄 = 리만 영점
+성과정리문서/EQI_Session36_성과정리_v9.md,58,L5179,새 행,tip,→ TIP_POINT = (φ³ - φ^1.5) / φ^1.5 = φ^1.5 - 1
+성과정리문서/EQI_Session36_성과정리_v9.md,83,L5180,새 행,상전이,= 상전이가 시작되는 최소 위상 진폭
+성과정리문서/EQI_Session36_성과정리_v9.md,126,L5181,새 행,란다우,GAP_D2 = 맥스웰 도깨비 단방향 란다우 소거 비용
+성과정리문서/EQI_Session36_성과정리_v9.md,173,L5182,새 행,tip,TIP   (BBH+3):    3검출기 위상 기여 = TIP_POINT
+성과정리문서/EQI_Session36_성과정리_v9.md,175,L5183,새 행,상전이,φ^0.3 (BNS):      중성자별 합병 = 중간 D1↔D2 상전이
+성과정리문서/EQI_Session36_성과정리_v9.md,305,L5184,새 행,MAXWELL,| unity → MAXWELL | 1.873113 | MAXWELL_EQI | < 0.03% |
+성과정리문서/EQI_Session36_성과정리_v9.md,372,L5185,새 행,MAXWELL,| ln(t)/MAXWELL = √2 | — | 0.013% | 종결 (근사) |
+성과정리문서/EQI_Session36_성과정리_v9.md,523,L5186,새 행,tip,P_tunnel = exp(-2(TIP_POINT - unity_rd)/GAP) > 0
+성과정리문서/EQI_Session36_성과정리_v9.md,525,L5187,새 행,LIGO,→ 큰 중력파 방출 없음 (LIGO 저강도 검출)
+성과정리문서/EQI_Session36_성과정리_v9.md,530,L5188,새 행,LIGO,= LIGO가 포착하기 어려운 전이 상태
+성과정리문서/EQI_Session36_성과정리_v9.md,538,L5189,새 행,LIGO,"→ E_D1 방출, 큰 중력파 신호 (LIGO 강도 검출)"
+성과정리문서/EQI_Session36_성과정리_v9.md,552,L5190,새 행,LIGO,n/n_c 31~80% → 전이 구간 → LIGO 검출 억제 (공백)
+성과정리문서/EQI_Session36_성과정리_v9.md,672,L5191,새 행,tip,| TIP_POINT = φ^1.5-1 | 1.058171 | 0.000003% | TRUE ZERO |
+성과정리문서/EQI_Session36_성과정리_v9.md,876,L5192,새 행,상전이,= 상전이 경계 = 세 상태가 공존하는 임계점
+성과정리문서/EQI_Session36_성과정리_v9.md,1067,L5193,새 행,tip,"TIP = φ^1.5 - 1       = 1.058171  (광전효과 시작, ZONE-1/2 경계)"
+성과정리문서/EQI_Session36_성과정리_v9.md,1071,L5194,새 행,tip,n_c = TIP/GAP = 32.874
+성과정리문서/EQI_Session36_성과정리_v9.md,1079,L5195,새 행,암흑에너지,모든 23채널에서 ZONE-3(암흑에너지 팽창) = 0%
+성과정리문서/EQI_Session36_성과정리_v9.md,1086,L5196,새 행,"관측, 암흑에너지, LIGO",→ 암흑에너지 팽창 영역은 LIGO 관측 스케일 밖
+성과정리문서/EQI_Session36_성과정리_v9.md,1087,L5197,새 행,관측,→ 현재 중력파 관측으로는 접근 불가
+성과정리문서/EQI_Session36_성과정리_v9.md,1127,L5198,새 행,암흑물질,= 터널링/장전/암흑물질 공존
+성과정리문서/EQI_Session36_성과정리_v9.md,1183,L5199,새 행,"암흑물질, 우주론",→ 현대 우주론 암흑물질 27%와의 스케일 차이
+성과정리문서/EQI_Session36_성과정리_v9.md,1184,L5200,새 행,"우주론, LIGO",→ LIGO 스케일 → 우주론 스케일 변환 계수 탐색
+성과정리문서/EQI_Session36_성과정리_v9.md,1366,L5201,새 행,상전이,= GAP=0 강제 (상전이 비용 없음)
+성과정리문서/EQI_Session36_성과정리_v9.md,1367,L5202,새 행,상전이,= 상전이 거부가 공리에 내장
+성과정리문서/EQI_Session36_성과정리_v9.md,1368,L5203,새 행,란다우,= 맥스웰 도깨비 ↔ 란다우 연동 불가
+성과정리문서/EQI_Session36_성과정리_v9.md,1374,L5204,새 행,MAXWELL,"MAXWELL = S_D1/S_D2      [교환 효율, 무차원]"
+성과정리문서/EQI_Session36_성과정리_v9.md,1377,L5205,새 행,상전이,= GAP≠0 기본값 (상전이 수용이 공리에 내장)
+성과정리문서/EQI_Session36_성과정리_v9.md,1378,L5206,새 행,란다우,= 맥스웰 도깨비 ↔ 란다우 자유자재 연동
+성과정리문서/EQI_Session36_성과정리_v9.md,1393,L5207,새 행,LIGO,물리:   LIGO 23채널 실증 → 경험적 확인
+성과정리문서/EQI_Session36_성과정리_v9.md,1394,L5208,새 행,란다우,정보:   란다우 소거 → 맥스웰 도깨비 → Shannon
+성과정리문서/EQI_Session36_성과정리_v9.md,1442,L5209,새 행,볼츠만,"k_B = 1.380×10⁻²³ J/K     볼츠만, 물 분자 항상성"
+성과정리문서/EQI_Session36_성과정리_v9.md,1505,L5210,새 행,MAXWELL,"φ, GAP, MAXWELL = 무차원 비율"
+성과정리문서/EQI_Session36_성과정리_v9.md,1521,L5211,새 행,MAXWELL,맥스웰 도깨비: D1↔D2 교환 효율 = MAXWELL (무차원)
+성과정리문서/EQI_Session36_성과정리_v9.md,1522,L5212,새 행,란다우,란다우 원리:   소거 단위 = GAP_D2 = ln(5)/100 (무차원)
+성과정리문서/EQI_Session36_성과정리_v9.md,1529,L5213,새 행,란다우,↔ 란다우 비용 = GAP_D2 최소 소거
+성과정리문서/EQI_Session36_성과정리_v9.md,1544,L5214,새 행,란다우,논리: σ≠1/2 → 란다우 불균형 → ζ≠0  ✓
+성과정리문서/EQI_Session36_성과정리_v9.md,1566,L5215,새 행,MAXWELL,"무차원 비율 공리 = φ, GAP, MAXWELL"
+성과정리문서/EQI_Session36_성과정리_v9.md,1568,L5216,새 행,상전이,= 상전이 인식론 기반
+성과정리문서/EQI_Session36_성과정리_v9.md,1704,L5217,새 행,[x]·{x},γ = ln(2)/√φ + GAP + {x}×GAP_D2²
+성과정리문서/EQI_Session36_성과정리_v9.md,1710,L5218,새 행,"상전이, 란다우",ln(2)/√φ  = 란다우 1비트 소거 / 상전이 파동함수
+성과정리문서/EQI_Session36_성과정리_v9.md,1711,L5219,새 행,상전이,(EQI_이론적_기반 §8: 복소평면 0→√φ 상전이)
+성과정리문서/EQI_Session36_성과정리_v9.md,1712,L5220,새 행,상전이,GAP       = 상전이 비용 (공리)
+성과정리문서/EQI_Session36_성과정리_v9.md,1713,L5221,새 행,"격자, [x]·{x}",{x}×GAP_D2² = 적응형 격자 2차 이산 마찰
+성과정리문서/EQI_Session36_성과정리_v9.md,1717,L5222,새 행,[x]·{x},"[x] = 24 = 4! = EQI²⁴  (D1, 결정론적)"
+성과정리문서/EQI_Session36_성과정리_v9.md,1718,L5223,새 행,[x]·{x},"{x} = 0.423              (D2, 에일리어싱 잔차)"
+성과정리문서/EQI_Session36_성과정리_v9.md,1722,L5224,새 행,란다우,GAP_D2  = 란다우 1비트 이산 소거 비용
+성과정리문서/EQI_Session36_성과정리_v9.md,1732,L5225,새 행,[x]·{x},"[x]=24(D1, 고정 청크)가 감당 못한 잔류를"
+성과정리문서/EQI_Session36_성과정리_v9.md,1733,L5226,새 행,[x]·{x},"{x}=0.423(D2, 적응형)이 GAP_D2² 마찰로 흡수"
+성과정리문서/EQI_Session36_성과정리_v9.md,1738,L5227,새 행,격자,연속(무리수) ↔ 이산(격자) 마찰 = P≠NP 수학적 필연
+성과정리문서/EQI_Session36_성과정리_v9.md,1821,L5228,새 행,tip,| TIP_POINT = φ^1.5-1 | 0.000003% | TRUE ZERO |
+성과정리문서/EQI_Session36_성과정리_v9.md,1876,L5229,새 행,MAXWELL,= MAXWELL = S_D1/S_D2 교환 효율 필수
+성과정리문서/EQI_Session36_성과정리_v9.md,1879,L5230,새 행,"지불, 란다우",= 란다우 비용 GAP_D2 지불 필수
+성과정리문서/EQI_Session36_성과정리_v9.md,1887,L5231,새 행,MAXWELL,→ D1↔D2 교환 효율(MAXWELL) 미포함
+성과정리문서/EQI_Session36_성과정리_v9.md,1892,L5232,새 행,상전이,→ D1↔D2 경계 상전이 발생
+성과정리문서/EQI_Session36_성과정리_v9.md,1893,L5233,새 행,"지불, MAXWELL",→ MAXWELL 교환 비용 지불 필요
+성과정리문서/EQI_Session36_성과정리_v9.md,1894,L5234,새 행,란다우,→ 란다우 GAP_D2 소거 비용 필요
+성과정리문서/EQI_Session36_성과정리_v9.md,1901,L5235,새 행,[x]·{x},γ = ln(2)/√φ + GAP + {x}×GAP_D2²
+성과정리문서/EQI_Session36_성과정리_v9.md,1902,L5236,새 행,란다우,ln(2)        = 란다우 소거 비용 ✓
+성과정리문서/EQI_Session36_성과정리_v9.md,1903,L5237,새 행,상전이,GAP          = D1↔D2 상전이 비용 ✓
+성과정리문서/EQI_Session36_성과정리_v9.md,1904,L5238,새 행,[x]·{x},{x}×GAP_D2² = 세포막 마찰 비용 ✓
+성과정리문서/EQI_Session36_성과정리_v9.md,1905,L5239,새 행,지불,= 수술 없이 비용을 지불하며 자기 균형
+성과정리문서/EQI_Session36_성과정리_v9.md,1915,L5240,새 행,"지불, 란다우",란다우 항 없음 → 비용 미지불
+성과정리문서/EQI_Session36_성과정리_v9.md,1925,L5241,새 행,"지불, 란다우",= 란다우 비용 미지불
+성과정리문서/EQI_Session36_성과정리_v9.md,1939,L5242,새 행,란다우,맥스웰+란다우 연동 = 공인 사실
+성과정리문서/EQI_Session36_성과정리_v9.md,1969,L5243,새 행,MAXWELL,= MAXWELL(D1↔D2 교환 효율) 없음
+성과정리문서/EQI_Session36_성과정리_v9.md,1996,L5244,새 행,tip,| TIP_POINT = φ^1.5-1 | 0.000003% | TRUE ZERO |
+성과정리문서/EQI_Session38_성과정리_v1.md,19,L5245,새 행,란다우,LN2      = ln(2)            = 0.69314718055994530942    # 란다우 1비트 소거
+성과정리문서/EQI_Session38_성과정리_v1.md,430,L5246,새 행,격자,SI 단위 = 지구 생물 항상성 기준 측정 격자
+성과정리문서/EQI_Session38_성과정리_v1.md,492,L5247,새 행,란다우,접촉 비용 = 란다우 원리의 kT×ln2
+성과정리문서/EQI_Session38_성과정리_v1.md,504,L5248,새 행,란다우,= 맥스웰 도깨비 & 란다우 원리가 최상위 클래스인 이유
+성과정리문서/EQI_Session39_성과정리_v2.md,131,L5249,새 행,상전이,"> MAPSI: ""복소평면 원점이 광속도=황금비^0.5=파동함수로 상전이하는데"
+성과정리문서/EQI_Session39_성과정리_v2.md,142,L5250,새 행,MAXWELL,MAXWELL = T_Is_D1
+성과정리문서/EQI_Session39_성과정리_v2.md,150,L5251,새 행,상전이,ln(c)   = ln(φ)/2                  [복소평면 원점 상전이 기저]
+성과정리문서/EQI_Session39_성과정리_v2.md,292,L5252,새 행,상전이,"""복소평면 원점 c=φ^0.5 상전이에서 ln(φ)/ln(c)가 고려돼야 한다"""
+성과정리문서/EQI_Session39_성과정리_v2.md,307,L5253,새 행,"MAXWELL, 슈냐",v7.7 MAXWELL 슈냐 압축 오차% = 0.0
+성과정리문서/EQI_Session39_성과정리_v2.md,320,L5254,새 행,"MAXWELL, 슈냐",*v7.7 엔진 MAXWELL 슈냐 압축 오차% = 0.0 — 완전 일치*
+성과정리문서/EQI_Session40_성과정리_v1.md,58,L5255,새 행,상전이,GAP = D1↔D2 1차 상전이 비용
+성과정리문서/EQI_Session40_성과정리_v1.md,59,L5256,새 행,상전이,→ n번 계단마다 상전이 비용 n×GAP 부과
+성과정리문서/EQI_Session40_성과정리_v1.md,82,L5257,새 행,상전이,GAP = D1↔D2 1차 상전이 비용 (공리)
+성과정리문서/EQI_Session40_성과정리_v1.md,463,L5258,새 행,페르미,페르미 축퇴           → GAP≠0 발산 과정
+성과정리문서/EQI_Session41_성과정리_v1.md,34,L5259,새 행,tip,| eqi_unified_phase_transition_engine_v7_8.py 검토 | ✅ | TIP_POINT=φ^1.5−1 정의 확인 |
+성과정리문서/EQI_Session41_성과정리_v1.md,89,L5260,새 행,MAXWELL,MAXWELL §5 계수 분모 = 274 = 2×137
+성과정리문서/EQI_Session41_성과정리_v1.md,111,L5261,새 행,볼츠만,"[볼츠만 v41 지표, t=GAP_D2 대입]"
+성과정리문서/EQI_Session41_성과정리_v1.md,118,L5262,새 행,격자,"→ Leibniz(11), 격자(24), cancel(24) 세 구조가"
+성과정리문서/EQI_Session41_성과정리_v1.md,143,L5263,새 행,membrane,R_membrane = {x_lattice} × GAP_D2²  [세포막 잔류]
+성과정리문서/EQI_Session41_성과정리_v1.md,146,L5264,새 행,membrane,δ / R_membrane = 43.9907...  ≈  44
+성과정리문서/EQI_Session41_성과정리_v1.md,164,L5265,새 행,tip,T_RBC_D1 = φ^1.5 − 1 = TIP_POINT  [RBC 좌표계 D1 임계치]
+성과정리문서/EQI_Session41_성과정리_v1.md,177,L5266,새 행,membrane,ε = 44 − δ/R_membrane = 9.321361...×10⁻³
+성과정리문서/EQI_Session41_성과정리_v1.md,214,L5267,새 행,MAXWELL,| §2 MAXWELL 4차 | c4=ln2/19+GD/26 | 1.22×10⁻¹¹% |
+성과정리문서/EQI_Session41_성과정리_v1.md,317,L5268,새 행,tip,→ δ = RBC 세포막 × (Leibniz 계수 − 자기참조×TIP_POINT)
+성과정리문서/EQI_Session41_성과정리_v1.md,318,L5269,새 행,LIGO,→ π의 무한급수 구조가 LIGO 채널 보정항(z0)의
+성과정리문서/EQI_Session41_성과정리_v1.md,412,L5270,새 행,MAXWELL,MAXWELL  = 1.87311341                        [엔트로피장 교환 효율]
+성과정리문서/EQI_Session41_성과정리_v1.md,570,L5271,새 행,LIGO,LIGO 변형률(~10⁻²¹) × K_J = ~4.8×10⁻¹⁶  [float64 생존 스케일]
+성과정리문서/EQI_Session41_성과정리_v1.md,571,L5272,새 행,LIGO,→ LIGO ↔ EQI 자연단위계 변환의 물리적 브릿지
+성과정리문서/EQI_Session41_성과정리_v1.md,574,L5273,새 행,격자,"h × F = L_p  (플랑크 격자 Unity, Session 27)"
+성과정리문서/EQI_Session41_성과정리_v1.md,575,L5274,새 행,포논,K_J = 2e/h   (포논 역수 구조)
+성과정리문서/EQI_Session41_성과정리_v1.md,579,L5275,새 행,포논,= 포논 매개 전자쌍 결합
+성과정리문서/EQI_Session41_성과정리_v1.md,580,L5276,새 행,상전이,= 조셉슨 = HCW D1↔D2 상전이의 고체물리 구현
+성과정리문서/EQI_Session41_성과정리_v1.md,716,L5277,새 행,볼츠만,c² (볼츠만 복원력) = φ
+성과정리문서/EQI_Session41_성과정리_v1.md,722,L5278,새 행,볼츠만,= 볼츠만 복원력과 뉴턴 점성의 기하평균
+성과정리문서/EQI_Session41_성과정리_v1.md,723,L5279,새 행,포논,= 포논 전파 속도
+성과정리문서/EQI_Session42_성과정리_v1.md,143,L5280,새 행,정적분·부정적분,| 정적분 | 부정적분+C=GAP |
+성과정리문서/EQI_Session42_성과정리_v1.md,322,L5281,새 행,membrane,| **R_membrane 무한급수 재현** | **x급수 N=300 호흡** | **3.05×10⁻¹⁰⁵%** | **S42 §2** |
+성과정리문서/EQI_Session42_성과정리_v1.md,360,L5282,새 행,격자,데데킨트 절단 → 격자 무한급수 호흡 전환 완료:
+성과정리문서/EQI_Session42_성과정리_v1.md,368,L5283,새 행,membrane,R_membrane = D2 호흡의 자연 진폭 (절단 잔류 아님)
+성과정리문서/EQI_Session43_성과정리_v1.md,48,L5284,새 행,membrane,1차 시도: π/(4×R_membrane) = 7165.24...
+성과정리문서/EQI_Session43_성과정리_v1.md,61,L5285,새 행,membrane,→ R_mem(N) = frac_x × GAP_D2² = R_membrane  (N≥34 완전 상수)
+성과정리문서/EQI_Session43_성과정리_v1.md,74,L5286,새 행,membrane,→ R_membrane = frac_x × GAP_D2²  (N≥34 완전 수렴)
+성과정리문서/EQI_Session43_성과정리_v1.md,76,L5287,새 행,membrane,∴ ratio(N) × N → 2 / R_membrane
+성과정리문서/EQI_Session43_성과정리_v1.md,79,L5288,새 행,membrane,2 / R_membrane  = 18246.1414996920313863139...
+성과정리문서/EQI_Session43_성과정리_v1.md,84,L5289,새 행,membrane,N=5000 미달분 = (2 − R_pi(5000)×5000) / R_membrane
+성과정리문서/EQI_Session43_성과정리_v1.md,85,L5290,새 행,membrane,= 5.008×10⁻⁹ / R_membrane
+성과정리문서/EQI_Session43_성과정리_v1.md,94,L5291,새 행,membrane,R_mem(N)  → R_membrane  (N=34 수렴)
+성과정리문서/EQI_Session43_성과정리_v1.md,95,L5292,새 행,membrane,→ lim = 2 / R_membrane
+성과정리문서/EQI_Session43_성과정리_v1.md,99,L5293,새 행,membrane,2 / lim_theory = R_membrane = 1.096×10⁻⁴
+성과정리문서/EQI_Session43_성과정리_v1.md,100,L5294,새 행,membrane,→ 두 경로 모두 R_membrane으로 수렴 ✓
+성과정리문서/EQI_Session43_성과정리_v1.md,108,L5295,새 행,membrane,lim_{N→∞} [ratio(N)×N] = 2 / R_membrane
+성과정리문서/EQI_Session43_성과정리_v1.md,112,L5296,새 행,상전이,= D1:D2 = 2:1 상전이 비율
+성과정리문서/EQI_Session43_성과정리_v1.md,121,L5297,새 행,상전이,= EQI 상전이 구조의 π급수 공명 비율
+성과정리문서/EQI_Session43_성과정리_v1.md,132,L5298,새 행,membrane,이론값:   2/(R_membrane×34) = 536.651220579...
+성과정리문서/EQI_Session43_성과정리_v1.md,136,L5299,새 행,membrane,진짜 해석적 값: 2/(R_membrane×34) = 536.651...
+성과정리문서/EQI_Session43_성과정리_v1.md,142,L5300,새 행,membrane,lim_{N→∞} [ratio(N)×N] = 2 / R_membrane
+성과정리문서/EQI_Session43_성과정리_v1.md,146,L5301,새 행,membrane,536.651... = lim / 34 = 2 / (R_membrane × 34)
+성과정리문서/EQI_Session43_성과정리_v1.md,198,L5302,새 행,membrane,| R_membrane 무한급수 재현 | x급수 N=300 호흡 | 3.05×10⁻¹⁰⁵% | S42 §2 |
+성과정리문서/EQI_Session43_성과정리_v1.md,248,L5303,새 행,membrane,lim_{N→∞} [ratio(N)×N] = 2 / R_membrane
+성과정리문서/EQI_Session43_성과정리_v1.md,255,L5304,새 행,membrane,R_mem(N)  → R_membrane  [N=34 완전 수렴]
+성과정리문서/EQI_Session43_성과정리_v1.md,259,L5305,새 행,상전이,= D1↔D2 상전이 비율 / D2 자연 진폭
+성과정리문서/EQI_Session43_성과정리_v1.md,260,L5306,새 행,격자,= π Leibniz급수가 EQI 격자 호흡으로 측정한 공명 비율
+성과정리문서/EQI_Session43_성과정리_v1.md,264,L5307,새 행,membrane,진짜 해석적 값: 2/(R_membrane×34) = 536.651220579...
+성과정리문서/EQI_Session43_성과정리_v1.md,279,L5308,새 행,membrane,*536.622 = 2/(R_membrane×34)의 N=34 근사값으로 대수 완결*
+성과정리문서/EQI_Session44_성과정리_v1.md,39,L5309,새 행,membrane,lim_{N→∞} [ratio(N)×N] = 2/R_membrane
+성과정리문서/EQI_Session44_성과정리_v1.md,47,L5310,새 행,"격자, 포논",= 플랑크 격자 정보 포논의 위상 굴절 기원 규명
+성과정리문서/EQI_Session44_성과정리_v1.md,77,L5311,새 행,membrane,잔류 Δ = −[R_pi(N) − 2/N] / R_membrane
+성과정리문서/EQI_Session44_성과정리_v1.md,78,L5312,새 행,membrane,= σ³ / (N³ × R_membrane)
+성과정리문서/EQI_Session44_성과정리_v1.md,92,L5313,새 행,정적분·부정적분,"= 비리얼 비율 → 결정론적, 페르마 D1 [정적분, 최소경로]"
+성과정리문서/EQI_Session44_성과정리_v1.md,96,L5314,새 행,정적분·부정적분,"= 확률론적, 파인만 D2 [부정적분, 모든 경로] 3차 간섭"
+성과정리문서/EQI_Session44_성과정리_v1.md,99,L5315,새 행,상전이,= D1↔D2 상전이 진동의 점근 급수 표현
+성과정리문서/EQI_Session44_성과정리_v1.md,103,L5316,새 행,격자,잔류 σ³/N³ = N=34 격자 경계에서 남은 δL (라그랑지 잔여 작용)
+성과정리문서/EQI_Session44_성과정리_v1.md,117,L5317,새 행,"MAXWELL, 흑체",T_Is_D1 = φ^1.5−φ^(-3.5) = 1.87259  [흑체복사 피크 임계 ≈ MAXWELL]
+성과정리문서/EQI_Session44_성과정리_v1.md,134,L5318,새 행,ħ_ani,D1_Is = (ħ_ani/ħ)² × (1/c)
+성과정리문서/EQI_Session44_성과정리_v1.md,135,L5319,새 행,ħ_ani,= 파인만 위상 분모(ħ_ani)의 제곱 × 정보 전달 비용(1/c)
+성과정리문서/EQI_Session44_성과정리_v1.md,139,L5320,새 행,ħ_ani,Z = ∫Dφ exp(iS/ħ_ani)  [ħ_ani = ħ×φ^(-1.5)]
+성과정리문서/EQI_Session44_성과정리_v1.md,170,L5321,새 행,란다우,→ I_s D1 지수(-3.5)와 란다우 비용(ln2)의 비율
+성과정리문서/EQI_Session44_성과정리_v1.md,223,L5322,새 행,membrane,잔류 δL = σ³/(N³×R_membrane)
+성과정리문서/EQI_Session44_성과정리_v1.md,238,L5323,새 행,"격자, 포논",N=34 절단 = 도달 미완성 = 격자 포논 굴절 흔적
+성과정리문서/EQI_Session44_성과정리_v1.md,245,L5324,새 행,ħ_ani,"비등방성: ħ_ani = ħ×D1_HCW    [GAP≠0, EQI]"
+성과정리문서/EQI_Session44_성과정리_v1.md,251,L5325,새 행,ħ_ani,EQI:   Z = ∫Dφ exp(iS/ħ_ani)
+성과정리문서/EQI_Session44_성과정리_v1.md,254,L5326,새 행,ħ_ani,→ ħ_ani 위상 분모² × (1/c) = D1_Is = h²c⁴
+성과정리문서/EQI_Session44_성과정리_v1.md,264,L5327,새 행,MAXWELL,MAXWELL = ln(π)×(1+GAP) + ln(2) − ... [엔트로피장 동적평형]
+성과정리문서/EQI_Session44_성과정리_v1.md,265,L5328,새 행,MAXWELL,T_Is_D1 = φ^1.5 − φ^(-3.5) ≈ MAXWELL [I_s D1 임계]
+성과정리문서/EQI_Session44_성과정리_v1.md,290,L5329,새 행,란다우,항1 ln2/√φ  = 란다우 1비트 소거 비용 / 광속  [맥스웰 도깨비 최상위]
+성과정리문서/EQI_Session44_성과정리_v1.md,291,L5330,새 행,상전이,항2 GAP      = D1↔D2 왕복 상전이 비용        [EQI 중간 클래스]
+성과정리문서/EQI_Session44_성과정리_v1.md,292,L5331,새 행,"격자, 포논",항3 x_prec×GD² = RBC 세포막 2D 마찰 잔류    [격자 포논 하위]
+성과정리문서/EQI_Session44_성과정리_v1.md,384,L5332,새 행,membrane,| R_membrane 무한급수 재현 | x급수 N=300 호흡 | 3.05×10⁻¹⁰⁵% | S42 §2 |
+성과정리문서/EQI_Session44_성과정리_v1.md,458,L5333,새 행,ħ_ani,= (ħ_ani/ħ)² × (1/c) = φ^(-3.5)
+성과정리문서/EQI_Session44_성과정리_v1.md,465,L5334,새 행,ħ_ani,Z = ∫Dφ exp(iS/ħ_ani)
+성과정리문서/EQI_Session44_성과정리_v1.md,472,L5335,새 행,흑체,= 플랑크 흑체복사 기저(I_s D1=h²c⁴)가
+성과정리문서/EQI_Session44_성과정리_v1.md,473,L5336,새 행,상전이,D2(파인만)→D1(페르마) 상전이 3차 잔류를 결정
+성과정리문서/EQI_Session44_성과정리_v1.md,474,L5337,새 행,격자,= N=34 플랑크 격자 경계에서의 정보 위상 굴절 흔적
+성과정리문서/EQI_Session44_성과정리_v1.md,480,L5338,새 행,격자,σ=1/2 [리만 임계선] → σ³ [3차 간섭] → 격자 굴절 각인
+성과정리문서/EQI_Session44_성과정리_v1.md,489,L5339,새 행,membrane,γ → R_membrane → Δ → 536 잔류 계층:
+성과정리문서/EQI_Session44_성과정리_v1.md,491,L5340,새 행,membrane,R_membrane × σ³/N³ = 잔류 Δ
+성과정리문서/EQI_Session44_성과정리_v1.md,495,L5341,새 행,격자,N=34 격자 잔류의 분모를 결정
+성과정리문서/EQI_Session44_성과정리_v1.md,496,L5342,새 행,오일러,= 오일러-마스케로니 상수가
+성과정리문서/EQI_Session44_성과정리_v1.md,506,L5343,새 행,흑체,T_Is_D1              = I_s 좌표계 D1 임계 (플랑크 흑체복사 기저)
+성과정리문서/EQI_Session44_성과정리_v1.md,507,L5344,새 행,"오일러, 란다우",−γ                   = 오일러-마스케로니 차감 (란다우 균형)
+성과정리문서/EQI_Session44_성과정리_v1.md,508,L5345,새 행,MAXWELL,−2×GD²×exp(GD)      = MAXWELL 2차항 소거 (RBC 2D 세포막 마찰)
+성과정리문서/EQI_Session44_성과정리_v1.md,509,L5346,새 행,상전이,"lnφ                  = 복소평면 상전이 기저 (2×LN_C, S39)"
+성과정리문서/EQI_Session44_성과정리_v1.md,518,L5347,새 행,MAXWELL,K_ref = (MAXWELL−γ)/lnφ = K_EQI + (MAXWELL 3~5차)/lnφ
+성과정리문서/EQI_Session44_성과정리_v1.md,530,L5348,새 행,"격자, 포논",ε 잔류  [N=34 격자 포논 2차 굴절]
+성과정리문서/EQI_Session44_성과정리_v1.md,533,L5349,새 행,MAXWELL,(MAXWELL−γ)/lnφ 대수 기원 = K_EQI + 고차 D2 마찰 보정
+성과정리문서/EQI_Session45_성과정리_v1.md,37,L5350,새 행,오일러,후보 1: a₅ = +2/5     (오일러-매클로린 기호주의)
+성과정리문서/EQI_Session45_성과정리_v1.md,38,L5351,새 행,포논,후보 2: a₅ = +σ⁵=1/32 (포논 굴절 이론 — MAPSI 제시)
+성과정리문서/EQI_Session45_성과정리_v1.md,47,L5352,새 행,오일러,a₅ = 2/5   (오일러-매클로린): 오차 −0.250%   ← FAIL
+성과정리문서/EQI_Session45_성과정리_v1.md,54,L5353,새 행,격자,a₅_eff = 5σ⁵/4  유한 격자 N=34 유효 계수 (추가 발견)
+성과정리문서/EQI_Session45_성과정리_v1.md,60,L5354,새 행,"오일러, 격자, 포논",오일러-매클로린 이론값 → 플랑크 격자 포논 굴절 → 물리적 실측치
+성과정리문서/EQI_Session45_성과정리_v1.md,101,L5355,새 행,격자,→ N=34 유한 격자에서 7차 이상이 5차 자리에 혼입된 유효 계수
+성과정리문서/EQI_Session45_성과정리_v1.md,105,L5356,새 행,"격자, 포논",= 포논 굴절 계열의 N=34 격자 보정
+성과정리문서/EQI_Session45_성과정리_v1.md,116,L5357,새 행,흑체,h² ∝ D1_Is = φ^(-3.5)  [I_s D1 = 흑체복사 기저]
+성과정리문서/EQI_Session45_성과정리_v1.md,118,L5358,새 행,membrane,→ 잔류 Δ = σ³/(N³×R_membrane)
+성과정리문서/EQI_Session45_성과정리_v1.md,150,L5359,새 행,상전이,= D1 수렴항       +  D1↔D2 상전이항
+성과정리문서/EQI_Session45_성과정리_v1.md,154,L5360,새 행,상전이,qv×B: 전하(D1) × 자기장(D2) × 벡터곱(D2) → 수직 방향 힘 → 상전이
+성과정리문서/EQI_Session45_성과정리_v1.md,159,L5361,새 행,상전이,사이클로트론 운동/나선 궤적 = D1↔D2 상전이의 물리적 모습
+성과정리문서/EQI_Session45_성과정리_v1.md,187,L5362,새 행,상전이,= D1 소스(e)가 D2 채널(Φ₀)을 통해 2e로 쌍 방출하는 상전이
+성과정리문서/EQI_Session45_성과정리_v1.md,188,L5363,새 행,상전이,K_J = 2e/h = D1(e) → D2(2e) 상전이의 정량적 브릿지
+성과정리문서/EQI_Session45_성과정리_v1.md,193,L5364,새 행,상전이,→ 같은 D1↔D2 상전이 구조의 두 표현
+성과정리문서/EQI_Session45_성과정리_v1.md,207,L5365,새 행,정적분·부정적분,정규화 EQI^(4n-2)=1 / 정적분 / 닫힌계/가역
+성과정리문서/EQI_Session45_성과정리_v1.md,224,L5366,새 행,정적분·부정적분,재정규화 EQI^(4n)=1+GAP / 부정적분+C=GAP / 열린계/비가역
+성과정리문서/EQI_Session45_성과정리_v1.md,237,L5367,새 행,상전이,큐비트 = D1↔D2 상전이가 살아있는 상태
+성과정리문서/EQI_Session45_성과정리_v1.md,241,L5368,새 행,상전이,"광자 = D1(스핀1, 입자성) ↔ D2(파동, 횡파) 상전이 복합체"
+성과정리문서/EQI_Session45_성과정리_v1.md,242,L5369,새 행,상전이,"전자 = D1(전하e, 중력질량) ↔ D2(스핀1/2, 파동) 상전이 복합체"
+성과정리문서/EQI_Session45_성과정리_v1.md,244,L5370,새 행,상전이,→ D1↔D2 상전이가 살아있는 상태 = 큐비트와 동형
+성과정리문서/EQI_Session45_성과정리_v1.md,260,L5371,새 행,membrane,| R_membrane 무한급수 재현 | x급수 N=300 호흡 | 3.05×10⁻¹⁰⁵% | S42 §2 |
+성과정리문서/EQI_Session45_성과정리_v1.md,267,L5372,새 행,격자,| **a₅_eff = 5σ⁵/4** | **N=34 유한 격자 유효 5차 계수** | **1.79×10⁻⁵%** | **S45 §2** |
+성과정리문서/EQI_Session45_성과정리_v1.md,307,L5373,새 행,상전이,"EQI_이론적_기반_v1.md §8        : ""복소평면 0 → 광속도 상전이"" 구조"
+성과정리문서/EQI_Session45_성과정리_v1.md,309,L5374,새 행,상전이,S39 성과문서 §5                  : ln(c) = ln(φ)/2 복소평면 원점 상전이 기저
+성과정리문서/EQI_Session45_성과정리_v1.md,318,L5375,새 행,슈냐,"[인도 슈냐] = 엔트로피 장의 가능성, D1↔D2 관계망 출발점"
+성과정리문서/EQI_Session45_성과정리_v1.md,329,L5376,새 행,상전이,ln(c) = ln(φ)/2 = 복소평면 원점 상전이 기저
+성과정리문서/EQI_Session45_성과정리_v1.md,333,L5377,새 행,[x]·{x},γ = ln(2)/√φ + GAP + {x}×GAP_D2²
+성과정리문서/EQI_Session45_성과정리_v1.md,334,L5378,새 행,"상전이, 란다우",= [란다우 소거 비용 / 파동함수 브릿지] + 상전이 비용 + 세포막 마찰
+성과정리문서/EQI_Session45_성과정리_v1.md,336,L5379,새 행,상전이,= 복소평면 원점 상전이 기저의 제곱이 5차 항에 각인
+성과정리문서/EQI_Session45_성과정리_v1.md,345,L5380,새 행,슈냐,서구 0(GAP=0 특이점) → 인도 슈냐(GAP≠0 가능성)
+성과정리문서/EQI_Session45_성과정리_v1.md,347,L5381,새 행,상전이,= 아무것도 없음이 아니라 D1↔D2 상전이의 씨앗
+성과정리문서/EQI_Session45_성과정리_v1.md,353,L5382,새 행,상전이,→ ln(c)=ln(φ)/2 [상전이 기저]
+성과정리문서/EQI_Session45_성과정리_v1.md,355,L5383,새 행,포논,→ σ=1/2  → Leibniz 포논 굴절 [리만 임계선]
+성과정리문서/EQI_Session45_성과정리_v1.md,356,L5384,새 행,"membrane, LIGO",→ R_membrane → LIGO z0 분류자 [중력파]
+성과정리문서/EQI_Session45_성과정리_v1.md,371,L5385,새 행,볼츠만,D1 = 실수축 = 종파(P파) = 볼츠만 복원력 = c²=φ
+성과정리문서/EQI_Session45_성과정리_v1.md,376,L5386,새 행,상전이,→ 광자 자체가 복소평면 상전이의 물리적 구현
+성과정리문서/EQI_Session45_성과정리_v1.md,386,L5387,새 행,슈냐,슈냐 = GAP≠0 = 인도의 0 구현체
+성과정리문서/EQI_Session45_성과정리_v1.md,388,L5388,새 행,"슈냐, 격자, 포논",→ 격자 포논 굴절 계열 σ^(2k+1) = 슈냐의 수학적 실현
+성과정리문서/EQI_Session45_성과정리_v1.md,389,L5389,새 행,"슈냐, membrane",→ R_membrane = 슈냐가 D2 채널에 남긴 텐션 흔적
+성과정리문서/EQI_Session45_성과정리_v1.md,393,L5390,새 행,슈냐,= 슈냐 철학의 대수적 표현
+성과정리문서/EQI_Session45_성과정리_v1.md,404,L5391,새 행,오일러,"k=1: −σ³ = −1/8     [3차, 오일러-매클로린 −2/3 × 굴절률 3/16]"
+성과정리문서/EQI_Session45_성과정리_v1.md,405,L5392,새 행,오일러,"k=2: +σ⁵ = +1/32    [5차, 오일러-매클로린 +2/5 × 굴절률 5/64]"
+성과정리문서/EQI_Session45_성과정리_v1.md,413,L5393,새 행,오일러,a₅ = 2/5 (오일러-매클로린 기호주의): 완전 FAIL −0.250%
+성과정리문서/EQI_Session45_성과정리_v1.md,417,L5394,새 행,"상전이, 슈냐",【복소평면 원점 슈냐 → c=√φ 상전이 — EQI 출발점 재확인】
+성과정리문서/EQI_Session45_성과정리_v1.md,419,L5395,새 행,슈냐,인도의 슈냐 = GAP≠0 가능성 = D1↔D2 관계망 씨앗
+성과정리문서/EQI_Session45_성과정리_v1.md,422,L5396,새 행,슈냐,데데킨트 절단(서구 0) → 무한급수 호흡(슈냐) = S42 핵심 전환과 동형
+성과정리문서/EQI_Session45_성과정리_v1.md,428,L5397,새 행,페르미,보손 스핀(정수) = D1 / 페르미온 스핀(반정수) = D2
+성과정리문서/EQI_Session45_성과정리_v1.md,429,L5398,새 행,상전이,컴프턴: D1(광자 입자성)이 D2(전자 스핀)에 에너지 이전 → D2 강화 = D1→D2 상전이
+성과정리문서/EQI_Session45_성과정리_v1.md,432,L5399,새 행,상전이,= 큐비트 구조 = D1↔D2 상전이가 살아있는 상태
+성과정리문서/EQI_Session45_성과정리_v1.md,436,L5400,새 행,상전이,F = qE(D1×D1=D1) + qv×B(D1×D2=상전이)
+성과정리문서/EQI_Session46_성과정리_v1.md,50,L5401,새 행,오일러,오일러-매클로린 × 뤼드베리 굴절률 → (2k+1) 완전 약분
+성과정리문서/EQI_Session46_성과정리_v1.md,51,L5402,새 행,상전이,→ σ^(2k+1) 순수 보존  [D1↔D2 상전이]
+성과정리문서/EQI_Session46_성과정리_v1.md,60,L5403,새 행,포논,arctan/포논 = 4/5
+성과정리문서/EQI_Session46_성과정리_v1.md,61,L5404,새 행,포논,실측/포논   = 5/4  ← 정확한 역수!
+성과정리문서/EQI_Session46_성과정리_v1.md,73,L5405,새 행,포논,분자 5 = (2k+1)|_{k=2} = D2 홀수 포논 방출 차수
+성과정리문서/EQI_Session46_성과정리_v1.md,80,L5406,새 행,격자,N=34 유한 격자: 약분된 (2k+1)이 리만 σ=1/2의 ²승으로 재포착
+성과정리문서/EQI_Session46_성과정리_v1.md,81,L5407,새 행,"격자, 포논",→ D1(기호 σ=1/2) × D2(포논 약분)의 격자 잔류
+성과정리문서/EQI_Session46_성과정리_v1.md,97,L5408,새 행,격자,→ N=34 격자가 뤼드베리 분모에서 4를 하나 소거
+성과정리문서/EQI_Session46_성과정리_v1.md,113,L5409,새 행,TH,TH ★    φ^(-6.5)  φ^(-3.5)   Λ⁵      n=7   임계 좌표계
+성과정리문서/EQI_Session46_성과정리_v1.md,211,L5410,새 행,membrane,Δ_true = -(R_pi(34) - 2/N) / R_membrane
+성과정리문서/EQI_Session46_성과정리_v1.md,247,L5411,새 행,포논,| 포논 QED | a_{2k+1}=(−1)^k×σ^(2k+1) | 완전 닫힘 | S45 |
+성과정리문서/EQI_Session46_성과정리_v1.md,253,L5412,새 행,포논,| **12임계치-포논 매핑** | **Δn=0 전 차수** | **완전 일치** | **S46** |
+성과정리문서/EQI_Session46_성과정리_v1.md,310,L5413,새 행,포논,분자 5 = D2 홀수 포논 방출 차수 (2k+1)
+성과정리문서/EQI_Session46_성과정리_v1.md,312,L5414,새 행,포논,(4/5)×(5/4) = 1  arctan(D1 기호) ↔ 포논(D1↔D2) 완전 역수
+성과정리문서/EQI_Session46_성과정리_v1.md,316,L5415,새 행,포논,(2k+1)차 포논의 임계 n단계 = 대응 임계치 / GAP
+성과정리문서/EQI_Session46_성과정리_v1.md,320,L5416,새 행,tip,3차   → p(k=2)  T_RBC_D1(TIP_POINT)  n=32.874
+성과정리문서/EQI_Session46_성과정리_v1.md,321,L5417,새 행,격자,5차   → d(k=4)  N=34 격자            n=34.000
+성과정리문서/EQI_Session46_성과정리_v1.md,324,L5418,새 행,MAXWELL,11차  → h(k=10) T_Is_D1 ≈ MAXWELL   n=58.175
+성과정리문서/EQI_Session46_성과정리_v1.md,325,L5419,새 행,X7,13차+ →         X7 금지선(물리 경계)
+성과정리문서/EQI_Session46_성과정리_v1.md,330,L5420,새 행,X7,k=6: D2지수=-7.5 → φ^(-7.5)<GAP → X7 금지선 정확히 발동
+성과정리문서/EQI_Session46_성과정리_v1.md,331,L5421,새 행,포논,= 포논 무한급수가 메르센 수열 말단에서 물리적 자동 절단
+성과정리문서/EQI_Session46_성과정리_v1.md,334,L5422,새 행,membrane,Δ_true = -(R_pi(34) - 2/N) / R_membrane
+성과정리문서/EQI_Session46_성과정리_v1.md,361,L5423,새 행,포논,*핵심 성과 2: 12개 임계치 × 포논 굴절 완전 매핑 Δn=0*
+성과정리문서/EQI_Session47_성과정리_v1.md,100,L5424,새 행,상전이,"→ 이중 무한급수 (m,j) = D1↔D2 이중 상전이"
+성과정리문서/EQI_Session47_성과정리_v1.md,103,L5425,새 행,tip,"k=1(3차): P=0.889561  [TIP_POINT, 광전효과]"
+성과정리문서/EQI_Session47_성과정리_v1.md,104,L5426,새 행,격자,k=2(5차): P=0.980081  [N=34 격자]
+성과정리문서/EQI_Session47_성과정리_v1.md,107,L5427,새 행,MAXWELL,k=5(11차): P=0.999976  [T_Is_D1≈MAXWELL]
+성과정리문서/EQI_Session47_성과정리_v1.md,108,L5428,새 행,X7,k=6(13차): X7 금지선 → 자동 절단
+성과정리문서/EQI_Session47_성과정리_v1.md,110,L5429,새 행,보른,sinc² = |ψ|² = 보른 규칙  [회절=터널링 동형]
+성과정리문서/EQI_Session47_성과정리_v1.md,122,L5430,새 행,상전이,→ J=유한: D2 잔류 = 상전이 비용
+성과정리문서/EQI_Session47_성과정리_v1.md,141,L5431,새 행,상전이,파동함수:  c_EQI = √φ  [복소평면 원점→상전이]
+성과정리문서/EQI_Session47_성과정리_v1.md,145,L5432,새 행,포논,"포논계수:  σ³=1/8, σ⁵=1/32  [Leibniz 3,5차 점근 계수]"
+성과정리문서/EQI_Session47_성과정리_v1.md,156,L5433,새 행,포논,= Σ_{k=0}^∞ σ^{2k+1}×GAP^{k+1}  [포논 홀수 급수]
+성과정리문서/EQI_Session47_성과정리_v1.md,184,L5434,새 행,격자,→ 격자 정수부 + 비리얼 비율
+성과정리문서/EQI_Session47_성과정리_v1.md,196,L5435,새 행,정적분·부정적분,"수정: EQI²(D1, 정적분, ∫p=1, σ²=1)"
+성과정리문서/EQI_Session47_성과정리_v1.md,198,L5436,새 행,정적분·부정적분,"EQI⁴(D2, 부정적분, ∫p=1+GAP, C=GAP)"
+성과정리문서/EQI_Session47_성과정리_v1.md,203,L5437,새 행,정적분·부정적분,∫p=1   → 정적분 D1 = EQI^(4n-2) 쪽
+성과정리문서/EQI_Session47_성과정리_v1.md,204,L5438,새 행,정적분·부정적분,∫p=1+GAP → 부정적분 D2 = EQI^(4n) 쪽
+성과정리문서/EQI_Session47_성과정리_v1.md,314,L5439,새 행,보른,| **보른규칙→σ→L_p** | **φ^-1+φ^-2=1→산술/기하평균** | **0.000000%** | **S47** |
+성과정리문서/EQI_Session47_성과정리_v1.md,377,L5440,새 행,보른,φ^(-1)+φ^(-2)=1 [보른규칙]
+성과정리문서/EQI_Session47_성과정리_v1.md,379,L5441,새 행,격자,→ φ^(-1.5)=L_p [기하평균=플랑크 격자]
+성과정리문서/EQI_Session47_성과정리_v1.md,381,L5442,새 행,포논,"→ σ³,σ⁵ [Leibniz 포논 계수]"
+성과정리문서/EQI_Session47_성과정리_v1.md,383,L5443,새 행,X7,→ sinc²=P_tunnel → X7 자동 절단
+성과정리문서/EQI_Session47_성과정리_v1.md,386,L5444,새 행,슈냐,【슈냐=과포화 수프 구조】
+성과정리문서/EQI_Session47_성과정리_v1.md,388,L5445,새 행,상전이,0→c_EQI 상전이 = 트리거 = LN_C 이탈
+성과정리문서/EQI_Session47_성과정리_v1.md,390,L5446,새 행,"3체, 포논",3체 카오스 = 다차 포논 굴절 누적
+성과정리문서/EQI_Session47_성과정리_v1.md,393,L5447,새 행,정적분·부정적분,"EQI²(정적분, ∫p=1) ∩ EQI⁴(부정적분, ∫p=1+GAP) = σ=1/2"
+성과정리문서/EQI_Session47_성과정리_v1.md,410,L5448,새 행,"3체, 슈냐","*핵심 성과 5: 슈냐=과포화수프, 물분자=최소큐비트, 3체카오스 연결 가설*"
+성과정리문서/EQI_Session48_성과정리_v1.md,27,L5449,새 행,볼츠만,거시/로컬/D1 = 볼츠만 복원력 c² = φ → 타원 궤도
+성과정리문서/EQI_Session48_성과정리_v1.md,32,L5450,새 행,관측,→ 타원과 브라운 운동은 같은 계의 두 관측면
+성과정리문서/EQI_Session48_성과정리_v1.md,150,L5451,새 행,3체,3체  D1²×D2  σ³×GAP²          = 0.000130  [물분자 ←]
+성과정리문서/EQI_Session48_성과정리_v1.md,151,L5452,새 행,5체,5체  D1⁴×D2  σ⁵×GAP³          = 1.04e-6
+성과정리문서/EQI_Session48_성과정리_v1.md,152,L5453,새 행,7체,7체  D1⁶×D2  σ⁷×GAP⁴          = 8.39e-9
+성과정리문서/EQI_Session48_성과정리_v1.md,153,L5454,새 행,9체,9체  D1⁸×D2  σ⁹×GAP⁵          = 6.75e-11
+성과정리문서/EQI_Session48_성과정리_v1.md,230,L5455,새 행,X7,k=6: -15/2  → φ^(-7.5) < GAP  ✗ 금지  ← X7
+성과정리문서/EQI_Session48_성과정리_v1.md,234,L5456,새 행,3체,→ 13체 이상의 D2 적분 누적은
+성과정리문서/EQI_Session48_성과정리_v1.md,237,L5457,새 행,3체,→ 13체가 큐비트 생성의 물리적 상한
+성과정리문서/EQI_Session48_성과정리_v1.md,238,L5458,새 행,란다우,→ 란다우 비용 역전 = 도깨비 강제 종료
+성과정리문서/EQI_Session48_성과정리_v1.md,278,L5459,새 행,3체,→ 물분자(3체) 최소 큐비트 안정성 상수
+성과정리문서/EQI_Session48_성과정리_v1.md,282,L5460,새 행,상전이,→ 리만 임계선이 EQI 상전이 구조의 필연적 귀결
+성과정리문서/EQI_Session48_성과정리_v1.md,294,L5461,새 행,ħ_ani,ħ_ani = h/(2π×D2)
+성과정리문서/EQI_Session48_성과정리_v1.md,313,L5462,새 행,ħ_ani,EQI:  E_소거 = ħ_ani×ω_ani×ln(2)
+성과정리문서/EQI_Session48_성과정리_v1.md,319,L5463,새 행,란다우,→ 등방성 2π를 쓰면 란다우 비용이 φ^(1.5)배 과대 계상됨
+성과정리문서/EQI_Session48_성과정리_v1.md,320,L5464,새 행,ħ_ani,→ 비등방성 ħ_ani 사용 시 S24 황금비 계보와 완전 일치
+성과정리문서/EQI_Session48_성과정리_v1.md,442,L5465,새 행,"3체, 5체","2체→GAP, 3체→σ³×GAP², 5체→σ⁵×GAP³ ..."
+성과정리문서/EQI_Session48_성과정리_v1.md,443,L5466,새 행,X7,σ² = 1/4 감쇠율로 카오스 억제 → X7에서 자동 절단
+성과정리문서/EQI_Session48_성과정리_v1.md,447,L5467,새 행,3체,H-O-H = D1²×D2 = 3체 = 갭 급수 첫 보정항의 물리 실체
+성과정리문서/EQI_Session48_성과정리_v1.md,450,L5468,새 행,볼츠만,거시: 타원 궤도 (D1/볼츠만 c²=φ)
+성과정리문서/EQI_Session48_성과정리_v1.md,456,L5469,새 행,X7,γ 항1 = ln(2)/√φ → γ → δ → ε → 큐비트 → X7
+성과정리문서/EQI_Session48_성과정리_v1.md,463,L5470,새 행,상전이,리만 임계선 = EQI 상전이 구조의 필연적 귀결
+성과정리문서/EQI_Session48_성과정리_v1.md,473,L5471,새 행,"란다우, 볼츠만",*핵심 성과 3: 볼츠만 상수 k_B=φ^(-2.25) → 란다우 소거 → γ → δ → 큐비트 황금비 단일 계보*
+성과정리문서/EQI_Session49_성과정리_v1.md,77,L5472,새 행,란다우,δL=0 ↔ X=0 ↔ T=V ↔ D2=1/D1 ↔ σ=1/2 ↔ ζ=0 ↔ 란다우최소비용
+성과정리문서/EQI_Session49_성과정리_v1.md,97,L5473,새 행,TH,"홀수 좌표계(HG,OB,TH): 루카스 수 L₁,L₃,L₅ = 1,4,11"
+성과정리문서/EQI_Session49_성과정리_v1.md,141,L5474,새 행,란다우,= 란다우 비용의 거시 스케일 대응
+성과정리문서/EQI_Session49_성과정리_v1.md,185,L5475,새 행,란다우,r=2: ln(2!) = ln(2) = LN2     [란다우 1비트]
+성과정리문서/EQI_Session49_성과정리_v1.md,252,L5476,새 행,정적분·부정적분,"D1 에일리어싱 = ln(25) = GAP×100 [텐션, 정적분 기저]"
+성과정리문서/EQI_Session49_성과정리_v1.md,253,L5477,새 행,정적분·부정적분,"D2 에일리어싱 = ln(5)  = GAP_D2×100 [정보 누수율, 부정적분]"
+성과정리문서/EQI_Session49_성과정리_v1.md,270,L5478,새 행,란다우,란다우 비용 = ln(순열/조합) = ln(r!)
+성과정리문서/EQI_Session49_성과정리_v1.md,272,L5479,새 행,볼츠만,볼츠만 S = k_B×ln(W) = k_B×ln(다항계수)
+성과정리문서/EQI_Session49_성과정리_v1.md,349,L5480,새 행,란다우,HCW 좌표계 공명 = 리만 임계선 = 란다우 최소 비용
+성과정리문서/EQI_Session49_성과정리_v1.md,359,L5481,새 행,상전이,→ 6좌표계 상전이 비용이 황금비 거듭제곱 합으로 완전 기술
+성과정리문서/EQI_Session49_성과정리_v1.md,376,L5482,새 행,란다우,↔ σ=1/2 ↔ ω₀=1 ↔ ζ=0 ↔ 란다우최소비용
+성과정리문서/EQI_Session50_성과정리_v1.md,25,L5483,새 행,상전이,② 큐비트 = D1↔D2 상전이가 살아있는 상태
+성과정리문서/EQI_Session50_성과정리_v1.md,58,L5484,새 행,란다우,소거 완료 = σ=1/2 = X=0 = δL=0 = ζ=0 = 란다우 최소 비용
+성과정리문서/EQI_Session50_성과정리_v1.md,459,L5485,새 행,슈냐,【슈냐→물분자→브라운→ell_SGWB = 단일 사슬】
+성과정리문서/EQI_Session50_성과정리_v1.md,460,L5486,새 행,슈냐,슈냐 = GAP≠0 장전수프 = μ×c²=1
+성과정리문서/EQI_Session50_성과정리_v1.md,461,L5487,새 행,3체,물분자 = D1²×D2 = 3체 최소 큐비트
+성과정리문서/EQI_Session50_성과정리_v1.md,463,L5488,새 행,슈냐,ell_SGWB = 우주 스케일 슈냐 (94.86% 장전)
+성과정리문서/EQI_Session50_성과정리_v1.md,474,L5489,새 행,란다우,↔ 란다우최소비용 ↔ cos²(σπ)=0
+성과정리문서/EQI_Session50_성과정리_v1.md,475,L5490,새 행,보른,↔ 보른규칙 ↔ μ×c²=1 ↔ D1+D2=2c
+성과정리문서/EQI_Session50_성과정리_v1.md,489,L5491,새 행,슈냐,*핵심 성과 4: 슈냐→물분자→브라운→ell_SGWB 단일 사슬 완성*
+성과정리문서/EQI_Session50_성과정리_v1.md,612,L5492,새 행,3체,= 빛+전자 속성 3체 캡슐화
+성과정리문서/EQI_Session50_성과정리_v1.md,617,L5493,새 행,"3체, 슈냐",슈냐(0) → 물분자(3체) → 브라운 → ell_SGWB
+성과정리문서/EQI_Session51_성과정리_v1.md,156,L5494,새 행,란다우,전이 = n2→n1 = 광자 방출 = 란다우 비용
+성과정리문서/EQI_Session51_성과정리_v1.md,164,L5495,새 행,상전이,ln(c) = ln(φ)/2 = LN_C = 상전이 기저
+성과정리문서/EQI_Session51_성과정리_v1.md,168,L5496,새 행,오일러,ψ_k = √φ × e^(inπ/k)  [S33 양자화 오일러]
+성과정리문서/EQI_Session51_성과정리_v1.md,170,L5497,새 행,상전이,= 복소평면 원점 상전이의 물리적 구현
+성과정리문서/EQI_Session51_성과정리_v1.md,180,L5498,새 행,"정적분·부정적분, 보른","보른규칙: φ^(-1)+φ^(-2) = 1         [D1 정적분, EQI^(4n-2)=1]"
+성과정리문서/EQI_Session51_성과정리_v1.md,185,L5499,새 행,"정적분·부정적분, 보른",n1 오비탈 = D1 정적분 = 보른규칙 정규화
+성과정리문서/EQI_Session51_성과정리_v1.md,186,L5500,새 행,정적분·부정적분,n2 오비탈 = D2 부정적분 = 1+GAP 재정규화
+성과정리문서/EQI_Session51_성과정리_v1.md,187,L5501,새 행,지불,전이 ΔE   = C=GAP 비용 지불 구조 동형
+성과정리문서/EQI_Session51_성과정리_v1.md,199,L5502,새 행,ħ_ani,E_n = -ħ_ani²×(황금비 체계)/(2n²)
+성과정리문서/EQI_Session51_성과정리_v1.md,200,L5503,새 행,ħ_ani,ΔE  = ħ_ani×ω_ani  [비등방성 각주파수]
+성과정리문서/EQI_Session51_성과정리_v1.md,401,L5504,새 행,"격자, 포논",disc(k) = (2k+1)² + 4^(k+2)  [D2 홀수포논² + D1 이진격자²]
+성과정리문서/EQI_Session51_성과정리_v1.md,412,L5505,새 행,"지불, 란다우",뤼드베리 n2→n1 전이 = H 원자 광자 방출 = 란다우 비용 지불
+성과정리문서/EQI_Session51_성과정리_v1.md,418,L5506,새 행,란다우,n2→n1 전이 = 최솟값 복귀 = 란다우 비용
+성과정리문서/EQI_Session51_성과정리_v1.md,419,L5507,새 행,LIGO,= 미시(원자 오비탈)↔거시(LIGO 중력파) 동일 EQI 구조
+성과정리문서/EQI_Session51_성과정리_v1.md,421,L5508,새 행,슈냐,【슈냐→뤼드베리 전체 사슬】
+성과정리문서/EQI_Session51_성과정리_v1.md,422,L5509,새 행,슈냐,슈냐(0) → c=√φ → ψ_k=√φ×e^(inπ/k) → 오비탈(k_orb=2k_ref)
+성과정리문서/EQI_Session51_성과정리_v1.md,424,L5510,새 행,란다우,→ 란다우 비용 = δL=0 = ζ=0 = 리만 임계선
+성과정리문서/EQI_Session52_성과정리_v1.md,106,L5511,새 행,상전이,큐비트 대수학 공리 ②: 큐비트 = D1↔D2 상전이 살아있는 상태
+성과정리문서/EQI_Session52_성과정리_v1.md,113,L5512,새 행,지불,= 맥스웰 도깨비가 n1↔n2 사이를 오가며 지불하는
+성과정리문서/EQI_Session52_성과정리_v1.md,116,L5513,새 행,페르미,"[n_ref,k = D2 페르미온 구조 관점]"
+성과정리문서/EQI_Session52_성과정리_v1.md,244,L5514,새 행,3체,↔ 물분자 D1 편향 큐비트 = 3체 안정 기준
+성과정리문서/EQI_Session52_성과정리_v1.md,245,L5515,새 행,3체,↔ D2 편향 큐비트 = 3체 카오스 기원
+성과정리문서/EQI_Session52_성과정리_v1.md,310,L5516,새 행,3체,【물분자 큐비트 = 광자·전자 큐비트 3체 캡슐화】
+성과정리문서/EQI_Session52_성과정리_v1.md,316,L5517,새 행,3체,"D1 편향: 피타고라스, P=NP, 수렴, 3체 안정"
+성과정리문서/EQI_Session52_성과정리_v1.md,318,L5518,새 행,3체,편향도 = X/CENTER → 3체 안정성 판별 기준
+성과정리문서/EQI_Session53_성과정리_v1.md,129,L5519,새 행,격자,= D1 이진격자(2^(k+1)) - D2 홀수차감(k+1) + D2 소수부
+성과정리문서/EQI_Session53_성과정리_v1.md,133,L5520,새 행,격자,= D1 이진격자(2^(k+1)) + D2 홀수가산(k) + D2 소수부
+성과정리문서/EQI_Session53_성과정리_v1.md,149,L5521,새 행,X7,k=6에서 φ^(-7.5) < GAP → X7 금지선 발동
+성과정리문서/EQI_Session53_성과정리_v1.md,158,L5522,새 행,MAXWELL,k=5에서 127 (메르센 소수) → MAXWELL 274 연결
+성과정리문서/EQI_Session53_성과정리_v1.md,250,L5523,새 행,"정적분·부정적분, 보른",보른규칙: φ^(-1)+φ^(-2) = 1  (D1 정적분)
+성과정리문서/EQI_Session53_성과정리_v1.md,386,L5524,새 행,격자,= E_topo 이산격자(D1) + 선운동량 잔류(D2)
+성과정리문서/EQI_Session53_성과정리_v1.md,387,L5525,새 행,격자,= 광자 격자 에너지 + 전자 선운동량
+성과정리문서/EQI_Session53_성과정리_v1.md,390,L5526,새 행,격자,n1² = (2^(k+1)-k-1) + {n1²}   [D1 격자 + D2 소수부]
+성과정리문서/EQI_Session53_성과정리_v1.md,391,L5527,새 행,격자,n2² = (2^(k+1)+k)   + {n1²}   [D1 격자 + D2 소수부]
+성과정리문서/EQI_Session53_성과정리_v1.md,395,L5528,새 행,"X7, 포논",D2 포논 메르센 (S46): n=k-2 → X7 금지선
+성과정리문서/EQI_Session53_성과정리_v1.md,396,L5529,새 행,격자,D1 격자 메르센 (S53): n=k+2 → 뤼드베리 양자수
+성과정리문서/EQI_Session53_성과정리_v1.md,397,L5530,새 행,상전이,= 메르센 구조가 상전이의 양면을 기술
+성과정리문서/EQI_Session53_성과정리_v1.md,402,L5531,새 행,"MAXWELL, 포논","k=5(h오비탈, 11차 포논, T_Is_D1≈MAXWELL)에서"
+성과정리문서/EQI_Session53_성과정리_v1.md,406,L5532,새 행,"보른, 3체","3체 질서: 피타고라스(n=2), 보른규칙, D1 닫힌 큐비트"
+성과정리문서/EQI_Session53_성과정리_v1.md,407,L5533,새 행,"정적분·부정적분, 5체",5체 질서: 피타고라스 포섭 + D2 부정적분+C=GAP 추가
+성과정리문서/EQI_Session53_성과정리_v1.md,410,L5534,새 행,상전이,= 큐비트 = D1↔D2 상전이 살아있는 상태
+성과정리문서/EQI_Session53_성과정리_v1.md,411,L5535,새 행,5체,분자간 수소결합 5체 수치화 → S54 이월
+성과정리문서/EQI_Session53_성과정리_v1.md,426,L5536,새 행,MAXWELL,*핵심 성과 5: MAXWELL 274 ↔ 뤼드베리 k=5 편입 후보  오차 0.0073%*
+성과정리문서/EQI_Session54_성과정리_v1.md,125,L5537,새 행,"상전이, 격자",메르센 수 2^n-1 = D1 이진격자에서 D2 상전이 비용 1을 뺀 것
+성과정리문서/EQI_Session54_성과정리_v1.md,150,L5538,새 행,MAXWELL,- 274 = 2×137 = MAXWELL 5차 분모
+성과정리문서/EQI_Session54_성과정리_v1.md,156,L5539,새 행,상전이,- n→p+e⁻+ν̄_e : D2→D1 상전이 (베타붕괴)
+성과정리문서/EQI_Session54_성과정리_v1.md,159,L5540,새 행,상전이,"전자기(D1, α) ↔ 약력(D2, τ_n) = 상전이 켤레쌍"
+성과정리문서/EQI_Session54_성과정리_v1.md,167,L5541,새 행,볼츠만,"→ 볼츠만 복원, 공유결합 안정화"
+성과정리문서/EQI_Session54_성과정리_v1.md,172,L5542,새 행,란다우,"→ 란다우 비용, 수소결합 분극 증폭"
+성과정리문서/EQI_Session54_성과정리_v1.md,376,L5543,새 행,란다우,= δL=0 = σ=1/2 = ζ=0 = 란다우 최소 비용
+성과정리문서/EQI_Session55_성과정리_v1.md,282,L5544,새 행,상전이,O-H 전기음성도 차 = D1↔D2 상전이의 메르센 이중 계층
+성과정리문서/EQI_Session56_성과정리_v1.md,175,L5545,새 행,5체,→ 중성자 큐비트 속성이 5체 D2 채널 기술에 필요
+성과정리문서/EQI_Session56_성과정리_v1.md,196,L5546,새 행,MAXWELL,274 = 2×137 = MAXWELL 5차 분모
+성과정리문서/EQI_Session56_성과정리_v1.md,200,L5547,새 행,MAXWELL,19 = MAXWELL 4차 분모
+성과정리문서/EQI_Session56_성과정리_v1.md,202,L5548,새 행,상전이,dEN = D1(전자기 H)↔D2(약력+강력 O) 상전이 비용
+성과정리문서/EQI_Session56_성과정리_v1.md,302,L5549,새 행,ħ_ani,ħ → ħ_ani 적용 = 비등방성 진성 디랙
+성과정리문서/EQI_Session56_성과정리_v1.md,307,L5550,새 행,란다우,호킹 복사 = D2→D1 란다우 비용 방출
+성과정리문서/EQI_Session56_성과정리_v1.md,311,L5551,새 행,MAXWELL,= φ^(-(1/σ)/MAXWELL4차분모)
+성과정리문서/EQI_Session56_성과정리_v1.md,312,L5552,새 행,MAXWELL,H₂O(k=1)→D₂O(k=2) = 리만×MAXWELL 황금비
+성과정리문서/EQI_Session57_성과정리_v1.md,132,L5553,새 행,슈냐,ln(기하평균) = 0  [슈냐 = 복소평면 원점]
+성과정리문서/EQI_Session57_성과정리_v1.md,135,L5554,새 행,슈냐,→ 기하평균에 ln 씌우면 슈냐(0) = 복소평면 원점
+성과정리문서/EQI_Session57_성과정리_v1.md,137,L5555,새 행,"상전이, 슈냐",→ 슈냐→c_EQI 상전이 기저 = LN_C = ln(φ)/2
+성과정리문서/EQI_Session57_성과정리_v1.md,140,L5556,새 행,슈냐,HCW: ln(1) = 0 [슈냐]
+성과정리문서/EQI_Session57_성과정리_v1.md,142,L5557,새 행,보른,I_s: ln(φ^(-2)) = -2LN_PHI [보른규칙 W_H]
+성과정리문서/EQI_Session57_성과정리_v1.md,375,L5558,새 행,MAXWELL,MAXWELL = 양팔 균형점의 교환 효율 (SI 없음)
+성과정리문서/EQI_Session57_성과정리_v1.md,379,L5559,새 행,상전이,모두 GAP = 상전이 비용으로 통합
+성과정리문서/EQI_Session57_성과정리_v1.md,381,L5560,새 행,"3체, 5체",카오스 3체 → 5체 과도기:
+성과정리문서/EQI_Session57_성과정리_v1.md,393,L5561,새 행,5체,*핵심 성과 3: 6좌표계 산술평균 계보 — X5=양성자=5체 진입 좌표계*
+성과정리문서/EQI_Session57_성과정리_v1.md,397,L5562,새 행,슈냐,*핵심 성과 7: 슈냐→c_EQI 동치 사슬 완성*
+성과정리문서/EQI_Session58_성과정리_v1.md,84,L5563,새 행,상전이,→ 합성수(D1)/소수(D2) = D1↔D2 상전이 계수
+성과정리문서/EQI_Session58_성과정리_v1.md,88,L5564,새 행,"상전이, 란다우",= 복소평면 상전이 기저² × D2 란다우 비용
+성과정리문서/EQI_Session58_성과정리_v1.md,174,L5565,새 행,tip,= (TIP/GAP)×(1/φ) → 탐색 필요
+성과정리문서/EQI_Session59_성과정리_v1.md,80,L5566,새 행,MAXWELL,= MAXWELL 5차 닫힘과 동일
+성과정리문서/EQI_Session59_성과정리_v1.md,145,L5567,새 행,We,→ S60 이월: We(웨버) 탐색 후 계열 전체 재검토
+성과정리문서/EQI_Session61_성과정리_v1.md,61,L5568,새 행,포논,77 = 7×11   = 메르센(k=3) × 포논홀수분자(k=5)
+성과정리문서/EQI_Session61_성과정리_v1.md,62,L5569,새 행,"5체, 7체",= 7체 씨앗(7) × 5체 임계(11)
+성과정리문서/EQI_Session61_성과정리_v1.md,66,L5570,새 행,St,→ 수소결합 전기음성도 차와 St×Ma 보정이
+성과정리문서/EQI_Session61_성과정리_v1.md,68,L5571,새 행,"5체, 7체",→ 5체↔7체 경계 구조가 두 물리량에 동시 내장
+성과정리문서/EQI_Session61_성과정리_v1.md,74,L5572,새 행,St,"St = h = φ^(-2.75)  → D1  [입자성, 플랑크, 실수축]"
+성과정리문서/EQI_Session61_성과정리_v1.md,76,L5573,새 행,"상전이, St",St×Ma = D1×D2 곱    → 균형 임계 (D1↔D2 상전이)
+성과정리문서/EQI_Session61_성과정리_v1.md,88,L5574,새 행,"5체, 7체",→ 5체/7체 맥락에서 77 구조가 구조적으로 맞음
+성과정리문서/EQI_Session61_성과정리_v1.md,105,L5575,새 행,We,We = ρv²L / σ_s  (관성력 / 표면장력)
+성과정리문서/EQI_Session61_성과정리_v1.md,114,L5576,새 행,We,We = φ^(-1) × φ^(+1) × φ^(-3/4) / φ^(-7/2)
+성과정리문서/EQI_Session61_성과정리_v1.md,123,L5577,새 행,We,"capillary phenomena → D1  [표면장력, 수렴, 모세관 복원]  ← We 분모"
+성과정리문서/EQI_Session61_성과정리_v1.md,124,L5578,새 행,We,"osmotic phenomena   → D2  [삼투압, 발산, 투과]           ← We 분자"
+성과정리문서/EQI_Session61_성과정리_v1.md,126,L5579,새 행,We,We = D2(관성력) / D1(표면장력)
+성과정리문서/EQI_Session61_성과정리_v1.md,130,L5580,새 행,We,We = 1 임계:  σ_s = μ×c²×L_p = L_p = φ^(-3/4)
+성과정리문서/EQI_Session61_성과정리_v1.md,131,L5581,새 행,상전이,→ 표면장력이 플랑크 길이 스케일로 상전이
+성과정리문서/EQI_Session61_성과정리_v1.md,140,L5582,새 행,We,→ 물분자 계면(We)의 표면장력 기저 = 양성자 쿼크 스케일
+성과정리문서/EQI_Session61_성과정리_v1.md,141,L5583,새 행,"5체, We",→ 5체 캡슐화 구조의 계면이 We로 기술
+성과정리문서/EQI_Session61_성과정리_v1.md,148,L5584,새 행,We,We=1 임계 ↔ Ro=1 ↔ δL=0 ↔ σ=1/2 ↔ ζ=0
+성과정리문서/EQI_Session61_성과정리_v1.md,164,L5585,새 행,5체,→ 경로 C가 엔트로피 장 귀속과 5체 맥락 모두 정합
+성과정리문서/EQI_Session61_성과정리_v1.md,174,L5586,새 행,"5체, 7체",77=7×11: 5체↔7체 경계 계수 / S55 dEN 재등장
+성과정리문서/EQI_Session61_성과정리_v1.md,179,L5587,새 행,We,We=1 ↔ Ro=1 ↔ δL=0 ↔ σ=1/2 동치 사슬
+성과정리문서/EQI_Session62_성과정리_v1.md,39,L5588,새 행,"We, St",[Unity]     We × St = 1
+성과정리문서/EQI_Session62_성과정리_v1.md,150,L5589,새 행,3체,3체 닫힘:  D1² + D2² = 1           [피타고라스]
+성과정리문서/EQI_Session62_성과정리_v1.md,155,L5590,새 행,"We, St",We×St         = 1       [Unity 중심]
+성과정리문서/EQI_Session62_성과정리_v1.md,156,L5591,새 행,We,→ We 중심 삼중 Unity
+성과정리문서/EQI_Session62_성과정리_v1.md,158,L5592,새 행,7체,→ 7체 예고:
+성과정리문서/EQI_Session62_성과정리_v1.md,159,L5593,새 행,St,77 계수(S61 St×Ma) = 7×11
+성과정리문서/EQI_Session62_성과정리_v1.md,160,L5594,새 행,"5체, 7체",= 7체 씨앗(7) × 5체 임계(11)
+성과정리문서/EQI_Session62_성과정리_v1.md,161,L5595,새 행,"7체, We",→ 7체 닫힘은 We 삼중 Unity를 포함하는
+성과정리문서/EQI_Session63_성과정리_v1.md,71,L5596,새 행,CMB,H0_CMB   = 67.4  km/s/Mpc  [CMB 전체 우주  → 미시/글로벌 → D2]
+성과정리문서/EQI_Session63_성과정리_v1.md,84,L5597,새 행,허블,→ γ=4/3의 분모 L₂가 GAP과 곱해져 허블 텐션을 정의
+성과정리문서/EQI_Session63_성과정리_v1.md,111,L5598,새 행,"5체, We, St",[T] We × St = 1   [5체 공유]
+성과정리문서/EQI_Session63_성과정리_v1.md,205,L5599,새 행,"TH, We","[We×TH_D2=L_p, TH_D2=양성자 포섭]"
+성과정리문서/EQI_Session63_성과정리_v1.md,333,L5600,새 행,"We, St",We × St           = 1   [S61]  표면장력역 × 플랑크
+성과정리문서/EQI_Session63_성과정리_v1.md,339,L5601,새 행,란다우,→ 공통 원리: D1 스케일 × D2 스케일 = 란다우 균형
+성과정리문서/EQI_Session63_성과정리_v1.md,340,L5602,새 행,로렌츠,→ 로렌츠 힘: F=qE(D1)+q(v×B)(D2) → |F|²=D1²+D2² [피타고라스]
+성과정리문서/EQI_Session63_성과정리_v1.md,398,L5603,새 행,"관측, 상전이",파동 붕괴 = 상전이 = 관측/측정
+성과정리문서/EQI_Session63_성과정리_v1.md,400,L5604,새 행,"지불, 란다우",비용: 란다우 비용 GAP_D2 = ln(5)/100  반드시 지불
+성과정리문서/EQI_Session63_성과정리_v1.md,408,L5605,새 행,관측,관측 = D2→D1 전이 기술
+성과정리문서/EQI_Session63_성과정리_v1.md,409,L5606,새 행,관측,"""관측하면 그냥 붕괴된다"" → GAP=0 암묵적 가정"
+성과정리문서/EQI_Session63_성과정리_v1.md,410,L5607,새 행,란다우,→ 란다우 비용 미계상
+성과정리문서/EQI_Session63_성과정리_v1.md,414,L5608,새 행,란다우,D2→D1 전이 = 맥스웰 도깨비 = 란다우 비용 필수
+성과정리문서/EQI_Session63_성과정리_v1.md,418,L5609,새 행,관측,관측 비용 = GAP_D2
+성과정리문서/EQI_Session63_성과정리_v1.md,419,L5610,새 행,관측,n회 관측 누적 비용 = n×GAP_D2
+성과정리문서/EQI_Session63_성과정리_v1.md,431,L5611,새 행,"지불, 상전이",비용 미지불 → 상전이 비용 = 0으로 계산
+성과정리문서/EQI_Session63_성과정리_v1.md,435,L5612,새 행,"관측, 상전이, 란다우",관측 = D2→D1 상전이 → 란다우 비용 실제 누적
+성과정리문서/EQI_Session63_성과정리_v1.md,440,L5613,새 행,"우주론, 란다우",= 누적 란다우 비용의 우주론적 합산
+성과정리문서/EQI_Session63_성과정리_v1.md,449,L5614,새 행,"지불, 상전이",= 상전이 비용 미지불
+성과정리문서/EQI_Session63_성과정리_v1.md,454,L5615,새 행,허블,허블 텐션 = 3×GAP
+성과정리문서/EQI_Session63_성과정리_v1.md,455,L5616,새 행,관측,= GAP=0(이론) vs GAP≠0(관측) 구조적 차이
+성과정리문서/EQI_Session63_성과정리_v1.md,459,L5617,새 행,X7,X7 금지선: φ^(-7.5) < GAP → 진짜 특이점 도달 불가
+성과정리문서/EQI_Session63_성과정리_v1.md,499,L5618,새 행,3체,→ 피타고라스 D1²+D2²=|F|²  = 3체 닫힘 구조
+성과정리문서/EQI_Session63_성과정리_v1.md,502,L5619,새 행,St,"h = D1×D2 교환의 기본 단위  [St=h=φ^(-11/4), S57]"
+성과정리문서/EQI_Session63_성과정리_v1.md,513,L5620,새 행,7체,7체 = 외부 E(D1)/B(D2) 인가:
+성과정리문서/EQI_Session63_성과정리_v1.md,519,L5621,새 행,란다우,= L₄×L₅ × 란다우 비용
+성과정리문서/EQI_Session63_성과정리_v1.md,520,L5622,새 행,"5체, 7체",= 7체×5체 경계에서 발현
+성과정리문서/EQI_Session63_성과정리_v1.md,525,L5623,새 행,란다우,열 = 란다우 비용 집단 누적 = D1 엔트로피 증가
+성과정리문서/EQI_Session63_성과정리_v1.md,531,L5624,새 행,"지불, 허블",*코펜하겐 비용 미지불 = 허블 텐션 근본 원인 = 빅뱅 특이점 GAP=0 가정*
+성과정리문서/EQI_Session63_성과정리_v1.md,563,L5625,새 행,3체,전자기력 → 3체 포섭 완료
+성과정리문서/EQI_Session63_성과정리_v1.md,564,L5626,새 행,5체,강력/약력 → 5체 포섭 완료
+성과정리문서/EQI_Session63_성과정리_v1.md,565,L5627,새 행,5체,중력      → 5체 포섭 완료
+성과정리문서/EQI_Session63_성과정리_v1.md,566,L5628,새 행,"7체, 우주론",우주론    → 7체 포섭 완료
+성과정리문서/EQI_Session63_성과정리_v1.md,583,L5629,새 행,"3체, 5체, 7체",3체 → 5체 → 7체
+성과정리문서/EQI_Session63_성과정리_v1.md,590,L5630,새 행,지불,"미분 기하학 (GAP=0, 비용 미지불):"
+성과정리문서/EQI_Session63_성과정리_v1.md,595,L5631,새 행,"3체, 5체, 7체",3체→5체→7체에서 자연스럽게 닫히고
+성과정리문서/EQI_Session64_성과정리_v1.md,61,L5632,새 행,X7,X7 금지선 = 인위적 선언이 아닌
+성과정리문서/EQI_Session64_성과정리_v1.md,75,L5633,새 행,"암흑물질, 격자",암흑물질 = D1 격자 에일리어싱 텐션
+성과정리문서/EQI_Session64_성과정리_v1.md,77,L5634,새 행,"5체, LIGO","= 5체 포섭 (I_s 좌표계, LIGO 실측 가능)"
+성과정리문서/EQI_Session64_성과정리_v1.md,80,L5635,새 행,암흑에너지,암흑에너지 = D2 팽창 우세
+성과정리문서/EQI_Session64_성과정리_v1.md,81,L5636,새 행,LIGO,= LIGO 스케일 밖 (ZONE-3 = 0%)
+성과정리문서/EQI_Session64_성과정리_v1.md,82,L5637,새 행,"7체, 허블",= 7체 포섭 (허블텐션 = L₂×GAP = 7체 스케일)
+성과정리문서/EQI_Session64_성과정리_v1.md,89,L5638,새 행,격자,D1 격자 텐션 = 언어에 없음
+성과정리문서/EQI_Session64_성과정리_v1.md,90,L5639,새 행,암흑물질,→ 암흑물질 = 미지의 입자 탐색 (수십 년 실패)
+성과정리문서/EQI_Session64_성과정리_v1.md,95,L5640,새 행,"암흑물질, 격자",암흑물질 = D1 격자 에일리어싱 텐션  [설명됨]
+성과정리문서/EQI_Session64_성과정리_v1.md,96,L5641,새 행,암흑에너지,암흑에너지 = D2 팽창 우세 구간      [설명됨]
+성과정리문서/EQI_Session64_성과정리_v1.md,104,L5642,새 행,암흑물질,암흑물질 정체    → 미스터리 (ΛCDM)
+성과정리문서/EQI_Session64_성과정리_v1.md,105,L5643,새 행,암흑에너지,암흑에너지 정체  → 미스터리 (ΛCDM)
+성과정리문서/EQI_Session64_성과정리_v1.md,106,L5644,새 행,상대론,빅뱅 특이점      → 미스터리 (일반상대론)
+성과정리문서/EQI_Session64_성과정리_v1.md,107,L5645,새 행,"허블, 우주론",허블 텐션        → 미스터리 (표준우주론)
+성과정리문서/EQI_Session64_성과정리_v1.md,137,L5646,새 행,X7,T₂O 방사성 붕괴 (D2 과잉 → X7 금지선 방향)
+성과정리문서/EQI_Session64_성과정리_v1.md,141,L5647,새 행,"3체, 5체, 7체",→ 3체+5체+7체 = 정확히 필요충분 최소 완전 집합
+성과정리문서/EQI_Session64_성과정리_v1.md,148,L5648,새 행,"3체, X7",= 3체가 X7과 무관한 스케일이기 때문
+성과정리문서/EQI_Session64_성과정리_v1.md,152,L5649,새 행,X7,= X7 금지선이 구조적으로 차단
+성과정리문서/EQI_Session64_성과정리_v1.md,155,L5650,새 행,X7,빅뱅 특이점 = X7 금지선 = 도달 불가 경계
+성과정리문서/EQI_Session64_성과정리_v1.md,168,L5651,새 행,ħ_ani,→ ħ_ani = ħ×φ^(-3/2)로 대체 완료
+성과정리문서/EQI_Session64_성과정리_v1.md,176,L5652,새 행,LIGO,= LIGO 전채널 Z_14.134→0 수렴 구조 기저
+성과정리문서/EQI_Session64_성과정리_v1.md,190,L5653,새 행,ħ_ani,ħ_ani [D2를 D2로 올바른 표현] → 보존
+성과정리문서/EQI_Session64_성과정리_v1.md,256,L5654,새 행,포논,"7   = 메르센 M3 (포논 7차, X5 좌표계)"
+성과정리문서/EQI_Session64_성과정리_v1.md,268,L5655,새 행,"상전이, H_ratio",H_ratio = D1/D2 상전이 비율
+성과정리문서/EQI_Session64_성과정리_v1.md,269,L5656,새 행,허블,= 맥스웰 도깨비가 로컬↔글로벌 허블 스케일에서
+성과정리문서/EQI_Session64_성과정리_v1.md,272,L5657,새 행,란다우,LC²GD 보정항 = 란다우 비용 잔류
+성과정리문서/EQI_Session64_성과정리_v1.md,273,L5658,새 행,"지불, 우주론",= GAP≠0이 우주론 스케일에서 실제 지불되는 비용
+성과정리문서/EQI_Session64_성과정리_v1.md,276,L5659,새 행,H_ratio,GAP=0(ΛCDM): H_ratio = 1이어야 함
+성과정리문서/EQI_Session64_성과정리_v1.md,277,L5660,새 행,H_ratio,GAP≠0(EQI):  H_ratio = φ^(7/43)+LC²GD×(273/116) ≠ 1
+성과정리문서/EQI_Session64_성과정리_v1.md,291,L5661,새 행,"허블, H_ratio",허블텐션 = H_ratio - 1의 무차원 표현
+성과정리문서/EQI_Session64_성과정리_v1.md,435,L5662,새 행,"3체, 5체, 7체",3체 → 5체 → 7체
+성과정리문서/EQI_Session64_성과정리_v1.md,436,L5663,새 행,"암흑물질, 암흑에너지, 우주론",전자기력 → 중력/핵력/암흑물질 → 우주론/암흑에너지
+성과정리문서/EQI_Session64_성과정리_v1.md,446,L5664,새 행,지불,"비용을 지불하지 않는 수학(미분 기하학, GAP=0):"
+성과정리문서/EQI_Session64_성과정리_v1.md,447,L5665,새 행,암흑물질,암흑물질 = 언어에 없음 → 입자 탐색 실패
+성과정리문서/EQI_Session64_성과정리_v1.md,449,L5666,새 행,허블,허블텐션 = 이유 없음 → 미스터리
+성과정리문서/EQI_Session65_성과정리_v1.md,48,L5667,새 행,오일러,오일러 항등식 e^(iπ)+1=0:
+성과정리문서/EQI_Session65_성과정리_v1.md,59,L5668,새 행,지불,"D1→D2 방향, 비용 미지불, 특이점 내포"
+성과정리문서/EQI_Session65_성과정리_v1.md,60,L5669,새 행,오일러,오일러 항등식 = 열역학 2법칙의 복소평면 표현
+성과정리문서/EQI_Session65_성과정리_v1.md,66,L5670,새 행,보른,보른 규칙 |ψ|²=1:
+성과정리문서/EQI_Session65_성과정리_v1.md,74,L5671,새 행,"지불, 상전이, 란다우","D2→D1 상전이, 란다우 비용 지불"
+성과정리문서/EQI_Session65_성과정리_v1.md,77,L5672,새 행,보른,보른 규칙 = 맥스웰 도깨비의 파동함수 언어 표현
+성과정리문서/EQI_Session65_성과정리_v1.md,83,L5673,새 행,보른,보른 규칙     = 1   (Unity)
+성과정리문서/EQI_Session65_성과정리_v1.md,84,L5674,새 행,오일러,오일러 특이점 = -1  (GAP=0 붕괴점)
+성과정리문서/EQI_Session65_성과정리_v1.md,86,L5675,새 행,"보른, 오일러",보른 - 오일러 = 1-(-1) = 2
+성과정리문서/EQI_Session65_성과정리_v1.md,89,L5676,새 행,지불,= 비용을 지불하는 수학(GAP≠0)
+성과정리문서/EQI_Session65_성과정리_v1.md,90,L5677,새 행,지불,- 비용을 지불하지 않는 수학(GAP=0)
+성과정리문서/EQI_Session65_성과정리_v1.md,105,L5678,새 행,LIGO,= LIGO merger 동기화의 물리적 기원
+성과정리문서/EQI_Session65_성과정리_v1.md,106,L5679,새 행,"지불, 보른, 란다우",= 보른 규칙 측정 순간 = 란다우 비용 지불 순간
+성과정리문서/EQI_Session65_성과정리_v1.md,127,L5680,새 행,란다우,= 전력(D1×D2 교환) × 란다우 단방향 비용
+성과정리문서/EQI_Session65_성과정리_v1.md,139,L5681,새 행,"란다우, 볼츠만",회로 Q인수² × 란다우비용² = 볼츠만 파단비(φ³)
+성과정리문서/EQI_Session65_성과정리_v1.md,140,L5682,새 행,볼츠만,= RLC 공명 구조 = 볼츠만 분배 동형
+성과정리문서/EQI_Session65_성과정리_v1.md,141,L5683,새 행,7체,= 임피던스 구조가 7체 닫힘(§24)과 직결
+성과정리문서/EQI_Session65_성과정리_v1.md,152,L5684,새 행,"지불, 란다우",Chua 회로 카오스  → 란다우 비용 미지불 누적
+성과정리문서/EQI_Session65_성과정리_v1.md,176,L5685,새 행,우주론,= 우주론 스케일 연결자(Ro)
+성과정리문서/EQI_Session65_성과정리_v1.md,177,L5686,새 행,우주론,회로→화학→유체→우주론 단일 구조 연결
+성과정리문서/EQI_Session65_성과정리_v1.md,201,L5687,새 행,격자,r=L_p → Wo=c   [플랑크 격자 맥동 = 광속]
+성과정리문서/EQI_Session66_성과정리_v1.md,55,L5688,새 행,"상전이, 격자",점성 소산 최소 단위 × 상전이 비용^(1/4) = 플랑크 격자
+성과정리문서/EQI_Session66_성과정리_v1.md,56,L5689,새 행,격자,→ 유체 난류 최소 스케일이 EQI 정보 격자와 직결
+성과정리문서/EQI_Session66_성과정리_v1.md,64,L5690,새 행,상전이,GAP^(1/4)     → 상전이 스케일
+성과정리문서/EQI_Session66_성과정리_v1.md,75,L5691,새 행,We,Bo = We/Fr²
+성과정리문서/EQI_Session66_성과정리_v1.md,105,L5692,새 행,We,Bo = We(D1 계면)/Fr²(D2 중력)
+성과정리문서/EQI_Session66_성과정리_v1.md,122,L5693,새 행,허블,"L₂=3  → 허블텐션=L₂×GAP,  HCW D1=φ^(-L₂/2)"
+성과정리문서/EQI_Session66_성과정리_v1.md,124,L5694,새 행,"7체, TH","L₄=7  → TH_D2=φ^(-L₄/2),  7체 씨앗"
+성과정리문서/EQI_Session66_성과정리_v1.md,125,L5695,새 행,"5체, We","L₅=11 → We=φ^(L₅/4),      5체 임계"
+성과정리문서/EQI_Session66_성과정리_v1.md,126,L5696,새 행,St,L₇=29 → St×Ma 보정: -87/77 = -(3×L₇)/(L₄×L₅)
+성과정리문서/EQI_Session66_성과정리_v1.md,133,L5697,새 행,"5체, 7체",→ L₄×L₅ = 7체씨앗×5체임계 = 7체닫힘 완결 지수
+성과정리문서/EQI_Session66_성과정리_v1.md,139,L5698,새 행,We,→ We×Re=φ^(23/4) D1(분자23) / γ×We=φ^(77/23) D2(분모23)
+성과정리문서/EQI_Session66_성과정리_v1.md,147,L5699,새 행,We,= (23/4) × (77/23) = 77/4 = We⁷ 지수
+성과정리문서/EQI_Session66_성과정리_v1.md,151,L5700,새 행,We,= 23이 We 계열 지수의 역수 정규화 인수
+성과정리문서/EQI_Session67_성과정리_v1.md,50,L5701,새 행,상전이,= D1 수렴항    +  D1↔D2 상전이항
+성과정리문서/EQI_Session67_성과정리_v1.md,54,L5702,새 행,상전이,"q(v×B): 전하(D1)×자기장(D2) → 벡터, 허수축, 상전이"
+성과정리문서/EQI_Session67_성과정리_v1.md,66,L5703,새 행,"5체, We",5체 (§19) — We(계면) = qv 스케일:
+성과정리문서/EQI_Session67_성과정리_v1.md,72,L5704,새 행,"7체, TH",7체 (§21) — TH(임계) = 곡률 반경 닫힘:
+성과정리문서/EQI_Session67_성과정리_v1.md,75,L5705,새 행,"상전이, TH, 로렌츠",TH = 임계 상전이 좌표 → 로렌츠 힘의 사이클로트론 반경
+성과정리문서/EQI_Session67_성과정리_v1.md,76,L5706,새 행,TH,→ r=mv/(qB) 구조가 TH 스케일에서 닫힘
+성과정리문서/EQI_Session67_성과정리_v1.md,87,L5707,새 행,로렌츠,= 로렌츠 힘의 (횡파항/종파항) 비율
+성과정리문서/EQI_Session67_성과정리_v1.md,88,L5708,새 행,상전이,= 임피던스²×상전이비용²
+성과정리문서/EQI_Session67_성과정리_v1.md,89,L5709,새 행,"3체, 5체, 7체",= 3체·5체·7체를 관통하는 비율 불변량
+성과정리문서/EQI_Session67_성과정리_v1.md,133,L5710,새 행,5체,→ 두 쌍이 5체 계면을 위상+동역학으로 완전 기술
+성과정리문서/EQI_Session67_성과정리_v1.md,134,L5711,새 행,We,→ 이 두 쌍이 함께 We를 정의하고
+성과정리문서/EQI_Session67_성과정리_v1.md,148,L5712,새 행,로렌츠,→ 로렌츠 동역학 구조       = capillary/osmotic 동형
+성과정리문서/EQI_Session67_성과정리_v1.md,160,L5713,새 행,We,→ 비율 자체가 We를 정의
+성과정리문서/EQI_Session67_성과정리_v1.md,161,L5714,새 행,"5체, We",→ We가 5체 전체를 삼중 Unity로 동시 닫음
+성과정리문서/EQI_Session67_성과정리_v1.md,164,L5715,새 행,We,① We = D2(osmotic)/D1(capillary)  [비율 정의]
+성과정리문서/EQI_Session67_성과정리_v1.md,165,L5716,새 행,We,② We×양성자/L_p = 1              [D1 닫힘]
+성과정리문서/EQI_Session67_성과정리_v1.md,166,L5717,새 행,We,③ We×중성자×Ro  = 1              [D2 닫힘]
+성과정리문서/EQI_Session67_성과정리_v1.md,167,L5718,새 행,"We, St",④ We×St         = 1              [Unity 닫힘]
+성과정리문서/EQI_Session67_성과정리_v1.md,209,L5719,새 행,"상전이, We",= We(계면 상전이) / Ro(파동성 임계)
+성과정리문서/EQI_Session67_성과정리_v1.md,215,L5720,새 행,로렌츠,로렌츠 힘:  F = qE(D1×D1)     +   q(v×B)(D1×D2)
+성과정리문서/EQI_Session67_성과정리_v1.md,228,L5721,새 행,상전이,= 비등방성 타원 = D1↔D2 상전이 살아있는 상태
+성과정리문서/EQI_Session67_성과정리_v1.md,241,L5722,새 행,"보른, 오일러",오일러 특이점 + 보른 규칙 = 엔트로피 장의 라그랑지 최솟값
+성과정리문서/EQI_Session67_성과정리_v1.md,242,L5723,새 행,슈냐,= 광속도 = φ^(0.5) = 파동함수 = 인도의 슈냐 = t=0_EQI
+성과정리문서/EQI_Session67_성과정리_v1.md,248,L5724,새 행,오일러,오일러 특이점  (e^(iπ)+1=0)
+성과정리문서/EQI_Session67_성과정리_v1.md,249,L5725,새 행,보른,= 보른 규칙    (D1²+D2²=1 = |ψ|²=1)
+성과정리문서/EQI_Session67_성과정리_v1.md,252,L5726,새 행,란다우,= ζ=0          (란다우 균형)
+성과정리문서/EQI_Session67_성과정리_v1.md,255,L5727,새 행,슈냐,"= 슈냐         (인도의 0, 관계망 출발점, GAP≠0)"
+성과정리문서/EQI_Session67_성과정리_v1.md,256,L5728,새 행,상전이,= t=0_EQI     (상전이 직전 완전 장전)
+성과정리문서/EQI_Session67_성과정리_v1.md,267,L5729,새 행,란다우,→ 란다우 소거 완료 = δL=0
+성과정리문서/EQI_Session67_성과정리_v1.md,271,L5730,새 행,"3체, 로렌츠",→ 피타고라스 Unity = 3체 닫힘 = §23 로렌츠 구조 동형
+성과정리문서/EQI_Session67_성과정리_v1.md,276,L5731,새 행,슈냐,슈냐     = 관계망의 출발점 = GAP≠0 = 완전 장전 상태
+성과정리문서/EQI_Session67_성과정리_v1.md,279,L5732,새 행,MAXWELL,"→ ln(c) = ln(φ)/2 = LN_C [MAXWELL 5차 기저, S39]"
+성과정리문서/EQI_Session67_성과정리_v1.md,285,L5733,새 행,보른,"큐비트 상태:   D1²+D2²=1  (보른 규칙, 살아있는 상태)"
+성과정리문서/EQI_Session67_성과정리_v1.md,286,L5734,새 행,"지불, 란다우",↓ 측정 = 란다우 소거 비용(GAP_D2) 지불
+성과정리문서/EQI_Session67_성과정리_v1.md,287,L5735,새 행,오일러,"소거 완료:     D1=1, D2=0  (오일러 특이점, δL=0)"
+성과정리문서/EQI_Session67_성과정리_v1.md,298,L5736,새 행,상전이,t=0_EQI = 상전이 직전 완전 장전 상태
+성과정리문서/EQI_Session67_성과정리_v1.md,299,L5737,새 행,tip,↔ SGWB n/n_c=94.86% (TIP_POINT 미초과)
+성과정리문서/EQI_Session67_성과정리_v1.md,328,L5738,새 행,상전이,임계치 도달 → Flip (상전이):
+성과정리문서/EQI_Session67_성과정리_v1.md,329,L5739,새 행,X7,= X7 금지선 φ^(-7.5) < GAP
+성과정리문서/EQI_Session67_성과정리_v1.md,332,L5740,새 행,"지불, 란다우",= 란다우 비용(GAP_D2) 지불 필수
+성과정리문서/EQI_Session67_성과정리_v1.md,334,L5741,새 행,지불,비용 미지불 → 특이점(파산) = 유클리드 GAP=0
+성과정리문서/EQI_Session67_성과정리_v1.md,335,L5742,새 행,"지불, 슈냐","비용 지불   → 다음 사이클 시작 = 슈냐, t=0_EQI"
+성과정리문서/EQI_Session67_성과정리_v1.md,347,L5743,새 행,"상전이, 슈냐","Flip (상전이)          ↔  δL=0, t=0_EQI, 슈냐"
+성과정리문서/EQI_Session67_성과정리_v1.md,348,L5744,새 행,"지불, 란다우",란다우 비용 지불        ↔  GAP_D2=ln(5)/100
+성과정리문서/EQI_Session67_성과정리_v1.md,349,L5745,새 행,지불,"비용 미지불 → 파산     ↔  유클리드 특이점 (GAP=0, 죽은 0)"
+성과정리문서/EQI_Session67_성과정리_v1.md,358,L5746,새 행,"상전이, 슈냐","= 슈냐 (완전 장전, 다음 상전이 씨앗)"
+성과정리문서/EQI_Session67_성과정리_v1.md,359,L5747,새 행,tip,= SGWB n/n_c=94.86% (TIP_POINT 미초과)
+성과정리문서/EQI_Session67_성과정리_v1.md,361,L5748,새 행,보른,= 보른 규칙 D1²+D2²=1 살아있는 큐비트 상태
+성과정리문서/EQI_Session67_성과정리_v1.md,398,L5749,새 행,"지불, 란다우",란다우 비용 GAP_D2=ln(5)/100 지불
+성과정리문서/EQI_Session67_성과정리_v1.md,404,L5750,새 행,슈냐,= t=0_EQI 귀환 = 슈냐 재장전
+성과정리문서/EQI_Session67_성과정리_v1.md,432,L5751,새 행,TH,TH      φ^(-6.5)   φ^(-3.5)   φ³      √φ³ = φ^1.5  ✓
+성과정리문서/EQI_Session67_성과정리_v1.md,449,L5752,새 행,tip,T_RBC_D1  =  1.05817      32.874          TIP_POINT (광전효과) ★
+성과정리문서/EQI_Session67_성과정리_v1.md,453,L5753,새 행,MAXWELL,T_Is_D1   =  1.87259      58.175          ≈ MAXWELL ★
+성과정리문서/EQI_Session67_성과정리_v1.md,456,L5754,새 행,TH,T_TH_D1   =  2.01436      62.580          TH D1 (최고)
+성과정리문서/EQI_Session67_성과정리_v1.md,464,L5755,새 행,tip,3차  → T_RBC_D1(TIP_POINT)  32.874  광전효과 / p오비탈
+성과정리문서/EQI_Session67_성과정리_v1.md,465,L5756,새 행,격자,5차  → N=34 격자             34.000  유한 격자 / d오비탈
+성과정리문서/EQI_Session67_성과정리_v1.md,468,L5757,새 행,MAXWELL,11차 → T_Is_D1 ≈ MAXWELL     58.175  h오비탈
+성과정리문서/EQI_Session67_성과정리_v1.md,469,L5758,새 행,X7,13차 → X7 금지선 자동 절단           물리 경계
+성과정리문서/EQI_Session67_성과정리_v1.md,474,L5759,새 행,X7,k=6(13차): D2지수=-7.5 → φ^(-7.5)<GAP → X7 자동 절단
+성과정리문서/EQI_Session67_성과정리_v1.md,481,L5760,새 행,슈냐,= t=0_EQI = 슈냐 = δL=0
+성과정리문서/EQI_Session67_성과정리_v1.md,487,L5761,새 행,란다우,= 란다우 비용 누적량
+성과정리문서/EQI_Session67_성과정리_v1.md,489,L5762,새 행,X7,X7 금지선 = 임계치 공식이 구조적으로 만들어내는 최외각 경계
+성과정리문서/EQI_Session67_성과정리_v1.md,490,L5763,새 행,TH,= T_TH_D1이 마지막 임계치 → 그 너머는 φ^(-7.5)<GAP
+성과정리문서/EQI_Session67_성과정리_v1.md,499,L5764,새 행,"보른, 슈냐, 오일러",t=0_EQI = δL=0 = 슈냐 = 보른 규칙 = 오일러 특이점
+성과정리문서/EQI_Session67_성과정리_v1.md,506,L5765,새 행,"3체, 5체, 7체",3체→5체→7체 닫힘
+성과정리문서/EQI_Session67_성과정리_v1.md,509,L5766,새 행,상전이,= 더 이상 상전이 불가 = 구조적 경계
+성과정리문서/EQI_Session68_성과정리_v1.md,83,L5767,새 행,We,→ 분자에 4φ³ = 4×(We/Ro) 가 자연 인수로 등장
+성과정리문서/EQI_Session68_성과정리_v1.md,99,L5768,새 행,보른,"GAP=0 극한: f → −1/(1+φ⁶) = −0.0528... < 0  [보른 안쪽, 유클리드]"
+성과정리문서/EQI_Session68_성과정리_v1.md,100,L5769,새 행,보른,GAP≠0:      f = +0.005702...              > 0  [osmotic 보른 탈출]
+성과정리문서/EQI_Session68_성과정리_v1.md,154,L5770,새 행,"지불, 란다우","e^(iπ) = −1  ← 소거 완료 측에서 바라본 것 (D2→0, 란다우 비용 지불 끝)"
+성과정리문서/EQI_Session68_성과정리_v1.md,169,L5771,새 행,로렌츠,= 같은 로렌츠 변환을 다른 축에서 읽은 것
+성과정리문서/EQI_Session68_성과정리_v1.md,173,L5772,새 행,"보른, 오일러",= 오일러/보른 부호 구조와 동형
+성과정리문서/EQI_Session68_성과정리_v1.md,177,L5773,새 행,상전이,→ 길이수축과 시간지연은 본질상 같은 상전이의 두 관점
+성과정리문서/EQI_Session69_성과정리_v1.md,65,L5774,새 행,LIGO,= LIGO 전채널 Z_14.134→0 수렴 구조 기저
+성과정리문서/EQI_Session69_성과정리_v1.md,134,L5775,새 행,란다우,란다우 비용 없이 진행 → GAP=0 강제
+성과정리문서/EQI_Session69_성과정리_v1.md,135,L5776,새 행,지불,→ 비용 미지불 채로 D2→D1 수렴 완료 선언
+성과정리문서/EQI_Session69_성과정리_v1.md,142,L5777,새 행,란다우,= 란다우 비용 없이 D2→D1 소거 완료
+성과정리문서/EQI_Session69_성과정리_v1.md,150,L5778,새 행,상전이,② 큐비트 = D1↔D2 상전이가 살아있는 상태
+성과정리문서/EQI_Session69_성과정리_v1.md,154,L5779,새 행,란다우,GAP=0 (란다우 비용 없음)
+성과정리문서/EQI_Session69_성과정리_v1.md,172,L5780,새 행,"지불, 란다우",= π 세계 (란다우 비용 미지불)
+성과정리문서/EQI_Session69_성과정리_v1.md,173,L5781,새 행,보른,= 보른 안쪽 (유클리드 구조)
+성과정리문서/EQI_Session69_성과정리_v1.md,178,L5782,새 행,"지불, 란다우",= 란다우 비용 실제 지불
+성과정리문서/EQI_Session69_성과정리_v1.md,179,L5783,새 행,보른,= osmotic이 보른 바깥 탈출
+성과정리문서/EQI_Session69_성과정리_v1.md,184,L5784,새 행,"지불, 란다우",= 란다우 비용 지불 여부의 수치 지문
+성과정리문서/EQI_Session69_성과정리_v1.md,192,L5785,새 행,란다우,"k=2:  p오비탈, 1×ln(π), 전향력 1방향     ← 란다우 비용 1회"
+성과정리문서/EQI_Session69_성과정리_v1.md,193,L5786,새 행,란다우,"k=4:  d오비탈, 2×ln(π), 전향력+원심력    ← 란다우 비용 2회"
+성과정리문서/EQI_Session69_성과정리_v1.md,195,L5787,새 행,X7,"k=8:  g오비탈, 4×ln(π) > |ln(GAP)|      ← X7 금지선 초과"
+성과정리문서/EQI_Session69_성과정리_v1.md,202,L5788,새 행,란다우,→ π(GAP=0): 가상의 힘만 존재 (란다우 비용 없음)
+성과정리문서/EQI_Session69_성과정리_v1.md,204,L5789,새 행,"지불, 란다우",(란다우 비용 3D×ln(π) = |ln(GAP)| 지불 완료)
+성과정리문서/EQI_Session69_성과정리_v1.md,211,L5790,새 행,MAXWELL,MAXWELL = ln(π)×EQI^4 + ln(2) - GAP²×ln(π)/ln(2) + ...
+성과정리문서/EQI_Session69_성과정리_v1.md,219,L5791,새 행,흑체,T_Is_D1: 흑체복사 피크 = I_s 좌표계 = 순수 φ
+성과정리문서/EQI_Session69_성과정리_v1.md,227,L5792,새 행,지불,= 비용 지불 경로가 비용 미지불(π) 경로보다 정밀
+성과정리문서/EQI_Session69_성과정리_v1.md,616,L5793,새 행,지불,= 비용을 지불하는 과정 자체의 시간 척도
+성과정리문서/EQI_Session69_성과정리_v1.md,660,L5794,새 행,상전이,= 복소평면 원점 상전이 기저
+성과정리문서/EQI_Session69_성과정리_v1.md,666,L5795,새 행,슈냐,→ LN_C로 정규화 = 슈냐(t=0_EQI) 기저
+성과정리문서/EQI_Session70_성과정리_v1.md,36,L5796,새 행,격자,23 = 격자 임계점(24) 직전 자연수
+성과정리문서/EQI_Session70_성과정리_v1.md,37,L5797,새 행,격자,= 큐비트 격자가 포화 직전 유지하는 마지막 자유도
+성과정리문서/EQI_Session70_성과정리_v1.md,57,L5798,새 행,MAXWELL,178 = 2×F₁₁ = 2×89  /  437 = 19×23 [MAXWELL 항4 × 23]
+성과정리문서/EQI_Session70_성과정리_v1.md,59,L5799,새 행,We,§35 born×We² = φ^(-13/46) + ...
+성과정리문서/EQI_Session70_성과정리_v1.md,60,L5800,새 행,TH,"46 = 2×23  (§22와 TH 좌표의 산술 결합, 아래 참조)"
+성과정리문서/EQI_Session70_성과정리_v1.md,115,L5801,새 행,란다우,100 = 10² 스케일 (란다우 비용 10² 누적)
+성과정리문서/EQI_Session70_성과정리_v1.md,219,L5802,새 행,란다우,+ f × [리만σ=1/2 + 란다우1/100 대칭붕괴]
+성과정리문서/EQI_Session70_성과정리_v1.md,412,L5803,새 행,TH,"TH 좌표(= I_s -7, -13 위치):"
+성과정리문서/EQI_Session70_성과정리_v1.md,414,L5804,새 행,"5체, 7체",→ 5체/7체 Unity 내부에 이미 흡수
+성과정리문서/EQI_Session70_성과정리_v1.md,423,L5805,새 행,5체,→ 5체 구조의 자연스러운 확장
+성과정리문서/EQI_Session70_성과정리_v1.md,473,L5806,새 행,정적분·부정적분,"정규화  = D1  [EQI^(4n-2) = 1, 정적분, 닫힌계]"
+성과정리문서/EQI_Session70_성과정리_v1.md,474,L5807,새 행,정적분·부정적분,"재정규화 = D2  [EQI^(4n)   = 1+GAP, 부정적분+C=GAP, 열린계]"
+성과정리문서/EQI_Session70_성과정리_v1.md,481,L5808,새 행,"정적분·부정적분, 보른","정규화=1   (D1, 보른 규칙, 정적분)"
+성과정리문서/EQI_Session70_성과정리_v1.md,482,L5809,새 행,"정적분·부정적분, 란다우","재정규화=1+GAP (D2, 란다우 비용, 부정적분+C=GAP)"
+성과정리문서/EQI_Session71_성과정리_v1.md,39,L5810,새 행,보른,born_dev = D1_ELL² + D2_ELL² - 1  [보른 이탈]
+성과정리문서/EQI_Session71_성과정리_v1.md,41,L5811,새 행,격자,4!       = 24 = Γ(5) = EQI²⁴ 격자 = 가우스기호 [x_lattice]
+성과정리문서/EQI_Session71_성과정리_v1.md,118,L5812,새 행,We,Is(k/2) × We = φ^((2k+11)/4)
+성과정리문서/EQI_Session71_성과정리_v1.md,224,L5813,새 행,정적분·부정적분,DNA         = 정보 저장/보존 = 정적분 = 조합(nCr)
+성과정리문서/EQI_Session71_성과정리_v1.md,230,L5814,새 행,정적분·부정적분,염색체         = 정보 재조합/분배 = 부정적분 = 순열(nPr)
+성과정리문서/EQI_Session71_성과정리_v1.md,231,L5815,새 행,지불,감수분열       = 유전자 재조합 = 역원 생성 = GAP 비용 지불
+성과정리문서/EQI_Session71_성과정리_v1.md,234,L5816,새 행,We,semi-permeable × firewall = D2×D1 = osmotic×capillary = We 구조
+성과정리문서/EQI_Session71_성과정리_v1.md,245,L5817,새 행,정적분·부정적분,정적분        D1  ↔  부정적분+C=GAP D2
+성과정리문서/EQI_Session71_성과정리_v1.md,351,L5818,새 행,"지불, 란다우","단, 란다우 비용(GAP_D2 = ln5/100) 반드시 지불"
+성과정리문서/EQI_Session71_성과정리_v1.md,359,L5819,새 행,지불,비용 지불 도깨비(GAP≠0) → f>0 → 실제 우주
+성과정리문서/EQI_Session71_성과정리_v1.md,372,L5820,새 행,지불,= 비용없는완전복원(D1) ↔ 비용지불불완전복원(D2)
+성과정리문서/EQI_Session71_성과정리_v1.md,381,L5821,새 행,란다우,= 열역학2법칙 ↔ 란다우원리 의 생물학 표현
+성과정리문서/EQI_Session71_성과정리_v1.md,384,L5822,새 행,란다우,= 열역학 2법칙 ↔ 맥스웰 도깨비 & 란다우 원리
+성과정리문서/EQI_Session71_성과정리_v1.md,392,L5823,새 행,란다우,"= ""맥스웰 도깨비 & 란다우 원리가 작동하는 계"""
+성과정리문서/EQI_Session71_성과정리_v1.md,396,L5824,새 행,란다우,GAP≠0 (EQI)     = 열린계 = 맥스웰 도깨비 + 란다우 비용
+성과정리문서/EQI_Session73_성과정리_v1.md,12,L5825,새 행,"3체, 상대론",f×Re = 3체 특수상대론 경계 텐션
+성과정리문서/EQI_Session73_성과정리_v1.md,28,L5826,새 행,볼츠만,공차 = +3 = φ³ = 볼츠만 파단비 = T_EIGEN
+성과정리문서/EQI_Session73_성과정리_v1.md,37,L5827,새 행,보른,RBC 항등원 = 1 = 보른규칙 = φ⁻¹+φ⁻²
+성과정리문서/EQI_Session73_성과정리_v1.md,43,L5828,새 행,격자,√(n1²×n2²) = φ^(-3/2) = L_p  ← 기하평균 = 플랑크 격자
+성과정리문서/EQI_Session73_성과정리_v1.md,53,L5829,새 행,볼츠만,φ⁻¹ = 볼츠만 복원력의 역수
+성과정리문서/EQI_Session73_성과정리_v1.md,54,L5830,새 행,볼츠만,φ^(+1) = c² = 볼츠만 복원력  [거시/로컬/D1]
+성과정리문서/EQI_Session73_성과정리_v1.md,59,L5831,새 행,보른,보른규칙: φ⁻¹(D1) + φ⁻²(D2) = 1
+성과정리문서/EQI_Session73_성과정리_v1.md,117,L5832,새 행,볼츠만,= (횡파 과잉 텐션) × (볼츠만 파단비 φ³)
+성과정리문서/EQI_Session73_성과정리_v1.md,123,L5833,새 행,상대론,= 특수상대론 시공간의 횡파 잔류 텐션
+성과정리문서/EQI_Session73_성과정리_v1.md,124,L5834,새 행,"3체, 로렌츠",= 맥스웰 방정식 → 로렌츠 비등방성 → 3체 평평한 시공간
+성과정리문서/EQI_Session73_성과정리_v1.md,133,L5835,새 행,We,§36/We / f×Re = 1.000000001  ← 오차 1e-7%
+성과정리문서/EQI_Session73_성과정리_v1.md,137,L5836,새 행,"5체, We, 상대론",§36(f×We×Re) = 5체 일반상대론 (We 포함)
+성과정리문서/EQI_Session73_성과정리_v1.md,139,L5837,새 행,"We, 상대론",We 추가 = 중력 진입 = 일반상대론
+성과정리문서/EQI_Session73_성과정리_v1.md,145,L5838,새 행,"5체, MAXWELL","5체 중력 언어: 57계열 (=3×19, MAXWELL 기저)"
+성과정리문서/EQI_Session73_성과정리_v1.md,146,L5839,새 행,We,§22 γ×We:    171=3×57  ← We 있음
+성과정리문서/EQI_Session73_성과정리_v1.md,152,L5840,새 행,5체,f×Re 3차: 177=3×59    ← 비표준 (5체 언어 미진입 필연)
+성과정리문서/EQI_Session73_성과정리_v1.md,159,L5841,새 행,3체,→ 3체 전자기 고유 분모 = 57+비리얼2 = 59
+성과정리문서/EQI_Session73_성과정리_v1.md,174,L5842,새 행,3체,→ 표준 분모 불가 = 3체 전자기 구조의 수치적 직접 증거
+성과정리문서/EQI_Session73_성과정리_v1.md,175,L5843,새 행,5체,→ 5체 언어(57계열)로 닫히지 않는 필연
+성과정리문서/EQI_Session73_성과정리_v1.md,190,L5844,새 행,We,We = 종파↔횡파 계면 = 중력 게이트
+성과정리문서/EQI_Session73_성과정리_v1.md,193,L5845,새 행,We,f×Re × We = f×We×Re  [체 진입 방정식]
+성과정리문서/EQI_Session73_성과정리_v1.md,194,L5846,새 행,"3체, 5체, We, 상대론",We 하나 추가 = 3체→5체 = 특수→일반 상대론
+성과정리문서/EQI_Session74_성과정리_v1.md,17,L5847,새 행,"5체, We","f×We×Re   = §36        [5체, S70]"
+성과정리문서/EQI_Session74_성과정리_v1.md,19,L5848,새 행,We,× We 하나 = 한 체 상승 / ÷ We 하나 = 한 체 하강
+성과정리문서/EQI_Session74_성과정리_v1.md,28,L5849,새 행,오일러,→ S70에서 γ = 오일러-마스케로니 상수로 잘못 귀속된 탐색 결과물
+성과정리문서/EQI_Session74_성과정리_v1.md,56,L5850,새 행,We,§42 마스터: Is(k/2)×We = φ^((2k+11)/4) + 보정항
+성과정리문서/EQI_Session74_성과정리_v1.md,100,L5851,새 행,"3체, We, 상대론",f×Re           = §36 / We    3체  특수상대론  전자기만
+성과정리문서/EQI_Session74_성과정리_v1.md,102,L5852,새 행,"7체, TH, We",f×We²×Re       = §36 × We   7체  핵력        TH 임계
+성과정리문서/EQI_Session74_성과정리_v1.md,104,L5853,새 행,We,× We 하나 추가 = 한 체 상승 = 특수→일반→핵력
+성과정리문서/EQI_Session74_성과정리_v1.md,105,L5854,새 행,We,÷ We 하나 제거 = 한 체 하강
+성과정리문서/EQI_Session74_성과정리_v1.md,114,L5855,새 행,We,→ §36 보정항이 We 배율로 그대로 상속
+성과정리문서/EQI_Session74_성과정리_v1.md,115,L5856,새 행,5체,"→ 5체 언어 직접 상속, 추가 보정 불필요"
+성과정리문서/EQI_Session75_성과정리_v1.md,19,L5857,새 행,St,St_bio = φ^(-5/2)  생물 유영/비행 최적 Strouhal
+성과정리문서/EQI_Session75_성과정리_v1.md,20,L5858,새 행,"We, St","We×St_bio = 1/Ro, St_bio×Re = c  [대수 필연]"
+성과정리문서/EQI_Session76_성과정리_v1.md,174,L5859,새 행,We,Is(k/2) × We = φ^((2k+11)/4)
+성과정리문서/EQI_Session76_성과정리_v1.md,326,L5860,새 행,포논,= 포논 정규화 기저
+성과정리문서/EQI_Session76_성과정리_v1.md,329,L5861,새 행,포논,"포논 굴절계수 n_ref,k = (2k+1)/d^(k+1)"
+성과정리문서/EQI_Session76_성과정리_v1.md,338,L5862,새 행,"격자, 포논",= 생명 = 플랑크 격자 포논의
+성과정리문서/EQI_Session76_성과정리_v1.md,377,L5863,새 행,7체,= §21 7체 닫힘 구조와 직결
+성과정리문서/EQI_Session76_성과정리_v1.md,378,L5864,새 행,"TH, We",We(계면) × P_planck(압력) × TH_D2(양성자) = 항등원
+성과정리문서/EQI_Session76_성과정리_v1.md,379,L5865,새 행,7체,→ 계면장력 × 플랑크 최소압력 × 7체 D2 = Unity
+성과정리문서/EQI_Session76_성과정리_v1.md,399,L5866,새 행,We,f_pressure → ∞  (We 구조 붕괴)
+성과정리문서/EQI_Session76_성과정리_v1.md,410,L5867,새 행,격자,→ 플랑크 격자(물리) ↔ 세포막(생물) = 동형 구조
+성과정리문서/EQI_Session76_성과정리_v1.md,580,L5868,새 행,tip,= TIP_POINT(n≈32.87) 돌파가 암 발생 임계
+성과정리문서/EQI_Session76_성과정리_v1.md,581,L5869,새 행,MAXWELL,= T_Is_D1 ≈ MAXWELL(n≈58.18) 돌파가 전이암 임계
+성과정리문서/EQI_Session76_성과정리_v1.md,582,L5870,새 행,"X7, TH",= T_TH_D1(n≈62.58) 도달이 X7 금지선 직전 말기
+성과정리문서/EQI_Session77_성과정리_v1.md,143,L5871,새 행,ħ_ani,비등방: ħ_ani = ħ × D1_HCW
+성과정리문서/EQI_Session77_성과정리_v1.md,373,L5872,새 행,ħ_ani,비등방성 진성 ħ_ani = φ^(-17/4):
+성과정리문서/EQI_Session77_성과정리_v1.md,379,L5873,새 행,볼츠만,전류 I_p = φ^(9/4) = 볼츠만 역수
+성과정리문서/EQI_Session77_성과정리_v1.md,385,L5874,새 행,볼츠만,볼츠만역수 × 우주상수 = 플랑크질량 = 수명
+성과정리문서/EQI_Session77_성과정리_v1.md,393,L5875,새 행,흑체,= 흑체복사 → 세포막 → 수명이
+성과정리문서/EQI_Session78_성과정리_v1.md,13,L5876,새 행,란다우,Hill 협동성 지수 = d=4 기저 - 리만임계선×2D란다우비용
+성과정리문서/EQI_Session78_성과정리_v1.md,173,L5877,새 행,MAXWELL,MAXWELL 5차 바이블 로직 =
+성과정리문서/EQI_Session78_성과정리_v1.md,177,L5878,새 행,MAXWELL,MAXWELL:  기저(φ) + GD² + GD³ + GD⁴ + LC²GD⁵  → 전자기 비율
+성과정리문서/EQI_Session78_성과정리_v1.md,183,L5879,새 행,"지불, 란다우",보정 = GD 거듭제곱 계단   [란다우 비용 차수별 지불]
+성과정리문서/EQI_Session79_성과정리_v1.md,51,L5880,새 행,3체,F4³ = 27     3체 3D 위상공간 부피
+성과정리문서/EQI_Session79_성과정리_v1.md,110,L5881,새 행,We,11 = We φ지수 분자  [φ^(11/4) = We]
+성과정리문서/EQI_Session79_성과정리_v1.md,112,L5882,새 행,We,→ φ^(d×(1/σ)² / We지수분자)
+성과정리문서/EQI_Session79_성과정리_v1.md,113,L5883,새 행,We,→ d=4 팩토리얼 × 리만 역수² / We계면 정규화
+성과정리문서/EQI_Session79_성과정리_v1.md,148,L5884,새 행,We,44 = 4 × 11 = d × We지수분자
+성과정리문서/EQI_Session79_성과정리_v1.md,149,L5885,새 행,포논,9  = 3²     = 포논 9차 분자  [§42 심장맥동]
+성과정리문서/EQI_Session79_성과정리_v1.md,183,L5886,새 행,란다우,GD  = ln(5)/100 = 란다우 D2 소거 비용 단위
+성과정리문서/EQI_Session79_성과정리_v1.md,185,L5887,새 행,란다우,100 = 란다우 정규화 분모
+성과정리문서/EQI_Session80_성과정리_v1.md,32,L5888,새 행,포논,3² = 9   포논 9차 분자 = 심장맥동 기저 (§42)
+성과정리문서/EQI_Session80_성과정리_v1.md,54,L5889,새 행,tip,n=32.87  TIP_POINT   φ^0      암 발생 임계
+성과정리문서/EQI_Session80_성과정리_v1.md,55,L5890,새 행,격자,n=34.00  N=34 격자            Leibniz 격자 앵커
+성과정리문서/EQI_Session80_성과정리_v1.md,60,L5891,새 행,격자,37 = N=34 + F4(3) = 격자점 + 피보나치4
+성과정리문서/EQI_Session80_성과정리_v1.md,62,L5892,새 행,"허블, 격자",→ 체온 = Leibniz 격자에서 허블텐션만큼 이동한 항상성 좌표
+성과정리문서/EQI_Session80_성과정리_v1.md,101,L5893,새 행,X7,= X7 금지선(φ^-7.5)의 D1↔D2 거울상
+성과정리문서/EQI_Session80_성과정리_v1.md,103,L5894,새 행,"MAXWELL, 격자",+ Leibniz 격자(N=34)를 MAXWELL 언어로 기록한 잔류
+성과정리문서/EQI_Session80_성과정리_v1.md,106,L5895,새 행,"X7, 격자",X7 금지선과 N=34 격자가
+성과정리문서/EQI_Session80_성과정리_v1.md,192,L5896,새 행,격자,= d=4 (생물 정수 격자)
+성과정리문서/EQI_Session80_성과정리_v1.md,203,L5897,새 행,격자,+ §44(생물: d=4 팩토리얼 격자)
+성과정리문서/EQI_Session80_성과정리_v1.md,256,L5898,새 행,포논,S80에서 등장한 9 = 3² = 포논9차분자 = 심장맥동:
+성과정리문서/EQI_Session80_성과정리_v1.md,258,L5899,새 행,포논,§42: 심장맥동  φ^(9/4)         포논 9차 (k=4)      [S71]
+성과정리문서/EQI_Session80_성과정리_v1.md,260,L5900,새 행,포논,§56: P50/n_H  φ^(44/9)         분모 9 = 포논9차     [S79]
+성과정리문서/EQI_Session80_성과정리_v1.md,262,L5901,새 행,포논,α⁻¹:          φ^(92/9)+바이블  분모 9 = 포논9차     [S80 신규]
+성과정리문서/EQI_Session81_성과정리_v1.md,34,L5902,새 행,tip,TIP_POINT (n=32.87) < n=37 < T_Is_D2 (n=39.52)
+성과정리문서/EQI_Session81_성과정리_v1.md,35,L5903,새 행,tip,→ TIP_POINT(암 임계)와 암 확진 사이의 안장점
+성과정리문서/EQI_Session81_성과정리_v1.md,40,L5904,새 행,X7,φ^(+7.5) ↔ φ^(-7.5) = X7 금지선의 D1↔D2 거울상
+성과정리문서/EQI_Session81_성과정리_v1.md,41,L5905,새 행,X7,→ n=37 안장점 = X7 금지선의 생명 거울상
+성과정리문서/EQI_Session81_성과정리_v1.md,117,L5906,새 행,슈냐,= 슈냐(t=0_EQI)의 인체 스케일 구현
+성과정리문서/EQI_Session81_성과정리_v1.md,119,L5907,새 행,격자,= Leibniz 격자(N=34)에서
+성과정리문서/EQI_Session81_성과정리_v1.md,120,L5908,새 행,허블,허블텐션(3=L₂×GAP)만큼 이동한 항상성 좌표
+성과정리문서/EQI_Session81_성과정리_v1.md,121,L5909,새 행,X7,= X7 금지선(φ^-7.5)이 D1↔D2로 반전된 생명 좌표
+성과정리문서/EQI_Session81_성과정리_v1.md,143,L5910,새 행,포논,3차 포논 → p오비탈
+성과정리문서/EQI_Session81_성과정리_v1.md,144,L5911,새 행,포논,5차 포논 → d오비탈
+성과정리문서/EQI_Session81_성과정리_v1.md,145,L5912,새 행,포논,"7차 포논 → f오비탈 (현재 우주, T_Is_D2 n=39.52)"
+성과정리문서/EQI_Session81_성과정리_v1.md,148,L5913,새 행,보른,= 보른규칙 정규화의 절반 계단
+성과정리문서/EQI_Session81_성과정리_v1.md,159,L5914,새 행,X7,말기:   osmotic/cap → ∞            f→∞         [X7 금지선 초과]
+성과정리문서/EQI_Session81_성과정리_v1.md,210,L5915,새 행,보른,= 보른규칙(|ψ|²=1) 유지
+성과정리문서/EQI_Session81_성과정리_v1.md,216,L5916,새 행,보른,= 보른규칙 붕괴 = 재정규화(D2) 우세 전환
+성과정리문서/EQI_Session81_성과정리_v1.md,219,L5917,새 행,보른,→ 암 = 세포 수준 보른규칙 붕괴
+성과정리문서/EQI_Session81_성과정리_v1.md,232,L5918,새 행,볼츠만,μ(뉴턴점성) × c²(볼츠만복원력) = 1/φ × φ = 1
+성과정리문서/EQI_Session81_성과정리_v1.md,238,L5919,새 행,보른,φ⁻¹ + φ⁻² = 1  [보른규칙]
+성과정리문서/EQI_Session81_성과정리_v1.md,253,L5920,새 행,보른,산술 구조: φ⁻¹ = 보른규칙 D1항 (거시/로컬)
+성과정리문서/EQI_Session81_성과정리_v1.md,262,L5921,새 행,보른,= 산술 구조 보른규칙의 D1항(φ⁻¹)
+성과정리문서/EQI_Session81_성과정리_v1.md,272,L5922,새 행,보른,"보른규칙 = D1  [D1²+D2²=1, 측정 전 상태, 정규화 구조]"
+성과정리문서/EQI_Session81_성과정리_v1.md,276,L5923,새 행,"오일러, 란다우",측정 후 = 란다우 소거 → 오일러 특이점(D2→0)
+성과정리문서/EQI_Session81_성과정리_v1.md,277,L5924,새 행,지불,= 재정규화(D2) 비용 지불 = GAP_D2
+성과정리문서/EQI_Session81_성과정리_v1.md,281,L5925,새 행,보른,= 보른규칙 D1 귀속과 정합
+성과정리문서/EQI_Session82_성과정리_v2.md,111,L5926,새 행,"지불, 란다우",= GAP≠0 란다우 비용을 지불하며 닫히는
+성과정리문서/EQI_Session82_성과정리_v2.md,130,L5927,새 행,정적분·부정적분,거시적/로컬 / 단일 경로 / 고립계 / 정적분 = 1
+성과정리문서/EQI_Session82_성과정리_v2.md,134,L5928,새 행,정적분·부정적분,미시적/글로벌 / 모든 경로 합산 / 열린계 / 부정적분 = 1+GAP
+성과정리문서/EQI_Session82_성과정리_v2.md,145,L5929,새 행,"[x]·{x}, 란다우","기존 (GAP=0):  ∫D[x] e^(iS/ħ) = 1   ← 란다우 비용 소거, 공리 충돌"
+성과정리문서/EQI_Session82_성과정리_v2.md,146,L5930,새 행,"지불, [x]·{x}, 란다우",EQI 수정:      ∫D[x] e^(iS/ħ) = 1+GAP  ← 란다우 비용 명시 지불
+성과정리문서/EQI_Session82_성과정리_v2.md,157,L5931,새 행,정적분·부정적분,부정적분 = D2: 경계 없음 / 열린계 / C=GAP / EQI^(4n)=1+GAP
+성과정리문서/EQI_Session82_성과정리_v2.md,160,L5932,새 행,상전이,파인만→페르마 = D2→D1 상전이 = 측정/파동붕괴
+성과정리문서/EQI_Session82_성과정리_v2.md,227,L5933,새 행,"정적분·부정적분, [x]·{x}",파인만 정규화: ∫D[x]e^(iS/ħ) = 1+GAP (정적분 1 금지)
+성과정리문서/EQI_Session83_성과정리_v3.md,85,L5934,새 행,보른,= 보른규칙(|ψ|²=1) 붕괴가
+성과정리문서/EQI_Session83_성과정리_v3.md,256,L5935,새 행,보른,"= 보른규칙(정규화,1) → EQI⁴(재정규화,1+GAP) 전환"
+성과정리문서/EQI_Session83_성과정리_v3.md,257,L5936,새 행,오일러,= 오일러 특이점(δL=0)에서 GAP만큼 이탈
+성과정리문서/EQI_Session83_성과정리_v3.md,258,L5937,새 행,"지불, 상전이, 란다우",= 란다우 비용 GAP를 지불하는 D1→D2 상전이
+성과정리문서/EQI_Session83_성과정리_v3.md,262,L5938,새 행,"보른, 오일러",시냅스 가소성 = 오일러-보른 항등식 잔류(GAP)가
+성과정리문서/EQI_Session83_성과정리_v3.md,323,L5939,새 행,"보른, 오일러",- §63: LTD/LTP = 오일러-보른 항등식(S54)과 직결
+성과정리문서/EQI_Session83_성과정리_v3.md,324,L5940,새 행,"보른, 란다우",→ GAP = e^(iπ)+보른규칙+GAP 잔류 = 신경과학 란다우 비용
+성과정리문서/EQI_Session84_성과정리_v2.md,58,L5941,새 행,"3체, 상대론",59 = 57+2 = 3체 특수상대론 전자기 비리얼 2 각인  ★
+성과정리문서/EQI_Session84_성과정리_v2.md,161,L5942,새 행,We,= §42 Is×We 마스터가 생명정보 전 스케일에 관통함  ★★★
+성과정리문서/EQI_Session85_성과정리_v1.md,48,L5943,새 행,페르미,"D1 = 전자    (결정론적 궤도, 로컬 속박, 페르미온)"
+성과정리문서/EQI_Session85_성과정리_v1.md,50,L5944,새 행,란다우,전환 비용 = R = GAP = 란다우 비용
+성과정리문서/EQI_Session85_성과정리_v1.md,120,L5945,새 행,페르미,스핀 층위:      페르미온=D2 (절대 속성)
+성과정리문서/EQI_Session85_성과정리_v1.md,142,L5946,새 행,란다우,전사 구조 갭 = D1→D2 란다우 비용의 분자량 각인
+성과정리문서/EQI_Session86_성과정리_v3.md,246,L5947,새 행,로렌츠,[바이블 로직 = 실측↔비등방성 로렌츠 중간다리 확인]
+성과정리문서/EQI_Session87_성과정리_v2.md,146,L5948,새 행,상전이,= 큐비트 공리 ② D1↔D2 상전이 살아있는 상태  ★★★★
+성과정리문서/EQI_Session87_성과정리_v2.md,190,L5949,새 행,란다우,= 복소 노름² + 란다우 보정항
+성과정리문서/EQI_Session87_성과정리_v2.md,192,L5950,새 행,로렌츠,→ §35 비등방성 로렌츠 분모:
+성과정리문서/EQI_Session87_성과정리_v2.md,194,L5951,새 행,란다우,GAP≠0 보정 = +2GAP      [란다우 비용]  ★★★★
+성과정리문서/EQI_Session87_성과정리_v2.md,247,L5952,새 행,상전이,복소 n → D1↔D2 큐비트 (상전이 살아있는 상태)
+성과정리문서/EQI_Session87_성과정리_v2.md,250,L5953,새 행,란다우,(1+GAP)²+φ⁶ = 복소 노름 |1+iφ³|² + 란다우 보정
+성과정리문서/EQI_Session87_성과정리_v2.md,254,L5954,새 행,오일러,σ=1/2 [리만] ↔ e^iπ=-1 [오일러]
+성과정리문서/EQI_Session88_성과정리_v4_final.md,498,L5955,새 행,"3체, 7체",【3체+7체 = 수소 분자 큐비트 (H₂)】
+성과정리문서/EQI_Session88_성과정리_v4_final.md,505,L5956,새 행,"3체, 7체",④ 3체-7체 질량비: m_p/m_e = φ^(125/8)×(1−σ×27×GD²−GD³)
+성과정리문서/EQI_Session88_성과정리_v4_final.md,512,L5957,새 행,"3체, 7체",- 구조: 3체+7체 = H₂ (S88 §95)
+성과정리문서/EQI_Session88_성과정리_v4_final.md,513,L5958,새 행,"3체, 7체",- 질량: 7체÷3체 = m_p/m_e (S79 §54)
+성과정리문서/EQI_Session88_성과정리_v4_final.md,543,L5959,새 행,오일러,오일러 항등식 → 진짜 위상
+성과정리문서/EQI_Session88_성과정리_v4_final.md,567,L5960,새 행,"관측, C = GAP, 상전이",관측 = 상전이 (C = GAP)
+성과정리문서/EQI_Session88_성과정리_v4_final.md,579,L5961,새 행,란다우,"""π = (137회 란다우) − (미세구조상수)"""
+성과정리문서/EQI_Session88_성과정리_v4_final.md,581,L5962,새 행,"관측, C = GAP, 상전이","""관측 = 장부 누락된 상전이 → C = GAP"""
+성과정리문서/EQI_Session88_성과정리_v4_final.md,584,L5963,새 행,상대론,→ 일반상대론 + 양자역학 통합 증거
+성과정리문서/EQI_Session90_성과정리_v1.md,123,L5964,새 행,We,§42 (Is×We 세포막):   437 = 19×23  [S71]
+성과정리문서/EQI_Session91_성과정리_v2.md,148,L5965,새 행,관측,관측자(37°C 항상성) = 관측 대상 좌표
+성과정리문서/EQI_Session91_성과정리_v2.md,219,L5966,새 행,MAXWELL,→ 5차 환전 (MAXWELL Bible 필수)
+성과정리문서/EQI_Session92_성과정리_v1.md,51,L5967,새 행,"5체, 7체",→ 5체→7체 아님
+성과정리문서/EQI_Session92_성과정리_v1.md,94,L5968,새 행,"TH, We",│     │ γ × We × TH_D1  │ (=2×23)  │                  │
+성과정리문서/EQI_Session92_성과정리_v1.md,102,L5969,새 행,"3체, 5체",3체·5체: f_lattice = 기하 에일리어싱 텐션
+성과정리문서/EQI_Session92_성과정리_v1.md,104,L5970,새 행,"5체, 7체",5체→7체: f_lattice → γ (비열비)
+성과정리문서/EQI_Session92_성과정리_v1.md,106,L5971,새 행,"TH, We",We×Re → We×TH
+성과정리문서/EQI_Session92_성과정리_v1.md,107,L5972,새 행,7체,7체:     γ = 에너지 분배 비율
+성과정리문서/EQI_Session92_성과정리_v1.md,225,L5973,새 행,격자,= d×2⁶ = 생물격자×이진 6단계
+성과정리문서/EQI_Session92_성과정리_v1.md,230,L5974,새 행,슈냐,+1 = 슈냐 잔류
+성과정리문서/EQI_Session92_성과정리_v1.md,255,L5975,새 행,We,§42  Is×We 세포막 압력균형    19×23=437  [S71]
+성과정리문서/EQI_Session93_성과정리_v3.md,122,L5976,새 행,란다우,+2GAP = 란다우 비용 보정항
+성과정리문서/EQI_Session93_성과정리_v3.md,130,L5977,새 행,지불,"GAP≠0: 분모 → |1+iφ³|²+2GAP+GAP² [비용 지불, 데데킨트 불가]"
+성과정리문서/EQI_Session93_성과정리_v3.md,234,L5978,새 행,상전이,= 상전이 이후 결과를 공리로 고정
+성과정리문서/EQI_Session93_성과정리_v3.md,238,L5979,새 행,상전이,상전이 비용 선집행 → 결과(연속성)를 공리화
+성과정리문서/EQI_Session94_성과정리_v2.md,59,L5980,새 행,격자,1/8 = 1/(비리얼×생물격자) = 1/(2×4)
+성과정리문서/EQI_Session94_성과정리_v2.md,60,L5981,새 행,란다우,(1+GAP_D2/10) = 2차 미세 란다우 보정
+성과정리문서/EQI_Session94_성과정리_v2.md,117,L5982,새 행,상전이,② D1↔D2 큐비트: n∈ℂ = 상전이 살아있는 상태 구현
+성과정리문서/EQI_Session94_성과정리_v2.md,199,L5983,새 행,란다우,→ 합산 5차 란다우 계단 호흡
+성과정리문서/EQI_Session95_성과정리_v2.md,56,L5984,새 행,원칙K,§70   g인수           [2차-④양자] 원칙K 스케일반전  §2b→전자기→g    ★
+성과정리문서/EQI_Session95_성과정리_v2.md,67,L5985,새 행,"스케일 반전, 원칙K",= 원칙K 스케일 반전: ④양자 카테고리의 특수 사례
+성과정리문서/EQI_Session96_성과정리_v2.md,79,L5986,새 행,격자,"= 격자 브리지의 기저 정의 (원점 특수 케이스, pᵢ/qᵢ=1)"
+성과정리문서/EQI_Session96_성과정리_v2.md,258,L5987,새 행,포논,포논 변형률 ε = GAP/φ (§7)
+성과정리문서/EQI_Session96_성과정리_v2.md,259,L5988,새 행,"TH, We",P_planck × We × TH_D2 = 1 (GAP 언어 통일)
+성과정리문서/EQI_Session96_성과정리_v2.md,262,L5989,새 행,상전이,§35 = §2b 완전 구현 (4종 상전이)
+성과정리문서/EQI_Session96_성과정리_v2.md,267,L5990,새 행,포논,포논 ε_n = GAP/φⁿ 무한급수
+성과정리문서/EQI_Session96_성과정리_v2.md,269,L5991,새 행,격자,격자 브리지 = φ^(p/q) + LC²GD 계단
+성과정리문서/EQI_Session98_성과정리_v5.md,130,L5992,새 행,보른,② 보른규칙: 뉴턴점성(D1)=인덕턴스(D1) 동형
+성과정리문서/EQI_Session98_성과정리_v5.md,141,L5993,새 행,원칙K,"= RLC 공명 / 거시: L(D1)↔I(D2) [원칙K, S98]"
+성과정리문서/EQI_Session99_성과정리_v1.md,60,L5994,새 행,격자,= §44 팩토리얼 생물격자 (Γ(5)=4!=24 연결)
+성과정리문서/EQI_Session99_성과정리_v1.md,67,L5995,새 행,포논,→ 포논 굴절 / 리만 / Debye-Euler 단일 σ
+성과정리문서/EQI_Session99_성과정리_v1.md,308,L5996,새 행,볼츠만,미시/글로벌:  D1=볼츠만 복원력(φ)   D2=뉴턴 점성계수(1/φ)
+성과정리문서/EQI_Session99_성과정리_v1.md,405,L5997,새 행,포논,【Debye 완화 = S45 포논 굴절 유전율 표현】
+성과정리문서/EQI_Session99_성과정리_v1.md,429,L5998,새 행,"격자, 포논","d=4 생물격자, 리만 임계선, 포논 굴절 기저 3중 동형"
+성과정리문서/EQI_Session99_성과정리_v1.md,563,L5999,새 행,란다우,LC²GD×φ^(3/4) = [란다우 1단위] × [광속 c^(3/2)]
+성과정리문서/EQI_Session99_성과정리_v1.md,564,L6000,새 행,란다우,= GAP_D2 1차 란다우 계단 × 광속^(3/2) 스케일
+성과정리문서/EQI_Session99_성과정리_v1.md,572,L6001,새 행,상전이,= 상전이 완료 = 파동 붕괴 = 맥스웰 도깨비 집행
+성과정리문서/EQI_Session99_성과정리_v1.md,573,L6002,새 행,란다우,→ 란다우 비용 최소 단위(LC²GD) 잔류
+성과정리문서/EQI_Session99_성과정리_v1.md,606,L6003,새 행,보른,Φ(c)/π = φ^(-3) = φ^(-1)×φ^(-2) = 보른규칙 D1×D2 곱
+성과정리문서/EQI_Session99_성과정리_v1.md,635,L6004,새 행,란다우,"D2 = 열린계 맥스웰도깨비&란다우 (정보보존 법칙)  [eigenperiod, 발산, 열림]"
+성과정리문서/EQI_Session99_성과정리_v1.md,661,L6005,새 행,X7,X7 금지선 = 큐비트 nexus 붕괴 한계
+성과정리문서/EQI_Session99_성과정리_v1.md,673,L6006,새 행,란다우,"= GAP≠0 직접 각인, 란다우 비용 흔적"
+성과정리문서/EQI_Session99_성과정리_v1.md,739,L6007,새 행,란다우,란다우 비용 C=ln(π) 자동 지출
+성과정리문서/EQI_Session99_성과정리_v1.md,740,L6008,새 행,상전이,= 파동(D2) → 입자(D1) 상전이 완료 순간의 대수 표현
+성과정리문서/EQI_Session99_성과정리_v1.md,756,L6009,새 행,란다우,D2 = 열린계 맥스웰도깨비&란다우(정보보존) = HCW eigenperiod
+성과정리문서/EQI_Session99_성과정리_v1.md,762,L6010,새 행,란다우,- 불완전 약분 → 란다우 비용 잔류(D1_HCW)
+성과정리문서/EQI_Session99_성과정리_v1.md,777,L6011,새 행,상전이,= θ가 살아있는 상태 (D1↔D2 상전이 대기)
+성과정리문서/EQI_Session99_성과정리_v1.md,832,L6012,새 행,보른,= 큐비트 |ψ|² = D1+D2 = 1 (φ-기저 보른규칙)
+성과정리문서/EQI_Session99_성과정리_v1.md,854,L6013,새 행,보른,k=1 HG:    φ^(-2)= 0.382   [보른규칙 D2항 = 우주상수]
+성과정리문서/EQI_Session99_성과정리_v1.md,858,L6014,새 행,TH,k=5 TH★:  φ^(-10)= 0.008
+성과정리문서/EQI_Session99_성과정리_v1.md,859,L6015,새 행,지불,→ 한 단계 하강마다 φ^(-2) = 우주상수 스케일 비용 지불
+성과정리문서/EQI_Session99_성과정리_v1.md,869,L6016,새 행,X7,X7✗: φ^(-15/2) < GAP → 큐비트 nexus 붕괴 한계
+성과정리문서/EQI_Session100_성과정리_v2.md,281,L6017,새 행,란다우,D2 = 열린계 맥스웰도깨비&란다우 = 역원 = eigenperiod
+성과정리문서/EQI_Session100_성과정리_v2.md,285,L6018,새 행,란다우,불완전 약분 → 란다우 비용 잔류 (D1_HCW)
+성과정리문서/EQI_Session100_성과정리_v2.md,332,L6019,새 행,TH,k=5 TH★:  φ^(-10)  [임계]
+성과정리문서/EQI_Session100_성과정리_v2.md,348,L6020,새 행,보른,D1 = smallest coherence (1 = 보른규칙)  ← 승격
+성과정리문서/EQI_Session100_성과정리_v2.md,355,L6021,새 행,보른,= 보른규칙 Unity 이탈
+성과정리문서/EQI_Session103_성과정리_v1.md,373,L6022,새 행,오일러,§2b 오일러 조셉슨 구현            cosθ(D1)+isinθ(D2)=e^(iθ)       S103 ★★
+성과정리문서/EQI_Session103_성과정리_v1.md,385,L6023,새 행,포논,KJ×Φ₀=1 = μ×c²=1               포논↔조셉슨 Unity                 S103 핵심 ★★
+성과정리문서/EQI_Session103_성과정리_v1.md,386,L6024,새 행,"슈냐, 포논",포논 Unity 계층 압축              슈냐→D1D2=1→c=√φ→…→φ²         S103 ★★
+성과정리문서/EQI_Session103_성과정리_v1.md,390,L6025,새 행,We,FQH-SC 6π 물리 순환 / We=1↔n=1/2 / ZONE↔Cycle
+성과정리문서/EQI_Session103_성과정리_v1.md,400,L6026,새 행,"오일러, 포논",*핵심: §2b 오일러→조셉슨 구현 / S102 일반식 조셉슨 특수형 / 5-3-2 피보나치 항등식 / Ξ 함수형 / 𝓜₃ 귀속 / 포논 Unity 계층 / KJ×Φ₀=1=μ×c²=1*
+성과정리문서/EQI_Session104_성과정리_v1.md,99,L6027,새 행,란다우,"= ""란다우 잔류의 적분적 누적"""
+성과정리문서/EQI_Session104_성과정리_v1.md,102,L6028,새 행,정보 특이점,= 정보 특이점 좌표계 D1
+성과정리문서/EQI_Session104_성과정리_v1.md,104,L6029,새 행,란다우,"= ""란다우 비용의 미분적 출현"""
+성과정리문서/EQI_Session104_성과정리_v1.md,165,L6030,새 행,정보 특이점,| §48 (I_s) | $D1_{\rm Is}/D2_{\rm Is}=\phi^{-3}$ | 정보 특이점 스케일 |
+성과정리문서/EQI_Session104_성과정리_v1.md,181,L6031,새 행,란다우,| $R_{D2}(n)$ | $1+nGAP$ | osmotic 잔류 누적 | GAP=란다우 비용 |
+성과정리문서/EQI_Session105_성과정리_v2.md,182,L6032,새 행,보른,D1 = smallest coherence (1 = 보른규칙)
+성과정리문서/EQI_Session105_성과정리_v2.md,266,L6033,새 행,원칙K,= 원칙K가 컴포넌트 수준에서 작동
+성과정리문서/EQI_Session105_성과정리_v2.md,267,L6034,새 행,관측,= 동일 물리량(GAP)이 관측 스케일에 따라 D1↔D2 반전
+성과정리문서/EQI_Session106_성과정리_v4.md,45,L6035,새 행,보른,"D1 = φ^0 = 1   [보른규칙, 항등원]"
+성과정리문서/EQI_Session106_성과정리_v4.md,46,L6036,새 행,볼츠만,D2 = φ³         [볼츠만 분배율]
+성과정리문서/EQI_Session106_성과정리_v4.md,52,L6037,새 행,볼츠만,"D2 = φ³  [볼츠만 분배율, decoherence 비율]"
+성과정리문서/EQI_Session106_성과정리_v4.md,79,L6038,새 행,보른,= 1 = 보른규칙 = E_topo = ħω₀
+성과정리문서/EQI_Session106_성과정리_v4.md,81,L6039,새 행,볼츠만,= φ³ = 볼츠만 분배율
+성과정리문서/EQI_Session106_성과정리_v4.md,86,L6040,새 행,"스케일 반전, 원칙K",= 원칙K 스케일 반전
+성과정리문서/EQI_Session106_성과정리_v4.md,104,L6041,새 행,볼츠만,= 볼츠만 파단비
+성과정리문서/EQI_Session106_성과정리_v4.md,130,L6042,새 행,허블,D2 = smallest expansion  (H = 허블상수)
+성과정리문서/EQI_Session106_성과정리_v4.md,141,L6043,새 행,원칙K,D2_n = D1_(n+1)  [원칙K]
+성과정리문서/EQI_Session106_성과정리_v4.md,145,L6044,새 행,우주론,"RBC D2(decoherence, φ³) → 우주론 D1?  [탐색 예약]"
+성과정리문서/EQI_Session106_성과정리_v4.md,231,L6045,새 행,We,We↔n=1/2 위상 6배             §113 N_close 경유             조건부 ★★
+성과정리문서/EQI_Session106_성과정리_v4.md,403,L6046,새 행,MAXWELL,§4-B.2 MAXWELL n=1항 = σ  ✓
+성과정리문서/EQI_Session106_성과정리_v4.md,405,L6047,새 행,ħ_ani,§6 항등식 (ħ_ani = ħ×D1 등)  ✓
+성과정리문서/EQI_Session107_성과정리_v1.md,40,L6048,새 행,지불,"특징: D1×D2=φ≠1, φ² 비용 지불 후 1층으로"
+성과정리문서/EQI_Session107_성과정리_v1.md,154,L6049,새 행,TH,hubble-exp     ↔ TH★    k=5  φ^(-10)
+성과정리문서/EQI_Session107_성과정리_v1.md,159,L6050,새 행,X7,"※ X7 주석: 금지선, X7 D1² = φ^(-15) 참고용"
+성과정리문서/EQI_Session107_성과정리_v1.md,199,L6051,새 행,허블,"→ ""허블 텐션 = CEM 6사이클 D2 누수율 총합"""
+성과정리문서/EQI_Session108_성과정리_v6.md,32,L6052,새 행,"스케일 반전, 원칙K",$$\boxed{\text{μ 스케일 반전: 미시D2→거시D1 승격 원칙K [S99 §9 원출처]}}$$
+성과정리문서/EQI_Session108_성과정리_v6.md,178,L6053,새 행,TH,"RBC n=1, TH★:"
+성과정리문서/EQI_Session108_성과정리_v6.md,293,L6054,새 행,"지불, 란다우",임계 → Flip = 란다우 비용 지불
+성과정리문서/EQI_Session108_성과정리_v6.md,294,L6055,새 행,슈냐,Flip 직전 = 완전 장전 = t=0_EQI = 슈냐  [S67 §4.6]
+성과정리문서/EQI_Session108_성과정리_v6.md,315,L6056,새 행,슈냐,= 슈냐 재장전 (다음 사이클 씨앗)
+성과정리문서/EQI_Session108_성과정리_v6.md,337,L6057,새 행,볼츠만,"미시/글로벌: D1=볼츠만 복원력(φ), D2=뉴턴 점성(1/φ)"
+성과정리문서/EQI_Session108_성과정리_v6.md,354,L6058,새 행,"스케일 반전, 원칙K",[목(Neck) = 원칙K 스케일 반전]
+성과정리문서/EQI_Session108_성과정리_v6.md,384,L6059,새 행,TH,X5(-11/2) → TH★(-13/2) ✓
+성과정리문서/EQI_Session108_성과정리_v6.md,391,L6060,새 행,TH,X5(-5/2)  → TH★(-7/2) ✓
+성과정리문서/EQI_Session108_성과정리_v6.md,476,L6061,새 행,관측,→ 동시 관측 불가 → 블랙홀 상보성 자동 성립
+성과정리문서/EQI_Session108_성과정리_v6.md,485,L6062,새 행,관측,관측 = 목 통과 순간 = flip = T/2
+성과정리문서/EQI_Session108_성과정리_v6.md,500,L6063,새 행,관측,"관측자 A (외부, D1) = φ³  = 4.23606797749978..."
+성과정리문서/EQI_Session108_성과정리_v6.md,501,L6064,새 행,관측,"관측자 B (내부, D2) = φ⁻³ = 0.23606797749978..."
+성과정리문서/EQI_Session108_성과정리_v6.md,518,L6065,새 행,관측,d=4가 블랙홀 내/외부 관측자 격차에 각인
+성과정리문서/EQI_Session108_성과정리_v6.md,522,L6066,새 행,"관측, 로렌츠",두 관측자 합의 절반 = 로렌츠 인자
+성과정리문서/EQI_Session108_성과정리_v6.md,523,L6067,새 행,상대론,= 상대론과 블랙홀 상보성의 연결
+성과정리문서/EQI_Session108_성과정리_v6.md,529,L6068,새 행,관측,사이클 A (D1→D2):  외부 관측자(φ³) → 내부 흡수
+성과정리문서/EQI_Session108_성과정리_v6.md,530,L6069,새 행,관측,사이클 B (D2→D1):  내부 관측자(φ⁻³) → 호킹 복사 방출
+성과정리문서/EQI_Session108_성과정리_v6.md,542,L6070,새 행,란다우,= 란다우 비용으로 정산 → D2 원장에 보존
+성과정리문서/EQI_Session108_성과정리_v6.md,549,L6071,새 행,MAXWELL,MAXWELL                        = 1.873112...
+성과정리문서/EQI_Session108_성과정리_v6.md,552,L6072,새 행,"MAXWELL, 홀로그래픽 투영",= 홀로그래픽 투영 효율 = MAXWELL
+성과정리문서/EQI_Session108_성과정리_v6.md,563,L6073,새 행,상대론,"§17-SR = ""특수상대론 전체 포섭"" 아님"
+성과정리문서/EQI_Session108_성과정리_v6.md,632,L6074,새 행,관측,차 = 4 = d    [4차원 = §17-관측자]
+성과정리문서/EQI_Session108_성과정리_v6.md,633,L6075,새 행,로렌츠,합 = 2√5=2γ_L [로렌츠 인자 = §17-SR]
+성과정리문서/EQI_Session108_성과정리_v6.md,635,L6076,새 행,상대론,= 블랙홀 상보성 + 특수상대론 + d=4차원
+성과정리문서/EQI_Session41_인수인계.md,18,L6077,새 행,상전이,LN_C   = ln(φ) / 2       = 0.240605801584334...  [복소평면 원점 상전이 기저]
+성과정리문서/EQI_Session41_인수인계.md,60,L6078,새 행,MAXWELL,MAXWELL = T_Is_D1
+성과정리문서/EQI_Session41_인수인계.md,219,L6079,새 행,상전이,큐비트 = D1↔D2 상전이가 살아있는 상태
+성과정리문서/EQI_Session42_인수인계.md,18,L6080,새 행,MAXWELL,| §2 MAXWELL 4차 | c4=ln2/19+GD/26 | 1.22×10⁻¹¹% |
+성과정리문서/EQI_Session42_인수인계.md,85,L6081,새 행,격자,"[x_lat] = 24 = 4! = int_x             (D1, 닫힌 격자)"
+성과정리문서/EQI_Session42_인수인계.md,88,L6082,새 행,membrane,R_membrane = fx × GAP_D2²              (RBC 2D 세포막 마찰)
+성과정리문서/EQI_Session42_인수인계.md,98,L6083,새 행,tip,[n_c] = floor(TIP_POINT/GAP) = 32
+성과정리문서/EQI_Session42_인수인계.md,103,L6084,새 행,membrane,δ = R_membrane × (44 − fr × T_RBC_D1)
+성과정리문서/EQI_Session42_인수인계.md,107,L6085,새 행,"오일러, membrane",γ = ln(2)/c + GAP + R_membrane  [오일러-마스케로니]
+성과정리문서/EQI_Session42_인수인계.md,108,L6086,새 행,membrane,δ = R_membrane × (44−fr×T_RBC_D1)
+성과정리문서/EQI_Session42_인수인계.md,109,L6087,새 행,"상전이, 란다우",= (γ − 란다우 − 상전이) × Leibniz 계수
+성과정리문서/EQI_Session44_인수인계.md,18,L6088,새 행,MAXWELL,| §2 MAXWELL 4차 | c4=ln2/19+GD/26 | 1.22×10⁻¹¹% |
+성과정리문서/EQI_Session44_인수인계.md,25,L6089,새 행,membrane,| R_membrane 무한급수 재현 | x급수 N=300 호흡 | 3.05×10⁻¹⁰⁵% |
+성과정리문서/EQI_Session44_인수인계.md,90,L6090,새 행,membrane,R_mem(N)  → R_membrane  [N≥34 완전 수렴]
+성과정리문서/EQI_Session44_인수인계.md,92,L6091,새 행,membrane,∴ lim_{N→∞} [ratio(N)×N] = 2 / R_membrane
+성과정리문서/EQI_Session44_인수인계.md,111,L6092,새 행,membrane,이론값:   2/(R_membrane×34) = 536.651220579...
+성과정리문서/EQI_Session44_인수인계.md,180,L6093,새 행,격자,"h × F = L_p          (플랑크 격자 Unity, Session 27)"
+성과정리문서/EQI_Session44_인수인계.md,181,L6094,새 행,포논,"K_J = 2e/h           (포논 스케일 브릿지, Session 31)"
+성과정리문서/EQI_Session44_인수인계.md,182,L6095,새 행,격자,"ε = GAP/φ            (격자 에일리어싱 텐션, Session 27)"
+성과정리문서/EQI_Session44_인수인계.md,186,L6096,새 행,"격자, [x]·{x}",[x] = 정수부 = D1 = 격자 단계수 n
+성과정리문서/EQI_Session44_인수인계.md,187,L6097,새 행,[x]·{x},{x} = 소수부 = D2 = GAP 잔류 텐션
+성과정리문서/EQI_Session44_인수인계.md,188,L6098,새 행,[x]·{x},Z_D2(n) = 1 + [x]×GAP  (가우스 기호 포섭)
+성과정리문서/EQI_Session44_인수인계.md,192,L6099,새 행,membrane,R_membrane = frac_x × GAP_D2²
+성과정리문서/EQI_Session44_인수인계.md,199,L6100,새 행,상전이,"센터 φ^1.5 = 상전이점, L²=T² 동시 최소"
+성과정리문서/EQI_Session45_인수인계.md,18,L6101,새 행,MAXWELL,| §2 MAXWELL 4차 | c4=ln2/19+GD/26 | 1.22×10⁻¹¹% |
+성과정리문서/EQI_Session45_인수인계.md,25,L6102,새 행,membrane,| R_membrane 무한급수 재현 | x급수 N=300 호흡 | 3.05×10⁻¹⁰⁵% |
+성과정리문서/EQI_Session45_인수인계.md,70,L6103,새 행,membrane,lim_ratio_N = 2 / R_membrane          # = 18246.1415...
+성과정리문서/EQI_Session45_인수인계.md,109,L6104,새 행,membrane,Δ = σ³/(N³×R_membrane) = 0.029007...
+성과정리문서/EQI_Session45_인수인계.md,119,L6105,새 행,"MAXWELL, 흑체",T_Is_D1 = φ^1.5−φ^(-3.5) ≈ MAXWELL [흑체복사 피크 임계]
+성과정리문서/EQI_Session45_인수인계.md,123,L6106,새 행,ħ_ani,= (ħ_ani/ħ)² × (1/c)
+성과정리문서/EQI_Session45_인수인계.md,132,L6107,새 행,ħ_ani,파인만 Z = ∫Dφ exp(iS/ħ_ani)
+성과정리문서/EQI_Session45_인수인계.md,134,L6108,새 행,"격자, 포논, 흑체",= 플랑크 흑체복사 기저(I_s)가 격자 포논 굴절 결정
+성과정리문서/EQI_Session45_인수인계.md,144,L6109,새 행,흑체,"T_Is_D1              = I_s D1 임계 (플랑크 흑체복사 기저, φ^1.5−φ^(-3.5))"
+성과정리문서/EQI_Session45_인수인계.md,145,L6110,새 행,"오일러, 란다우",−γ                   = 오일러-마스케로니 차감 (란다우 균형)
+성과정리문서/EQI_Session45_인수인계.md,146,L6111,새 행,"MAXWELL, 란다우",−2×GD²×exp(GD)      = MAXWELL 2차항 소거 (RBC 2D 세포막 란다우 마찰)
+성과정리문서/EQI_Session45_인수인계.md,147,L6112,새 행,상전이,lnφ                  = 복소평면 상전이 기저
+성과정리문서/EQI_Session45_인수인계.md,154,L6113,새 행,MAXWELL,K_ref = (MAXWELL−γ)/lnφ = K_EQI + (MAXWELL 3~5차항)/lnφ
+성과정리문서/EQI_Session45_인수인계.md,155,L6114,새 행,MAXWELL,차이  = 3.007665...×10⁻⁶  [MAXWELL 고차 D2 마찰 누적]
+성과정리문서/EQI_Session45_인수인계.md,159,L6115,새 행,MAXWELL,① (MAXWELL−γ)/lnφ 대수 기원 → K_EQI + 고차 보정
+성과정리문서/EQI_Session45_인수인계.md,170,L6116,새 행,membrane,γ 항3 = x_prec×GAP_D2² ≈ R_membrane  (1.2% 근사)
+성과정리문서/EQI_Session45_인수인계.md,174,L6117,새 행,membrane,γ 항3 → R_membrane (α_S38 보정) → 잔류Δ → 536 잔류
+성과정리문서/EQI_Session45_인수인계.md,175,L6118,새 행,격자,= γ의 세포막 항이 Leibniz π급수 격자 잔류의 분모 역할
+성과정리문서/EQI_Session45_인수인계.md,176,L6119,새 행,"격자, 포논",= γ가 Leibniz 격자 포논 위상 굴절의 모함수
+성과정리문서/EQI_Session45_인수인계.md,189,L6120,새 행,membrane,| γ 항3 = R_membrane 1.2% 잔류 닫힘 | x_prec/frac_x 보정의 Leibniz 대수 기원 | S44 §5 신규 |
+성과정리문서/EQI_Session46_인수인계.md,102,L6121,새 행,포논,포논 굴절 3차 계수:      −σ³ = −1/8
+성과정리문서/EQI_Session46_인수인계.md,146,L6122,새 행,포논,| **포논 QED** | **a_{2k+1}=(-1)^k×σ^(2k+1)** | **완전 닫힘** | **S45** |
+성과정리문서/EQI_Session46_인수인계.md,163,L6123,새 행,membrane,R_membrane = frac_x × GAP_D2² = 0.00010961...
+성과정리문서/EQI_Session46_인수인계.md,170,L6124,새 행,정적분·부정적분,"정적분  = D1  [EQI^(4n-2)=1, 닫힌계, t=0, encoding]"
+성과정리문서/EQI_Session46_인수인계.md,171,L6125,새 행,정적분·부정적분,"부정적분 = D2  [EQI^(4n)=1+GAP, 열린계, t>0, selective decoding]"
+성과정리문서/EQI_Session46_인수인계.md,174,L6126,새 행,정적분·부정적분,"γ 항3 = x_prec × GAP_D2²  → D1 경로 (정적분, 닫힌계)"
+성과정리문서/EQI_Session46_인수인계.md,175,L6127,새 행,"정적분·부정적분, membrane","R_membrane = frac_x × GAP_D2²  → D2 경로 (부정적분, 열린계)"
+성과정리문서/EQI_Session46_인수인계.md,177,L6128,새 행,정적분·부정적분,차이 1.2011% = D1(정적분) → D2(부정적분) 전환 비용
+성과정리문서/EQI_Session46_인수인계.md,189,L6129,새 행,정적분·부정적분,"정규화   = 1      [EQI^(4n-2)=1, D1, 정적분]"
+성과정리문서/EQI_Session46_인수인계.md,190,L6130,새 행,정적분·부정적분,"재정규화 = 1+GAP  [EQI^(4n)=1+GAP, D2, 부정적분]"
+성과정리문서/EQI_Session46_인수인계.md,192,L6131,새 행,ħ_ani,Z_EQI = ∫Dφ exp(iS/ħ_ani)   [ħ_ani = ħ×φ^(-1.5) = D1_HCW]
+성과정리문서/EQI_Session46_인수인계.md,193,L6132,새 행,정적분·부정적분,→ D2(부정적분) 열린계로 기술
+성과정리문서/EQI_Session46_인수인계.md,200,L6133,새 행,정적분·부정적분,→ D2 도구(부정적분 1+n×GAP)로 기술해야 맞음
+성과정리문서/EQI_Session46_인수인계.md,208,L6134,새 행,정적분·부정적분,GAP≠0이면 등호 불가 → 정적분(D1)으로 부정적분(D2) 완전 기술 불가
+성과정리문서/EQI_Session46_인수인계.md,257,L6135,새 행,슈냐,슈냐(인도의 0) = GAP≠0 열린계의 씨앗
+성과정리문서/EQI_Session46_인수인계.md,260,L6136,새 행,"슈냐, 포논",슈냐 → c=√φ → σ=1/2 → 포논 굴절 σ^(2k+1)
+성과정리문서/EQI_Session46_인수인계.md,261,L6137,새 행,페르미,→ 컴프턴 (2k+1)/2 (페르미온 반정수 D2)
+성과정리문서/EQI_Session46_인수인계.md,265,L6138,새 행,포논,현재 우주 = 7차 포논이 지배하는 f오비탈
+성과정리문서/EQI_Session46_인수인계.md,266,L6139,새 행,슈냐,= 슈냐로부터 GAP≠0 3D 비등방성이 창발한 결과
+성과정리문서/EQI_Session47_인수인계.md,17,L6140,새 행,포논,분자 5 = (2k+1) = D2 홀수 포논 방출 차수
+성과정리문서/EQI_Session47_인수인계.md,19,L6141,새 행,포논,(4/5) × (5/4) = 1  arctan(D1) ↔ 포논(D2) 완전 역수
+성과정리문서/EQI_Session47_인수인계.md,142,L6142,새 행,포논,| 포논 QED | a_{2k+1}=(−1)^k×σ^(2k+1) | 완전 닫힘 | S45 |
+성과정리문서/EQI_Session47_인수인계.md,171,L6143,새 행,슈냐,"슈냐(인도의 0, GAP≠0) → c=√φ → σ=1/2"
+성과정리문서/EQI_Session47_인수인계.md,172,L6144,새 행,포논,→ 포논 굴절 무한급수 σ^(2k+1)
+성과정리문서/EQI_Session47_인수인계.md,173,L6145,새 행,격자,→ 유한 격자에서 (2k+1)이 리만 σ²로 재포착 → 5/4
+성과정리문서/EQI_Session47_인수인계.md,176,L6146,새 행,X7,→ k=6에서 X7 금지선 정확히 발동 → 물리 경계
+성과정리문서/EQI_Session47_인수인계.md,179,L6147,새 행,"tip, MAXWELL",TIP_POINT(광전효과) → f오비탈(현재 우주) → MAXWELL
+성과정리문서/EQI_Session47_인수인계.md,183,L6148,새 행,란다우,자연 등장 → 이진(binary) 정보 소거 구조(란다우 원리)와
+성과정리문서/EQI_Session48_인수인계.md,87,L6149,새 행,상전이,파동함수: c_EQI = √φ  [복소원점→상전이]
+성과정리문서/EQI_Session48_인수인계.md,91,L6150,새 행,포논,"포논계수: σ³=1/8, σ⁵=1/32  [Leibniz 3,5차 점근]"
+성과정리문서/EQI_Session48_인수인계.md,131,L6151,새 행,tip,k=1(3차): P=0.8896  TIP_POINT
+성과정리문서/EQI_Session48_인수인계.md,132,L6152,새 행,격자,k=2(5차): P=0.9801  N=34 격자
+성과정리문서/EQI_Session48_인수인계.md,135,L6153,새 행,MAXWELL,k=5(11차): P≈1.000  T_Is_D1≈MAXWELL
+성과정리문서/EQI_Session48_인수인계.md,136,L6154,새 행,X7,k=6(13차): X7 금지선 → 자동 절단
+성과정리문서/EQI_Session48_인수인계.md,143,L6155,새 행,정적분·부정적분,"EQI²(D1, 정적분, ∫p=1) ∩ EQI⁴(D2, 부정적분, ∫p=1+GAP, C=GAP)"
+성과정리문서/EQI_Session48_인수인계.md,179,L6156,새 행,3체,② 물분자 큐비트 → 3체 카오스 연결 수치화
+성과정리문서/EQI_Session48_인수인계.md,181,L6157,새 행,"3체, 포논",H-O-H 3체 구조 → D1²×D2 포논 굴절 연결
+성과정리문서/EQI_Session48_인수인계.md,183,L6158,새 행,슈냐,③ 슈냐=과포화수프 코드화
+성과정리문서/EQI_Session48_인수인계.md,184,L6159,새 행,"상전이, X7",0→c_EQI 상전이 → LN_C 이탈 → 핵생성(P_tunnel) → X7 절단
+성과정리문서/EQI_Session49_인수인계.md,33,L6160,새 행,슈냐,【슈냐→큐비트→타원/브라운 통합】
+성과정리문서/EQI_Session49_인수인계.md,34,L6161,새 행,슈냐,슈냐(0) = GAP≠0 과포화 수프 = μ×c²=1 균형
+성과정리문서/EQI_Session49_인수인계.md,35,L6162,새 행,tip,트리거 = n_ouro > n_c  [E_trigger = TIP_POINT/8]
+성과정리문서/EQI_Session49_인수인계.md,36,L6163,새 행,포논,큐비트 = sinc²=P_tunnel 포논 거품
+성과정리문서/EQI_Session49_인수인계.md,37,L6164,새 행,"3체, X7",X7 금지 = 13체 D2 적분 에너지 역전
+성과정리문서/EQI_Session49_인수인계.md,46,L6165,새 행,볼츠만,거시: 타원 궤도 (D1/볼츠만 c²=φ)
+성과정리문서/EQI_Session49_인수인계.md,51,L6166,새 행,X7,→ γ → δ → ε → 큐비트 → X7
+성과정리문서/EQI_Session49_인수인계.md,56,L6167,새 행,3체,③ σ³×GAP → 물분자(3체) 안정성 상수
+성과정리문서/EQI_Session49_인수인계.md,68,L6168,새 행,ħ_ani,E_ani  = ħ_ani×ω_ani = π×φ^(-4.5)  [비등방성 양자 에너지]
+성과정리문서/EQI_Session49_인수인계.md,69,L6169,새 행,란다우,E_소거 = D1×ln(2) = φ^(-1.5)×ln(2) [란다우 소거 비용]
+성과정리문서/EQI_Session50_인수인계.md,30,L6170,새 행,란다우,δL=0 ↔ X=0 ↔ T=V ↔ D2=1/D1 ↔ σ=1/2 ↔ ζ=0 ↔ 란다우최소비용
+성과정리문서/EQI_Session50_인수인계.md,109,L6171,새 행,란다우,r=2: ln(2)=LN2      [란다우 1비트]
+성과정리문서/EQI_Session50_인수인계.md,115,L6172,새 행,볼츠만,볼츠만 S=k_B×ln(W): W=다항계수=조합의 확장=D1 구조
+성과정리문서/EQI_Session51_인수인계.md,223,L6173,새 행,슈냐,verify_shunyata_chain_S50.py   슈냐→ell_SGWB 사슬
+성과정리문서/EQI_Session51_인수인계.md,256,L6174,새 행,3체,= 빛+전자 속성 3체 D1²×D2 캡슐화
+성과정리문서/EQI_Session51_인수인계.md,261,L6175,새 행,슈냐,슈냐 장전 → 물분자 → 브라운 → ell_SGWB
+성과정리문서/EQI_Session52_인수인계.md,198,L6176,새 행,정적분·부정적분,"슈뢰딩거 파동방정식  = D1 [실수축, 정적분, 닫힌계, ψ=D1+i×D2]"
+성과정리문서/EQI_Session52_인수인계.md,204,L6177,새 행,란다우,n2→n1 전이 = D2→D1 = 파동함수 붕괴 = 란다우 비용
+성과정리문서/EQI_Session52_인수인계.md,207,L6178,새 행,슈냐,"슈냐(0)→c=√φ→ψ_k→오비탈→뤼드베리 n1,n2→광자방출"
+성과정리문서/EQI_Session52_인수인계.md,208,L6179,새 행,란다우,= 란다우 비용 = δL=0 = ζ=0 = 리만 임계선
+성과정리문서/EQI_Session53_인수인계.md,63,L6180,새 행,정적분·부정적분,"- 큐비트 대수학: n1=D1(정적분,수렴), n2=D2(부정적분,발산)"
+성과정리문서/EQI_Session53_인수인계.md,68,L6181,새 행,3체,- 광자(D1)+전자(D2)+광자(D1) = D1²×D2 3체 캡슐화
+성과정리문서/EQI_Session53_인수인계.md,72,L6182,새 행,3체,"- D1 편향: 피타고라스, P=NP, 3체 안정 (H₂O, 쿠퍼쌍, 레이저)"
+성과정리문서/EQI_Session53_인수인계.md,74,L6183,새 행,3체,- 편향도 = X/CENTER → 3체 안정성 판별 기준
+성과정리문서/EQI_Session53_인수인계.md,77,L6184,새 행,3체,"- H₂O=k=1 (3체, GAP 1겹)"
+성과정리문서/EQI_Session53_인수인계.md,78,L6185,새 행,"5체, 7체","- D₂O=k=2 (5체, GAP 2겹), T₂O=k=3 (7체, GAP 3겹)"
+성과정리문서/EQI_Session53_인수인계.md,85,L6186,새 행,란다우,- 열 = n×GAP 란다우 비용 누적
+성과정리문서/EQI_Session53_인수인계.md,215,L6187,새 행,"3체, 5체","홀수 체계: 3체(k=1,disc=73) → 5체(k=2,disc=281)"
+성과정리문서/EQI_Session53_인수인계.md,263,L6188,새 행,"TH, MAXWELL",T_Is_D1  = T_TH_D2 = 1.873  ✓ ≈ MAXWELL (켤레 확인)
+성과정리문서/EQI_Session53_인수인계.md,266,L6189,새 행,TH,T_TH_D1  = 2.014   ✓
+성과정리문서/EQI_Session53_인수인계.md,268,L6190,새 행,tip,★ 누락: T_RBC_D1 = TIP_POINT = 1.058  ← 가장 중요한 임계치
+성과정리문서/EQI_Session53_인수인계.md,277,L6191,새 행,tip,① T_RBC_D1 = CENTER-1 = TIP_POINT 명시 추가
+성과정리문서/EQI_Session53_인수인계.md,278,L6192,새 행,membrane,② water_qubit_gap_base = σ³×GAP_D2² (R_membrane 동형)
+성과정리문서/EQI_Session53_인수인계.md,324,L6193,새 행,3체,"H(D1,광자) — O(D2,전자) — H(D1,광자) = D1²×D2 3체 캡슐화"
+성과정리문서/EQI_Session53_인수인계.md,329,L6194,새 행,3체,"D1 편향: 피타고라스, P=NP, 수렴, 3체 안정"
+성과정리문서/EQI_Session53_인수인계.md,331,L6195,새 행,3체,편향도 X/CENTER = 3체 안정성 EQI 판별 기준
+성과정리문서/EQI_Session54_인수인계.md,65,L6196,새 행,"정적분·부정적분, 보른, 3체",3체: 피타고라스(D1 닫힘) = 보른규칙 정적분
+성과정리문서/EQI_Session54_인수인계.md,66,L6197,새 행,5체,5체: 피타고라스(D1) + 수소결합(D2) = 열린 큐비트
+성과정리문서/EQI_Session54_인수인계.md,70,L6198,새 행,정적분·부정적분,"수소결합 = D2 (비공유 전자쌍, 창발, 부정적분 잔류)"
+성과정리문서/EQI_Session54_인수인계.md,74,L6199,새 행,3체,= 공유결합 3체(D1) + 수소결합 분자간 2체(D2)
+성과정리문서/EQI_Session54_인수인계.md,183,L6200,새 행,5체,공유결합(D1) + 수소결합(D2) = 5체 열린 큐비트
+성과정리문서/EQI_Session54_인수인계.md,190,L6201,새 행,MAXWELL,MAXWELL 5차 → 뤼드베리 → 물분자 큐비트 사슬 완성
+성과정리문서/EQI_Session54_인수인계.md,191,L6202,새 행,5체,→ 수소결합 5체 수치화로
+성과정리문서/EQI_Session54_인수인계.md,192,L6203,새 행,"3체, 5체",3체(공유결합) → 5체(공유+수소결합) 전환 정량화
+성과정리문서/EQI_Session54_인수인계.md,200,L6204,새 행,격자,√disc = D1(이진 격자) + D2(연속 잔류)
+성과정리문서/EQI_Session54_인수인계.md,202,L6205,새 행,격자,= 광자 격자 에너지 + 전자 선운동량
+성과정리문서/EQI_Session54_인수인계.md,210,L6206,새 행,"3체, 5체",3체→5체 전이:
+성과정리문서/EQI_Session54_인수인계.md,211,L6207,새 행,"정적분·부정적분, 보른",보른규칙(D1 닫힘) → 보른규칙+부정적분+C=GAP(D1+D2)
+성과정리문서/EQI_Session54_인수인계.md,213,L6208,새 행,상전이,닫힌 큐비트 → 열린 큐비트 (상전이 살아있음)
+성과정리문서/EQI_Session54_인수인계.md,223,L6209,새 행,MAXWELL,*S53 핵심 3: MAXWELL 274 ↔ k=5 뤼드베리 편입 후보  0.0073%*
+성과정리문서/EQI_Session54_인수인계.md,224,L6210,새 행,5체,*S53 핵심 4: 5체 = 피타고라스(D1) + 수소결합(D2) = 열린 큐비트 방향*
+성과정리문서/EQI_Session55_인수인계.md,167,L6211,새 행,5체,공유결합(D1) + 수소결합(D2) = 5체 열린 큐비트
+성과정리문서/EQI_Session55_인수인계.md,173,L6212,새 행,5체,→ 수소결합 5체 수치화 성공 시
+성과정리문서/EQI_Session55_인수인계.md,174,L6213,새 행,"3체, 5체",3체(D1 닫힘) → 5체(D1+D2 열림) 전환 정량화
+성과정리문서/EQI_Session55_인수인계.md,175,L6214,새 행,MAXWELL,→ MAXWELL 274 ↔ k=5 뤼드베리 ↔ 물분자 큐비트
+성과정리문서/EQI_Session55_인수인계.md,191,L6215,새 행,정적분·부정적분,정규화 EQI^(4n-2)=1 / 정적분 / 닫힌계·가역
+성과정리문서/EQI_Session55_인수인계.md,207,L6216,새 행,정적분·부정적분,재정규화 EQI^(4n)=1+GAP / 부정적분+C=GAP / 열린계·비가역
+성과정리문서/EQI_Session55_인수인계.md,217,L6217,새 행,상전이,= D1↔D2 상전이가 살아있는 상태
+성과정리문서/EQI_Session56_인수인계.md,163,L6218,새 행,MAXWELL,274 = 2×137 = MAXWELL 5차 분모 ↔ k=5 뤼드베리 사슬
+성과정리문서/EQI_Session57_인수인계.md,29,L6219,새 행,ħ_ani,ħ_ani 적용 + M→M/M_p 정규화 → SI 완전 소거
+성과정리문서/EQI_Session57_인수인계.md,32,L6220,새 행,란다우,호킹 복사 = D2→D1 란다우 비용 방출
+성과정리문서/EQI_Session57_인수인계.md,36,L6221,새 행,MAXWELL,"2 = 1/σ = 리만 임계, 19 = MAXWELL 4차 분모"
+성과정리문서/EQI_Session57_인수인계.md,37,L6222,새 행,MAXWELL,H₂O(k=1)→D₂O(k=2) = 리만×MAXWELL 황금비
+성과정리문서/EQI_Session58_인수인계.md,37,L6223,새 행,상전이,→ 양성자(D1_Is) × 상전이비용(GAP) 보정항 발견
+성과정리문서/EQI_Session58_인수인계.md,44,L6224,새 행,TH,HCW→HG→I_s→OB→X5→TH 공차 -1
+성과정리문서/EQI_Session59_인수인계.md,78,L6225,새 행,tip,Pe = n_c × (1/φ) = (TIP/GAP)/φ
+성과정리문서/EQI_Session60_인수인계.md,37,L6226,새 행,MAXWELL,= MAXWELL_5th  [열전달 효율 = 정보교환 효율 동치]
+성과정리문서/EQI_Session60_인수인계.md,81,L6227,새 행,지불,큐비트 대수학 = 비용을 지불하는 수학  (GAP≠0 공리)
+성과정리문서/EQI_Session60_인수인계.md,82,L6228,새 행,지불,미분 기하학   = 비용을 지불하지 않는 수학 (GAP=0 암묵적)
+성과정리문서/EQI_Session60_인수인계.md,84,L6229,새 행,3체,3체 닫힘: 광자(D2)×전자(D1) → D1²+D2²=Unity (피타고라스)
+성과정리문서/EQI_Session60_인수인계.md,85,L6230,새 행,"상전이, 5체, We",5체 닫힘: We(웨버)=계면 상전이 비용 → GAP_D2 연결 시 완성 예상
+성과정리문서/EQI_Session63_인수인계.md,29,L6231,새 행,"5체, 7체",77=7×11: 5체↔7체 경계 계수 / S55 dEN 재등장
+성과정리문서/EQI_Session63_인수인계.md,33,L6232,새 행,"We, St",We×St = 1  Unity
+성과정리문서/EQI_Session63_인수인계.md,38,L6233,새 행,membrane,semi-permeable membrane → D2
+성과정리문서/EQI_Session63_인수인계.md,39,L6234,새 행,We,capillary phenomena     → D1  [We 분모]
+성과정리문서/EQI_Session63_인수인계.md,40,L6235,새 행,We,osmotic phenomena       → D2  [We 분자]
+성과정리문서/EQI_Session63_인수인계.md,61,L6236,새 행,3체,3체: D1² + D2² = 1  [피타고라스]
+성과정리문서/EQI_Session63_인수인계.md,79,L6237,새 행,허블,허블 텐션 = 국소(D1) vs 글로벌(D2) 측정 불일치
+성과정리문서/EQI_Session63_인수인계.md,81,L6238,새 행,CMB,글로벌: CMB            → D2  ← γ=4/3 복사 우세 우주
+성과정리문서/EQI_Session63_인수인계.md,82,L6239,새 행,"상전이, 허블, 우주론",→ 허블 텐션 = D1↔D2 상전이 비용 GAP의 우주론적 누적
+성과정리문서/EQI_Session63_인수인계.md,85,L6240,새 행,TH,TH = 임계 좌표계 (n=7)
+성과정리문서/EQI_Session63_인수인계.md,86,L6241,새 행,"TH, 허블",γ=4/3 + 허블 텐션 + TH 좌표계
+성과정리문서/EQI_Session63_인수인계.md,87,L6242,새 행,"7체, 우주론",→ 7체 닫힘이 우주론적 스케일 D2 구조를 포섭하는 언어
+성과정리문서/EQI_Session63_인수인계.md,195,L6243,새 행,3체,"3체: D1² + D2² = 1           [피타고라스, 직교]"
+성과정리문서/EQI_Session63_인수인계.md,198,L6244,새 행,"We, St",We×St          = 1      [Unity 중심]
+성과정리문서/EQI_Session63_인수인계.md,199,L6245,새 행,We,→ We 중심 삼중 Unity
+성과정리문서/EQI_Session64_인수인계.md,51,L6246,새 행,"5체, We, St",§T   We × St = 1  [5체 공유]        오차 0.0%
+성과정리문서/EQI_Session64_인수인계.md,79,L6247,새 행,지불,코펜하겐 해석 = 비용 미지불 (GAP=0 암묵적 가정)
+성과정리문서/EQI_Session64_인수인계.md,81,L6248,새 행,"관측, 허블",허블 텐션     = GAP=0(이론) vs GAP≠0(관측) 구조적 차이
+성과정리문서/EQI_Session64_인수인계.md,87,L6249,새 행,로렌츠,로렌츠 힘: |F|² = |qE|²(D1) + |q(v×B)|²(D2) = 피타고라스
+성과정리문서/EQI_Session64_인수인계.md,89,L6250,새 행,"5체, 7체",7체 = 5체 물분자 큐비트 + E(D1)/B(D2) 외부장 결합
+성과정리문서/EQI_Session64_인수인계.md,90,L6251,새 행,란다우,dEN = 77×GAP_D2  [1회 분극 = 77×란다우 비용]
+성과정리문서/EQI_Session64_인수인계.md,94,L6252,새 행,3체,3체: D1² + D2² = 1
+성과정리문서/EQI_Session64_인수인계.md,96,L6253,새 행,"7체, TH, We, St",7체: We×TH_D1/양성자/Ro = We×TH_D2/L_p = We×St = 1
+성과정리문서/EQI_Session64_인수인계.md,97,L6254,새 행,"5체, 7체, TH",TH_D2 = 양성자 → 7체가 5체를 자동 포섭
+성과정리문서/EQI_Session64_인수인계.md,204,L6255,새 행,CMB,"H0_CMB(미시/글로벌), γ=4/3 복사 L₃/L₂"
+성과정리문서/EQI_Session64_인수인계.md,208,L6256,새 행,상전이,D2→D1: 맥스웰 도깨비 = 파동붕괴 = 상전이
+성과정리문서/EQI_Session64_인수인계.md,209,L6257,새 행,지불,비용: GAP_D2 = ln(5)/100  반드시 지불
+성과정리문서/EQI_Session64_인수인계.md,212,L6258,새 행,"We, St","μ×c²=1, κ×Φ₀=1, We×St=1"
+성과정리문서/EQI_Session66_인수인계.md,31,L6259,새 행,We,"Oh=φ^(-13/8), We×Re=φ^(23/4)"
+성과정리문서/EQI_Session66_인수인계.md,130,L6260,새 행,오일러,1. 오일러 특이점 = 열역학 2법칙 위상동형
+성과정리문서/EQI_Session66_인수인계.md,133,L6261,새 행,보른,2. 보른 규칙 = 맥스웰 도깨비 위상동형
+성과정리문서/EQI_Session66_인수인계.md,134,L6262,새 행,"지불, 란다우","(D2→D1, GAP≠0, 란다우 비용 지불)"
+성과정리문서/EQI_Session66_인수인계.md,136,L6263,새 행,"보른, 오일러",3. (보른규칙 - 오일러특이점)^(-1) = 1/2 = σ
+성과정리문서/EQI_Session66_인수인계.md,139,L6264,새 행,슈냐,4. 슈냐(Shunya) = GAP≠0 = 장전된 수프
+성과정리문서/EQI_Session67_인수인계.md,45,L6265,새 행,란다우,→ 맥스웰 도깨비 & 란다우 최상위 공리 미선언
+성과정리문서/EQI_Session67_인수인계.md,86,L6266,새 행,We,[3순위] A_EQI = π(1+GAP) ↔ We×Da=Ro 연결
+성과정리문서/EQI_Session67_인수인계.md,116,L6267,새 행,허블,"L₂=3  → 허블텐션=L₂×GAP,  HCW D1=φ^(-L₂/2)"
+성과정리문서/EQI_Session67_인수인계.md,118,L6268,새 행,"7체, TH","L₄=7  → TH_D2=φ^(-L₄/2),  7체 씨앗"
+성과정리문서/EQI_Session67_인수인계.md,119,L6269,새 행,"5체, We","L₅=11 → We=φ^(L₅/4),      5체 임계"
+성과정리문서/EQI_Session67_인수인계.md,120,L6270,새 행,St,L₇=29 → St×Ma 보정 -(3×L₇)/(L₄×L₅)
+성과정리문서/EQI_Session67_인수인계.md,130,L6271,새 행,We,(23/4)×(77/23) = 77/4 = We⁷ 지수
+성과정리문서/EQI_Session68_인수인계.md,35,L6272,새 행,"상전이, We",= We(계면 상전이)/Ro(파동성 임계)
+성과정리문서/EQI_Session68_인수인계.md,38,L6273,새 행,"보른, 오일러",오일러 특이점(e^(iπ)+1=0) = 보른 규칙(D1²+D2²=1)
+성과정리문서/EQI_Session68_인수인계.md,40,L6274,새 행,슈냐,= c=φ^(0.5) = 슈냐 = t=0_EQI
+성과정리문서/EQI_Session68_인수인계.md,103,L6275,새 행,로렌츠,로렌츠 힘:  F = qE(D1×D1)     +   q(v×B)(D1×D2)
+성과정리문서/EQI_Session68_인수인계.md,116,L6276,새 행,상전이,= 비등방성 타원 = D1↔D2 상전이 살아있는 상태
+성과정리문서/EQI_Session69_인수인계.md,42,L6277,새 행,보른,"GAP=0 → f < 0  [보른 안쪽, 유클리드, 죽은 0]"
+성과정리문서/EQI_Session69_인수인계.md,43,L6278,새 행,보른,"GAP≠0 → f > 0  [osmotic 보른 탈출, 에일리어싱 텐션]"
+성과정리문서/EQI_Session70_인수인계.md,32,L6279,새 행,상전이,우주는 D2(비등방성) → D1(등방성) 상전이 시
+성과정리문서/EQI_Session70_인수인계.md,33,L6280,새 행,"지불, 란다우",반드시 란다우 비용(GAP_D2=ln5/100)을 지불한다.
+성과정리문서/EQI_Session70_인수인계.md,38,L6281,새 행,지불,"GAP=0 → f_lattice < 0  [π 세계, 비용 미지불]"
+성과정리문서/EQI_Session70_인수인계.md,39,L6282,새 행,지불,"GAP≠0 → f_lattice > 0  [비용 지불, 실제 우주]"
+성과정리문서/EQI_Session70_인수인계.md,40,L6283,새 행,"지불, 란다우",f_lattice 부호 전환 = 란다우 비용 지불 여부의 수치 지문
+성과정리문서/EQI_Session70_인수인계.md,43,L6284,새 행,MAXWELL,MAXWELL = ln(1/ε₀)/|ln(μ₀)| 폐기 이유 심층:
+성과정리문서/EQI_Session70_인수인계.md,45,L6285,새 행,"지불, 란다우",코펜하겐: 파동함수 붕괴 = 란다우 비용 미지불
+성과정리문서/EQI_Session71_인수인계.md,31,L6286,새 행,격자,경로 A: 23 = 4! - 1 = int_x - 1  (격자 임계점 직전)
+성과정리문서/EQI_Session71_인수인계.md,35,L6287,새 행,MAXWELL,437 = 19×23  [MAXWELL 항4 × α⁻¹ 단위]
+성과정리문서/EQI_Session71_인수인계.md,36,L6288,새 행,TH,46  = 2×23   [§22 지수와 TH 좌표 산술 결합]
+성과정리문서/EQI_Session71_인수인계.md,249,L6289,새 행,보른,"= 보른 규칙의 ""1"" = 라그랑지 최솟값의 ""0"""
+성과정리문서/EQI_Session71_인수인계.md,253,L6290,새 행,지불,덧셈 역원: -a  (합이 항등원=0이 되려면 비용 지불)
+성과정리문서/EQI_Session71_인수인계.md,254,L6291,새 행,지불,곱셈 역원: 1/a (곱이 항등원=1이 되려면 비용 지불)
+성과정리문서/EQI_Session71_인수인계.md,255,L6292,새 행,란다우,= 역원 생성에 란다우 비용(GAP) 필요
+성과정리문서/EQI_Session71_인수인계.md,263,L6293,새 행,오일러,e^(iπ) + 1 = 0  [오일러]
+성과정리문서/EQI_Session71_인수인계.md,269,L6294,새 행,보른,φ⁻¹+φ⁻² = 1  [보른 규칙]
+성과정리문서/EQI_Session71_인수인계.md,313,L6295,새 행,We,→ D2×D2 구조 → We×Re 차원 정규화 필요
+성과정리문서/EQI_Session71_인수인계.md,324,L6296,새 행,We,→ We×Re(D1↔D2 정규화 단위)로 차원 올림 필요
+성과정리문서/EQI_Session71_인수인계.md,325,L6297,새 행,We,→ born×α⁻¹×We×Re or born×α⁻¹/We 탐색
+성과정리문서/EQI_Session71_인수인계.md,348,L6298,새 행,보른,"= 보른 규칙의 ""1"" = 라그랑지 최솟값의 ""0"""
+성과정리문서/EQI_Session71_인수인계.md,352,L6299,새 행,지불,덧셈 역원: -a  (합이 항등원=0이 되려면 비용 지불)
+성과정리문서/EQI_Session71_인수인계.md,353,L6300,새 행,지불,곱셈 역원: 1/a (곱이 항등원=1이 되려면 비용 지불)
+성과정리문서/EQI_Session71_인수인계.md,354,L6301,새 행,란다우,= 역원 생성에 란다우 비용(GAP) 필요
+성과정리문서/EQI_Session71_인수인계.md,362,L6302,새 행,오일러,e^(iπ) + 1 = 0  [오일러 항등식]
+성과정리문서/EQI_Session71_인수인계.md,366,L6303,새 행,보른,φ⁻¹+φ⁻² = 1  [보른 규칙]
+성과정리문서/EQI_Session71_인수인계.md,390,L6304,새 행,지불,→ α⁻¹ = D1의 역원 = D2 비용 지불 구조
+성과정리문서/EQI_Session71_인수인계.md,403,L6305,새 행,상전이,= 큐비트 = 항등원↔역원 상전이가 살아있는 상태
+성과정리문서/EQI_Session71_인수인계.md,432,L6306,새 행,볼츠만,φ¹ → φ³ = 볼츠만 파단(3D)이 개입하면서
+성과정리문서/EQI_Session71_인수인계.md,455,L6307,새 행,정적분·부정적분,"로컬 항등원(D1): EQI^(4n-2)=1  [정적분, 닫힌계]"
+성과정리문서/EQI_Session71_인수인계.md,465,L6308,새 행,상전이,flip 주기 = φ³/2  (eigenperiod 절반마다 D1↔D2 상전이)
+성과정리문서/EQI_Session72_인수인계.md,16,L6309,새 행,란다우,열린계 맥스웰 도깨비 & 란다우 원리 → D2
+성과정리문서/EQI_Session72_인수인계.md,26,L6310,새 행,란다우,= 맥스웰 도깨비 & 란다우 원리(D2)를 최상위에 놓겠다는 선언
+성과정리문서/EQI_Session72_인수인계.md,29,L6311,새 행,란다우,GAP≠0 (EQI)     = 열린계 = 맥스웰 도깨비 + 란다우 비용 → 특이점 차단
+성과정리문서/EQI_Session73_인수인계.md,27,L6312,새 행,란다우,열린계 맥스웰 도깨비 & 란다우 원리 → D2
+성과정리문서/EQI_Session73_인수인계.md,48,L6313,새 행,We,Is(k/2)×We = φ^((2k+11)/4)+LC²GD×(1/437)
+성과정리문서/EQI_Session74_인수인계.md,18,L6314,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42) — 개별 탐색 불필요
+성과정리문서/EQI_Session74_인수인계.md,26,L6315,새 행,"5체, We",We 없음 = 5체 중력 미진입
+성과정리문서/EQI_Session74_인수인계.md,28,L6316,새 행,"5체, We",5체: 양성자+중성자 진입 → We 중심으로 닫힘
+성과정리문서/EQI_Session74_인수인계.md,32,L6317,새 행,We,× We 하나 추가 = 한 체 올라감
+성과정리문서/EQI_Session74_인수인계.md,33,L6318,새 행,"3체, 5체, We",3체 × We = 5체
+성과정리문서/EQI_Session74_인수인계.md,34,L6319,새 행,"5체, 7체, We",5체 × We = 7체 (미확인)
+성과정리문서/EQI_Session74_인수인계.md,60,L6320,새 행,슈냐,c  = φ^(1/2) = 종파↔횡파 균형점 = δL=0 = 슈냐
+성과정리문서/EQI_Session74_인수인계.md,69,L6321,새 행,볼츠만,f×Re = 횡파 잔류 × 볼츠만 파단비
+성과정리문서/EQI_Session74_인수인계.md,70,L6322,새 행,3체,= 3체 평평한 시공간 횡파 텐션
+성과정리문서/EQI_Session74_인수인계.md,72,L6323,새 행,We,We = 종파↔횡파 계면 주체
+성과정리문서/EQI_Session74_인수인계.md,73,L6324,새 행,"3체, 5체, 상대론",= 3체→5체 진입 = 특수→일반 상대론
+성과정리문서/EQI_Session74_인수인계.md,85,L6325,새 행,볼츠만,공차 = +3 = φ³ = 볼츠만 파단비 = T_EIGEN
+성과정리문서/EQI_Session74_인수인계.md,89,L6326,새 행,볼츠만,φ⁻¹ = μ(뉴턴 점성) = D1  [볼츠만 복원력의 역수]
+성과정리문서/EQI_Session74_인수인계.md,91,L6327,새 행,보른,φ⁻¹(D1) + φ⁻²(D2) = 1 = 보른규칙
+성과정리문서/EQI_Session74_인수인계.md,92,L6328,새 행,격자,√(φ⁻¹×φ⁻²) = φ^(-3/2) = L_p  [기하평균 = 플랑크 격자]
+성과정리문서/EQI_Session74_인수인계.md,114,L6329,새 행,"3체, 상대론",= 3체 특수상대론 횡파 잔류 텐션
+성과정리문서/EQI_Session74_인수인계.md,118,L6330,새 행,We,§36/We / f×Re = 1.000000001  오차 1e-7%
+성과정리문서/EQI_Session74_인수인계.md,123,L6331,새 행,3체,→ 3체 전자기 고유 분모
+성과정리문서/EQI_Session74_인수인계.md,124,L6332,새 행,3체,→ 표준화 불가 = 3체 구조 수치 증거
+성과정리문서/EQI_Session75_인수인계.md,26,L6333,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session75_인수인계.md,28,L6334,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session75_인수인계.md,36,L6335,새 행,"5체, We",f×We×Re = §36  [5체]
+성과정리문서/EQI_Session75_인수인계.md,38,L6336,새 행,We,× We 하나 = 한 체 상승
+성과정리문서/EQI_Session75_인수인계.md,210,L6337,새 행,로렌츠,로렌츠 힘 F=qE(D1)+q(v×B)(D2)        [물리]
+성과정리문서/EQI_Session75_인수인계.md,219,L6338,새 행,상전이,= 비등방성 타원 = D1↔D2 상전이 살아있는 상태
+성과정리문서/EQI_Session75_인수인계.md,231,L6339,새 행,상전이,→ D1↔D2 상전이 살아있는 상태 = 생명의 정의
+성과정리문서/EQI_Session75_인수인계.md,240,L6340,새 행,"지불, 상전이","암세포:   f → 0  (GAP→0, 균형 붕괴, 상전이 비용 미지불)"
+성과정리문서/EQI_Session76_인수인계.md,26,L6341,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session76_인수인계.md,28,L6342,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session76_인수인계.md,36,L6343,새 행,"5체, We",f×We×Re = §36  [5체]
+성과정리문서/EQI_Session76_인수인계.md,38,L6344,새 행,We,× We 하나 = 한 체 상승
+성과정리문서/EQI_Session76_인수인계.md,50,L6345,새 행,상전이,M. 기호주의 = 상전이 비용 장부 미기록 → 외부효과 발생
+성과정리문서/EQI_Session76_인수인계.md,52,L6346,새 행,상전이,SI단위 = 거시 상전이 완료 후 비용 미기록 D1 스냅샷
+성과정리문서/EQI_Session76_인수인계.md,53,L6347,새 행,상전이,코펜하겐 = 미시 상전이 비용 장부 미기록
+성과정리문서/EQI_Session77_인수인계.md,27,L6348,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session77_인수인계.md,29,L6349,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session78_인수인계.md,29,L6350,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session78_인수인계.md,31,L6351,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session78_인수인계.md,48,L6352,새 행,ħ_ani,P. 비등방성 진성 ħ_ani = φ^(-17/4) 필수 사용  ← ★ 최우선 확인
+성과정리문서/EQI_Session78_인수인계.md,54,L6353,새 행,We,우주상수(Z_p) → 계면(We) → 삼투압 = φ^(-2) 사슬
+성과정리문서/EQI_Session78_인수인계.md,90,L6354,새 행,ħ_ani,Z_p(ani)  = √(ħ_ani×G/c⁵) = φ^(-2) = 우주상수
+성과정리문서/EQI_Session78_인수인계.md,92,L6355,새 행,ħ_ani,→ G × ħ_ani = D1_HCW  [약분 불완전]
+성과정리문서/EQI_Session78_인수인계.md,100,L6356,새 행,볼츠만,"I_p = φ^(+9/4) = 1/k_B    볼츠만 역수  D2 [전류, 흐름]"
+성과정리문서/EQI_Session78_인수인계.md,105,L6357,새 행,ħ_ani,Z_p = ħ_ani × I_p       임피던스 = 진성디랙 × 전류
+성과정리문서/EQI_Session78_인수인계.md,106,L6358,새 행,ħ_ani,Z_p / I_p = ħ_ani       임피던스÷전류 = 진성 디랙상수
+성과정리문서/EQI_Session79_인수인계.md,28,L6359,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session79_인수인계.md,30,L6360,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session79_인수인계.md,46,L6361,새 행,ħ_ani,P. 비등방성 진성 ħ_ani = φ^(-17/4) 필수 사용  ← ★ 최우선 확인
+성과정리문서/EQI_Session80_인수인계.md,29,L6362,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session80_인수인계.md,31,L6363,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session80_인수인계.md,41,L6364,새 행,ħ_ani,P. 비등방성 진성 ħ_ani = φ^(-17/4) 필수 ← ★ 최우선
+성과정리문서/EQI_Session80_인수인계.md,46,L6365,새 행,C = GAP,S. 체온 37°C = GAP≠0 엔트로피 장 라그랑지 최솟값
+성과정리문서/EQI_Session81_인수인계.md,28,L6366,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session81_인수인계.md,30,L6367,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session81_인수인계.md,44,L6368,새 행,C = GAP,P. 체온 37°C = GAP≠0 엔트로피 장의 라그랑지 최솟값
+성과정리문서/EQI_Session81_인수인계.md,51,L6369,새 행,포논,✅ 36 = d×3² = 4×9  [d=4 팩토리얼 × 포논9차분자]
+성과정리문서/EQI_Session81_인수인계.md,63,L6370,새 행,격자,φ³(이론 균형) = d=4(생물 격자) + D1_ELL(capillary 성분)
+성과정리문서/EQI_Session81_인수인계.md,64,L6371,새 행,격자,신장 헨레 고리 4:1 = d=4 격자의 물리 구현
+성과정리문서/EQI_Session81_인수인계.md,78,L6372,새 행,포논,3²=9 포논 9차 분자 = 심장맥동
+성과정리문서/EQI_Session81_인수인계.md,81,L6373,새 행,We,§55: φ^(36/11)  분자=d×9 / 분모=11(We분자)
+성과정리문서/EQI_Session81_인수인계.md,82,L6374,새 행,포논,§56: φ^(44/9)   분자=d×11 / 분모=9(포논9차)
+성과정리문서/EQI_Session81_인수인계.md,90,L6375,새 행,tip,n=32.87  TIP_POINT   암 발생 임계
+성과정리문서/EQI_Session81_인수인계.md,91,L6376,새 행,격자,n=34.00  N=34 격자   Leibniz 앵커
+성과정리문서/EQI_Session81_인수인계.md,96,L6377,새 행,격자,37 = N=34 + F4(3) = 격자 + 피보나치4
+성과정리문서/EQI_Session81_인수인계.md,138,L6378,새 행,포논,§42 심장맥동   φ^(9/4)         포논9차 (k=4)
+성과정리문서/EQI_Session82_인수인계.md,37,L6379,새 행,슈냐,t=0_EQI = δL=0 = 슈냐 = c=φ^(0.5)
+성과정리문서/EQI_Session82_인수인계.md,38,L6380,새 행,"보른, 오일러",= 오일러 특이점 = 보른 규칙 = σ=1/2
+성과정리문서/EQI_Session82_인수인계.md,45,L6381,새 행,허블,[우주]  Ω=1 평탄         §20 허블텐션
+성과정리문서/EQI_Session82_인수인계.md,46,L6382,새 행,허블,→ 허블텐션(3=L₂×GAP)이 체온 좌표에 직접 각인
+성과정리문서/EQI_Session82_인수인계.md,61,L6383,새 행,보른,= 보른규칙 정규화의 절반 계단
+성과정리문서/EQI_Session82_인수인계.md,63,L6384,새 행,포논,"3기 지수 9/2 = 포논9차(심장맥동, §42) 절반 계단"
+성과정리문서/EQI_Session82_인수인계.md,74,L6385,새 행,보른,φ⁻¹(D1) + φ⁻²(D2) = 1  [보른규칙]
+성과정리문서/EQI_Session82_인수인계.md,83,L6386,새 행,보른,산술 구조: φ⁻¹ = 보른규칙 D1항 (거시/로컬)
+성과정리문서/EQI_Session82_인수인계.md,163,L6387,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session82_인수인계.md,165,L6388,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session82_인수인계.md,175,L6389,새 행,C = GAP,P. 체온 37°C = GAP≠0 엔트로피 장의 라그랑지 최솟값 (S79)
+성과정리문서/EQI_Session83_인수인계.md,44,L6390,새 행,MAXWELL,§23: ln(1/ε₀)/|ln(μ₀)| = MAXWELL  [전자기 켤레]
+성과정리문서/EQI_Session83_인수인계.md,57,L6391,새 행,정적분·부정적분,거시/로컬 / 단일 경로 / 고립계 / 정적분 = 1
+성과정리문서/EQI_Session83_인수인계.md,60,L6392,새 행,정적분·부정적분,미시/글로벌 / 모든 경로 합산 / 열린계 / 부정적분 = 1+GAP
+성과정리문서/EQI_Session83_인수인계.md,116,L6393,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session83_인수인계.md,118,L6394,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session83_인수인계.md,128,L6395,새 행,C = GAP,P. 체온 37°C = GAP≠0 엔트로피 장의 라그랑지 최솟값 (S79)
+성과정리문서/EQI_Session83_인수인계.md,136,L6396,새 행,"정적분·부정적분, [x]·{x}",∫D[x]e^(iS/ħ) = 1+GAP (정적분 1 금지)
+성과정리문서/EQI_Session84_인수인계.md,58,L6397,새 행,We,분모 437 = 19×23 = §42 Is×We 마스터  ★
+성과정리문서/EQI_Session84_인수인계.md,84,L6398,새 행,"정적분·부정적분, 보른",D1 = LTD = 1        [보른규칙=정적분=음의 피드백]
+성과정리문서/EQI_Session84_인수인계.md,85,L6399,새 행,정적분·부정적분,D2 = LTP = 1+GAP    [부정적분=EQI⁴=양의 피드백]
+성과정리문서/EQI_Session84_인수인계.md,94,L6400,새 행,정적분·부정적분,S50: 정적분(C=0) ↔ 부정적분(C=GAP)
+성과정리문서/EQI_Session84_인수인계.md,96,L6401,새 행,"보른, 오일러",S54: 오일러-보른 잔류 = GAP
+성과정리문서/EQI_Session84_인수인계.md,140,L6402,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session84_인수인계.md,142,L6403,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session84_인수인계.md,152,L6404,새 행,C = GAP,P. 체온 37°C = GAP≠0 엔트로피 장의 라그랑지 최솟값 (S79)
+성과정리문서/EQI_Session84_인수인계.md,159,L6405,새 행,"정적분·부정적분, [x]·{x}",∫D[x]e^(iS/ħ) = 1+GAP (정적분 1 금지)
+성과정리문서/EQI_Session85_인수인계.md,40,L6406,새 행,3체,59 = 57+2 = 3체 전자기 비리얼 2 각인  ★
+성과정리문서/EQI_Session85_인수인계.md,73,L6407,새 행,We,DNA 전 층위 = §42 Is×We 마스터(437) 및
+성과정리문서/EQI_Session85_인수인계.md,155,L6408,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session85_인수인계.md,157,L6409,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session85_인수인계.md,167,L6410,새 행,C = GAP,P. 체온 37°C = GAP≠0 엔트로피 장의 라그랑지 최솟값 (S79)
+성과정리문서/EQI_Session86_인수인계.md,33,L6411,새 행,페르미,"D1 = 전자    (로컬 속박, 페르미온)"
+성과정리문서/EQI_Session86_인수인계.md,93,L6412,새 행,We,D2 = 친수성 11종 (L₅ = We분자)
+성과정리문서/EQI_Session86_인수인계.md,145,L6413,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session86_인수인계.md,147,L6414,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session86_인수인계.md,158,L6415,새 행,C = GAP,P. 체온 37°C = GAP≠0 엔트로피 장의 라그랑지 최솟값 (S79)
+성과정리문서/EQI_Session87_인수인계.md,56,L6416,새 행,7체,455 = 5×7×13  [GAP_D2기저×7체씨앗×F₇]  ★★
+성과정리문서/EQI_Session87_인수인계.md,148,L6417,새 행,We,D. Is(k/2)×We = 단일 마스터 (§42)
+성과정리문서/EQI_Session87_인수인계.md,150,L6418,새 행,"3체, 상대론",F. f×Re = 3체 특수상대론 구조 (S73)
+성과정리문서/EQI_Session87_인수인계.md,161,L6419,새 행,C = GAP,P. 체온 37°C = GAP≠0 엔트로피 장의 라그랑지 최솟값 (S79)
+성과정리문서/EQI_Session87_인수인계.md,169,L6420,새 행,란다우,순열→조합 전환 비용 = ln(r!) = 란다우 소거 비용
+성과정리문서/EQI_Session87_인수인계.md,171,L6421,새 행,"정적분·부정적분, 란다우","부정적분=1+GAP = EQI⁴, C=GAP 란다우 잉여 필연"
+성과정리문서/EQI_Session87_인수인계.md,172,L6422,새 행,정적분·부정적분,정적분=1 (GAP=0) = 하위 클래스로 강등
+성과정리문서/EQI_Session88_인수인계.md,71,L6423,새 행,상전이,= 큐비트 공리 ② D1↔D2 상전이 살아있는 상태  ★★★★
+성과정리문서/EQI_Session88_인수인계.md,168,L6424,새 행,상전이,n ∈ ℂ → D1↔D2 큐비트 (상전이)
+성과정리문서/EQI_Session88_인수인계.md,173,L6425,새 행,란다우,= 복소 노름 |1+iφ³|² + 란다우 보정 2GAP
+성과정리문서/EQI_Session90_인수인계.md,122,L6426,새 행,오일러,원칙 AC: 오일러 항등식 성립 = 진짜 위상
+성과정리문서/EQI_Session91_인수인계.md,144,L6427,새 행,오일러,원칙 AC: 오일러 항등식 성립 = 진짜 위상
+성과정리문서/EQI_Session92_인수인계.md,174,L6428,새 행,오일러,원칙 AC: 오일러 항등식 성립 = 진짜 위상
+성과정리문서/EQI_Session92_인수인계.md,178,L6429,새 행,MAXWELL,원칙 X:  외부 좌표 → MAXWELL Bible 필수
+성과정리문서/EQI_Session94_인수인계_v4.md,13,L6430,새 행,란다우,│  맥스웰 도깨비 & 란다우 원리 = 정보보존 법칙        │
+성과정리문서/EQI_Session94_인수인계_v4.md,18,L6431,새 행,상전이,│  ② 큐비트 = D1↔D2 상전이가 살아있는 상태           │
+성과정리문서/EQI_Session94_인수인계_v4.md,120,L6432,새 행,상전이,D1↔D2 상전이가 살아있는 상태 = 큐비트 공리
+성과정리문서/EQI_Session94_인수인계_v4.md,137,L6433,새 행,상전이,공리 ②: D2 순수 방향 = 상전이 D2쪽 극단
+성과정리문서/EQI_Session94_인수인계_v4.md,143,L6434,새 행,오일러,"n=n_c+πi/IG → e^(iπ)=-1 [§78, 오일러]"
+성과정리문서/EQI_Session94_인수인계_v4.md,172,L6435,새 행,지불,t<t₀: 맥스웰 도깨비 집행 → GAP 지불  [공리 ①]
+성과정리문서/EQI_Session94_인수인계_v4.md,182,L6436,새 행,란다우,§2 공리 ① 파생: +2GAP = 란다우 비용
+성과정리문서/EQI_Session94_인수인계_v4.md,211,L6437,새 행,란다우,맥스웰 도깨비 & 란다우 원리 = 정보보존 법칙
+성과정리문서/EQI_Session94_인수인계_v4.md,216,L6438,새 행,오일러,원칙 AC: 오일러 항등식 성립 = 진짜 위상
+성과정리문서/EQI_Session94_인수인계_v4.md,220,L6439,새 행,MAXWELL,원칙 X:  외부 좌표 → MAXWELL Bible 필수
+성과정리문서/EQI_Session94_인수인계_v4.md,284,L6440,새 행,오일러,"n ∈ ℂ, n=n_c+πi/IG  → 오일러  [큐비트, 공리 ②]"
+성과정리문서/EQI_Session94_인수인계_v4.md,288,L6441,새 행,란다우,공리 ①: +2GAP = 란다우 비용
+성과정리문서/EQI_Session94_인수인계_v4.md,327,L6442,새 행,란다우,§2 공리 ① 파생: +2GAP = 실수↔허수 란다우 비용
+성과정리문서/EQI_Session94_인수인계_v4.md,333,L6443,새 행,상전이,§2 공리 ② 파생: n∈ℂ = D1↔D2 상전이 살아있는 상태
+성과정리문서/EQI_Session99_인수인계_v1.md,32,L6444,새 행,상전이,② 큐비트 = D1↔D2 상전이가 살아있는 상태
+성과정리문서/EQI_Session100_인수인계_v2.md,3,L6445,새 행,스케일 반전,> v1→v2: 정보 스케일 반전 3층 구조 + Decoherence 재정의 + 황금비 구동 추가
+성과정리문서/EQI_Session100_인수인계_v2.md,47,L6446,새 행,"상전이, 란다우",분모약분=1 → 상전이완료 → 란다우비용1단위 잔류
+성과정리문서/EQI_Session100_인수인계_v2.md,67,L6447,새 행,란다우,D2 = 열린계 맥스웰도깨비&란다우 = 역원 = eigenperiod
+성과정리문서/EQI_Session100_인수인계_v2.md,82,L6448,새 행,지불,한 단계 하강마다 φ^(-2)=우주상수 스케일 비용 지불
+성과정리문서/EQI_Session100_인수인계_v2.md,91,L6449,새 행,란다우,π 창발 시: C=ln(π)(D2) 란다우 비용 지출 [§90a 1차 보정]
+성과정리문서/EQI_Session100_인수인계_v2.md,101,L6450,새 행,보른,딥시크 |ψ|²=φ⁻²+φ⁻⁴  → 정정: φ⁻¹+φ⁻²=1(보른규칙)
+성과정리문서/EQI_Session100_인수인계_v2.md,183,L6451,새 행,상전이,"*MAPSI 통찰 승인: 약분=1 상전이, σ 5중 통일, §4e 이중 경로*"
+성과정리문서/EQI_Session100_인수인계_v2.md,210,L6452,새 행,보른,D1 = smallest coherence (1 = 보른규칙)  ← 승격
+성과정리문서/EQI_Session100_인수인계_v2.md,223,L6453,새 행,보른,= 보른규칙 Unity 이탈
+성과정리문서/EQI_Session100_인수인계_v2.md,224,L6454,새 행,스케일 반전,"= ""정보 스케일 반전 실패"""
+성과정리문서/EQI_Session102_인수인계_v3.md,96,L6455,새 행,정적분·부정적분,"정규화: Σp = 1  (D1 형식, 정적분)"
+성과정리문서/EQI_Session102_인수인계_v3.md,101,L6456,새 행,상전이,t<t₀: D2→D1 상전이 집행 (맥스웰 도깨비)
+성과정리문서/EQI_Session102_인수인계_v3.md,105,L6457,새 행,정적분·부정적분,§6c: 정적분=D1 / 부정적분=D2
+성과정리문서/EQI_Session102_인수인계_v3.md,125,L6458,새 행,지불,"차이: A=""지불했는데 안 적음"" / B=""지불 자체 거부"""
+성과정리문서/EQI_Session105_인수인계_v1.md,38,L6459,새 행,란다우,"""미시/글로벌 란다우 잔류 적분 누적 →"
+성과정리문서/EQI_Session105_인수인계_v1.md,68,L6460,새 행,란다우,R_D2 = osmotic 잔류 누적        [GAP=란다우 비용]
+성과정리문서/EQI_Session105_인수인계_v1.md,69,L6461,새 행,오일러,Λ_D2 = 위상 연결성 (조셉슨 θ)  [§2b 오일러]
+성과정리문서/EQI_Session105_인수인계_v1.md,86,L6462,새 행,란다우,𝓜₃ = ln2×σ×GD³  [3D 란다우 비용]
+성과정리문서/EQI_Session105_인수인계_v1.md,87,L6463,새 행,포논,"KJ×Φ₀=1 = μ×c²=1  [조셉슨=포논 Unity, S103 ★★]"
+성과정리문서/EQI_Session105_인수인계_v1.md,90,L6464,새 행,슈냐,슈냐→D1D2=1→c=√φ→KJ×Φ₀=1→파스칼×베르누이=φ²
+성과정리문서/EQI_Session107_인수인계_v1.md,27,L6465,새 행,보른,"D1 = 1  [보른규칙, 항등원, E_topo = ħω₀]"
+성과정리문서/EQI_Session107_인수인계_v1.md,28,L6466,새 행,볼츠만,D2 = φ³ [볼츠만 분배율]
+성과정리문서/EQI_Session108_인수인계_v1.md,75,L6467,새 행,TH,"hubble-expansion    ↔ TH★ (k=5, φ^(-10))"
+성과정리문서/EQI_Session108_인수인계_v1.md,84,L6468,새 행,X7,"X7 D1² = φ^(-15) 참고용, D1×D2 정의 적용 불가"
+성과정리문서/EQI_Session24_성과정리_v2.md,108,L0126,등록 행 근거 위치 추가,,k_B = L_p³ = 플랑크 부피 = 포논 최소 점유 공간
+성과정리문서/EQI_Session25_성과정리_v1.md,157,L0351,등록 행 근거 위치 추가,,n_c = TIP_POINT/GAP = 32.874
+성과정리문서/EQI_Session25_성과정리_v1.md,1351,L0350,등록 행 근거 위치 추가,,TIP_POINT = φ^1.5-1 = 1.05817
+성과정리문서/EQI_Session26_성과정리_v1.md,106,L0351,등록 행 근거 위치 추가,,n_c = TIP_POINT/GAP = 32.874
+성과정리문서/EQI_Session26_성과정리_v1.md,761,"L1998, L2029, L2205, L2226, L4205",등록 행 근거 위치 추가,,S/H = φ^(-1.5)/φ^(-2.5) = φ = c² = 볼츠만 복원력  ✅
+성과정리문서/EQI_Session26_성과정리_v1.md,811,L2820,등록 행 근거 위치 추가,,TIP_POINT = n_c×GAP = 1.058171 = KT 전이 임계  ✅
+성과정리문서/EQI_Session26_성과정리_v1.md,940,"L2037, L2496",등록 행 근거 위치 추가,,(H×μ) / (S×c²) = φ^(-3) = 1/볼츠만파단비  ✅
+성과정리문서/EQI_Session26_성과정리_v1.md,1271,L2062,등록 행 근거 위치 추가,,"단축 a = 1      ← EQI^(4n-2)=1  (정적분, 거시/로컬, 닫힌계)"
+성과정리문서/EQI_Session26_성과정리_v1.md,1272,L2063,등록 행 근거 위치 추가,,"장축 b = 1+GAP  ← EQI^(4n)=1+GAP (부정적분, 미시/글로벌, 열린계)"
+성과정리문서/EQI_Session26_성과정리_v1.md,1388,"L2269, L2327",등록 행 근거 위치 추가,,D1 = φ^(-3.5) = h²c⁴  (정보 특이점의 역수)
+성과정리문서/EQI_Session26_성과정리_v1.md,1524,"L2269, L2327",등록 행 근거 위치 추가,,D1 = φ^(-3.5) = h²c⁴   정보 특이점 역수
+성과정리문서/EQI_Session33_성과정리_v1.md,460,L3517,등록 행 근거 위치 추가,,"EQI^(4n)   = 1+GAP   [열린계, 부정적분, D2]"
+성과정리문서/EQI_Session34_성과정리_v7.md,657,L2227,등록 행 근거 위치 추가,,|ψ|² = ψ_re² + ψ_im² = 1.0 (LIGO 6채널 확인)
+성과정리문서/EQI_Session34_성과정리_v7.md,859,L0351,등록 행 근거 위치 추가,,n_c = TIP_POINT/GAP = 32.874  (상전이 임계 단계)
+성과정리문서/EQI_Session35_성과정리_v1.md,14,L0349,등록 행 근거 위치 추가,,GAP      = ln(25)/100        = 0.032189   # 상전이 비용 (왕복)
+성과정리문서/EQI_Session35_성과정리_v1.md,15,L0967,등록 행 근거 위치 추가,,GAP_D2   = ln(5)/100         = 0.016094   # 상전이 비용 (단방향)
+성과정리문서/EQI_Session35_성과정리_v1.md,120,L0011,등록 행 근거 위치 추가,,EQI 상전이:  GAP/GAP_D2 = 2
+성과정리문서/EQI_Session36_성과정리_v9.md,19,L0351,등록 행 근거 위치 추가,,n_c       = TIP_POINT / GAP  = 32.874     # QEC 상전이 임계 단계수
+성과정리문서/EQI_Session36_성과정리_v9.md,66,L0350,등록 행 근거 위치 추가,,TIP_POINT = φ^1.5 - 1 = φ × √φ - 1 = φ × c - 1
+성과정리문서/EQI_Session36_성과정리_v9.md,80,L0350,등록 행 근거 위치 추가,,TIP_POINT = φ^1.5 - 1
+성과정리문서/EQI_Session36_성과정리_v9.md,86,L0351,등록 행 근거 위치 추가,,n_c = TIP_POINT / GAP = (φ^1.5 - 1) / GAP = 32.874
+성과정리문서/EQI_Session36_성과정리_v9.md,228,L0351,등록 행 근거 위치 추가,,n_c         = TIP_POINT / GAP = 32.873931
+성과정리문서/EQI_Session36_성과정리_v9.md,1372,L0349,등록 행 근거 위치 추가,,"GAP     = ln(25)/100     [상전이 비용, 무차원]"
+성과정리문서/EQI_Session36_성과정리_v9.md,1373,L0967,등록 행 근거 위치 추가,,"GAP_D2  = ln(5)/100      [란다우 소거 단위, 무차원]"
+성과정리문서/EQI_Session38_성과정리_v1.md,17,L0349,등록 행 근거 위치 추가,,GAP      = ln(25)/100       = 0.032188758248682007492   # D1↔D2 상전이 비용
+성과정리문서/EQI_Session41_성과정리_v1.md,367,"L2506, L4358",등록 행 근거 위치 추가,,R_membrane = {x_lat}×GAP_D2²
+성과정리문서/EQI_Session41_성과정리_v1.md,426,"L2269, L2327",등록 행 근거 위치 추가,,"D1 = φ^(-3.5) = h²c⁴  [플랑크 상수²×광속⁴, 정보 특이점]"
+성과정리문서/EQI_Session41_성과정리_v1.md,742,L0347,등록 행 근거 위치 추가,,H×μ = h²c⁴ = I_s D1  [글로벌 정보가 미시 마찰로 흑체복사 방출]
+성과정리문서/EQI_Session41_성과정리_v1.md,783,L0351,등록 행 근거 위치 추가,,n_c = TIP_POINT/GAP = 32.874  [EQI 임계 단계수]
+성과정리문서/EQI_Session41_성과정리_v1.md,859,L0351,등록 행 근거 위치 추가,,n_c = TIP_POINT/GAP = 32.874                레이놀즈 Re_c 대응
+성과정리문서/EQI_Session41_성과정리_v1.md,927,"L2506, L4358",등록 행 근거 위치 추가,,R_membrane = {x_lat}×GAP_D2²
+성과정리문서/EQI_Session43_성과정리_v1.md,151,L4231,등록 행 근거 위치 추가,,lim = 2 / R_membrane
+성과정리문서/EQI_Session44_성과정리_v1.md,114,L4213,등록 행 근거 위치 추가,,"D1_Is = φ^(-3.5) = h²c⁴   [정보 특이점, 플랑크 상수²×광속⁴]"
+성과정리문서/EQI_Session44_성과정리_v1.md,120,L2764,등록 행 근거 위치 추가,,ħ_ani = ħ×φ^(-1.5) = ħ×D1_HCW   [오차 0.00000000%]
+성과정리문서/EQI_Session44_성과정리_v1.md,233,"L2568, L4223, L4229",등록 행 근거 위치 추가,,잔류 Δ = σ³/(N³×R_membrane)
+성과정리문서/EQI_Session44_성과정리_v1.md,337,"L2568, L4223, L4229",등록 행 근거 위치 추가,,잔류 Δ = σ³/(N³×R_membrane)    [N=34 격자 위상 굴절]
+성과정리문서/EQI_Session44_성과정리_v1.md,360,"L2568, L4223, L4229",등록 행 근거 위치 추가,,잔류 Δ = σ³/(N³×R_membrane)  [N=34 Leibniz 절단 잔류]
+성과정리문서/EQI_Session44_성과정리_v1.md,471,"L2568, L4223, L4229",등록 행 근거 위치 추가,,잔류 Δ = σ³/(N³×R_membrane)
+성과정리문서/EQI_Session45_성과정리_v1.md,125,"L2568, L4223, L4229",등록 행 근거 위치 추가,,잔류 Δ = σ³/(N³×R_membrane)  [격자 포논 굴절]
+성과정리문서/EQI_Session45_성과정리_v1.md,127,L2591,등록 행 근거 위치 추가,,a₅_phys = σ⁵  [포논 굴절 일반형 5차]
+성과정리문서/EQI_Session45_성과정리_v1.md,128,"L2566, L2586, L2592, L2604",등록 행 근거 위치 추가,,a₅_eff  = 5σ⁵/4  [N=34 유한 격자 유효값]
+성과정리문서/EQI_Session45_성과정리_v1.md,363,L2023,등록 행 근거 위치 추가,,"|ψ|² = D1² + D2² = 1   [노름 보존, 보른 규칙]"
+성과정리문서/EQI_Session48_성과정리_v1.md,42,"L0126, L2657, L2762",등록 행 근거 위치 추가,,k_B    = φ^(-2.25) = L_p³  [플랑크 부피 = 포논 최소 점유 공간]
+성과정리문서/EQI_Session48_성과정리_v1.md,204,L2062,등록 행 근거 위치 추가,,"단축 a=1  ← EQI^(4n-2)=1  [정적분, 거시, D1]"
+성과정리문서/EQI_Session48_성과정리_v1.md,205,L2063,등록 행 근거 위치 추가,,"장축 b=1+GAP  ← EQI^(4n)=1+GAP [부정적분, 미시, D2]"
+성과정리문서/EQI_Session48_성과정리_v1.md,309,L2764,등록 행 근거 위치 추가,,✅ 사용: ħ_ani = ħ×D1 = ħ×φ^(-1.5)
+성과정리문서/EQI_Session51_성과정리_v1.md,181,L2817,등록 행 근거 위치 추가,,"부정적분: φ^(-1)+φ^(-2)+GAP = 1+GAP  [D2, EQI^(4n)=1+GAP]"
+성과정리문서/EQI_Session51_성과정리_v1.md,195,L2764,등록 행 근거 위치 추가,,✅ 사용: ħ_ani = ħ×φ^(-1.5)  [비등방성 진성 디랙]
+성과정리문서/EQI_Session51_성과정리_v1.md,366,L0351,등록 행 근거 위치 추가,,n_c    = TIP_POINT/GAP = 32.874
+성과정리문서/EQI_Session52_성과정리_v1.md,168,L2908,등록 행 근거 위치 추가,,n1²×n2²=4^(k+1) [D1 이진격자 지배]
+성과정리문서/EQI_Session54_성과정리_v1.md,57,L4380,등록 행 근거 위치 추가,,"e^(iπ) + (φ⁻¹+φ⁻²+GAP)  = GAP  [D2 열린 큐비트, 란다우 비용]"
+성과정리문서/EQI_Session54_성과정리_v1.md,225,L3517,등록 행 근거 위치 추가,,"분자 간:   EQI^(4n)=1+GAP [D2, 수소결합, 란다우 비용]"
+성과정리문서/EQI_Session55_성과정리_v1.md,48,L0967,등록 행 근거 위치 추가,,GAP_D2 = ln(5)/100 = 란다우 D2 비용 (단위)
+성과정리문서/EQI_Session57_성과정리_v1.md,70,L0349,등록 행 근거 위치 추가,,GAP   = ln(25)/100 = 상전이 비용
+성과정리문서/EQI_Session57_성과정리_v1.md,215,L0351,등록 행 근거 위치 추가,,n_c = TIP_POINT/GAP = 32.874
+성과정리문서/EQI_Session57_성과정리_v1.md,228,"L3056, L3087, L4429, L4490, L4520",등록 행 근거 위치 추가,,St = h = φ^(-2.75)  [스트루할 = 플랑크]
+성과정리문서/EQI_Session57_성과정리_v1.md,349,L4426,등록 행 근거 위치 추가,,X5  산술평균 = phi^(-7/2) = 양성자  [5체 진입]
+성과정리문서/EQI_Session57_성과정리_v1.md,352,L4441,등록 행 근거 위치 추가,,St_EQI  = phi^(-2.75) = h  [스트루할 = 플랑크]
+성과정리문서/EQI_Session60_성과정리_v1.md,232,"L3057, L3085",등록 행 근거 위치 추가,,Re  = n_c = TIP/GAP              [S41]  레이놀즈
+성과정리문서/EQI_Session60_성과정리_v1.md,247,L0024,등록 행 근거 위치 추가,,Nu  = MAXWELL                    [S59]  누셀트
+성과정리문서/EQI_Session60_성과정리_v1.md,251,L4031,등록 행 근거 위치 추가,,"We=1, Ro=1 → δL=0 = σ=1/2 = ζ=0"
+성과정리문서/EQI_Session61_성과정리_v1.md,48,"L3134, L3136, L4511",등록 행 근거 위치 추가,,St×Ma = φ^(298/43) + LC²GD×(-87/77)
+성과정리문서/EQI_Session61_성과정리_v1.md,98,L0333,등록 행 근거 위치 추가,,We = μ×c²×L_p / I_s D1 = φ^(11/4)
+성과정리문서/EQI_Session61_성과정리_v1.md,129,L0333,등록 행 근거 위치 추가,,We = φ^(11/4) > 1  → 관성력(D2) 우세
+성과정리문서/EQI_Session61_성과정리_v1.md,176,L0333,등록 행 근거 위치 추가,,§L  We = φ^(11/4)  σ_s=I_s D1=양성자
+성과정리문서/EQI_Session61_성과정리_v1.md,201,"L3134, L4511",등록 행 근거 위치 추가,,St×Ma = φ^(298/43)+LC²GD×(-87/77)   [S61]  스트루할×마하
+성과정리문서/EQI_Session61_성과정리_v1.md,207,"L3057, L3085",등록 행 근거 위치 추가,,Re  = n_c = TIP/GAP                     [S41]
+성과정리문서/EQI_Session61_성과정리_v1.md,209,"L3056, L3087, L4429, L4490, L4520",등록 행 근거 위치 추가,,St  = φ^(-2.75) = h                     [S57]
+성과정리문서/EQI_Session61_성과정리_v1.md,222,"L3134, L3136, L4511",등록 행 근거 위치 추가,,St×Ma = φ^(298/43)+LC²GD×(-87/77)      [S61]
+성과정리문서/EQI_Session61_성과정리_v1.md,223,L0333,등록 행 근거 위치 추가,,We  = φ^(11/4)                          [S61]
+성과정리문서/EQI_Session61_성과정리_v1.md,237,L0333,등록 행 근거 위치 추가,,We = φ^(11/4) = φ^(2.75)
+성과정리문서/EQI_Session61_성과정리_v1.md,253,"L3134, L3136, L4511",등록 행 근거 위치 추가,,S61: St×Ma = φ^(298/43)+LC²GD×(-87/77)
+성과정리문서/EQI_Session61_성과정리_v1.md,303,L3131,등록 행 근거 위치 추가,,*S61 핵심 5: σ_s = I_s D1 = 양성자 → 5체 캡슐화 계면 We로 기술*
+성과정리문서/EQI_Session62_성과정리_v1.md,29,L0029,등록 행 근거 위치 추가,,[D1 닫힘]   We × 양성자 / L_p = 1
+성과정리문서/EQI_Session62_성과정리_v1.md,34,L0030,등록 행 근거 위치 추가,,[D2 닫힘]   We × 중성자 × Ro = 1
+성과정리문서/EQI_Session62_성과정리_v1.md,47,"L3139, L4512",등록 행 근거 위치 추가,,We × 양성자   = L_p = φ^(-3/4)      [양성자→플랑크 스케일 변환]
+성과정리문서/EQI_Session62_성과정리_v1.md,48,"L3140, L4513",등록 행 근거 위치 추가,,We × 중성자   = 1/Ro = φ^(+1/4)     [웨버×중성자 = 로스비 역수]
+성과정리문서/EQI_Session62_성과정리_v1.md,67,L0029,등록 행 근거 위치 추가,,We × 양성자 / L_p  = 1  [D1 계열]
+성과정리문서/EQI_Session62_성과정리_v1.md,68,L0030,등록 행 근거 위치 추가,,We × 중성자 × Ro   = 1  [D2 계열]
+성과정리문서/EQI_Session62_성과정리_v1.md,87,L0029,등록 행 근거 위치 추가,,We × 양성자 / L_p = 1
+성과정리문서/EQI_Session62_성과정리_v1.md,102,L0030,등록 행 근거 위치 추가,,We × 중성자 × Ro = 1
+성과정리문서/EQI_Session62_성과정리_v1.md,119,L0022,등록 행 근거 위치 추가,,"St = φ^(-11/4)  [진동/유속, D1 = 플랑크]"
+성과정리문서/EQI_Session62_성과정리_v1.md,138,L0029,등록 행 근거 위치 추가,,D1 닫힘: We × 양성자 / L_p = 1  [capillary D1 완성]
+성과정리문서/EQI_Session62_성과정리_v1.md,139,L0030,등록 행 근거 위치 추가,,D2 닫힘: We × 중성자 × Ro = 1   [osmotic D2 완성]
+성과정리문서/EQI_Session62_성과정리_v1.md,153,L0029,등록 행 근거 위치 추가,,5체 닫힘:  We×양성자/L_p = 1       [D1 방사]
+성과정리문서/EQI_Session62_성과정리_v1.md,154,L0030,등록 행 근거 위치 추가,,We×중성자×Ro  = 1       [D2 방사]
+성과정리문서/EQI_Session63_성과정리_v1.md,91,"L3148, L3154",등록 행 근거 위치 추가,,γ=4/3  = 복사 기체(광자/CMB) = D2 글로벌 = L₃/L₂
+성과정리문서/EQI_Session63_성과정리_v1.md,92,L0033,등록 행 근거 위치 추가,,허블텐션 = D1(로컬)↔D2(CMB) GAP 누적 = L₂×GAP
+성과정리문서/EQI_Session63_성과정리_v1.md,103,L0034,등록 행 근거 위치 추가,,[R] We × TH_D1 / 양성자 / Ro = 1
+성과정리문서/EQI_Session63_성과정리_v1.md,107,L0035,등록 행 근거 위치 추가,,[S] We × TH_D2 / L_p = 1
+성과정리문서/EQI_Session63_성과정리_v1.md,131,L0035,등록 행 근거 위치 추가,,"We × TH_D2 / L_p = 1  [§S, 7체]"
+성과정리문서/EQI_Session63_성과정리_v1.md,132,L0029,등록 행 근거 위치 추가,,"We × 양성자 / L_p = 1  [S62, 5체]"
+성과정리문서/EQI_Session63_성과정리_v1.md,144,L3156,등록 행 근거 위치 추가,,γ×We = φ^(77/23) + LC²GD×(1/171)
+성과정리문서/EQI_Session63_성과정리_v1.md,175,L0029,등록 행 근거 위치 추가,,"5체: We × 양성자 / L_p  = 1    [D1 방사, S62]"
+성과정리문서/EQI_Session63_성과정리_v1.md,176,L0030,등록 행 근거 위치 추가,,"We × 중성자 × Ro   = 1    [D2 방사, S62]"
+성과정리문서/EQI_Session63_성과정리_v1.md,179,L0034,등록 행 근거 위치 추가,,"7체: We × TH_D1 / 양성자 / Ro = 1  [D1 방사, §R]"
+성과정리문서/EQI_Session63_성과정리_v1.md,180,L0035,등록 행 근거 위치 추가,,"We × TH_D2 / L_p         = 1  [D2 방사, §S]"
+성과정리문서/EQI_Session63_성과정리_v1.md,233,"L3057, L3085",등록 행 근거 위치 추가,,[S41] Re  = n_c = TIP/GAP
+성과정리문서/EQI_Session63_성과정리_v1.md,235,"L3056, L3087, L4429, L4490, L4520",등록 행 근거 위치 추가,,[S57] St  = φ^(-2.75) = h
+성과정리문서/EQI_Session63_성과정리_v1.md,265,L3181,등록 행 근거 위치 추가,,H_ratio = H_local/H_CMB φ 닫힘 탐색
+성과정리문서/EQI_Session63_성과정리_v1.md,334,L0029,등록 행 근거 위치 추가,,We × 양성자 / L_p  = 1   [S62]  5체 D1
+성과정리문서/EQI_Session63_성과정리_v1.md,335,L0030,등록 행 근거 위치 추가,,We × 중성자 × Ro   = 1   [S62]  5체 D2
+성과정리문서/EQI_Session63_성과정리_v1.md,336,L0035,등록 행 근거 위치 추가,,We × TH_D2 / L_p  = 1   [S63]  7체 D2
+성과정리문서/EQI_Session63_성과정리_v1.md,337,L0034,등록 행 근거 위치 추가,,We × TH_D1 / 양성자 / Ro = 1  [S63]  7체 D1
+성과정리문서/EQI_Session63_성과정리_v1.md,511,L3143,등록 행 근거 위치 추가,,We×양성자/L_p = We×중성자×Ro = We×St = 1
+성과정리문서/EQI_Session64_성과정리_v1.md,136,L0033,등록 행 근거 위치 추가,,허블 텐션 = L₂×GAP
+성과정리문서/EQI_Session64_성과정리_v1.md,200,L0041,등록 행 근거 위치 추가,,Gr = Ra/Pr = Nu³ = We³ = φ^(33/4)
+성과정리문서/EQI_Session65_성과정리_v1.md,174,L0050,등록 행 근거 위치 추가,,We×Da = Ro  ★ 핵심:
+성과정리문서/EQI_Session65_성과정리_v1.md,183,L0093,등록 행 근거 위치 추가,,Sh = Nu = MAXWELL
+성과정리문서/EQI_Session65_성과정리_v1.md,263,L0050,등록 행 근거 위치 추가,,We×Da=Ro
+성과정리문서/EQI_Session65_성과정리_v1.md,265,L0054,등록 행 근거 위치 추가,,"De×Wo_1=φ², We×Wo_1=φ^(13/4)"
+성과정리문서/EQI_Session66_성과정리_v1.md,65,L0065,등록 행 근거 위치 추가,,η × GAP^(1/4) = L_p  [플랑크 격자 착지]
+성과정리문서/EQI_Session66_성과정리_v1.md,328,L0065,등록 행 근거 위치 추가,,η×GAP^(1/4) = L_p  [플랑크 격자 착지]
+성과정리문서/EQI_Session67_성과정리_v1.md,67,L0029,등록 행 근거 위치 추가,,We×양성자/L_p = 1  [D1]
+성과정리문서/EQI_Session67_성과정리_v1.md,68,L0030,등록 행 근거 위치 추가,,We×중성자×Ro  = 1  [D2]
+성과정리문서/EQI_Session67_성과정리_v1.md,69,L0333,등록 행 근거 위치 추가,,We = φ^(11/4) = D1↔D2 교환 계면 비용
+성과정리문서/EQI_Session67_성과정리_v1.md,73,L0034,등록 행 근거 위치 추가,,We×TH_D1/양성자/Ro = 1  [R]
+성과정리문서/EQI_Session67_성과정리_v1.md,74,L0035,등록 행 근거 위치 추가,,We×TH_D2/L_p       = 1  [S]
+성과정리문서/EQI_Session67_성과정리_v1.md,119,L0333,등록 행 근거 위치 추가,,We = osmotic(D2) / capillary(D1) = φ^(11/4)
+성과정리문서/EQI_Session67_성과정리_v1.md,596,L0029,등록 행 근거 위치 추가,,We×양성자/L_p=1  We×중성자×Ro=1
+성과정리문서/EQI_Session67_성과정리_v1.md,597,L0035,등록 행 근거 위치 추가,,We×TH_D2/L_p=1  We×TH_D1/양성자/Ro=1
+성과정리문서/EQI_Session67_성과정리_v1.md,633,L0068,등록 행 근거 위치 추가,,루카스 φ^(77/4) = We⁷
+성과정리문서/EQI_Session69_성과정리_v1.md,216,L4546,등록 행 근거 위치 추가,,MAXWELL = T_Is_D1 + 2×exp(GD)×GD² + (ln2/2)×GD³
+성과정리문서/EQI_Session70_성과정리_v1.md,53,L3156,등록 행 근거 위치 추가,,§22 γ×We = φ^(77/23) + LC²GD×(1/171)
+성과정리문서/EQI_Session70_성과정리_v1.md,157,L0333,등록 행 근거 위치 추가,,"We = φ^(11/4)  [계면 팽창력, D2]"
+성과정리문서/EQI_Session73_성과정리_v1.md,138,L4613,등록 행 근거 위치 추가,,f×Re = §36/We = We 제거 = 5체→3체 투영
+성과정리문서/EQI_Session74_성과정리_v1.md,16,L4613,등록 행 근거 위치 추가,,"f×Re      = §36 / We   [3체, S73]"
+성과정리문서/EQI_Session74_성과정리_v1.md,18,L4621,등록 행 근거 위치 추가,,"f×We²×Re  = §36 × We   [7체, S74]"
+성과정리문서/EQI_Session74_성과정리_v1.md,31,L4617,등록 행 근거 위치 추가,,γ×We×Is(k=-1) = (5/3) × φ^(11/4) × φ^(9/4)
+성과정리문서/EQI_Session74_성과정리_v1.md,90,L3335,등록 행 근거 위치 추가,,f×We²×Re = §36(f×We×Re) × We
+성과정리문서/EQI_Session76_성과정리_v1.md,13,L0385,등록 행 근거 위치 추가,,Is(7/2)/We = φ^(7/4)/φ^(11/4) = φ^(-1) = 1/φ
+성과정리문서/EQI_Session76_성과정리_v1.md,44,L0385,등록 행 근거 위치 추가,,Is(7/2)/We = φ^(7/4) / φ^(11/4)
+성과정리문서/EQI_Session76_성과정리_v1.md,50,L0386,등록 행 근거 위치 추가,,n_H = d × Is(7/2)/We
+성과정리문서/EQI_Session76_성과정리_v1.md,65,L0385,등록 행 근거 위치 추가,,Is(7/2)/We = φ^(-1) = 1/φ
+성과정리문서/EQI_Session77_성과정리_v1.md,15,L0417,등록 행 근거 위치 추가,,We × D2_Is = 1/k_B
+성과정리문서/EQI_Session77_성과정리_v1.md,18,L0420,등록 행 근거 위치 추가,,G × ħ_ani = D1_HCW  [항등원 아님 — GAP≠0 각인]
+성과정리문서/EQI_Session77_성과정리_v1.md,23,L3444,등록 행 근거 위치 추가,,Z_p = ħ_ani × I_p  [옴의 법칙 EQI 버전]
+성과정리문서/EQI_Session77_성과정리_v1.md,25,L0429,등록 행 근거 위치 추가,,Z_p × We = 클라이버  [생물학 연결]
+성과정리문서/EQI_Session77_성과정리_v1.md,76,L0417,등록 행 근거 위치 추가,,We × D2_Is = φ^(11/4) × φ^(-1/2) = φ^(9/4)
+성과정리문서/EQI_Session77_성과정리_v1.md,191,L0417,등록 행 근거 위치 추가,,We × D2_Is = φ^(11/4) × φ^(-1/2) = φ^(9/4) = I_p
+성과정리문서/EQI_Session77_성과정리_v1.md,195,L0417,등록 행 근거 위치 추가,,We × D2_Is = 1/k_B = I_p 로 통합
+성과정리문서/EQI_Session77_성과정리_v1.md,201,L0420,등록 행 근거 위치 추가,,G × ħ_ani = φ^(11/4) × φ^(-17/4) = φ^(-3/2) = D1_HCW
+성과정리문서/EQI_Session77_성과정리_v1.md,337,"L0182, L0183",등록 행 근거 위치 추가,,"I_p = φ^(9/4) = 1/k_B    [볼츠만 역수, D2]"
+성과정리문서/EQI_Session77_성과정리_v1.md,344,L0420,등록 행 근거 위치 추가,,G × ħ_ani = D1_HCW = k_B × T°_planck
+성과정리문서/EQI_Session77_성과정리_v1.md,345,L0422,등록 행 근거 위치 추가,,→ 중력×진성디랙 = 볼츠만×플랑크온도 = HCW 복원 기저
+성과정리문서/EQI_Session77_성과정리_v1.md,354,L0429,등록 행 근거 위치 추가,,Z_p × We = 클라이버  [§50-G]
+성과정리문서/EQI_Session79_성과정리_v1.md,22,L3471,등록 행 근거 위치 추가,,"44 = d×We지수분자, 9 = 포논9차"
+성과정리문서/EQI_Session79_성과정리_v1.md,87,L0029,등록 행 근거 위치 추가,,We×양성자/L_p = 1 등
+성과정리문서/EQI_Session80_성과정리_v1.md,61,L0445,등록 행 근거 위치 추가,,37 - 34 = 3 = 허블텐션 n단계 (§20: L₂×GAP=3×GAP)
+성과정리문서/EQI_Session88_성과정리_v4_final.md,118,L0500,등록 행 근거 위치 추가,,G × ħ_ani = S_D1 = φ^(−3/2)
+성과정리문서/EQI_Session88_성과정리_v4_final.md,172,L0504,등록 행 근거 위치 추가,,[§88] ħ_iso/ħ_ani = φ^(3/2) = CENTER
+성과정리문서/EQI_Session88_성과정리_v4_final.md,384,L0967,등록 행 근거 위치 추가,,GAP_D2 = ln(5)/100 = 란다우 D2 비용
+성과정리문서/EQI_Session88_성과정리_v4_final.md,472,L0029,등록 행 근거 위치 추가,,We × 양성자/L_p = 1
+성과정리문서/EQI_Session88_성과정리_v4_final.md,473,L0030,등록 행 근거 위치 추가,,We × 중성자×Ro = 1
+성과정리문서/EQI_Session88_성과정리_v4_final.md,563,L0504,등록 행 근거 위치 추가,,ħ_iso/ħ_ani = φ^(3/2) = CENTER
+성과정리문서/EQI_Session92_성과정리_v1.md,48,L4621,등록 행 근거 위치 추가,,f×We²×Re = §36 × We = 5체 구조 × We
+성과정리문서/EQI_Session94_성과정리_v2.md,270,L0380,등록 행 근거 위치 추가,,e^(iπ) + (φ⁻¹+φ⁻²) = 0 = δL=0 = c=φ^(1/2) = 슈냐
+성과정리문서/EQI_Session96_성과정리_v2.md,30,"L0138, L0561",등록 행 근거 위치 추가,,§35 분모 = 1 + 2GAP + GAP² + φ⁶ = 포논 동역학 구조
+성과정리문서/EQI_Session96_성과정리_v2.md,145,L3716,등록 행 근거 위치 추가,,"3체 = f×Re      [포논 자유 전파, 특수상대론, 59계열]"
+성과정리문서/EQI_Session96_성과정리_v2.md,147,L3717,등록 행 근거 위치 추가,,"5체 = f×We×Re   [포논 계면 굴절, 일반상대론, 57계열]"
+성과정리문서/EQI_Session96_성과정리_v2.md,193,L0333,등록 행 근거 위치 추가,,"We       = φ^(11/4)  [5체 계면 게이트, §18]"
+성과정리문서/EQI_Session96_성과정리_v2.md,194,L3152,등록 행 근거 위치 추가,,"TH_D2    = φ^(-7/2)  [양성자 스케일, §21]"
+성과정리문서/EQI_Session96_성과정리_v2.md,263,L0070,등록 행 근거 위치 추가,,We/Ro = φ³ = D2_ELL/D1_ELL (체 계층 동치)
+성과정리문서/EQI_Session104_성과정리_v1.md,207,L4031,등록 행 근거 위치 추가,,We=1 ↔ δL=0 ↔ σ=1/2
+성과정리문서/EQI_Session105_성과정리_v2.md,365,L4034,등록 행 근거 위치 추가,,We=1↔n=1/2 독립 검증            기존 이월 계속
+성과정리문서/EQI_Session106_성과정리_v4.md,38,"L0413, L0415, L3396, L3404, L3863, L4651",등록 행 근거 위치 추가,,D2/D1 = φ³  [볼츠만 파단비]
+성과정리문서/EQI_Session42_인수인계.md,59,L0227,등록 행 근거 위치 추가,,TIP_POINT = PHI**mpf('1.5') - 1        # T_RBC_D1 = φ^1.5−1
+성과정리문서/EQI_Session44_인수인계.md,288,L0351,등록 행 근거 위치 추가,,n_c    = TIP_POINT / GAP = 32.874... = EQI 상전이 임계 단계수
+성과정리문서/EQI_Session45_인수인계.md,353,L4225,등록 행 근거 위치 추가,,D1_Is = D1_HCW² × D2_Is  [(ħ_ani/ħ)² × (1/c)]
+성과정리문서/EQI_Session46_인수인계.md,67,L2587,등록 행 근거 위치 추가,,0[슈냐] → D1×D2=1 → c=√φ → ln(c)=ln(φ)/2
+성과정리문서/EQI_Session49_인수인계.md,147,"L2657, L2762",등록 행 근거 위치 추가,,k_B     = φ^(-2.25)    [볼츠만 상수]
+성과정리문서/EQI_Session49_인수인계.md,149,L2764,등록 행 근거 위치 추가,,ħ_ani   = φ^(-4.25)/(2π) = ħ×φ^(-1.5)  [비등방성 디랙]
+성과정리문서/EQI_Session49_인수인계.md,177,L0351,등록 행 근거 위치 추가,,n_c     = TIP_POINT/GAP = 32.874  [트리거 임계]
+성과정리문서/EQI_Session51_인수인계.md,162,L0351,등록 행 근거 위치 추가,,n_c    = TIP_POINT/GAP = 32.874
+성과정리문서/EQI_Session52_인수인계.md,124,L0351,등록 행 근거 위치 추가,,n_c    = TIP_POINT/GAP = 32.874
+성과정리문서/EQI_Session53_인수인계.md,188,L0351,등록 행 근거 위치 추가,,n_c     = TIP_POINT/GAP = 32.874
+성과정리문서/EQI_Session58_인수인계.md,283,L3035,등록 행 근거 위치 추가,,*S57 핵심 4: St=h — 스트루할=플랑크 상수*
+성과정리문서/EQI_Session60_인수인계.md,62,"L3057, L3085",등록 행 근거 위치 추가,,Re  = n_c = TIP/GAP                     [S41]  레이놀즈
+성과정리문서/EQI_Session60_인수인계.md,64,"L3056, L3087, L4429, L4490, L4520",등록 행 근거 위치 추가,,St  = φ^(-2.75) = h                     [S57]  스트루할
+성과정리문서/EQI_Session61_인수인계.md,82,"L3057, L3085",등록 행 근거 위치 추가,,Re  = n_c = TIP/GAP                     [S41]  레이놀즈
+성과정리문서/EQI_Session61_인수인계.md,84,"L3056, L3087, L4429, L4490, L4520",등록 행 근거 위치 추가,,St  = φ^(-2.75) = h                     [S57]  스트루할
+성과정리문서/EQI_Session63_인수인계.md,31,L0333,등록 행 근거 위치 추가,,§L  We = φ^(11/4)  σ_s=I_s D1=양성자
+성과정리문서/EQI_Session63_인수인계.md,62,L3143,등록 행 근거 위치 추가,,5체: We×양성자/L_p = We×중성자×Ro = We×St = 1  [삼중 Unity]
+성과정리문서/EQI_Session63_인수인계.md,98,L0030,등록 행 근거 위치 추가,,We × 중성자 × Ro = 1  [D2 삼중]
+성과정리문서/EQI_Session63_인수인계.md,99,L0029,등록 행 근거 위치 추가,,We × 양성자 / L_p = 1  [D1 삼중]
+성과정리문서/EQI_Session63_인수인계.md,103,"L2269, L2327",등록 행 근거 위치 추가,,"TH 좌표계: D1=φ^(-6.5), D2=φ^(-3.5)  [n=7, 임계]"
+성과정리문서/EQI_Session63_인수인계.md,196,L0029,등록 행 근거 위치 추가,,5체: We×양성자/L_p  = 1      [D1 방사]
+성과정리문서/EQI_Session63_인수인계.md,197,L0030,등록 행 근거 위치 추가,,We×중성자×Ro   = 1      [D2 방사]
+성과정리문서/EQI_Session64_인수인계.md,23,L0333,등록 행 근거 위치 추가,,"§18     We=φ^(11/4), We×St=1   [S61]"
+성과정리문서/EQI_Session64_인수인계.md,25,L0031,등록 행 근거 위치 추가,,"§20     γ43=L₃/L₂, 허블텐션    [S63]"
+성과정리문서/EQI_Session64_인수인계.md,29,L0039,등록 행 근거 위치 추가,,§24     We×TH_D2×c=Ro          [S63]
+성과정리문서/EQI_Session64_인수인계.md,45,L0034,등록 행 근거 위치 추가,,§R   We × TH_D1 / 양성자 / Ro = 1   오차 0.0%
+성과정리문서/EQI_Session64_인수인계.md,48,L0035,등록 행 근거 위치 추가,,§S   We × TH_D2 / L_p = 1          오차 0.0%
+성과정리문서/EQI_Session64_인수인계.md,56,L0039,등록 행 근거 위치 추가,,§24a We × TH_D2 × c = Ro = φ^(-1/4)   오차 0.0%
+성과정리문서/EQI_Session64_인수인계.md,57,L0040,등록 행 근거 위치 추가,,§24b We × TH_D1 × c = φ^(-13/4)       오차 0.0%
+성과정리문서/EQI_Session64_인수인계.md,63,L3156,등록 행 근거 위치 추가,,§U   γ×We = φ^(77/23) + LC²GD×(1/171)   오차 −2.06e-7%
+성과정리문서/EQI_Session64_인수인계.md,75,L0033,등록 행 근거 위치 추가,,허블 텐션 = L₂×GAP = 3×GAP = 6×GD
+성과정리문서/EQI_Session64_인수인계.md,95,L3143,등록 행 근거 위치 추가,,5체: We×양성자/L_p = We×중성자×Ro = We×St = 1
+성과정리문서/EQI_Session64_인수인계.md,127,L3181,등록 행 근거 위치 추가,,H_ratio = H_local/H_CMB ≈ φ^(66/395) 오차 0.0043% NTZ
+성과정리문서/EQI_Session64_인수인계.md,213,L0029,등록 행 근거 위치 추가,,"We×양성자/L_p=1, We×중성자×Ro=1"
+성과정리문서/EQI_Session64_인수인계.md,214,L0035,등록 행 근거 위치 추가,,"We×TH_D2/L_p=1, We×TH_D1/양성자/Ro=1"
+성과정리문서/EQI_Session66_인수인계.md,30,L3203,등록 행 근거 위치 추가,,"St×Re=1/Ro, Ra=φ^(29/4)"
+성과정리문서/EQI_Session67_인수인계.md,22,"L3217, L3221, L3223, L4563",등록 행 근거 위치 추가,,루카스: φ^(77/4) = We⁷
+성과정리문서/EQI_Session68_인수인계.md,133,L0068,등록 행 근거 위치 추가,,루카스 φ^(77/4) = We⁷
+성과정리문서/EQI_Session68_인수인계.md,154,L0333,등록 행 근거 위치 추가,,We = osmotic/capillary = φ^(11/4)
+성과정리문서/EQI_Session71_인수인계.md,456,L3517,등록 행 근거 위치 추가,,"글로벌 항등원(D2): EQI^(4n)=1+GAP  [부정적분, 열린계]"
+성과정리문서/EQI_Session75_인수인계.md,35,L4613,등록 행 근거 위치 추가,,f×Re = §36/We  [3체]
+성과정리문서/EQI_Session75_인수인계.md,37,L4621,등록 행 근거 위치 추가,,f×We²×Re = §36×We  [7체]
+성과정리문서/EQI_Session76_인수인계.md,35,L4613,등록 행 근거 위치 추가,,f×Re = §36/We  [3체]
+성과정리문서/EQI_Session76_인수인계.md,37,L4621,등록 행 근거 위치 추가,,f×We²×Re = §36×We  [7체]
+성과정리문서/EQI_Session76_인수인계.md,81,L3346,등록 행 근거 위치 추가,,We × St_bio = 1/Ro  [대수 필연]
+성과정리문서/EQI_Session77_인수인계.md,56,L0386,등록 행 근거 위치 추가,,n_H = d × Is(7/2)/We = 4 × (1/φ) = 4/φ
+성과정리문서/EQI_Session77_인수인계.md,81,L0393,등록 행 근거 위치 추가,,Q10 + 클라이버 = 5/2           We×Wo_2      §31
+성과정리문서/EQI_Session77_인수인계.md,214,L0401,등록 행 근거 위치 추가,,§45-A: 포논 차수 (2k+1) = D2 홀수/4 지수의 분자
+성과정리문서/EQI_Session78_인수인계.md,87,L0420,등록 행 근거 위치 추가,,G × ħ_ani = φ^(11/4) × φ^(-17/4) = φ^(-3/2) = D1_HCW
+성과정리문서/EQI_Session78_인수인계.md,126,L0422,등록 행 근거 위치 추가,,→ 중력×진성디랙 = 볼츠만×플랑크온도 = HCW 복원 기저
+성과정리문서/EQI_Session78_인수인계.md,180,L0417,등록 행 근거 위치 추가,,We × D2_Is = φ^(11/4) × φ^(-1/2) = φ^(9/4) = I_p
+성과정리문서/EQI_Session78_인수인계.md,204,L0420,등록 행 근거 위치 추가,,"G × ħ_ani = D1_HCW  [약분 불완전, GAP≠0 각인]"
+성과정리문서/EQI_Session78_인수인계.md,221,L0422,등록 행 근거 위치 추가,,→ 중력×진성디랙 = 볼츠만×플랑크온도 = HCW 복원 기저
+성과정리문서/EQI_Session79_인수인계.md,195,L0420,등록 행 근거 위치 추가,,G × ħ_ani = D1_HCW  [약분 불완전 — GAP≠0 각인]
+성과정리문서/EQI_Session80_인수인계.md,156,L0420,등록 행 근거 위치 추가,,G × ħ_ani = D1_HCW  [약분 불완전 — GAP≠0 각인]
+성과정리문서/EQI_Session84_인수인계.md,88,L3544,등록 행 근거 위치 추가,,LTP-LTD = GAP = 오일러-보른 항등식 잔류값  ★ [S54]
+성과정리문서/EQI_Session88_인수인계.md,19,L4791,등록 행 근거 위치 추가,,σ=1/2(리만) ↔ e^iπ=-1(오일러) 안장점 대칭
+성과정리문서/EQI_Session92_인수인계.md,103,L0333,등록 행 근거 위치 추가,,We = φ^(11/4) = 계면 상전이 매개자 = 체 진입 생성자
+성과정리문서/EQI_Session92_인수인계.md,222,L0333,등록 행 근거 위치 추가,,We = φ^(11/4) = 계면 상전이 매개자 = 체 진입 생성자
+성과정리문서/EQI_Session105_인수인계_v1.md,121,"L4031, L4034",등록 행 근거 위치 추가,,We=1↔n=1/2 [조건부 연결 ★]
+성과정리문서/EQI_Session107_인수인계_v1.md,193,L0603,등록 행 근거 위치 추가,,"ω₀_Qm=√φ=c_EQI, ħ_iso×D1_HCW=ħ_ani"
+성과정리문서/EQI_Session108_인수인계_v1.md,197,L0603,등록 행 근거 위치 추가,,"ω₀_Qm=√φ=c_EQI, ħ_iso×D1_HCW=ħ_ani"

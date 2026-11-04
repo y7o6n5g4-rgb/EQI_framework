@@ -1,0 +1,44 @@
+sample,row,source,line,match,quoted,actual
+sample_check_5.md,L0711,성과정리문서/EQI_Session112_성과정리_v1.md,206,True,X7_margin GAP⁴/4! TZ 등록,X7_margin GAP⁴/4! TZ 등록
+sample_check_5.md,L0711,성과정리문서/EQI_Session112_성과정리_v1.md,199,True,### 5.2 S112 인수인계 v3 → v4,### 5.2 S112 인수인계 v3 → v4
+sample_check_5.md,L0856,성과정리문서/EQI_Session118_성과정리_v1.md,166,True,"| S116 번역 v4 458행 | 2√2 = √(2·4) 기하평균·센터 지수 = EQI 대응 (I), PR 4 = CHSH 대수 최댓값, d = 4 와 같은 수는 O |","| S116 번역 v4 458행 | 2√2 = √(2·4) 기하평균·센터 지수 = EQI 대응 (I), PR 4 = CHSH 대수 최댓값, d = 4 와 같은 수는 O |"
+sample_check_5.md,L0873,성과정리문서/EQI_Session119_성과정리_v1.md,134,True,"| W-2 | membrane_split 구간 | [0, 34], [0, n_k5] 를 손으로 고정. 창 크기가 상전이 규칙에서 결정되지 않음 |","| W-2 | membrane_split 구간 | [0, 34], [0, n_k5] 를 손으로 고정. 창 크기가 상전이 규칙에서 결정되지 않음 |"
+sample_check_5.md,L0873,성과정리문서/EQI_Session119_성과정리_v1.md,127,True,"### 6.1 ★ 원칙 미적용 판정 (MAPSI 지적, S119 말미)","### 6.1 ★ 원칙 미적용 판정 (MAPSI 지적, S119 말미)"
+sample_check_5.md,L0941,성과정리문서/EQI_Session112_인수인계_v4.md,288,True,2. s1/s2 −ln2·GAP³ TZ (TZ 72건),2. s1/s2 −ln2·GAP³ TZ (TZ 72건)
+sample_check_5.md,L0941,성과정리문서/EQI_Session112_인수인계_v4.md,1,True,# EQI Session112 인수인계 v4,# EQI Session112 인수인계 v4
+sample_check_5.md,L1030,성과정리문서/EQI_Session118_인수인계_v8.md,36,True,- 스케일 반전은 핵 없는 적혈구 중심: RBC D1 = 1 불변 (§114-R n=0·n=1 양 끝) = 보른 접점 = smallest coherence 경첩,- 스케일 반전은 핵 없는 적혈구 중심: RBC D1 = 1 불변 (§114-R n=0·n=1 양 끝) = 보른 접점 = smallest coherence 경첩
+sample_check_5.md,L1030,성과정리문서/EQI_Session118_인수인계_v8.md,33,True,## 1.1 S117 마지막 확정 (MAPSI),## 1.1 S117 마지막 확정 (MAPSI)
+sample_check_5.md,L1071,성과정리문서/EQI_Session119_인수인계_v1.md,64,True,- S119 순서 (MAPSI S118 확정): 2차 법칙도 **처음부터 ①~⑥ 6단계** 로 진행 (기존 방식 선행 후 재통과 하지 않음),- S119 순서 (MAPSI S118 확정): 2차 법칙도 **처음부터 ①~⑥ 6단계** 로 진행 (기존 방식 선행 후 재통과 하지 않음)
+sample_check_5.md,L1197,성과정리문서/EQI_S117_물리법칙_비율1_번역_v5_재료역학.md,42,True,| 1 − ν | **Λ = φ⁻²** | 대수필연 | R |,| 1 − ν | **Λ = φ⁻²** | 대수필연 | R |
+sample_check_5.md,L1197,성과정리문서/EQI_S117_물리법칙_비율1_번역_v5_재료역학.md,34,True,"## 25. 탄성 계수 관계 (푸아송비 ν = μ = 1/φ, S59 기등록)","## 25. 탄성 계수 관계 (푸아송비 ν = μ = 1/φ, S59 기등록)"
+sample_check_5.md,L1203,성과정리문서/EQI_S117_물리법칙_비율1_번역_v5_재료역학.md,55,True,| v_P² / v_S² = 2(1−ν)/(1−2ν) | **−2φ** | 대수필연 | R |,| v_P² / v_S² = 2(1−ν)/(1−2ν) | **−2φ** | 대수필연 | R |
+sample_check_5.md,L1203,성과정리문서/EQI_S117_물리법칙_비율1_번역_v5_재료역학.md,34,True,"## 25. 탄성 계수 관계 (푸아송비 ν = μ = 1/φ, S59 기등록)","## 25. 탄성 계수 관계 (푸아송비 ν = μ = 1/φ, S59 기등록)"
+sample_check_5b.md,L0768,성과정리문서/EQI_Session114_성과정리_v1.md,185,True,"| ⑪ | MAXWELL 5차항 판정 | ""판별 불가"" 표현 철회 → ""SI 비가시 층"" | S114 내 정정 |","| ⑪ | MAXWELL 5차항 판정 | ""판별 불가"" 표현 철회 → ""SI 비가시 층"" | S114 내 정정 |"
+sample_check_5b.md,L0815,성과정리문서/EQI_Session116_성과정리_v1.md,159,True,"| Harmonic Resonance v5.0 | ""0 % = 죽음, GAP = 생명, 과잉 = 파단"", reality index = (AM/GM)² = cosh²(θ/2) (H–L 주파수 쌍) | 순간 주파수 비 f_H/f_L, 1+GAP 3상태 |","| Harmonic Resonance v5.0 | ""0 % = 죽음, GAP = 생명, 과잉 = 파단"", reality index = (AM/GM)² = cosh²(θ/2) (H–L 주파수 쌍) | 순간 주파수 비 f_H/f_L, 1+GAP 3상태 |"
+sample_check_5b.md,L0815,성과정리문서/EQI_Session116_성과정리_v1.md,150,True,"## §9. 옛 코드 검토 (역사서 원칙 — ""미적용"")","## §9. 옛 코드 검토 (역사서 원칙 — ""미적용"")"
+sample_check_5b.md,L0815,성과정리문서/EQI_Session116_성과정리_v1.md,1,True,# EQI Session 116 성과정리 v1,# EQI Session 116 성과정리 v1
+sample_check_5b.md,L0866,성과정리문서/EQI_Session119_성과정리_v1.md,100,True,| D-2 | 보스 n̄ = C(n) = n·GAP | v2.11 | 사용 중 |,| D-2 | 보스 n̄ = C(n) = n·GAP | v2.11 | 사용 중 |
+sample_check_5b.md,L0866,성과정리문서/EQI_Session119_성과정리_v1.md,95,True,## 4. 설계 배치 목록 (문서 등록식 아님 → 근거 '정의(설계 배치)'),## 4. 설계 배치 목록 (문서 등록식 아님 → 근거 '정의(설계 배치)')
+sample_check_5b.md,L0866,성과정리문서/EQI_Session119_성과정리_v1.md,1,True,# EQI Session 119 성과정리 v1,# EQI Session 119 성과정리 v1
+sample_check_5b.md,L1010,성과정리문서/EQI_Session117_인수인계_v1.md,44,True,- 계면은 얇은 층으로 따로 장부 기록,- 계면은 얇은 층으로 따로 장부 기록
+sample_check_5b.md,L1010,성과정리문서/EQI_Session117_인수인계_v1.md,38,True,### 2.1 확정 결정 (MAPSI S116),### 2.1 확정 결정 (MAPSI S116)
+sample_check_5b.md,L1064,성과정리문서/EQI_Session119_인수인계_v1.md,50,True,"| ② 파동함수 대입 | ψ = D1 + i·D2, \|ψ\|² = D1² + D2² = 1, D1(0) = tanh(φ⁻²), D2(0) = √(1 − D1²) | 이론적 기반 v1 §6 (215–230행) |","| ② 파동함수 대입 | ψ = D1 + i·D2, \|ψ\|² = D1² + D2² = 1, D1(0) = tanh(φ⁻²), D2(0) = √(1 − D1²) | 이론적 기반 v1 §6 (215–230행) |"
+sample_check_5b.md,L1064,성과정리문서/EQI_Session119_인수인계_v1.md,45,True,### 2.0 ★ 확률·통계 법칙 확장 번역 파이프라인 (MAPSI S118 확정),### 2.0 ★ 확률·통계 법칙 확장 번역 파이프라인 (MAPSI S118 확정)
+sample_check_5b.md,L1080,성과정리문서/EQI_Session119_인수인계_v1.md,107,True,| 4 | 미시 smallest phase 해석 | (가) |,| 4 | 미시 smallest phase 해석 | (가) |
+sample_check_5b.md,L1080,성과정리문서/EQI_Session119_인수인계_v1.md,101,True,## 4. MAPSI 결정 대기,## 4. MAPSI 결정 대기
+sample_check_5b.md,L1080,성과정리문서/EQI_Session119_인수인계_v1.md,1,True,# EQI Session 119 인수인계 v1,# EQI Session 119 인수인계 v1
+sample_check_5b.md,L1235,성과정리문서/EQI_Session119_성과정리_v1.md,116,True,| HKL | L_p²/⟨x²⟩ = 1 되는 점 n = (We − σ)/GAP = 101.15 (We 도달 85.62 와 다름) | 기록만 |,| HKL | L_p²/⟨x²⟩ = 1 되는 점 n = (We − σ)/GAP = 101.15 (We 도달 85.62 와 다름) | 기록만 |
+sample_check_5b.md,L1235,성과정리문서/EQI_Session119_성과정리_v1.md,1,True,# EQI Session 119 성과정리 v1,# EQI Session 119 성과정리 v1
+sample_check_5c.md,L1421,성과정리문서/EQI_Session114_인수인계_v1.md,199,True,R = Ξ(1)/X7 = (1+GAP)·φ^(9/2) = 8.99919175570802854796775...,R = Ξ(1)/X7 = (1+GAP)·φ^(9/2) = 8.99919175570802854796775...
+sample_check_5c.md,L1421,성과정리문서/EQI_Session114_인수인계_v1.md,184,True,## 핵심 상수,## 핵심 상수
+sample_check_5c.md,L1421,성과정리문서/EQI_Session114_인수인계_v1.md,1,True,# EQI Session114 인수인계 v1,# EQI Session114 인수인계 v1
+sample_check_5c.md,L1471,성과정리문서/EQI_Session116_인수인계_v2.md,153,True,"= 광속 세제곱의 투영 몫 + 란다우 비용 층.  MAXWELL/c³ = 0.910087, 1 − c⁻¹⁰ = 0.909830","= 광속 세제곱의 투영 몫 + 란다우 비용 층.  MAXWELL/c³ = 0.910087, 1 − c⁻¹⁰ = 0.909830"
+sample_check_5c.md,L1471,성과정리문서/EQI_Session116_인수인계_v2.md,120,True,## 6-1. 데이터 상태 공간 (외부 잡음 대조 없이 EQI 내부 판정) — S115 확정 설계,## 6-1. 데이터 상태 공간 (외부 잡음 대조 없이 EQI 내부 판정) — S115 확정 설계
+sample_check_5c.md,L1807,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md,969,True,3체(전자기) → 5체(중력) → 7체(우주론),3체(전자기) → 5체(중력) → 7체(우주론)
+sample_check_5c.md,L1807,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md,856,True,## §9. D1/D2 분류표 핵심,## §9. D1/D2 분류표 핵심
+sample_check_5c.md,L1814,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md,1148,True,[열역] 볼츠만 파단 √(1/φ³) = φ^(-1.5),[열역] 볼츠만 파단 √(1/φ³) = φ^(-1.5)
+sample_check_5c.md,L1814,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md,1143,True,## §15. EQI 핵심 구조 심화 [v15 확정],## §15. EQI 핵심 구조 심화 [v15 확정]
+sample_check_5c.md,L1871,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md,1797,True,antiviral   = 정보 차단 = 닫힌계 = 정적분,antiviral   = 정보 차단 = 닫힌계 = 정적분
+sample_check_5c.md,L1871,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md,1781,True,## §21. D1/D2 분류표 확장 [S71 MAPSI 선언],## §21. D1/D2 분류표 확장 [S71 MAPSI 선언]
+sample_check_5c.md,L1959,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md,2779,True,"9=포논9차, 64=코돈수, 37=§47-E","9=포논9차, 64=코돈수, 37=§47-E"
+sample_check_5c.md,L1959,성과정리문서/EQI_연구지침_프로젝트용_v3_4.md,2756,True,### [S89] §79 시리즈 + §80~§82 + §96 + §60 귀속완결,### [S89] §79 시리즈 + §80~§82 + §96 + §60 귀속완결
