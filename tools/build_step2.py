@@ -449,6 +449,13 @@ for r in rows:
         cs = sorted(set(cs), key=lambda x: int(x[1:]))[:5]
         if "연결 후보:" not in r["비고"]: r["비고"] = (r["비고"] + "; " if r["비고"] else "") + "연결 후보: " + ", ".join(cs)
 
+# ─────────────── MAPSI 정정 규칙 2026-11-04 (L6469 이후만) + 앞 행 영향 보고 — tools/rule_change.py ───────────────
+_sprc = _ilu.spec_from_file_location("rc", os.path.join(ROOT, "tools", "rule_change.py"))
+rc = _ilu.module_from_spec(_sprc); _sprc.loader.exec_module(rc)
+RC_CTX = dict(ROOT=ROOT, OUT=OUT, tokens=CTX["s5"].tokens)
+rc.apply(rows, RC_CTX)
+if not STEP6: rc.impact(rows, RC_CTX)
+
 # ─────────────── 상태 내려받기 (CLAUDE.md 규칙 4 보충) — tools/status_inherit.py ───────────────
 _sp2 = _ilu.spec_from_file_location("si", os.path.join(ROOT, "tools", "status_inherit.py"))
 si = _ilu.module_from_spec(_sp2); _sp2.loader.exec_module(si)

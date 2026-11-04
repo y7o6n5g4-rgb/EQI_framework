@@ -199,6 +199,8 @@ for r in rows:
     elif so.startswith("1순위 표기 없음"):
         if r["상태"]: why.append("V8 표기 없음 행인데 상태 있음")
     else:
+        so, rc_ = (so.split(" → MAPSI 정정 2026-11-04 ")[0], so.split(" → MAPSI 정정 2026-11-04 ")[1]) if " → MAPSI 정정 2026-11-04 " in so else (so, "")
+        if rc_ and int(r["id"][1:]) < 6469: why.append("V8 MAPSI 정정 규칙 (2026-11-04) 이 앞 행에 적용됨")
         m = re.match(r"^(로그|소스|v3\.4|문서 [^\[\]]+?\.md) (\d+)행 \[([^\]]+)\] '([^']+)' — 1순위$", so)
         if not m: why.append("V8 1순위 상태_출처 형식 오류")
         else:
@@ -206,6 +208,15 @@ for r in rows:
             if m.group(4) not in t: why.append(f"V8 상태_출처 줄에 표기 '{m.group(4)}' 없음")
             if not any(c[0] == m.group(1) and c[1] <= int(m.group(2)) <= c[2] for c in toks): why.append("V8 상태_출처 줄이 근거_위치에 없음")
             tk = m.group(4); want = "미적용" if tk == "미적용" else ("O 보류" if tk == "보류" else map_any(tk)[0])
+            if rc_.startswith("(1)"):          # MAPSI 정정 (1): 표기 줄의 '교체 확정 대기'·'확정 대기'·'확정 전' → 결정 대기
+                if not re.search(r"교체 확정 대기|확정 대기|확정 전", t): why.append("V8 정정 (1) 인데 표기 줄에 '확정 대기'·'확정 전' 없음")
+                want = "결정 대기"
+            elif rc_.startswith("(2)"):        # MAPSI 정정 (2): 머리글과 대상 줄 사이 굵은 소제목 → 전달 안 함
+                bm = re.search(r"— (\d+)행 굵은 소제목 개입으로 전달 안 함", rc_); pr = toks[0]
+                if not bm or not (int(m.group(2)) < int(bm.group(1)) < pr[1]) or not re.match(r"^\*\*[^*]+\*\*$", F[m.group(1)][int(bm.group(1)) - 1].strip()):
+                    why.append("V8 정정 (2) 굵은 소제목 줄 위치·형식 불일치")
+                if bm and bm.group(0)[2:] not in r["비고"]: why.append("V8 정정 (2) 비고 문구 없음")
+                want = ""
             if want != r["상태"]: why.append(f"V8 상태_출처 표기 '{tk}'→'{want}' ≠ 원장 '{r['상태']}'")
     # V9 정의·원칙 행 (MAPSI 승인 2026-11-03): 상태 빈칸 고정·내려받기 금지·상태 표기 없는 줄·'=' 또는 '→'·비고 키워드가 원문 줄에 있음
     kind = r.get("행_종류", "")

@@ -65,7 +65,10 @@ for m in mp:
         if r["근거_파일"] != p: why.append("Y2 근거_파일 ≠ 문서")
         if r["식"].split(" ‖ ") != [V[k - 1].strip() for k in range(a, b + 1)]: why.append("Y2 식 ≠ 인용 줄")
         if p.startswith("derived/") and "원문 docx 변환본" not in r["비고"]: why.append("Y2 derived 행 비고에 원문 docx 없음")
-        if m["종류"] == "T3":
+        rc_ = "MAPSI 정정 2026-11-04" in r["상태_출처"]       # tools/rule_change.py (L6469 이후) — verify_step2 V8 에서 검사
+        if rc_ and int(r["id"][1:]) < 6469: why.append("Y8 MAPSI 정정 규칙이 앞 행에 적용됨")
+        if rc_: pass
+        elif m["종류"] == "T3":
             hm = re.search(r"\(문서 \S+ (\d+)행\)", r["비고"])
             if not hm: why.append("Y3 T3 비고에 머리글 행 번호 없음")
             else:
