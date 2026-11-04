@@ -646,6 +646,7 @@ K0004 옛 output·terminal 67행 마지막 자리 (해소, 이전 판 git 74b469
 | L1055 | 확정 | 빈칸 | EQI_Session118_인수인계_v8.md 108행 [본문] |
 
 - 고정 표본에 든 행: **L1010** (sample_check_5b.md) — 표본 파일은 수정하지 않음.
+- 2026-11-04 추가: sample_check_5b.md 의 L1010 은 정정 전 상태 (확정) 로 기록·대조된 것이며, 현재 원장 L1010 상태는 생성 규칙 정정으로 빈칸 (index/evidence/step5_independent_check.md 끝에도 기록). 표본 파일 수정 없음.
 - 검사: verify_step2 V8 / verify_step5 Y8 은 '정정 규칙 행이면 비고에 정정 전 상태' 로 바꿈, verify_step7 W1·W2 는 정정 행 (비고의 정정 전 상태 = BASE 상태) 의 상태·등급·비고·상태_출처 변경을 허용.
   verify_step2 6476행·step3·4a·4b·5·6·7·10 불일치 0, check_chars 통과, 빌드 두 번 바이트 동일. rule_change_impact.md 는 반영 기록 (전후 27행) 으로 바뀜.
 
